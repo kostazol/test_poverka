@@ -61,13 +61,16 @@ namespace PoverkaWinForms
 
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
-            if (gridResults.CurrentRow?.DataBoundItem is not TestRun run)
+            var current = gridResults.CurrentRow != null
+                ? gridResults.CurrentRow.DataBoundItem as TestRun
+                : null;
+            if (current == null)
             {
                 MessageBox.Show("Выберите запись в таблице результатов.", "Отчёт", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var path = ReportGenerator.SaveRtfTo(_reportsDir, run);
+            var path = ReportGenerator.SaveRtfTo(_reportsDir, current);
             linkLastReport.Text = path;
             linkLastReport.Visible = true;
         }
@@ -84,8 +87,10 @@ namespace PoverkaWinForms
 
         private void btnMetersSetup_Click(object sender, EventArgs e)
         {
-            using var dlg = new MetersSetupForm();
-            dlg.ShowDialog(this);
+            using (var dlg = new MetersSetupForm())
+            {
+                dlg.ShowDialog(this);
+            }
         }
     }
 }
