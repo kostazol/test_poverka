@@ -81,5 +81,11 @@ namespace PoverkaWinForms
             }
             catch { }
         }
+
+        private void btnMetersSetup_Click(object sender, EventArgs e)
+        {
+            using var dlg = new MetersSetupForm();
+            dlg.ShowDialog(this);
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace PoverkaWinForms
         private Label lblPressure;
         private NumericUpDown numPressure;
         private Button btnCalculate;
+        private Button btnMetersSetup;
 
         private DataGridView gridResults;
         private Button btnGenerateReport;
@@ -55,6 +56,7 @@ namespace PoverkaWinForms
             lblPressure = new Label();
             numPressure = new NumericUpDown();
             btnCalculate = new Button();
+            btnMetersSetup = new Button();
             tabResults = new TabPage();
             gridResults = new DataGridView();
             btnGenerateReport = new Button();
@@ -94,6 +96,7 @@ namespace PoverkaWinForms
             // 
             // tabCalib
             // 
+            tabCalib.Controls.Add(btnMetersSetup);
             tabCalib.Controls.Add(grpMeter);
             tabCalib.Controls.Add(grpRun);
             tabCalib.Location = new Point(4, 24);
@@ -272,16 +275,26 @@ namespace PoverkaWinForms
             numPressure.TabIndex = 9;
             // 
             // btnCalculate
-            // 
+            //
             btnCalculate.Location = new Point(310, 105);
             btnCalculate.Name = "btnCalculate";
             btnCalculate.Size = new Size(180, 30);
             btnCalculate.TabIndex = 10;
             btnCalculate.Text = "Рассчитать и сохранить";
             btnCalculate.Click += btnCalculate_Click;
-            // 
+            //
+            // btnMetersSetup
+            //
+            btnMetersSetup.Location = new Point(520, 10);
+            btnMetersSetup.Name = "btnMetersSetup";
+            btnMetersSetup.Size = new Size(250, 30);
+            btnMetersSetup.TabIndex = 2;
+            btnMetersSetup.Text = "Настройка преобразователей...";
+            btnMetersSetup.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMetersSetup.Click += btnMetersSetup_Click;
+            //
             // tabResults
-            // 
+            //
             tabResults.Controls.Add(gridResults);
             tabResults.Controls.Add(btnGenerateReport);
             tabResults.Controls.Add(linkLastReport);
