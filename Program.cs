@@ -29,6 +29,7 @@ namespace PoverkaWinForms
 
             services.AddScoped<IRunRepository, EfRepository>();
             services.AddScoped<MainForm>();
+            services.AddScoped<MetersSetupForm>();
 
             using var provider = services.BuildServiceProvider();
             using var scope = provider.CreateScope();
@@ -41,7 +42,7 @@ namespace PoverkaWinForms
                 DbSeeder.Seed(db);
             }
 #endif
-            Application.Run(scope.ServiceProvider.GetRequiredService<MainForm>());
+            Application.Run(scope.ServiceProvider.GetRequiredService<MetersSetupForm>());
         }
     }
 }
