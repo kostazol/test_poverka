@@ -1,7 +1,9 @@
 using System;
-using System.IO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Forms;
+using PoverkaWinForms.Data;
 using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms
@@ -13,18 +15,23 @@ namespace PoverkaWinForms
         {
             ApplicationConfiguration.Initialize();
 
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
             var services = new ServiceCollection();
-            services.AddSingleton<IRunRepository>(_ =>
-            {
-                string dataPath = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    "Poverka", "data.json");
-                return new JsonRepository(dataPath);
-            });
-            services.AddSingleton<MainForm>();
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(connectionString));
+
+            services.AddScoped<IRunRepository, EfRepository>();
+            services.AddScoped<MainForm>();
 
             using var provider = services.BuildServiceProvider();
-            Application.Run(provider.GetRequiredService<MainForm>());
+            using var scope = provider.CreateScope();
+            Application.Run(scope.ServiceProvider.GetRequiredService<MainForm>());
         }
     }
 }
