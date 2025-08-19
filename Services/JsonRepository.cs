@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using PoverkaWinForms.Domain;
 
@@ -24,6 +25,14 @@ namespace PoverkaWinForms.Services
             if (!File.Exists(_path)) return new List<TestRun>();
             var json = File.ReadAllText(_path);
             return JsonSerializer.Deserialize<List<TestRun>>(json) ?? new List<TestRun>();
+        }
+
+        public List<TestRun> GetBySerial(string serial)
+        {
+            return GetAll()
+                .Where(r => r.Meter.Serial == serial)
+                .OrderByDescending(r => r.Timestamp)
+                .ToList();
         }
 
         public void ReplaceAll(List<TestRun> runs)
