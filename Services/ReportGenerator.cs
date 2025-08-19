@@ -7,37 +7,36 @@ namespace PoverkaWinForms.Services
 {
     public static class ReportGenerator
     {
-        public static string GenerateRtf(TestRun run)
+        private const string TemplateFile = "Reports/DefaultReport.rtf";
+
+        public static string GenerateRtf(TestRun run, string? templatePath = null)
         {
-            // A tiny RTF template (Cyrillic supported via \ansi\ansicpg1251)
-            string rtf = @"{\rtf1\ansi\ansicpg1251\deff0
-{\fonttbl{\f0 Arial;}}
-\fs20 Поверка расходомера\par
-Дата: " + run.Timestamp.ToString("yyyy-MM-dd HH:mm") + @"\par
-Серийный номер: " + Escape(run.Meter.Serial) + @"\par
-Модель: " + Escape(run.Meter.Model) + @"\par
-Диаметр: " + run.Meter.DiameterMm + @" мм\par
-\par
-Измеренный объём: " + run.VolumeLiters.ToString("0.###") + @" л\par
-Время пролива: " + run.TimeSeconds.ToString("0.###") + @" с\par
-Температура: " + run.TemperatureC.ToString("0.#") + @" °C\par
-Давление: " + run.PressureKPa.ToString("0.#") + @" кПа\par
-\par
-Поток по прибору: " + run.IndicatedFlow.ToString("0.###") + @" л/с\par
-Действительный поток: " + run.ActualFlow.ToString("0.###") + @" л/с\par
-Погрешность: " + run.ErrorPercent.ToString("0.###") + @" %\par
-\par
-Подпись оператора: ______________________\par
-}";
+            templatePath ??= Path.Combine(AppDomain.CurrentDomain.BaseDirectory, TemplateFile);
+
+            string template = File.ReadAllText(templatePath, Encoding.GetEncoding(1251));
+
+            string rtf = template
+                .Replace("{{Date}}", run.Timestamp.ToString("yyyy-MM-dd HH:mm"))
+                .Replace("{{Serial}}", Escape(run.Meter.Serial))
+                .Replace("{{Model}}", Escape(run.Meter.Model))
+                .Replace("{{Diameter}}", run.Meter.DiameterMm.ToString())
+                .Replace("{{Volume}}", run.VolumeLiters.ToString("0.###"))
+                .Replace("{{Time}}", run.TimeSeconds.ToString("0.###"))
+                .Replace("{{Temperature}}", run.TemperatureC.ToString("0.#"))
+                .Replace("{{Pressure}}", run.PressureKPa.ToString("0.#"))
+                .Replace("{{IndicatedFlow}}", run.IndicatedFlow.ToString("0.###"))
+                .Replace("{{ActualFlow}}", run.ActualFlow.ToString("0.###"))
+                .Replace("{{ErrorPercent}}", run.ErrorPercent.ToString("0.###"));
+
             return rtf;
         }
 
-        public static string SaveRtfTo(string dir, TestRun run)
+        public static string SaveRtfTo(string dir, TestRun run, string? templatePath = null)
         {
             Directory.CreateDirectory(dir);
             string fileName = $"Report_{run.Timestamp:yyyyMMdd_HHmm}_{Sanitize(run.Meter.Serial)}.rtf";
             string path = Path.Combine(dir, fileName);
-            File.WriteAllText(path, GenerateRtf(run), Encoding.GetEncoding(1251));
+            File.WriteAllText(path, GenerateRtf(run, templatePath), Encoding.GetEncoding(1251));
             return path;
         }
 
