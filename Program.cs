@@ -1,5 +1,8 @@
 using System;
+using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Forms;
+using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms
 {
@@ -9,7 +12,19 @@ namespace PoverkaWinForms
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+
+            var services = new ServiceCollection();
+            services.AddSingleton<IRunRepository>(_ =>
+            {
+                string dataPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    "Poverka", "data.json");
+                return new JsonRepository(dataPath);
+            });
+            services.AddSingleton<MainForm>();
+
+            using var provider = services.BuildServiceProvider();
+            Application.Run(provider.GetRequiredService<MainForm>());
         }
     }
 }

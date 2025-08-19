@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using PoverkaWinForms.Domain;
 using PoverkaWinForms.Services;
@@ -12,17 +10,18 @@ namespace PoverkaWinForms
     public partial class MainForm : Form
     {
         private readonly BindingList<TestRun> _runs = new BindingList<TestRun>();
-        private readonly JsonRepository _repo;
+        private readonly IRunRepository _repo;
         private readonly string _reportsDir;
 
-        public MainForm()
+        public MainForm(IRunRepository repo)
         {
             InitializeComponent();
-            string dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Poverka", "data.json");
-            _repo = new JsonRepository(dataPath);
-            _reportsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Poverka", "Reports");
+            _repo = repo;
+            _reportsDir = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "Poverka", "Reports");
 
-            var loaded = _repo.LoadAll();
+            var loaded = _repo.GetAll();
             foreach (var r in loaded) _runs.Add(r);
 
             gridResults.AutoGenerateColumns = false;
@@ -54,7 +53,7 @@ namespace PoverkaWinForms
             run.ErrorPercent = Calculator.CalculateErrorPercent(run.IndicatedFlow, run.ActualFlow);
 
             _runs.Add(run);
-            _repo.SaveAll(new List<TestRun>(_runs));
+            _repo.Add(run);
 
             MessageBox.Show($"Готово.\nДействительный поток: {run.ActualFlow:0.###} л/с\nПогрешность: {run.ErrorPercent:0.###} %",
                 "Расчёт", MessageBoxButtons.OK, MessageBoxIcon.Information);
