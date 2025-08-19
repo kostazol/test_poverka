@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using PoverkaWinForms.Domain;
+using PoverkaWinForms.Services;
+
+namespace PoverkaWinForms
+{
+    public partial class MainForm : Form
+    {
+        private readonly BindingList<TestRun> _runs = new BindingList<TestRun>();
+        private readonly JsonRepository _repo;
+        private readonly string _reportsDir;
+
+        public MainForm()
+        {
+            InitializeComponent();
+            string dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Poverka", "data.json");
+            _repo = new JsonRepository(dataPath);
+            _reportsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Poverka", "Reports");
+
+            var loaded = _repo.LoadAll();
+            foreach (var r in loaded) _runs.Add(r);
+
+            gridResults.AutoGenerateColumns = false;
+            gridResults.DataSource = _runs;
+
+            txtSerial.Text = "0001";
+            txtModel.Text = "DUT-100";
+            numDiameter.Value = 50;
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            var run = new TestRun
+            {
+                Meter = new Meter
+                {
+                    Serial = txtSerial.Text.Trim(),
+                    Model = txtModel.Text.Trim(),
+                    DiameterMm = (double)numDiameter.Value
+                },
+                VolumeLiters = (double)numVolume.Value,
+                TimeSeconds = (double)numTime.Value,
+                IndicatedFlow = (double)numIndicated.Value,
+                TemperatureC = (double)numTemp.Value,
+                PressureKPa = (double)numPressure.Value
+            };
+
+            run.ActualFlow = Calculator.CalculateActualFlow(run.VolumeLiters, run.TimeSeconds, run.TemperatureC);
+            run.ErrorPercent = Calculator.CalculateErrorPercent(run.IndicatedFlow, run.ActualFlow);
+
+            _runs.Add(run);
+            _repo.SaveAll(new List<TestRun>(_runs));
+
+            MessageBox.Show($"Готово.\nДействительный поток: {run.ActualFlow:0.###} л/с\nПогрешность: {run.ErrorPercent:0.###} %",
+                "Расчёт", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            if (gridResults.CurrentRow?.DataBoundItem is not TestRun run)
+            {
+                MessageBox.Show("Выберите запись в таблице результатов.", "Отчёт", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var path = ReportGenerator.SaveRtfTo(_reportsDir, run);
+            linkLastReport.Text = path;
+            linkLastReport.Visible = true;
+        }
+
+        private void linkLastReport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                if (File.Exists(linkLastReport.Text))
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo { FileName = linkLastReport.Text, UseShellExecute = true });
+            }
+            catch { }
+        }
+    }
+}
