@@ -24,6 +24,14 @@ namespace PoverkaWinForms.Services
                 .ToList();
         }
 
+        public List<TestRun> GetBySerial(string serial)
+        {
+            return _db.TestRuns.AsNoTracking()
+                .Where(r => r.Meter.Serial == serial)
+                .OrderByDescending(r => r.Timestamp)
+                .ToList();
+        }
+
         public void Add(TestRun run)
         {
             _db.TestRuns.Add(run);
