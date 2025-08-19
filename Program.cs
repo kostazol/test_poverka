@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Forms;
 using PoverkaWinForms.Data;
 using PoverkaWinForms.Services;
+using System.Linq;
 
 namespace PoverkaWinForms
 {
@@ -31,6 +32,15 @@ namespace PoverkaWinForms
 
             using var provider = services.BuildServiceProvider();
             using var scope = provider.CreateScope();
+#if DEBUG
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            var pending = db.Database.GetPendingMigrations().Any();
+            if (pending)
+            {
+                db.Database.Migrate();
+                DbSeeder.Seed(db);
+            }
+#endif
             Application.Run(scope.ServiceProvider.GetRequiredService<MainForm>());
         }
     }
