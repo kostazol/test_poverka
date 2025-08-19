@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PoverkaWinForms.Domain
 {
     public class StateRegister
@@ -6,6 +8,9 @@ namespace PoverkaWinForms.Domain
         public string RegisterNumber { get; set; }
         public string InstrumentName { get; set; }
         public string VerificationDocument { get; set; }
+
+        public List<Diameter> Diameters { get; set; } = new();
+        public List<FlowmeterModification> FlowmeterModifications { get; set; } = new();
 
         public StateRegister(string registerNumber, string instrumentName, string verificationDocument)
         {
