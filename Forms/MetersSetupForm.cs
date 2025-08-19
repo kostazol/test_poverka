@@ -32,5 +32,9 @@ namespace PoverkaWinForms
         private void Rashodomer6_CB_CheckedChanged(object sender, EventArgs e) { }
         private void Rashodomer5_CB_CheckedChanged(object sender, EventArgs e) { }
         private void Rashodomer4_CB_CheckedChanged(object sender, EventArgs e) { }
+        private void groupBox6_Enter(object sender, EventArgs e)
+        {
+            // TODO: добавить логику обработки при необходимости
+        }
     }
 }
