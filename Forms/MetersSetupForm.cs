@@ -96,8 +96,13 @@ namespace PoverkaWinForms
                 Location = new Point(ClientSize.Width - 85, ClientSize.Height - 40),
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Right
             };
-            btnExit.Click += (_, _) => Close();
+            btnExit.Click += BtnExit_Click;
             Controls.Add(btnExit);
+        }
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
