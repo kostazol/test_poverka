@@ -1,6 +1,9 @@
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 using PoverkaWinForms;
+using PoverkaWinForms.Exceptions;
 
 namespace PoverkaWinForms.Services;
 
@@ -16,7 +19,7 @@ public class TokenService
 
     public TokenService(IHttpClientFactory factory, IdentityServerSettings settings)
     {
-        _http = factory.CreateClient();
+        _http = factory.CreateClient("AuthClient");
         _settings = settings;
         _http.BaseAddress = new Uri(settings.Authority);
     }
@@ -36,18 +39,29 @@ public class TokenService
             ["scope"] = "api offline_access"
         });
 
-        var response = await _http.PostAsync("/connect/token", content);
-        if (!response.IsSuccessStatusCode)
-            return false;
+        var request = new HttpRequestMessage(HttpMethod.Post, "/connect/token")
+        {
+            Content = content
+        };
 
-        var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
-        if (token is null)
-            return false;
+        try
+        {
+            var response = await _http.SendAsync(request);
+            var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
+            if (token is null)
+                return false;
 
-        _accessToken = token.AccessToken;
-        _refreshToken = token.RefreshToken;
-        _expiresAt = DateTime.UtcNow.AddSeconds(token.ExpiresIn);
-        return true;
+            _accessToken = token.AccessToken;
+            _refreshToken = token.RefreshToken;
+            _expiresAt = DateTime.UtcNow.AddSeconds(token.ExpiresIn);
+            return true;
+        }
+        catch (ApiException ex) when (ex.StatusCode is HttpStatusCode.BadRequest or HttpStatusCode.Unauthorized)
+        {
+            return false;
+        }
+
+        // other ApiException or ServerUnavailableException will bubble up
     }
 
     public async Task<string?> GetAccessTokenAsync()
@@ -78,18 +92,27 @@ public class TokenService
             ["refresh_token"] = _refreshToken
         });
 
-        var response = await _http.PostAsync("/connect/token", content);
-        if (!response.IsSuccessStatusCode)
-            return false;
+        var request = new HttpRequestMessage(HttpMethod.Post, "/connect/token")
+        {
+            Content = content
+        };
 
-        var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
-        if (token is null)
-            return false;
+        try
+        {
+            var response = await _http.SendAsync(request);
+            var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
+            if (token is null)
+                return false;
 
-        _accessToken = token.AccessToken;
-        _refreshToken = token.RefreshToken;
-        _expiresAt = DateTime.UtcNow.AddSeconds(token.ExpiresIn);
-        return true;
+            _accessToken = token.AccessToken;
+            _refreshToken = token.RefreshToken;
+            _expiresAt = DateTime.UtcNow.AddSeconds(token.ExpiresIn);
+            return true;
+        }
+        catch (ApiException ex) when (ex.StatusCode is HttpStatusCode.BadRequest or HttpStatusCode.Unauthorized)
+        {
+            return false;
+        }
     }
 
     private record TokenResponse([property: JsonPropertyName("access_token")] string AccessToken, [property: JsonPropertyName("refresh_token")] string RefreshToken, [property: JsonPropertyName("expires_in")] int ExpiresIn);

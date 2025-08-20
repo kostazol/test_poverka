@@ -1,6 +1,7 @@
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using PoverkaWinForms.Services;
+using PoverkaWinForms.UI;
 
 namespace PoverkaWinForms.Forms;
 
@@ -14,7 +15,7 @@ public partial class LoginForm : Form
         InitializeComponent();
         _tokens = tokens;
         _provider = provider;
-        btnLogin.Click += async (s, e) => await LoginAsync();
+        btnLogin.Click += async (s, e) => await UiHelper.RunSafeAsync(LoginAsync);
     }
 
     private async Task LoginAsync()

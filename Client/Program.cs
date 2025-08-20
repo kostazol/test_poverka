@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using PoverkaWinForms.Forms;
 using PoverkaWinForms.Data;
 using PoverkaWinForms.Services;
+using PoverkaWinForms.Http;
 
 namespace PoverkaWinForms
 {
@@ -25,7 +26,9 @@ namespace PoverkaWinForms
 
             services.AddIdentityServerSettings(configuration);
             services.AddSingleton<IConfiguration>(configuration);
-            services.AddHttpClient();
+            services.AddTransient<HttpErrorHandler>();
+            services.AddHttpClient("AuthClient")
+                .AddHttpMessageHandler<HttpErrorHandler>();
             services.AddSingleton<TokenService>();
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
