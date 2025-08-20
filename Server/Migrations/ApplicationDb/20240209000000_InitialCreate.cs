@@ -1,11 +1,15 @@
 using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using PoverkaServer.Data;
 
 #nullable disable
 
 namespace PoverkaServer.Migrations.ApplicationDb
 {
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20240209000000_InitialCreate")]
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
