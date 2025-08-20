@@ -5,6 +5,7 @@ using Duende.IdentityServer.EntityFramework.DbContexts;
 using PoverkaServer;
 using PoverkaServer.Data;
 using PoverkaServer.Endpoints;
+using PoverkaServer.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,7 @@ builder.Services.AddOptions<JwtBearerOptions>(JwtBearerDefaults.AuthenticationSc
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddParameterValidation();
 
 var app = builder.Build();
 

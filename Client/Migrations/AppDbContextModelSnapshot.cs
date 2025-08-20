@@ -15,7 +15,7 @@ namespace PoverkaWinForms.Data.Migrations
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
 
             modelBuilder.Entity("PoverkaWinForms.Domain.StateRegister", b =>
             {
