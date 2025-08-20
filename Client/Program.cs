@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Forms;
+using PoverkaWinForms.Forms;
 using PoverkaWinForms.Data;
 using PoverkaWinForms.Services;
-using System.Linq;
 
 namespace PoverkaWinForms
 {
@@ -23,6 +23,11 @@ namespace PoverkaWinForms
 
             var services = new ServiceCollection();
 
+            services.AddIdentityServerSettings(configuration);
+            services.AddSingleton<IConfiguration>(configuration);
+            services.AddHttpClient();
+            services.AddSingleton<TokenService>();
+
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(connectionString));
@@ -30,19 +35,12 @@ namespace PoverkaWinForms
             services.AddScoped<IRunRepository, EfRepository>();
             services.AddScoped<MainForm>();
             services.AddScoped<MetersSetupForm>();
+            services.AddScoped<LoginForm>();
 
             using var provider = services.BuildServiceProvider();
             using var scope = provider.CreateScope();
-#if DEBUG
-            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            var pending = db.Database.GetPendingMigrations().Any();
-            if (pending)
-            {
-                db.Database.Migrate();
-                DbSeeder.Seed(db);
-            }
-#endif
-            Application.Run(scope.ServiceProvider.GetRequiredService<MetersSetupForm>());
+
+            Application.Run(scope.ServiceProvider.GetRequiredService<LoginForm>());
         }
     }
 }
