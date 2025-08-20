@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PoverkaServer.Data;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -17,7 +18,7 @@ namespace PoverkaServer.Migrations.ApplicationDb
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("en_US.utf8")
-                .HasAnnotation("ProductVersion", "9.0.0-preview.7.24405.7");
+                .HasAnnotation("ProductVersion", "9.0.8");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
             {
