@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Duende.IdentityServer.EntityFramework.DbContexts;
 using PoverkaServer;
 using PoverkaServer.Data;
 using PoverkaServer.Endpoints;
@@ -9,14 +8,15 @@ using PoverkaServer.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var applicationConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var identityConnectionString = builder.Configuration.GetConnectionString("IdentityConnection");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(applicationConnectionString));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddIdentityServerSettings(builder.Configuration);
 
@@ -25,14 +25,14 @@ builder.Services.AddIdentityServer()
     .AddConfigurationStore(options =>
     {
         options.ConfigureDbContext = b =>
-            b.UseNpgsql(connectionString,
-                sql => sql.MigrationsAssembly(typeof(Program).Assembly.FullName));
+            b.UseNpgsql(identityConnectionString,
+                sql => sql.MigrationsAssembly(typeof(Program).Assembly.GetName().Name));
     })
     .AddOperationalStore(options =>
     {
         options.ConfigureDbContext = b =>
-            b.UseNpgsql(connectionString,
-                sql => sql.MigrationsAssembly(typeof(Program).Assembly.FullName));
+            b.UseNpgsql(identityConnectionString,
+                sql => sql.MigrationsAssembly(typeof(Program).Assembly.GetName().Name));
     })
     .AddDeveloperSigningCredential();
 

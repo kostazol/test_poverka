@@ -1,11 +1,14 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Duende.IdentityServer.EntityFramework.DbContexts;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 #nullable disable
 
 namespace PoverkaServer.Migrations.ConfigurationDb;
 
-/// <inheritdoc />
+[DbContext(typeof(ConfigurationDbContext))]
+[Migration("20240123193245_Configuration")]
 public partial class Configuration : Migration
 {
     /// <inheritdoc />

@@ -1,11 +1,14 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Duende.IdentityServer.EntityFramework.DbContexts;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 #nullable disable
 
 namespace PoverkaServer.Migrations.PersistedGrantDb;
 
-/// <inheritdoc />
+[DbContext(typeof(PersistedGrantDbContext))]
+[Migration("20240123193240_Grants")]
 public partial class Grants : Migration
 {
     /// <inheritdoc />
