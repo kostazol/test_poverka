@@ -28,8 +28,17 @@ public partial class LoginForm : Form
         }
 
         Hide();
-        var meters = _provider.GetRequiredService<MetersSetupForm>();
-        meters.FormClosed += (_, _) => Close();
-        meters.Show();
+        if (_tokens.Role == "Admin")
+        {
+            var usersForm = _provider.GetRequiredService<UsersForm>();
+            usersForm.FormClosed += (_, _) => Close();
+            usersForm.Show();
+        }
+        else
+        {
+            var meters = _provider.GetRequiredService<MetersSetupForm>();
+            meters.FormClosed += (_, _) => Close();
+            meters.Show();
+        }
     }
 }

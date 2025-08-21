@@ -30,6 +30,9 @@ namespace PoverkaWinForms
             services.AddHttpClient("AuthClient")
                 .AddHttpMessageHandler<HttpErrorHandler>();
             services.AddSingleton<TokenService>();
+            services.AddHttpClient("ApiClient")
+                .AddHttpMessageHandler<HttpErrorHandler>();
+            services.AddTransient<UserService>();
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options =>
@@ -38,6 +41,7 @@ namespace PoverkaWinForms
             services.AddScoped<IRunRepository, EfRepository>();
             services.AddScoped<MainForm>();
             services.AddScoped<MetersSetupForm>();
+            services.AddScoped<UsersForm>();
             services.AddScoped<LoginForm>();
 
             using var provider = services.BuildServiceProvider();

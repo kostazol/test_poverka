@@ -3,6 +3,7 @@ using Duende.IdentityServer.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PoverkaServer.Data;
+using PoverkaServer.Models;
 
 namespace PoverkaServer;
 
@@ -45,5 +46,24 @@ public static class MigrationExtensions
         foreach (var role in Roles.All)
             if (!await roleManager.RoleExistsAsync(role))
                 await roleManager.CreateAsync(new IdentityRole(role));
+
+        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+        if (await userManager.FindByNameAsync("admin") is null)
+        {
+            var admin = new ApplicationUser { UserName = "admin" };
+            admin.PasswordHash = userManager.PasswordHasher.HashPassword(admin, "admin");
+            var result = await userManager.CreateAsync(admin);
+            if (result.Succeeded)
+                await userManager.AddToRoleAsync(admin, "Admin");
+        }
+
+        if (await userManager.FindByNameAsync("verifier") is null)
+        {
+            var verifier = new ApplicationUser { UserName = "verifier" };
+            verifier.PasswordHash = userManager.PasswordHasher.HashPassword(verifier, "verifier");
+            var result = await userManager.CreateAsync(verifier);
+            if (result.Succeeded)
+                await userManager.AddToRoleAsync(verifier, "Verifier");
+        }
     }
 }
