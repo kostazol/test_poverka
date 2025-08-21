@@ -54,6 +54,7 @@ namespace PoverkaWinForms.Forms
             this.btnCreateUser.TabIndex = 0;
             this.btnCreateUser.Text = "Создать пользователя";
             this.btnCreateUser.UseVisualStyleBackColor = true;
+            this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
             //
             // btnEditUser
             //
@@ -64,6 +65,7 @@ namespace PoverkaWinForms.Forms
             this.btnEditUser.TabIndex = 1;
             this.btnEditUser.Text = "Изменить пользователя";
             this.btnEditUser.UseVisualStyleBackColor = true;
+            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
             //
             // gridUsers
             //

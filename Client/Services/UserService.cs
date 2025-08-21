@@ -32,7 +32,37 @@ public class UserService
         var users = await response.Content.ReadFromJsonAsync<IEnumerable<UserDto>>();
         return users ?? Enumerable.Empty<UserDto>();
     }
+
+    public async Task CreateUserAsync(UserCreateDto user)
+    {
+        var token = await _tokens.GetAccessTokenAsync();
+        if (token is null) return;
+
+        var request = new HttpRequestMessage(HttpMethod.Post, "/api/users")
+        {
+            Content = JsonContent.Create(user)
+        };
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        var response = await _http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task UpdateUserAsync(string id, UserUpdateDto user)
+    {
+        var token = await _tokens.GetAccessTokenAsync();
+        if (token is null) return;
+
+        var request = new HttpRequestMessage(HttpMethod.Put, $"/api/users/{id}")
+        {
+            Content = JsonContent.Create(user)
+        };
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        var response = await _http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+    }
 }
 
 public record UserDto(string Id, string UserName, string Role, string? LastName, string? FirstName, string? MiddleName);
+public record UserCreateDto(string UserName, string Password, string Role);
+public record UserUpdateDto(string? LastName, string? FirstName, string? MiddleName);
 
