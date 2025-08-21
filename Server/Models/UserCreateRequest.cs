@@ -15,6 +15,15 @@ public class UserCreateRequest : IValidatableObject
 
     public required string Role { get; init; }
 
+    [StringLength(100, ErrorMessage = "Указана недопустимая длина, допускается не больше 100 символов.")]
+    public string? LastName { get; init; }
+
+    [StringLength(100, ErrorMessage = "Указана недопустимая длина, допускается не больше 100 символов.")]
+    public string? FirstName { get; init; }
+
+    [StringLength(100, ErrorMessage = "Указана недопустимая длина, допускается не больше 100 символов.")]
+    public string? MiddleName { get; init; }
+
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (!Roles.All.Contains(Role))

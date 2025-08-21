@@ -63,6 +63,6 @@ public class UserService
 }
 
 public record UserDto(string Id, string UserName, string Role, string? LastName, string? FirstName, string? MiddleName);
-public record UserCreateDto(string UserName, string Password, string Role);
+public record UserCreateDto(string UserName, string Password, string Role, string? LastName, string? FirstName, string? MiddleName);
 public record UserUpdateDto(string? LastName, string? FirstName, string? MiddleName);
 

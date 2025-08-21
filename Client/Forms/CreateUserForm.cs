@@ -30,7 +30,13 @@ public partial class CreateUserForm : Form
     {
         if (_users is null) return;
 
-        var dto = new UserCreateDto(txtUserName.Text, txtPassword.Text, (string)cmbRole.SelectedItem!);
+        var dto = new UserCreateDto(
+            txtUserName.Text,
+            txtPassword.Text,
+            (string)cmbRole.SelectedItem!,
+            string.IsNullOrWhiteSpace(txtLastName.Text) ? null : txtLastName.Text,
+            string.IsNullOrWhiteSpace(txtFirstName.Text) ? null : txtFirstName.Text,
+            string.IsNullOrWhiteSpace(txtMiddleName.Text) ? null : txtMiddleName.Text);
         await _users.CreateUserAsync(dto);
         DialogResult = DialogResult.OK;
         Close();

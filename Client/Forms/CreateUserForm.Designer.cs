@@ -9,6 +9,12 @@ namespace PoverkaWinForms.Forms
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.ComboBox cmbRole;
+        private System.Windows.Forms.Label lblLastName;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.Label lblFirstName;
+        private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.Label lblMiddleName;
+        private System.Windows.Forms.TextBox txtMiddleName;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnCancel;
 
@@ -31,6 +37,12 @@ namespace PoverkaWinForms.Forms
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblRole = new System.Windows.Forms.Label();
             this.cmbRole = new System.Windows.Forms.ComboBox();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.lblMiddleName = new System.Windows.Forms.Label();
+            this.txtMiddleName = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -89,24 +101,72 @@ namespace PoverkaWinForms.Forms
             this.cmbRole.Size = new System.Drawing.Size(250, 28);
             this.cmbRole.TabIndex = 5;
             this.cmbRole.SelectedIndexChanged += new System.EventHandler(this.RequiredFieldsChanged);
-            // 
+            //
+            // lblLastName
+            //
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.Location = new System.Drawing.Point(12, 126);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(75, 20);
+            this.lblLastName.TabIndex = 6;
+            this.lblLastName.Text = "Фамилия";
+            //
+            // txtLastName
+            //
+            this.txtLastName.Location = new System.Drawing.Point(150, 123);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(250, 27);
+            this.txtLastName.TabIndex = 7;
+            //
+            // lblFirstName
+            //
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.Location = new System.Drawing.Point(12, 163);
+            this.lblFirstName.Name = "lblFirstName";
+            this.lblFirstName.Size = new System.Drawing.Size(42, 20);
+            this.lblFirstName.TabIndex = 8;
+            this.lblFirstName.Text = "Имя";
+            //
+            // txtFirstName
+            //
+            this.txtFirstName.Location = new System.Drawing.Point(150, 160);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(250, 27);
+            this.txtFirstName.TabIndex = 9;
+            //
+            // lblMiddleName
+            //
+            this.lblMiddleName.AutoSize = true;
+            this.lblMiddleName.Location = new System.Drawing.Point(12, 200);
+            this.lblMiddleName.Name = "lblMiddleName";
+            this.lblMiddleName.Size = new System.Drawing.Size(76, 20);
+            this.lblMiddleName.TabIndex = 10;
+            this.lblMiddleName.Text = "Отчество";
+            //
+            // txtMiddleName
+            //
+            this.txtMiddleName.Location = new System.Drawing.Point(150, 197);
+            this.txtMiddleName.Name = "txtMiddleName";
+            this.txtMiddleName.Size = new System.Drawing.Size(250, 27);
+            this.txtMiddleName.TabIndex = 11;
+            //
             // btnCreate
-            // 
+            //
             this.btnCreate.Enabled = false;
-            this.btnCreate.Location = new System.Drawing.Point(150, 130);
+            this.btnCreate.Location = new System.Drawing.Point(150, 241);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(94, 29);
-            this.btnCreate.TabIndex = 6;
+            this.btnCreate.TabIndex = 12;
             this.btnCreate.Text = "Создать";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-            // 
+            //
             // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(306, 130);
+            //
+            this.btnCancel.Location = new System.Drawing.Point(306, 241);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 29);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "Отменить";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -115,9 +175,15 @@ namespace PoverkaWinForms.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 171);
+            this.ClientSize = new System.Drawing.Size(414, 282);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.txtMiddleName);
+            this.Controls.Add(this.lblMiddleName);
+            this.Controls.Add(this.txtFirstName);
+            this.Controls.Add(this.lblFirstName);
+            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.cmbRole);
             this.Controls.Add(this.lblRole);
             this.Controls.Add(this.txtPassword);

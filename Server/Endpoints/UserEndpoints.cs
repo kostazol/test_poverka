@@ -46,7 +46,13 @@ public static class UserEndpoints
 
     private static async Task<IResult> CreateUser([Validate] UserCreateRequest request, UserManager<ApplicationUser> userManager)
     {
-        var user = new ApplicationUser { UserName = request.UserName };
+        var user = new ApplicationUser
+        {
+            UserName = request.UserName,
+            LastName = request.LastName,
+            FirstName = request.FirstName,
+            MiddleName = request.MiddleName
+        };
         var result = await userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
             return Results.BadRequest(result.Errors);
