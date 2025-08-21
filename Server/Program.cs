@@ -37,7 +37,11 @@ builder.Services.AddIdentityServer()
     })
     .AddDeveloperSigningCredential();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
     .AddJwtBearer();
 
 builder.Services.AddOptions<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme)
@@ -59,7 +63,6 @@ app.UseIdentityServer();
 app.UseAuthentication();
 app.UseAuthorization();
 
-var api = app.MapGroup("/api");
-api.MapUserEndpoints();
+app.MapUserEndpoints();
 
 await app.RunAsync();

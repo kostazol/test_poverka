@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PoverkaServer.Models;
@@ -11,9 +12,9 @@ namespace PoverkaServer.Endpoints;
 
 public static class UserEndpoints
 {
-    public static RouteGroupBuilder MapUserEndpoints(this RouteGroupBuilder group)
+    public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
-        var users = group.MapGroup("/users")
+        var users = app.MapGroup("/api/users")
             .RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" });
 
         users.MapGet("", GetUsers).WithName("GetUsers");
@@ -21,7 +22,7 @@ public static class UserEndpoints
         users.MapPut("{id}", UpdateUser).WithName("UpdateUser");
         users.MapPut("{id}/password", ChangePassword).WithName("ChangePassword");
 
-        return group;
+        return app;
     }
 
     private static async Task<IResult> GetUsers(UserManager<ApplicationUser> userManager)

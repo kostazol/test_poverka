@@ -77,6 +77,7 @@ namespace PoverkaWinForms.Forms
             this.gridUsers.RowTemplate.Height = 29;
             this.gridUsers.Size = new System.Drawing.Size(800, 410);
             this.gridUsers.TabIndex = 1;
+            this.gridUsers.SelectionChanged += new System.EventHandler(this.gridUsers_SelectionChanged);
             //
             // UsersForm
             //
@@ -87,6 +88,7 @@ namespace PoverkaWinForms.Forms
             this.Controls.Add(this.panelTop);
             this.Name = "UsersForm";
             this.Text = "Users";
+            this.Load += new System.EventHandler(this.UsersForm_Load);
             this.panelTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).EndInit();
             this.ResumeLayout(false);

@@ -15,7 +15,11 @@ public partial class LoginForm : Form
         InitializeComponent();
         _tokens = tokens;
         _provider = provider;
-        btnLogin.Click += async (s, e) => await UiHelper.RunSafeAsync(LoginAsync);
+    }
+
+    private async void btnLogin_Click(object sender, EventArgs e)
+    {
+        await UiHelper.RunSafeAsync(LoginAsync);
     }
 
     private async Task LoginAsync()

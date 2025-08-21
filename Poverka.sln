@@ -6,9 +6,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoverkaClient", "Client\Pov
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoverkaServer", "Server\PoverkaServer.csproj", "{3C58ADEE-CC07-4234-AEB6-BB4461EA4A8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManualTests", "ManualTests\ManualTests.csproj", "{906FAFC8-F5E7-424E-B1B0-15E456189E71}"
+EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
+        GlobalSection(SolutionConfigurationPlatforms) = preSolution
+                Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -17,10 +19,14 @@ Global
 		{6EC4950F-4A7F-4DD6-9240-8788FDF82119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EC4950F-4A7F-4DD6-9240-8788FDF82119}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C58ADEE-CC07-4234-AEB6-BB4461EA4A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C58ADEE-CC07-4234-AEB6-BB4461EA4A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C58ADEE-CC07-4234-AEB6-BB4461EA4A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C58ADEE-CC07-4234-AEB6-BB4461EA4A8C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
+                {3C58ADEE-CC07-4234-AEB6-BB4461EA4A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {3C58ADEE-CC07-4234-AEB6-BB4461EA4A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                {3C58ADEE-CC07-4234-AEB6-BB4461EA4A8C}.Release|Any CPU.Build.0 = Release|Any CPU
+                {906FAFC8-F5E7-424E-B1B0-15E456189E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+                {906FAFC8-F5E7-424E-B1B0-15E456189E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {906FAFC8-F5E7-424E-B1B0-15E456189E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                {906FAFC8-F5E7-424E-B1B0-15E456189E71}.Release|Any CPU.Build.0 = Release|Any CPU
+        EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
