@@ -99,7 +99,11 @@ public static class UserEndpoints
 
     private static async Task<IResult> ChangePassword([Validate] ChangePasswordRequest request, UserManager<ApplicationUser> userManager, ClaimsPrincipal principal)
     {
-        var user = await userManager.GetUserAsync(principal);
+        var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId is null)
+            return Results.NotFound();
+
+        var user = await userManager.FindByIdAsync(userId);
         if (user is null)
             return Results.NotFound();
 
