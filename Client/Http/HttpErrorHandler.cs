@@ -34,7 +34,7 @@ public class HttpErrorHandler : DelegatingHandler
 
         try
         {
-            var errors = JsonSerializer.Deserialize<List<IdentityErrorDto>>(content);
+            var errors = JsonSerializer.Deserialize<List<IdentityErrorDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             if (errors is { Count: > 0 })
                 return string.Join("; ", errors.Select(e => e.Description));
         }
