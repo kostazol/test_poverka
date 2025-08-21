@@ -15,6 +15,10 @@ public static class UserEndpoints
 {
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
+        app.MapPut("/api/users/password", ChangePassword)
+            .RequireAuthorization()
+            .WithName("ChangePassword");
+
         var users = app.MapGroup("/api/users")
             .RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" });
 
@@ -22,8 +26,6 @@ public static class UserEndpoints
         users.MapPost("", CreateUser).WithName("CreateUser");
         users.MapPut("{id}", UpdateUser).WithName("UpdateUser");
         users.MapPut("{id}/password", SetPassword).WithName("SetPassword");
-        app.MapPut("/api/users/password", ChangePassword)
-            .RequireAuthorization();
 
         return app;
     }

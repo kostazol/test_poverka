@@ -91,7 +91,7 @@ namespace PoverkaWinForms.Forms
             // lblConfirmPassword
             // 
             this.lblConfirmPassword.AutoSize = true;
-            this.lblConfirmPassword.Location = new System.Drawing.Point(12, 132);
+            this.lblConfirmPassword.Location = new System.Drawing.Point(12, 172);
             this.lblConfirmPassword.Name = "lblConfirmPassword";
             this.lblConfirmPassword.Size = new System.Drawing.Size(142, 20);
             this.lblConfirmPassword.TabIndex = 5;
@@ -99,7 +99,7 @@ namespace PoverkaWinForms.Forms
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(180, 129);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(180, 169);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(250, 27);
             this.txtConfirmPassword.TabIndex = 6;
@@ -109,7 +109,7 @@ namespace PoverkaWinForms.Forms
             // btnChange
             // 
             this.btnChange.Enabled = false;
-            this.btnChange.Location = new System.Drawing.Point(180, 172);
+            this.btnChange.Location = new System.Drawing.Point(180, 212);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(94, 29);
             this.btnChange.TabIndex = 7;
@@ -119,7 +119,7 @@ namespace PoverkaWinForms.Forms
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(336, 172);
+            this.btnCancel.Location = new System.Drawing.Point(376, 212);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 29);
             this.btnCancel.TabIndex = 8;
@@ -137,14 +137,14 @@ namespace PoverkaWinForms.Forms
             this.pnlLoading.Name = "pnlLoading";
             this.pnlLoading.RowCount = 1;
             this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Size = new System.Drawing.Size(442, 213);
+            this.pnlLoading.Size = new System.Drawing.Size(640, 253);
             this.pnlLoading.TabIndex = 9;
             this.pnlLoading.Visible = false;
             // 
             // progressBar
             // 
             this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(121, 96);
+            this.progressBar.Location = new System.Drawing.Point(220, 116);
             this.progressBar.MarqueeAnimationSpeed = 30;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(200, 20);
@@ -155,7 +155,7 @@ namespace PoverkaWinForms.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 213);
+            this.ClientSize = new System.Drawing.Size(640, 253);
             this.Controls.Add(this.pnlLoading);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnChange);

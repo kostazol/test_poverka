@@ -65,7 +65,7 @@ namespace PoverkaWinForms.Forms
             // btnChange
             // 
             this.btnChange.Enabled = false;
-            this.btnChange.Location = new System.Drawing.Point(150, 100);
+            this.btnChange.Location = new System.Drawing.Point(150, 132);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(94, 29);
             this.btnChange.TabIndex = 3;
@@ -75,7 +75,7 @@ namespace PoverkaWinForms.Forms
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(306, 100);
+            this.btnCancel.Location = new System.Drawing.Point(306, 132);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 29);
             this.btnCancel.TabIndex = 4;
@@ -93,14 +93,14 @@ namespace PoverkaWinForms.Forms
             this.pnlLoading.Name = "pnlLoading";
             this.pnlLoading.RowCount = 1;
             this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Size = new System.Drawing.Size(442, 143);
+            this.pnlLoading.Size = new System.Drawing.Size(600, 190);
             this.pnlLoading.TabIndex = 5;
             this.pnlLoading.Visible = false;
             // 
             // progressBar
             // 
             this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(121, 61);
+            this.progressBar.Location = new System.Drawing.Point(200, 85);
             this.progressBar.MarqueeAnimationSpeed = 30;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(200, 20);
@@ -111,7 +111,7 @@ namespace PoverkaWinForms.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 143);
+            this.ClientSize = new System.Drawing.Size(600, 190);
             this.Controls.Add(this.pnlLoading);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnChange);

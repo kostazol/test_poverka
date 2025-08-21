@@ -102,7 +102,7 @@ namespace PoverkaWinForms.Forms
             // lblRole
             // 
             this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(12, 130);
+            this.lblRole.Location = new System.Drawing.Point(12, 170);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(54, 20);
             this.lblRole.TabIndex = 5;
@@ -113,7 +113,7 @@ namespace PoverkaWinForms.Forms
             this.cmbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRole.FormattingEnabled = true;
             this.cmbRole.Items.AddRange(PoverkaWinForms.Roles.All);
-            this.cmbRole.Location = new System.Drawing.Point(150, 127);
+            this.cmbRole.Location = new System.Drawing.Point(150, 167);
             this.cmbRole.Name = "cmbRole";
             this.cmbRole.Size = new System.Drawing.Size(250, 28);
             this.cmbRole.TabIndex = 6;
@@ -122,7 +122,7 @@ namespace PoverkaWinForms.Forms
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(12, 164);
+            this.lblLastName.Location = new System.Drawing.Point(12, 204);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(75, 20);
             this.lblLastName.TabIndex = 7;
@@ -130,7 +130,7 @@ namespace PoverkaWinForms.Forms
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(150, 161);
+            this.txtLastName.Location = new System.Drawing.Point(150, 201);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(250, 27);
             this.txtLastName.TabIndex = 8;
@@ -138,7 +138,7 @@ namespace PoverkaWinForms.Forms
             // lblFirstName
             // 
             this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(12, 201);
+            this.lblFirstName.Location = new System.Drawing.Point(12, 241);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(42, 20);
             this.lblFirstName.TabIndex = 9;
@@ -146,7 +146,7 @@ namespace PoverkaWinForms.Forms
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(150, 198);
+            this.txtFirstName.Location = new System.Drawing.Point(150, 238);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(250, 27);
             this.txtFirstName.TabIndex = 10;
@@ -154,7 +154,7 @@ namespace PoverkaWinForms.Forms
             // lblMiddleName
             // 
             this.lblMiddleName.AutoSize = true;
-            this.lblMiddleName.Location = new System.Drawing.Point(12, 238);
+            this.lblMiddleName.Location = new System.Drawing.Point(12, 278);
             this.lblMiddleName.Name = "lblMiddleName";
             this.lblMiddleName.Size = new System.Drawing.Size(76, 20);
             this.lblMiddleName.TabIndex = 11;
@@ -162,7 +162,7 @@ namespace PoverkaWinForms.Forms
             // 
             // txtMiddleName
             // 
-            this.txtMiddleName.Location = new System.Drawing.Point(150, 235);
+            this.txtMiddleName.Location = new System.Drawing.Point(150, 275);
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(250, 27);
             this.txtMiddleName.TabIndex = 12;
@@ -170,7 +170,7 @@ namespace PoverkaWinForms.Forms
             // btnCreate
             // 
             this.btnCreate.Enabled = false;
-            this.btnCreate.Location = new System.Drawing.Point(150, 279);
+            this.btnCreate.Location = new System.Drawing.Point(150, 319);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(94, 29);
             this.btnCreate.TabIndex = 13;
@@ -180,7 +180,7 @@ namespace PoverkaWinForms.Forms
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(306, 279);
+            this.btnCancel.Location = new System.Drawing.Point(306, 319);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 29);
             this.btnCancel.TabIndex = 14;
@@ -198,14 +198,14 @@ namespace PoverkaWinForms.Forms
             this.pnlLoading.Name = "pnlLoading";
             this.pnlLoading.RowCount = 1;
             this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Size = new System.Drawing.Size(412, 320);
+            this.pnlLoading.Size = new System.Drawing.Size(600, 360);
             this.pnlLoading.TabIndex = 15;
             this.pnlLoading.Visible = false;
             // 
             // progressBar
             // 
             this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(106, 150);
+            this.progressBar.Location = new System.Drawing.Point(200, 170);
             this.progressBar.MarqueeAnimationSpeed = 30;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(200, 20);
@@ -216,7 +216,7 @@ namespace PoverkaWinForms.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 320);
+            this.ClientSize = new System.Drawing.Size(600, 360);
             this.Controls.Add(this.pnlLoading);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreate);
