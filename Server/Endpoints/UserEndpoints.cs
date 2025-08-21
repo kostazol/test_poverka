@@ -60,7 +60,6 @@ public static class UserEndpoints
         if (user is null)
             return Results.NotFound();
 
-        user.UserName = request.UserName;
         user.LastName = request.LastName;
         user.FirstName = request.FirstName;
         user.MiddleName = request.MiddleName;
