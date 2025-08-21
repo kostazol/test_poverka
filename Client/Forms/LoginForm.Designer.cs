@@ -80,6 +80,7 @@ partial class LoginForm
         Controls.Add(txtPass);
         Controls.Add(txtUser);
         Controls.Add(pnlLoading);
+        AcceptButton = btnLogin;
         Name = "LoginForm";
         Text = "Login";
         pnlLoading.ResumeLayout(false);
