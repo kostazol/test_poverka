@@ -19,7 +19,15 @@ public partial class LoginForm : Form
 
     private async void btnLogin_Click(object sender, EventArgs e)
     {
-        await UiHelper.RunSafeAsync(LoginAsync);
+        SetLoading(true);
+        try
+        {
+            await UiHelper.RunSafeAsync(LoginAsync);
+        }
+        finally
+        {
+            SetLoading(false);
+        }
     }
 
     private async Task LoginAsync()
@@ -43,6 +51,16 @@ public partial class LoginForm : Form
             var meters = _provider.GetRequiredService<MetersSetupForm>();
             meters.FormClosed += (_, _) => Close();
             meters.Show();
+        }
+    }
+
+    private void SetLoading(bool loading)
+    {
+        pnlLoading.Visible = loading;
+        foreach (Control control in Controls)
+        {
+            if (control != pnlLoading)
+                control.Enabled = !loading;
         }
     }
 }

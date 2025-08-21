@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using PoverkaWinForms.Exceptions;
 
 namespace PoverkaWinForms.Http;
@@ -13,7 +17,8 @@ public class HttpErrorHandler : DelegatingHandler
             if (!response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync(cancellationToken);
-                throw new ApiException(response.StatusCode, string.IsNullOrWhiteSpace(content) ? null : content);
+                var message = ParseErrorMessage(content);
+                throw new ApiException(response.StatusCode, message);
             }
             return response;
         }
@@ -22,4 +27,24 @@ public class HttpErrorHandler : DelegatingHandler
             throw new ServerUnavailableException(inner: ex);
         }
     }
+    private static string? ParseErrorMessage(string content)
+    {
+        if (string.IsNullOrWhiteSpace(content))
+            return null;
+
+        try
+        {
+            var errors = JsonSerializer.Deserialize<List<IdentityErrorDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            if (errors is { Count: > 0 })
+                return string.Join("; ", errors.Select(e => e.Description));
+        }
+        catch
+        {
+            // ignore parsing errors
+        }
+
+        return content;
+    }
+
+    private record IdentityErrorDto(string Code, string Description);
 }
