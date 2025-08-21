@@ -6,16 +6,16 @@ using PoverkaWinForms.UI;
 
 namespace PoverkaWinForms.Forms;
 
-public partial class UsersForm : Form
+public partial class ConfigurationForm : Form
 {
     private readonly UserService? _users;
 
-    public UsersForm()
+    public ConfigurationForm()
     {
         InitializeComponent();
     }
 
-    public UsersForm(UserService users) : this()
+    public ConfigurationForm(UserService users) : this()
     {
         _users = users;
     }
@@ -27,8 +27,9 @@ public partial class UsersForm : Form
         btnChangePassword.Enabled = selected;
     }
 
-    private async void UsersForm_Load(object? sender, EventArgs e)
+    private async void ConfigurationForm_Load(object? sender, EventArgs e)
     {
+        tabControl.SelectedTab = tabUsers;
         await LoadUsersAsync();
     }
 

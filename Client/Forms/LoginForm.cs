@@ -42,9 +42,9 @@ public partial class LoginForm : Form
         Hide();
         if (_tokens.Role == "Admin")
         {
-            var usersForm = _provider.GetRequiredService<UsersForm>();
-            usersForm.FormClosed += (_, _) => Close();
-            usersForm.Show();
+            var configForm = _provider.GetRequiredService<ConfigurationForm>();
+            configForm.FormClosed += (_, _) => Close();
+            configForm.Show();
         }
         else
         {
