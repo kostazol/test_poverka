@@ -12,5 +12,8 @@ public class UserUpdateRequest
 
     [StringLength(100, ErrorMessage = "Указана недопустимая длина, допускается не больше 100 символов.")]
     public string? MiddleName { get; init; }
+
+    [StringLength(150, ErrorMessage = "Указана недопустимая длина, допускается не больше 150 символов.")]
+    public string? Position { get; init; }
 }
 

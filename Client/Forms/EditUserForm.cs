@@ -27,6 +27,7 @@ public partial class EditUserForm : Form
         txtLastName.Text = _user.LastName;
         txtFirstName.Text = _user.FirstName;
         txtMiddleName.Text = _user.MiddleName;
+        txtPosition.Text = _user.Position;
     }
 
     private async void btnSave_Click(object? sender, EventArgs e)
@@ -38,7 +39,11 @@ public partial class EditUserForm : Form
             SetLoading(true);
             try
             {
-                var dto = new UserUpdateDto(txtLastName.Text, txtFirstName.Text, txtMiddleName.Text);
+                var dto = new UserUpdateDto(
+                    txtLastName.Text,
+                    txtFirstName.Text,
+                    txtMiddleName.Text,
+                    txtPosition.Text);
                 await _users.UpdateUserAsync(_user.Id, dto);
                 DialogResult = DialogResult.OK;
                 Close();

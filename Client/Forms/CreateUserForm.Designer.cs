@@ -16,6 +16,8 @@ namespace PoverkaWinForms.Forms
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label lblMiddleName;
         private System.Windows.Forms.TextBox txtMiddleName;
+        private System.Windows.Forms.Label lblPosition;
+        private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TableLayoutPanel pnlLoading;
@@ -47,6 +49,8 @@ namespace PoverkaWinForms.Forms
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.lblMiddleName = new System.Windows.Forms.Label();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
+            this.lblPosition = new System.Windows.Forms.Label();
+            this.txtPosition = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.pnlLoading = new System.Windows.Forms.TableLayoutPanel();
@@ -161,35 +165,51 @@ namespace PoverkaWinForms.Forms
             this.lblMiddleName.Text = "Отчество";
             // 
             // txtMiddleName
-            // 
+            //
             this.txtMiddleName.Location = new System.Drawing.Point(150, 275);
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(250, 27);
             this.txtMiddleName.TabIndex = 12;
-            // 
+            //
+            // lblPosition
+            //
+            this.lblPosition.AutoSize = true;
+            this.lblPosition.Location = new System.Drawing.Point(12, 315);
+            this.lblPosition.Name = "lblPosition";
+            this.lblPosition.Size = new System.Drawing.Size(88, 20);
+            this.lblPosition.TabIndex = 13;
+            this.lblPosition.Text = "Должность";
+            //
+            // txtPosition
+            //
+            this.txtPosition.Location = new System.Drawing.Point(150, 312);
+            this.txtPosition.Name = "txtPosition";
+            this.txtPosition.Size = new System.Drawing.Size(250, 27);
+            this.txtPosition.TabIndex = 14;
+            //
             // btnCreate
-            // 
+            //
             this.btnCreate.Enabled = false;
-            this.btnCreate.Location = new System.Drawing.Point(150, 319);
+            this.btnCreate.Location = new System.Drawing.Point(150, 353);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(94, 29);
-            this.btnCreate.TabIndex = 13;
+            this.btnCreate.TabIndex = 15;
             this.btnCreate.Text = "Создать";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-            // 
+            //
             // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(306, 319);
+            //
+            this.btnCancel.Location = new System.Drawing.Point(306, 353);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 29);
-            this.btnCancel.TabIndex = 14;
+            this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "Отменить";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
+            //
             // pnlLoading
-            // 
+            //
             this.pnlLoading.ColumnCount = 1;
             this.pnlLoading.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlLoading.Controls.Add(this.progressBar, 0, 0);
@@ -198,28 +218,30 @@ namespace PoverkaWinForms.Forms
             this.pnlLoading.Name = "pnlLoading";
             this.pnlLoading.RowCount = 1;
             this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Size = new System.Drawing.Size(600, 360);
+            this.pnlLoading.Size = new System.Drawing.Size(600, 394);
             this.pnlLoading.TabIndex = 15;
             this.pnlLoading.Visible = false;
-            // 
+            //
             // progressBar
-            // 
+            //
             this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(200, 170);
+            this.progressBar.Location = new System.Drawing.Point(200, 187);
             this.progressBar.MarqueeAnimationSpeed = 30;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(200, 20);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar.TabIndex = 0;
-            // 
+            //
             // CreateUserForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 360);
+            this.ClientSize = new System.Drawing.Size(600, 394);
             this.Controls.Add(this.pnlLoading);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.txtPosition);
+            this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.txtMiddleName);
             this.Controls.Add(this.lblMiddleName);
             this.Controls.Add(this.txtFirstName);

@@ -90,9 +90,9 @@ public class UserService
     }
 }
 
-public record UserDto(string Id, string UserName, string Role, string? LastName, string? FirstName, string? MiddleName);
-public record UserCreateDto(string UserName, string Password, string Role, string? LastName, string? FirstName, string? MiddleName);
-public record UserUpdateDto(string? LastName, string? FirstName, string? MiddleName);
+public record UserDto(string Id, string UserName, string Role, string? LastName, string? FirstName, string? MiddleName, string? Position);
+public record UserCreateDto(string UserName, string Password, string Role, string? LastName, string? FirstName, string? MiddleName, string? Position);
+public record UserUpdateDto(string? LastName, string? FirstName, string? MiddleName, string? Position);
 public record SetPasswordDto(string Password);
 public record ChangePasswordDto(string CurrentPassword, string NewPassword);
 
