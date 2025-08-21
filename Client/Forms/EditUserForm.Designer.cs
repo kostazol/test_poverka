@@ -11,6 +11,8 @@ namespace PoverkaWinForms.Forms
         private System.Windows.Forms.TextBox txtMiddleName;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.TableLayoutPanel pnlLoading;
+        private System.Windows.Forms.ProgressBar progressBar;
 
         protected override void Dispose(bool disposing)
         {
@@ -33,6 +35,9 @@ namespace PoverkaWinForms.Forms
             this.txtMiddleName = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.pnlLoading = new System.Windows.Forms.TableLayoutPanel();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.pnlLoading.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblLastName
@@ -102,12 +107,37 @@ namespace PoverkaWinForms.Forms
             this.btnCancel.Text = "Отменить";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
+            //
+            // pnlLoading
+            //
+            this.pnlLoading.ColumnCount = 1;
+            this.pnlLoading.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLoading.Controls.Add(this.progressBar, 0, 0);
+            this.pnlLoading.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLoading.Location = new System.Drawing.Point(0, 0);
+            this.pnlLoading.Name = "pnlLoading";
+            this.pnlLoading.RowCount = 1;
+            this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLoading.Size = new System.Drawing.Size(414, 171);
+            this.pnlLoading.TabIndex = 8;
+            this.pnlLoading.Visible = false;
+            //
+            // progressBar
+            //
+            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.progressBar.Location = new System.Drawing.Point(107, 75);
+            this.progressBar.MarqueeAnimationSpeed = 30;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(200, 20);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 0;
+            //
             // EditUserForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 171);
+            this.Controls.Add(this.pnlLoading);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtMiddleName);
@@ -119,6 +149,7 @@ namespace PoverkaWinForms.Forms
             this.Name = "EditUserForm";
             this.Text = "Изменение пользователя";
             this.Load += new System.EventHandler(this.EditUserForm_Load);
+            this.pnlLoading.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }

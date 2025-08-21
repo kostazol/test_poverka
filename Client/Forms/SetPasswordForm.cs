@@ -4,38 +4,39 @@ using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms;
 
-public partial class EditUserForm : Form
+public partial class SetPasswordForm : Form
 {
     private readonly UserService? _users;
-    private readonly UserDto? _user;
+    private readonly string? _userId;
 
-    public EditUserForm()
+    public SetPasswordForm()
     {
         InitializeComponent();
     }
 
-    public EditUserForm(UserService users, UserDto user) : this()
+    public SetPasswordForm(UserService users, string userId) : this()
     {
         _users = users;
-        _user = user;
+        _userId = userId;
     }
 
-    private void EditUserForm_Load(object? sender, EventArgs e)
+    private void txtPassword_TextChanged(object? sender, EventArgs e)
     {
-        if (_user is null) return;
-        txtLastName.Text = _user.LastName;
-        txtFirstName.Text = _user.FirstName;
-        txtMiddleName.Text = _user.MiddleName;
+        btnChange.Enabled = IsPasswordValid(txtPassword.Text);
     }
 
-    private async void btnSave_Click(object? sender, EventArgs e)
+    private static bool IsPasswordValid(string password) =>
+        !string.IsNullOrWhiteSpace(password) && password.Length <= 16;
+
+    private async void btnChange_Click(object? sender, EventArgs e)
     {
-        if (_users is null || _user is null) return;
+        if (_users is null || _userId is null) return;
+
         SetLoading(true);
         try
         {
-            var dto = new UserUpdateDto(txtLastName.Text, txtFirstName.Text, txtMiddleName.Text);
-            await _users.UpdateUserAsync(_user.Id, dto);
+            var dto = new SetPasswordDto(txtPassword.Text);
+            await _users.SetPasswordAsync(_userId, dto);
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -61,4 +62,3 @@ public partial class EditUserForm : Form
         }
     }
 }
-

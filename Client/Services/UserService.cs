@@ -60,9 +60,39 @@ public class UserService
         var response = await _http.SendAsync(request);
         response.EnsureSuccessStatusCode();
     }
+
+    public async Task SetPasswordAsync(string id, SetPasswordDto dto)
+    {
+        var token = await _tokens.GetAccessTokenAsync();
+        if (token is null) return;
+
+        var request = new HttpRequestMessage(HttpMethod.Put, $"/api/users/{id}/password")
+        {
+            Content = JsonContent.Create(dto)
+        };
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        var response = await _http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task ChangePasswordAsync(ChangePasswordDto dto)
+    {
+        var token = await _tokens.GetAccessTokenAsync();
+        if (token is null) return;
+
+        var request = new HttpRequestMessage(HttpMethod.Put, "/api/users/password")
+        {
+            Content = JsonContent.Create(dto)
+        };
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        var response = await _http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+    }
 }
 
 public record UserDto(string Id, string UserName, string Role, string? LastName, string? FirstName, string? MiddleName);
 public record UserCreateDto(string UserName, string Password, string Role, string? LastName, string? FirstName, string? MiddleName);
 public record UserUpdateDto(string? LastName, string? FirstName, string? MiddleName);
+public record SetPasswordDto(string Password);
+public record ChangePasswordDto(string CurrentPassword, string NewPassword);
 

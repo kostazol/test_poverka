@@ -6,6 +6,7 @@ using PoverkaServer.Models;
 using PoverkaServer.Validation;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PoverkaServer.Endpoints;
@@ -20,7 +21,9 @@ public static class UserEndpoints
         users.MapGet("", GetUsers).WithName("GetUsers");
         users.MapPost("", CreateUser).WithName("CreateUser");
         users.MapPut("{id}", UpdateUser).WithName("UpdateUser");
-        users.MapPut("{id}/password", ChangePassword).WithName("ChangePassword");
+        users.MapPut("{id}/password", SetPassword).WithName("SetPassword");
+        app.MapPut("/api/users/password", ChangePassword)
+            .RequireAuthorization();
 
         return app;
     }
@@ -78,7 +81,7 @@ public static class UserEndpoints
         return Results.Ok();
     }
 
-    private static async Task<IResult> ChangePassword(string id, [Validate] ChangePasswordRequest request, UserManager<ApplicationUser> userManager)
+    private static async Task<IResult> SetPassword(string id, [Validate] SetPasswordRequest request, UserManager<ApplicationUser> userManager)
     {
         var user = await userManager.FindByIdAsync(id);
         if (user is null)
@@ -86,6 +89,19 @@ public static class UserEndpoints
 
         var token = await userManager.GeneratePasswordResetTokenAsync(user);
         var result = await userManager.ResetPasswordAsync(user, token, request.Password);
+        if (!result.Succeeded)
+            return Results.BadRequest(result.Errors);
+
+        return Results.Ok();
+    }
+
+    private static async Task<IResult> ChangePassword([Validate] ChangePasswordRequest request, UserManager<ApplicationUser> userManager, ClaimsPrincipal principal)
+    {
+        var user = await userManager.GetUserAsync(principal);
+        if (user is null)
+            return Results.NotFound();
+
+        var result = await userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
         if (!result.Succeeded)
             return Results.BadRequest(result.Errors);
 

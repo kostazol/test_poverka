@@ -21,7 +21,9 @@ public partial class UsersForm : Form
 
     private void gridUsers_SelectionChanged(object? sender, EventArgs e)
     {
-        btnEditUser.Enabled = gridUsers.SelectedRows.Count == 1;
+        var selected = gridUsers.SelectedRows.Count == 1;
+        btnEditUser.Enabled = selected;
+        btnChangePassword.Enabled = selected;
     }
 
     private async void UsersForm_Load(object? sender, EventArgs e)
@@ -32,18 +34,29 @@ public partial class UsersForm : Form
     private async Task LoadUsersAsync()
     {
         if (_users is null) return;
-        var data = await _users.GetUsersAsync();
-        gridUsers.DataSource = data.ToList();
-        gridUsers.ClearSelection();
-        gridUsers.CurrentCell = null;
-        btnEditUser.Enabled = false;
+        SetLoading(true);
+        try
+        {
+            var data = await _users.GetUsersAsync();
+            gridUsers.DataSource = data.ToList();
+            gridUsers.ClearSelection();
+            gridUsers.CurrentCell = null;
+            btnEditUser.Enabled = false;
+            btnChangePassword.Enabled = false;
+        }
+        finally
+        {
+            SetLoading(false);
+        }
     }
 
     private async void btnCreateUser_Click(object? sender, EventArgs e)
     {
         if (_users is null) return;
         using var form = new CreateUserForm(_users);
-        form.ShowDialog(this);
+        var result = form.ShowDialog(this);
+        if (result == DialogResult.OK)
+            MessageBox.Show("Пользователь создан");
         await LoadUsersAsync();
     }
 
@@ -52,8 +65,36 @@ public partial class UsersForm : Form
         if (_users is null || gridUsers.SelectedRows.Count != 1) return;
         if (gridUsers.SelectedRows[0].DataBoundItem is not UserDto user) return;
         using var form = new EditUserForm(_users, user);
-        form.ShowDialog(this);
+        var result = form.ShowDialog(this);
+        if (result == DialogResult.OK)
+            MessageBox.Show("Пользователь успешно изменен");
         await LoadUsersAsync();
+    }
+
+    private void btnChangePassword_Click(object? sender, EventArgs e)
+    {
+        if (_users is null || gridUsers.SelectedRows.Count != 1) return;
+        if (gridUsers.SelectedRows[0].DataBoundItem is not UserDto user) return;
+        using var form = new SetPasswordForm(_users, user.Id);
+        var result = form.ShowDialog(this);
+        if (result == DialogResult.OK)
+            MessageBox.Show("Пароль успешно изменен");
+    }
+
+    private void btnChangeMyPassword_Click(object? sender, EventArgs e)
+    {
+        if (_users is null) return;
+        using var form = new ChangePasswordForm(_users);
+        var result = form.ShowDialog(this);
+        if (result == DialogResult.OK)
+            MessageBox.Show("Пароль изменен, при следующем входе используйте новый пароль");
+    }
+
+    private void SetLoading(bool loading)
+    {
+        pnlLoading.Visible = loading;
+        panelTop.Enabled = !loading;
+        gridUsers.Enabled = !loading;
     }
 }
 
