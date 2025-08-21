@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
+using PoverkaWinForms.UI;
 
 namespace PoverkaWinForms.Forms;
 
@@ -31,18 +32,22 @@ public partial class EditUserForm : Form
     private async void btnSave_Click(object? sender, EventArgs e)
     {
         if (_users is null || _user is null) return;
-        SetLoading(true);
-        try
+
+        await UiHelper.RunSafeAsync(async () =>
         {
-            var dto = new UserUpdateDto(txtLastName.Text, txtFirstName.Text, txtMiddleName.Text);
-            await _users.UpdateUserAsync(_user.Id, dto);
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-        finally
-        {
-            SetLoading(false);
-        }
+            SetLoading(true);
+            try
+            {
+                var dto = new UserUpdateDto(txtLastName.Text, txtFirstName.Text, txtMiddleName.Text);
+                await _users.UpdateUserAsync(_user.Id, dto);
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            finally
+            {
+                SetLoading(false);
+            }
+        });
     }
 
     private void btnCancel_Click(object? sender, EventArgs e)

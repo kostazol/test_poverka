@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
+using PoverkaWinForms.UI;
 
 namespace PoverkaWinForms.Forms;
 
@@ -27,30 +29,38 @@ public partial class CreateUserForm : Form
     }
 
     private static bool IsPasswordValid(string password) =>
-        !string.IsNullOrWhiteSpace(password) && password.Length <= 16;
+        !string.IsNullOrWhiteSpace(password) &&
+        password.Length >= 6 &&
+        password.Any(char.IsLower) &&
+        password.Any(char.IsUpper) &&
+        password.Any(char.IsDigit) &&
+        password.Any(ch => !char.IsLetterOrDigit(ch));
 
     private async void btnCreate_Click(object? sender, EventArgs e)
     {
         if (_users is null) return;
 
-        SetLoading(true);
-        try
+        await UiHelper.RunSafeAsync(async () =>
         {
-            var dto = new UserCreateDto(
-                txtUserName.Text,
-                txtPassword.Text,
-                (string)cmbRole.SelectedItem!,
-                string.IsNullOrWhiteSpace(txtLastName.Text) ? null : txtLastName.Text,
-                string.IsNullOrWhiteSpace(txtFirstName.Text) ? null : txtFirstName.Text,
-                string.IsNullOrWhiteSpace(txtMiddleName.Text) ? null : txtMiddleName.Text);
-            await _users.CreateUserAsync(dto);
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-        finally
-        {
-            SetLoading(false);
-        }
+            SetLoading(true);
+            try
+            {
+                var dto = new UserCreateDto(
+                    txtUserName.Text,
+                    txtPassword.Text,
+                    (string)cmbRole.SelectedItem!,
+                    string.IsNullOrWhiteSpace(txtLastName.Text) ? null : txtLastName.Text,
+                    string.IsNullOrWhiteSpace(txtFirstName.Text) ? null : txtFirstName.Text,
+                    string.IsNullOrWhiteSpace(txtMiddleName.Text) ? null : txtMiddleName.Text);
+                await _users.CreateUserAsync(dto);
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            finally
+            {
+                SetLoading(false);
+            }
+        });
     }
 
     private void SetLoading(bool loading)

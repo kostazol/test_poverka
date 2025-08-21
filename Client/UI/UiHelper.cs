@@ -19,7 +19,10 @@ public static class UiHelper
         }
         catch (ApiException ex)
         {
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            var message = (int)ex.StatusCode >= 500
+                ? "Произошла неизвестная ошибка"
+                : ex.Message;
+            MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

@@ -95,9 +95,9 @@ namespace PoverkaWinForms.Forms
             this.lblPasswordHint.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lblPasswordHint.Location = new System.Drawing.Point(150, 79);
             this.lblPasswordHint.Name = "lblPasswordHint";
-            this.lblPasswordHint.Size = new System.Drawing.Size(252, 20);
+            this.lblPasswordHint.Size = new System.Drawing.Size(413, 20);
             this.lblPasswordHint.TabIndex = 4;
-            this.lblPasswordHint.Text = "Пароль должен содержать от 1 до 16 символов.";
+            this.lblPasswordHint.Text = "Пароль должен быть не короче 6 символов и содержать цифру, спецсимвол, строчную и заглавную буквы.";
             // 
             // lblRole
             // 

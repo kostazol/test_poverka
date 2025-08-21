@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
+using PoverkaWinForms.UI;
 
 namespace PoverkaWinForms.Forms;
 
@@ -26,24 +28,32 @@ public partial class SetPasswordForm : Form
     }
 
     private static bool IsPasswordValid(string password) =>
-        !string.IsNullOrWhiteSpace(password) && password.Length <= 16;
+        !string.IsNullOrWhiteSpace(password) &&
+        password.Length >= 6 &&
+        password.Any(char.IsLower) &&
+        password.Any(char.IsUpper) &&
+        password.Any(char.IsDigit) &&
+        password.Any(ch => !char.IsLetterOrDigit(ch));
 
     private async void btnChange_Click(object? sender, EventArgs e)
     {
         if (_users is null || _userId is null) return;
 
-        SetLoading(true);
-        try
+        await UiHelper.RunSafeAsync(async () =>
         {
-            var dto = new SetPasswordDto(txtPassword.Text);
-            await _users.SetPasswordAsync(_userId, dto);
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-        finally
-        {
-            SetLoading(false);
-        }
+            SetLoading(true);
+            try
+            {
+                var dto = new SetPasswordDto(txtPassword.Text);
+                await _users.SetPasswordAsync(_userId, dto);
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            finally
+            {
+                SetLoading(false);
+            }
+        });
     }
 
     private void btnCancel_Click(object? sender, EventArgs e)

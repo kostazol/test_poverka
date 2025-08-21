@@ -7,12 +7,17 @@ partial class LoginForm
     private TextBox txtUser;
     private TextBox txtPass;
     private Button btnLogin;
+    private TableLayoutPanel pnlLoading;
+    private ProgressBar progressBar;
 
     private void InitializeComponent()
     {
         txtUser = new TextBox();
         txtPass = new TextBox();
         btnLogin = new Button();
+        pnlLoading = new TableLayoutPanel();
+        progressBar = new ProgressBar();
+        pnlLoading.SuspendLayout();
         SuspendLayout();
         // 
         // txtUser
@@ -41,6 +46,30 @@ partial class LoginForm
         btnLogin.Text = "Login";
         btnLogin.UseVisualStyleBackColor = true;
         btnLogin.Click += btnLogin_Click;
+        //
+        // pnlLoading
+        //
+        pnlLoading.ColumnCount = 1;
+        pnlLoading.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        pnlLoading.Controls.Add(progressBar, 0, 0);
+        pnlLoading.Dock = DockStyle.Fill;
+        pnlLoading.Location = new Point(0, 0);
+        pnlLoading.Name = "pnlLoading";
+        pnlLoading.RowCount = 1;
+        pnlLoading.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        pnlLoading.Size = new Size(224, 111);
+        pnlLoading.TabIndex = 3;
+        pnlLoading.Visible = false;
+        //
+        // progressBar
+        //
+        progressBar.Anchor = AnchorStyles.None;
+        progressBar.Location = new Point(12, 46);
+        progressBar.MarqueeAnimationSpeed = 30;
+        progressBar.Name = "progressBar";
+        progressBar.Size = new Size(200, 20);
+        progressBar.Style = ProgressBarStyle.Marquee;
+        progressBar.TabIndex = 0;
         // 
         // LoginForm
         // 
@@ -50,8 +79,10 @@ partial class LoginForm
         Controls.Add(btnLogin);
         Controls.Add(txtPass);
         Controls.Add(txtUser);
+        Controls.Add(pnlLoading);
         Name = "LoginForm";
         Text = "Login";
+        pnlLoading.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }

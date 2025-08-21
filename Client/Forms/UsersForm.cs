@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
+using PoverkaWinForms.UI;
 
 namespace PoverkaWinForms.Forms;
 
@@ -34,20 +35,24 @@ public partial class UsersForm : Form
     private async Task LoadUsersAsync()
     {
         if (_users is null) return;
-        SetLoading(true);
-        try
+
+        await UiHelper.RunSafeAsync(async () =>
         {
-            var data = await _users.GetUsersAsync();
-            gridUsers.DataSource = data.ToList();
-            gridUsers.ClearSelection();
-            gridUsers.CurrentCell = null;
-            btnEditUser.Enabled = false;
-            btnChangePassword.Enabled = false;
-        }
-        finally
-        {
-            SetLoading(false);
-        }
+            SetLoading(true);
+            try
+            {
+                var data = await _users.GetUsersAsync();
+                gridUsers.DataSource = data.ToList();
+                gridUsers.ClearSelection();
+                gridUsers.CurrentCell = null;
+                btnEditUser.Enabled = false;
+                btnChangePassword.Enabled = false;
+            }
+            finally
+            {
+                SetLoading(false);
+            }
+        });
     }
 
     private async void btnCreateUser_Click(object? sender, EventArgs e)
