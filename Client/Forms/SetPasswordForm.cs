@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Drawing;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
 using PoverkaWinForms.UI;
@@ -24,7 +25,11 @@ public partial class SetPasswordForm : Form
 
     private void txtPassword_TextChanged(object? sender, EventArgs e)
     {
-        btnChange.Enabled = IsPasswordValid(txtPassword.Text);
+        var valid = IsPasswordValid(txtPassword.Text);
+        txtPassword.BackColor = txtPassword.TextLength == 0 || valid
+            ? SystemColors.Window
+            : Color.MistyRose;
+        btnChange.Enabled = valid;
     }
 
     private static bool IsPasswordValid(string password) =>

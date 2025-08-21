@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Drawing;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
 using PoverkaWinForms.UI;
@@ -22,10 +23,14 @@ public partial class CreateUserForm : Form
 
     private void RequiredFieldsChanged(object? sender, EventArgs e)
     {
+        var passwordValid = IsPasswordValid(txtPassword.Text);
+        txtPassword.BackColor = txtPassword.TextLength == 0 || passwordValid
+            ? SystemColors.Window
+            : Color.MistyRose;
         btnCreate.Enabled =
             !string.IsNullOrWhiteSpace(txtUserName.Text) &&
             cmbRole.SelectedItem is not null &&
-            IsPasswordValid(txtPassword.Text);
+            passwordValid;
     }
 
     private static bool IsPasswordValid(string password) =>
