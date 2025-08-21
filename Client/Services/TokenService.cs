@@ -4,6 +4,8 @@ using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 using PoverkaWinForms;
 using PoverkaWinForms.Exceptions;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 
 namespace PoverkaWinForms.Services;
 
@@ -16,6 +18,7 @@ public class TokenService
     private string? _accessToken;
     private string? _refreshToken;
     private DateTime _expiresAt;
+    public string? Role { get; private set; }
 
     public TokenService(IHttpClientFactory factory, IdentityServerSettings settings)
     {
@@ -54,6 +57,10 @@ public class TokenService
             _accessToken = token.AccessToken;
             _refreshToken = token.RefreshToken;
             _expiresAt = DateTime.UtcNow.AddSeconds(token.ExpiresIn);
+
+            var handler = new JwtSecurityTokenHandler();
+            var jwt = handler.ReadJwtToken(token.AccessToken);
+            Role = jwt.Claims.FirstOrDefault(c => c.Type == "role")?.Value;
             return true;
         }
         catch (ApiException ex) when (ex.StatusCode is HttpStatusCode.BadRequest or HttpStatusCode.Unauthorized)

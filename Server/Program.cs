@@ -5,6 +5,7 @@ using PoverkaServer;
 using PoverkaServer.Data;
 using PoverkaServer.Endpoints;
 using PoverkaServer.Validation;
+using PoverkaServer.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +15,14 @@ var identityConnectionString = builder.Configuration.GetConnectionString("Identi
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(applicationConnectionString));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddIdentityServerSettings(builder.Configuration);
 
 builder.Services.AddIdentityServer()
-    .AddAspNetIdentity<IdentityUser>()
+    .AddAspNetIdentity<ApplicationUser>()
     .AddConfigurationStore(options =>
     {
         options.ConfigureDbContext = b =>
@@ -36,7 +37,11 @@ builder.Services.AddIdentityServer()
     })
     .AddDeveloperSigningCredential();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
     .AddJwtBearer();
 
 builder.Services.AddOptions<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme)
@@ -58,7 +63,6 @@ app.UseIdentityServer();
 app.UseAuthentication();
 app.UseAuthorization();
 
-var api = app.MapGroup("/api");
-api.MapUserEndpoints();
+app.MapUserEndpoints();
 
 await app.RunAsync();
