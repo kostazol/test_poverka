@@ -60,7 +60,7 @@ public static class UserEndpoints
         };
         var result = await userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
-            return Results.BadRequest(result.Errors.First().Description);
+            return Results.BadRequest(result.Errors);
 
         await userManager.AddToRoleAsync(user, request.Role);
         return Results.Ok();
@@ -78,7 +78,7 @@ public static class UserEndpoints
 
         var result = await userManager.UpdateAsync(user);
         if (!result.Succeeded)
-            return Results.BadRequest(result.Errors.First().Description);
+            return Results.BadRequest(result.Errors);
 
         return Results.Ok();
     }
@@ -92,7 +92,7 @@ public static class UserEndpoints
         var token = await userManager.GeneratePasswordResetTokenAsync(user);
         var result = await userManager.ResetPasswordAsync(user, token, request.Password);
         if (!result.Succeeded)
-            return Results.BadRequest(result.Errors.First().Description);
+            return Results.BadRequest(result.Errors);
 
         return Results.Ok();
     }
@@ -109,7 +109,7 @@ public static class UserEndpoints
 
         var result = await userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
         if (!result.Succeeded)
-            return Results.BadRequest(result.Errors.First().Description);
+            return Results.BadRequest(result.Errors);
 
         return Results.Ok();
     }
