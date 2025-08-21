@@ -43,6 +43,8 @@ public partial class UsersForm : Form
             {
                 var data = await _users.GetUsersAsync();
                 gridUsers.DataSource = data.ToList();
+                if (gridUsers.Columns[nameof(UserDto.Position)] is DataGridViewColumn positionColumn)
+                    positionColumn.HeaderText = "Должность";
                 gridUsers.ClearSelection();
                 gridUsers.CurrentCell = null;
                 btnEditUser.Enabled = false;

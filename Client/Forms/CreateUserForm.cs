@@ -56,7 +56,8 @@ public partial class CreateUserForm : Form
                     (string)cmbRole.SelectedItem!,
                     string.IsNullOrWhiteSpace(txtLastName.Text) ? null : txtLastName.Text,
                     string.IsNullOrWhiteSpace(txtFirstName.Text) ? null : txtFirstName.Text,
-                    string.IsNullOrWhiteSpace(txtMiddleName.Text) ? null : txtMiddleName.Text);
+                    string.IsNullOrWhiteSpace(txtMiddleName.Text) ? null : txtMiddleName.Text,
+                    string.IsNullOrWhiteSpace(txtPosition.Text) ? null : txtPosition.Text);
                 await _users.CreateUserAsync(dto);
                 DialogResult = DialogResult.OK;
                 Close();

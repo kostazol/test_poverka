@@ -32,127 +32,126 @@ namespace PoverkaWinForms.Forms
 
         private void InitializeComponent()
         {
-            this.gridUsers = new System.Windows.Forms.DataGridView();
-            this.panelTop = new System.Windows.Forms.Panel();
-            this.btnChangeMyPassword = new System.Windows.Forms.Button();
-            this.btnChangePassword = new System.Windows.Forms.Button();
-            this.btnEditUser = new System.Windows.Forms.Button();
-            this.btnCreateUser = new System.Windows.Forms.Button();
-            this.pnlLoading = new System.Windows.Forms.TableLayoutPanel();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
-            this.panelTop.SuspendLayout();
-            this.pnlLoading.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // panelTop
-            // 
-            this.panelTop.Controls.Add(this.btnChangeMyPassword);
-            this.panelTop.Controls.Add(this.btnChangePassword);
-            this.panelTop.Controls.Add(this.btnEditUser);
-            this.panelTop.Controls.Add(this.btnCreateUser);
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(0, 0);
-            this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(800, 40);
-            this.panelTop.TabIndex = 0;
-            // 
-            // btnChangeMyPassword
-            // 
-            this.btnChangeMyPassword.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            this.btnChangeMyPassword.Location = new System.Drawing.Point(638, 7);
-            this.btnChangeMyPassword.Name = "btnChangeMyPassword";
-            this.btnChangeMyPassword.Size = new System.Drawing.Size(150, 29);
-            this.btnChangeMyPassword.TabIndex = 3;
-            this.btnChangeMyPassword.Text = "Изменить свой пароль";
-            this.btnChangeMyPassword.UseVisualStyleBackColor = true;
-            this.btnChangeMyPassword.Click += new System.EventHandler(this.btnChangeMyPassword_Click);
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.Enabled = false;
-            this.btnChangePassword.Location = new System.Drawing.Point(324, 7);
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(150, 29);
-            this.btnChangePassword.TabIndex = 2;
-            this.btnChangePassword.Text = "Изменить пароль";
-            this.btnChangePassword.UseVisualStyleBackColor = true;
-            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
-            // 
-            // btnEditUser
-            // 
-            this.btnEditUser.Enabled = false;
-            this.btnEditUser.Location = new System.Drawing.Point(168, 7);
-            this.btnEditUser.Name = "btnEditUser";
-            this.btnEditUser.Size = new System.Drawing.Size(150, 29);
-            this.btnEditUser.TabIndex = 1;
-            this.btnEditUser.Text = "Изменить пользователя";
-            this.btnEditUser.UseVisualStyleBackColor = true;
-            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
-            // 
-            // btnCreateUser
-            // 
-            this.btnCreateUser.Location = new System.Drawing.Point(12, 7);
-            this.btnCreateUser.Name = "btnCreateUser";
-            this.btnCreateUser.Size = new System.Drawing.Size(150, 29);
-            this.btnCreateUser.TabIndex = 0;
-            this.btnCreateUser.Text = "Создать пользователя";
-            this.btnCreateUser.UseVisualStyleBackColor = true;
-            this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
+            gridUsers = new DataGridView();
+            panelTop = new Panel();
+            btnChangeMyPassword = new Button();
+            btnChangePassword = new Button();
+            btnEditUser = new Button();
+            btnCreateUser = new Button();
+            pnlLoading = new TableLayoutPanel();
+            progressBar = new ProgressBar();
+            ((System.ComponentModel.ISupportInitialize)gridUsers).BeginInit();
+            panelTop.SuspendLayout();
+            pnlLoading.SuspendLayout();
+            SuspendLayout();
             // 
             // gridUsers
             // 
-            this.gridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridUsers.Location = new System.Drawing.Point(0, 40);
-            this.gridUsers.MultiSelect = false;
-            this.gridUsers.Name = "gridUsers";
-            this.gridUsers.RowHeadersWidth = 51;
-            this.gridUsers.RowTemplate.Height = 29;
-            this.gridUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsers.Size = new System.Drawing.Size(800, 410);
-            this.gridUsers.TabIndex = 1;
-            this.gridUsers.SelectionChanged += new System.EventHandler(this.gridUsers_SelectionChanged);
+            gridUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridUsers.Dock = DockStyle.Fill;
+            gridUsers.Location = new Point(0, 40);
+            gridUsers.MultiSelect = false;
+            gridUsers.Name = "gridUsers";
+            gridUsers.RowHeadersWidth = 51;
+            gridUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gridUsers.Size = new Size(969, 410);
+            gridUsers.TabIndex = 1;
+            gridUsers.SelectionChanged += gridUsers_SelectionChanged;
+            // 
+            // panelTop
+            // 
+            panelTop.Controls.Add(btnChangeMyPassword);
+            panelTop.Controls.Add(btnChangePassword);
+            panelTop.Controls.Add(btnEditUser);
+            panelTop.Controls.Add(btnCreateUser);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(969, 40);
+            panelTop.TabIndex = 0;
+            // 
+            // btnChangeMyPassword
+            // 
+            btnChangeMyPassword.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnChangeMyPassword.Location = new Point(755, 7);
+            btnChangeMyPassword.Name = "btnChangeMyPassword";
+            btnChangeMyPassword.Size = new Size(202, 29);
+            btnChangeMyPassword.TabIndex = 3;
+            btnChangeMyPassword.Text = "Изменить свой пароль";
+            btnChangeMyPassword.UseVisualStyleBackColor = true;
+            btnChangeMyPassword.Click += btnChangeMyPassword_Click;
+            // 
+            // btnChangePassword
+            // 
+            btnChangePassword.Enabled = false;
+            btnChangePassword.Location = new Point(324, 7);
+            btnChangePassword.Name = "btnChangePassword";
+            btnChangePassword.Size = new Size(150, 29);
+            btnChangePassword.TabIndex = 2;
+            btnChangePassword.Text = "Изменить пароль";
+            btnChangePassword.UseVisualStyleBackColor = true;
+            btnChangePassword.Click += btnChangePassword_Click;
+            // 
+            // btnEditUser
+            // 
+            btnEditUser.Enabled = false;
+            btnEditUser.Location = new Point(168, 7);
+            btnEditUser.Name = "btnEditUser";
+            btnEditUser.Size = new Size(150, 29);
+            btnEditUser.TabIndex = 1;
+            btnEditUser.Text = "Изменить пользователя";
+            btnEditUser.UseVisualStyleBackColor = true;
+            btnEditUser.Click += btnEditUser_Click;
+            // 
+            // btnCreateUser
+            // 
+            btnCreateUser.Location = new Point(12, 7);
+            btnCreateUser.Name = "btnCreateUser";
+            btnCreateUser.Size = new Size(150, 29);
+            btnCreateUser.TabIndex = 0;
+            btnCreateUser.Text = "Создать пользователя";
+            btnCreateUser.UseVisualStyleBackColor = true;
+            btnCreateUser.Click += btnCreateUser_Click;
             // 
             // pnlLoading
             // 
-            this.pnlLoading.ColumnCount = 1;
-            this.pnlLoading.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Controls.Add(this.progressBar, 0, 0);
-            this.pnlLoading.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLoading.Location = new System.Drawing.Point(0, 40);
-            this.pnlLoading.Name = "pnlLoading";
-            this.pnlLoading.RowCount = 1;
-            this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Size = new System.Drawing.Size(800, 410);
-            this.pnlLoading.TabIndex = 2;
-            this.pnlLoading.Visible = false;
+            pnlLoading.ColumnCount = 1;
+            pnlLoading.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            pnlLoading.Controls.Add(progressBar, 0, 0);
+            pnlLoading.Dock = DockStyle.Fill;
+            pnlLoading.Location = new Point(0, 40);
+            pnlLoading.Name = "pnlLoading";
+            pnlLoading.RowCount = 1;
+            pnlLoading.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            pnlLoading.Size = new Size(969, 410);
+            pnlLoading.TabIndex = 2;
+            pnlLoading.Visible = false;
             // 
             // progressBar
             // 
-            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(300, 195);
-            this.progressBar.MarqueeAnimationSpeed = 30;
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(200, 20);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar.TabIndex = 0;
+            progressBar.Anchor = AnchorStyles.None;
+            progressBar.Location = new Point(384, 195);
+            progressBar.MarqueeAnimationSpeed = 30;
+            progressBar.Name = "progressBar";
+            progressBar.Size = new Size(200, 20);
+            progressBar.Style = ProgressBarStyle.Marquee;
+            progressBar.TabIndex = 0;
             // 
             // UsersForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.gridUsers);
-            this.Controls.Add(this.pnlLoading);
-            this.Controls.Add(this.panelTop);
-            this.Name = "UsersForm";
-            this.Text = "Users";
-            this.Load += new System.EventHandler(this.UsersForm_Load);
-            this.panelTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).EndInit();
-            this.pnlLoading.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(969, 450);
+            Controls.Add(gridUsers);
+            Controls.Add(pnlLoading);
+            Controls.Add(panelTop);
+            Name = "UsersForm";
+            Text = "Users";
+            Load += UsersForm_Load;
+            ((System.ComponentModel.ISupportInitialize)gridUsers).EndInit();
+            panelTop.ResumeLayout(false);
+            pnlLoading.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion

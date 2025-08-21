@@ -9,6 +9,8 @@ namespace PoverkaWinForms.Forms
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label lblMiddleName;
         private System.Windows.Forms.TextBox txtMiddleName;
+        private System.Windows.Forms.Label lblPosition;
+        private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TableLayoutPanel pnlLoading;
@@ -33,6 +35,8 @@ namespace PoverkaWinForms.Forms
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.lblMiddleName = new System.Windows.Forms.Label();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
+            this.lblPosition = new System.Windows.Forms.Label();
+            this.txtPosition = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.pnlLoading = new System.Windows.Forms.TableLayoutPanel();
@@ -87,23 +91,39 @@ namespace PoverkaWinForms.Forms
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(250, 27);
             this.txtMiddleName.TabIndex = 5;
-            // 
+            //
+            // lblPosition
+            //
+            this.lblPosition.AutoSize = true;
+            this.lblPosition.Location = new System.Drawing.Point(12, 126);
+            this.lblPosition.Name = "lblPosition";
+            this.lblPosition.Size = new System.Drawing.Size(88, 20);
+            this.lblPosition.TabIndex = 6;
+            this.lblPosition.Text = "Должность";
+            //
+            // txtPosition
+            //
+            this.txtPosition.Location = new System.Drawing.Point(150, 123);
+            this.txtPosition.Name = "txtPosition";
+            this.txtPosition.Size = new System.Drawing.Size(250, 27);
+            this.txtPosition.TabIndex = 7;
+            //
             // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(150, 130);
+            //
+            this.btnSave.Location = new System.Drawing.Point(150, 167);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 29);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Сохранить";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
+            //
             // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(306, 130);
+            //
+            this.btnCancel.Location = new System.Drawing.Point(306, 167);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 29);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Отменить";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -118,14 +138,14 @@ namespace PoverkaWinForms.Forms
             this.pnlLoading.Name = "pnlLoading";
             this.pnlLoading.RowCount = 1;
             this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Size = new System.Drawing.Size(414, 171);
-            this.pnlLoading.TabIndex = 8;
+            this.pnlLoading.Size = new System.Drawing.Size(414, 208);
+            this.pnlLoading.TabIndex = 10;
             this.pnlLoading.Visible = false;
             //
             // progressBar
             //
             this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(107, 75);
+            this.progressBar.Location = new System.Drawing.Point(107, 94);
             this.progressBar.MarqueeAnimationSpeed = 30;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(200, 20);
@@ -136,10 +156,12 @@ namespace PoverkaWinForms.Forms
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 171);
+            this.ClientSize = new System.Drawing.Size(414, 208);
             this.Controls.Add(this.pnlLoading);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.txtPosition);
+            this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.txtMiddleName);
             this.Controls.Add(this.lblMiddleName);
             this.Controls.Add(this.txtFirstName);

@@ -37,27 +37,29 @@ public static class UserEndpoints
         foreach (var user in users)
         {
             var roles = await userManager.GetRolesAsync(user);
-            result.Add(new UserResponse(
-                user.Id,
-                user.UserName ?? string.Empty,
-                roles.FirstOrDefault() ?? string.Empty,
-                user.LastName,
-                user.FirstName,
-                user.MiddleName));
-        }
+                result.Add(new UserResponse(
+                    user.Id,
+                    user.UserName ?? string.Empty,
+                    roles.FirstOrDefault() ?? string.Empty,
+                    user.LastName,
+                    user.FirstName,
+                    user.MiddleName,
+                    user.Position));
+            }
 
         return Results.Ok(result);
     }
 
     private static async Task<IResult> CreateUser([Validate] UserCreateRequest request, UserManager<ApplicationUser> userManager)
     {
-        var user = new ApplicationUser
-        {
-            UserName = request.UserName,
-            LastName = request.LastName,
-            FirstName = request.FirstName,
-            MiddleName = request.MiddleName
-        };
+            var user = new ApplicationUser
+            {
+                UserName = request.UserName,
+                LastName = request.LastName,
+                FirstName = request.FirstName,
+                MiddleName = request.MiddleName,
+                Position = request.Position
+            };
         var result = await userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
             return Results.BadRequest(result.Errors);
@@ -75,6 +77,7 @@ public static class UserEndpoints
         user.LastName = request.LastName;
         user.FirstName = request.FirstName;
         user.MiddleName = request.MiddleName;
+        user.Position = request.Position;
 
         var result = await userManager.UpdateAsync(user);
         if (!result.Succeeded)
