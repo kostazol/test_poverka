@@ -41,7 +41,7 @@ namespace PoverkaWinForms
             services.AddScoped<IRunRepository, EfRepository>();
             services.AddScoped<MainForm>();
             services.AddScoped<MetersSetupForm>();
-            services.AddScoped<UsersForm>();
+            services.AddScoped<ConfigurationForm>();
             services.AddScoped<LoginForm>();
 
             using var provider = services.BuildServiceProvider();
