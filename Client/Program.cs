@@ -1,10 +1,8 @@
 using System;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Forms;
 using PoverkaWinForms.Forms;
-using PoverkaWinForms.Data;
 using PoverkaWinForms.Services;
 using PoverkaWinForms.Http;
 
@@ -34,12 +32,6 @@ namespace PoverkaWinForms
                 .AddHttpMessageHandler<HttpErrorHandler>();
             services.AddTransient<UserService>();
 
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(connectionString));
-
-            services.AddScoped<IRunRepository, EfRepository>();
-            services.AddScoped<MainForm>();
             services.AddScoped<MetersSetupForm>();
             services.AddScoped<ConfigurationForm>();
             services.AddScoped<LoginForm>();
