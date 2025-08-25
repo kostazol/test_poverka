@@ -1,10 +1,21 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Windows.Forms;
+using PoverkaWinForms.Services;
+using PoverkaWinForms.Settings;
 
 namespace PoverkaWinForms.Forms.Verifier
 {
     public partial class MetersSetupForm : Form
     {
+        private readonly HttpClient _http = null!;
+        private readonly TokenService _tokens = null!;
+        private bool _updating;
+
         public MetersSetupForm()
         {
             InitializeComponent();
@@ -17,12 +28,53 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer6_CB_CheckedChanged(null, EventArgs.Empty);
         }
 
+        public MetersSetupForm(IHttpClientFactory factory, TokenService tokens, IdentityServerSettings settings) : this()
+        {
+            _http = factory.CreateClient("ApiClient");
+            _http.BaseAddress = new Uri(settings.Authority);
+            _tokens = tokens;
+        }
+
         private void MetersSetupForm_Load(object sender, EventArgs e)
         {
             // TODO: добавить логику загрузки при необходимости
         }
 
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private async void MeterTypeCB_TextChanged(object? sender, EventArgs e)
+        {
+            if (_updating || sender is not ComboBox combo)
+                return;
+
+            var token = await _tokens.GetAccessTokenAsync();
+            if (token is null)
+                return;
+
+            var text = combo.Text;
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/metertypes?search={Uri.EscapeDataString(text)}");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _http.SendAsync(request);
+            if (!response.IsSuccessStatusCode)
+                return;
+
+            var items = await response.Content.ReadFromJsonAsync<List<MeterTypeDto>>();
+            if (items is null)
+                return;
+
+            var selStart = combo.SelectionStart;
+            _updating = true;
+            combo.BeginUpdate();
+            combo.DataSource = items;
+            combo.DisplayMember = nameof(MeterTypeDto.Type);
+            combo.ValueMember = nameof(MeterTypeDto.Id);
+            combo.DroppedDown = true;
+            combo.SelectedIndex = -1;
+            combo.Text = text;
+            combo.SelectionStart = selStart;
+            combo.SelectionLength = 0;
+            combo.EndUpdate();
+            _updating = false;
+        }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
         private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
         private void Flow3_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -79,5 +131,7 @@ namespace PoverkaWinForms.Forms.Verifier
                 }
             }
         }
+
+        private record MeterTypeDto(int Id, string Type, string FullName);
     }
 }

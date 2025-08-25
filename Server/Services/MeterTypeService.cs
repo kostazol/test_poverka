@@ -15,6 +15,16 @@ public class MeterTypeService
 
     public Task<List<MeterType>> GetAllAsync() => _db.MeterTypes.ToListAsync();
 
+    public Task<List<MeterType>> SearchAsync(string search)
+    {
+        var pattern = $"%{search}%";
+        return _db.MeterTypes
+            .Where(m => EF.Functions.ILike(m.Type, pattern) || EF.Functions.ILike(m.FullName, pattern))
+            .OrderBy(m => m.Type)
+            .Take(20)
+            .ToListAsync();
+    }
+
     public Task<MeterType?> GetAsync(int id) => _db.MeterTypes.FindAsync(id).AsTask();
 
     public async Task<MeterType> CreateAsync(string editorName, string type, string fullName)
