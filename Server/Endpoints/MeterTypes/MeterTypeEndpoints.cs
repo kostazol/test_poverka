@@ -25,9 +25,7 @@ public static class MeterTypeEndpoints
 
     private static async Task<Ok<IEnumerable<MeterTypeResponse>>> GetMeterTypes(string? search, MeterTypeService service)
     {
-        var items = string.IsNullOrWhiteSpace(search)
-            ? await service.GetAllAsync()
-            : await service.SearchAsync(search);
+        var items = await service.GetAllAsync(search);
         return TypedResults.Ok(items.Select(m => new MeterTypeResponse(m)));
     }
 
