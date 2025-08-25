@@ -31,10 +31,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    MiddleName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    Position = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -53,23 +49,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MeterTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Type = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    FullName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MeterTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,74 +157,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Registrations",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    MeterTypeId = table.Column<int>(type: "integer", nullable: false),
-                    RegistrationNumber = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    VerificationInterval = table.Column<short>(type: "smallint", nullable: false),
-                    VerificationMethodology = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    RelativeErrorQt1_Qmax = table.Column<byte>(type: "smallint", nullable: false),
-                    RelativeErrorQt2_Qt1 = table.Column<byte>(type: "smallint", nullable: false),
-                    RelativeErrorQmin_Qt2 = table.Column<byte>(type: "smallint", nullable: false),
-                    RegistrationDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    EndDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    HasVerificationModeByV = table.Column<bool>(type: "boolean", nullable: false),
-                    HasVerificationModeByG = table.Column<bool>(type: "boolean", nullable: false),
-                    EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Registrations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Registrations_MeterTypes_MeterTypeId",
-                        column: x => x.MeterTypeId,
-                        principalTable: "MeterTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Modifications",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RegistrationId = table.Column<int>(type: "integer", nullable: false),
-                    ClassName = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
-                    ImpulseWeight = table.Column<double>(type: "double precision", nullable: false),
-                    Qmin = table.Column<double>(type: "double precision", nullable: false),
-                    Qt1 = table.Column<double>(type: "double precision", nullable: false),
-                    Qt2 = table.Column<double>(type: "double precision", nullable: false),
-                    Qmax = table.Column<double>(type: "double precision", nullable: false),
-                    Checkpoint1 = table.Column<double>(type: "double precision", nullable: false),
-                    Checkpoint2 = table.Column<double>(type: "double precision", nullable: false),
-                    Checkpoint3 = table.Column<double>(type: "double precision", nullable: false),
-                    Checkpoint4 = table.Column<double>(type: "double precision", nullable: true),
-                    NumberOfMeasurements = table.Column<byte>(type: "smallint", nullable: false),
-                    MinPulseCount = table.Column<short>(type: "smallint", nullable: false),
-                    MeasurementDurationInSeconds = table.Column<short>(type: "smallint", nullable: false),
-                    RelativeErrorWithStandartValue = table.Column<byte>(type: "smallint", nullable: false),
-                    EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Modifications", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Modifications_Registrations_RegistrationId",
-                        column: x => x.RegistrationId,
-                        principalTable: "Registrations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -282,16 +193,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Modifications_RegistrationId",
-                table: "Modifications",
-                column: "RegistrationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Registrations_MeterTypeId",
-                table: "Registrations",
-                column: "MeterTypeId");
         }
 
         /// <inheritdoc />
@@ -313,19 +214,10 @@ namespace PoverkaServer.Migrations.ApplicationDb
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Modifications");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Registrations");
-
-            migrationBuilder.DropTable(
-                name: "MeterTypes");
         }
     }
 }
