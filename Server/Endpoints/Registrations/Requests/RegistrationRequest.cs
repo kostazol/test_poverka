@@ -33,9 +33,11 @@ public class RegistrationRequest : IValidatableObject
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (EndDate < RegistrationDate)
+        {
             yield return new ValidationResult(
                 "EndDate не может быть раньше RegistrationDate.",
                 new[] { nameof(EndDate) });
+        }
     }
 }
 

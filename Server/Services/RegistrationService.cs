@@ -36,7 +36,9 @@ public class RegistrationService
     {
         var registration = await _db.Registrations.FindAsync(id);
         if (registration is null)
+        {
             return false;
+        }
         registration.Update(editorName, meterTypeId, registrationNumber, verificationInterval, verificationMethodology, relativeErrorQt1_Qmax, relativeErrorQt2_Qt1, relativeErrorQmin_Qt2, registrationDate, endDate, hasVerificationModeByV, hasVerificationModeByG);
         await _db.SaveChangesAsync();
         return true;

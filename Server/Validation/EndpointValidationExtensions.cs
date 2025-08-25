@@ -35,13 +35,17 @@ public static class EndpointValidationExtensions
                 for (var i = 0; i < parameters.Length; i++)
                 {
                     if (parameters[i].GetCustomAttribute<ValidateAttribute>() is null)
+                    {
                         continue;
+                    }
 
                     var argument = context.Arguments[i];
                     var validationContext = new ValidationContext(argument!);
                     var validationResults = new List<ValidationResult>();
                     if (!Validator.TryValidateObject(argument!, validationContext, validationResults, true))
+                    {
                         return Results.BadRequest(validationResults);
+                    }
                 }
             }
 

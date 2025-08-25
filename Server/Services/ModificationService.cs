@@ -29,7 +29,9 @@ public class ModificationService
     {
         var modification = await _db.Modifications.FindAsync(id);
         if (modification is null)
+        {
             return false;
+        }
         modification.Update(editorName, registrationId, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         await _db.SaveChangesAsync();
         return true;

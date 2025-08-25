@@ -33,7 +33,9 @@ public static class ModificationEndpoints
     {
         var item = await service.GetAsync(id);
         if (item is null)
+        {
             return TypedResults.NotFound();
+        }
         return TypedResults.Ok(new ModificationResponse(item));
     }
 

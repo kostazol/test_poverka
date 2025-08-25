@@ -29,7 +29,9 @@ public class MeterTypeService
     {
         var meterType = await _db.MeterTypes.FindAsync(id);
         if (meterType is null)
+        {
             return false;
+        }
         meterType.Update(editorName, type, fullName);
         await _db.SaveChangesAsync();
         return true;

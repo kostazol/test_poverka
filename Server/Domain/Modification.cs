@@ -54,7 +54,9 @@ public class Modification
         ArgumentOutOfRangeException.ThrowIfNegative(checkpoint2, nameof(checkpoint2));
         ArgumentOutOfRangeException.ThrowIfNegative(checkpoint3, nameof(checkpoint3));
         if (checkpoint4.HasValue)
+        {
             ArgumentOutOfRangeException.ThrowIfNegative(checkpoint4.Value, nameof(checkpoint4));
+        }
         ArgumentOutOfRangeException.ThrowIfNegative(numberOfMeasurements, nameof(numberOfMeasurements));
         ArgumentOutOfRangeException.ThrowIfNegative(minPulseCount, nameof(minPulseCount));
         ArgumentOutOfRangeException.ThrowIfNegative(measurementDurationInSeconds, nameof(measurementDurationInSeconds));

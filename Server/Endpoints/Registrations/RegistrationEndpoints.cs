@@ -38,7 +38,9 @@ public static class RegistrationEndpoints
     {
         var item = await service.GetAsync(id);
         if (item is null)
+        {
             return TypedResults.NotFound();
+        }
         var modIds = await service.GetModificationIdsAsync(item.Id);
         return TypedResults.Ok(new RegistrationResponse(item, modIds));
     }
