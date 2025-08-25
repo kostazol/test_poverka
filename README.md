@@ -1,40 +1,28 @@
 # Поверка расходомеров — WinForms (.NET 9)
 
-Это чистый каркас приложения под Windows Forms на .NET 9 для проливной поверки расходомеров.
-Содержит:
-- форму с вводом параметров пролива (объём, время, температура, давление, показания прибора);
-- расчёт действительного расхода, погрешности;
-- сохранение результатов в PostgreSQL (строка подключения задаётся в `appsettings.json`);
-- генерацию отчёта в RTF по шаблону из папки `Reports` в `Документы/Poverka/Reports`.
+Каркас приложения Windows Forms на .NET 9 для последующей реализации проливной поверки.
 
-> Внимание: расчёты и протокол в проекте — **упрощённые** (демо). Под конкретный стенд/методику нужно скорректировать формулы, единицы и макеты.
+В проекте подготовлены базовые формы аутентификации и настройки расходомеров.
 
 ## Сборка
-1. Откройте `PoverkaWinForms.csproj` в Visual Studio 2022 (17.11+) или Rider.
+1. Откройте `PoverkaClient.csproj` в Visual Studio 2022 (17.11+) или Rider.
 2. Убедитесь, что установлен пакет **.NET 9 SDK**.
 3. Соберите и запустите.
 
 ## Структура
 ```
-PoverkaWinForms/
+Client/
   Program.cs
   app.manifest
-  PoverkaWinForms.csproj
-  Domain/
-    Meter.cs
-    TestRun.cs
+  PoverkaClient.csproj
   Services/
-    Calculator.cs
-    EfRepository.cs
-    JsonRepository.cs
-    ReportGenerator.cs
+    TokenService.cs
+    UserService.cs
   Forms/
-    MainForm.cs
-    MainForm.Designer.cs
+    LoginForm.cs
+    MetersSetupForm.cs
+    ConfigurationForm.cs
 ```
 
 ## Что дальше
 - Подключение датчиков/стенда: добавить сервис работы с `SerialPort`/Modbus и считывание импульсов/аналоговых датчиков.
-- Настройка БД: отредактируйте строку подключения в `appsettings.json` для своей инсталляции PostgreSQL.
-- Отчёты: заменить RTF на DOCX (OpenXML) и оформить фирменные шаблоны.
-- Методика: подтвердить формулы коррекций под вашу методику поверки (ГОСТ/МИ и т. п.).
