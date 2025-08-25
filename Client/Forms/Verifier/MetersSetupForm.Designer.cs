@@ -312,7 +312,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer1_GB.Controls.Add(this.Flow1_ZavodskNomer_TB);
             this.Rashodomer1_GB.Controls.Add(this.label4);
             this.Rashodomer1_GB.Enabled = true;
-            this.Rashodomer1_GB.Location = new System.Drawing.Point(68, 139);
+            this.Rashodomer1_GB.Location = new System.Drawing.Point(68, 60);
             this.Rashodomer1_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer1_GB.Name = "Rashodomer1_GB";
             this.Rashodomer1_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -364,7 +364,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer2_GB.Controls.Add(this.Flow2_ZavodskNomer_TB);
             this.Rashodomer2_GB.Controls.Add(this.label17);
             this.Rashodomer2_GB.Enabled = true;
-            this.Rashodomer2_GB.Location = new System.Drawing.Point(68, 448);
+            this.Rashodomer2_GB.Location = new System.Drawing.Point(68, 369);
             this.Rashodomer2_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer2_GB.Name = "Rashodomer2_GB";
             this.Rashodomer2_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -541,7 +541,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer3_GB.Controls.Add(this.Flow3_ZavodskNomer_TB);
             this.Rashodomer3_GB.Controls.Add(this.label24);
             this.Rashodomer3_GB.Enabled = true;
-            this.Rashodomer3_GB.Location = new System.Drawing.Point(467, 139);
+            this.Rashodomer3_GB.Location = new System.Drawing.Point(467, 60);
             this.Rashodomer3_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer3_GB.Name = "Rashodomer3_GB";
             this.Rashodomer3_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -717,7 +717,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer4_GB.Controls.Add(this.Flow4_ZavodskNomer_TB);
             this.Rashodomer4_GB.Controls.Add(this.label32);
             this.Rashodomer4_GB.Enabled = true;
-            this.Rashodomer4_GB.Location = new System.Drawing.Point(467, 448);
+            this.Rashodomer4_GB.Location = new System.Drawing.Point(467, 369);
             this.Rashodomer4_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer4_GB.Name = "Rashodomer4_GB";
             this.Rashodomer4_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -893,7 +893,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer5_GB.Controls.Add(this.Flow5_ZavodskNomer_TB);
             this.Rashodomer5_GB.Controls.Add(this.label40);
             this.Rashodomer5_GB.Enabled = true;
-            this.Rashodomer5_GB.Location = new System.Drawing.Point(865, 139);
+            this.Rashodomer5_GB.Location = new System.Drawing.Point(865, 60);
             this.Rashodomer5_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer5_GB.Name = "Rashodomer5_GB";
             this.Rashodomer5_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -1069,7 +1069,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer6_GB.Controls.Add(this.Flow6_ZavodskNomer_TB);
             this.Rashodomer6_GB.Controls.Add(this.label48);
             this.Rashodomer6_GB.Enabled = true;
-            this.Rashodomer6_GB.Location = new System.Drawing.Point(865, 448);
+            this.Rashodomer6_GB.Location = new System.Drawing.Point(865, 369);
             this.Rashodomer6_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer6_GB.Name = "Rashodomer6_GB";
             this.Rashodomer6_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
