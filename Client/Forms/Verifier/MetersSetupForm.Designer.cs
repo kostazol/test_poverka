@@ -341,7 +341,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer1_CB.Name = "Rashodomer1_CB";
             this.Rashodomer1_CB.Size = new System.Drawing.Size(102, 21);
             this.Rashodomer1_CB.TabIndex = 36;
-            this.Rashodomer1_CB.Text = "Включить";
+            this.Rashodomer1_CB.Text = "Установлен";
             this.Rashodomer1_CB.UseVisualStyleBackColor = true;
             this.Rashodomer1_CB.CheckedChanged += new System.EventHandler(this.Rashodomer1_CB_CheckedChanged);
             // 
@@ -1258,7 +1258,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer2_CB.Name = "Rashodomer2_CB";
             this.Rashodomer2_CB.Size = new System.Drawing.Size(102, 21);
             this.Rashodomer2_CB.TabIndex = 45;
-            this.Rashodomer2_CB.Text = "Включить";
+            this.Rashodomer2_CB.Text = "Установлен";
             this.Rashodomer2_CB.UseVisualStyleBackColor = true;
             this.Rashodomer2_CB.CheckedChanged += new System.EventHandler(this.Rashodomer2_CB_CheckedChanged);
             // 
@@ -1271,7 +1271,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer3_CB.Name = "Rashodomer3_CB";
             this.Rashodomer3_CB.Size = new System.Drawing.Size(102, 21);
             this.Rashodomer3_CB.TabIndex = 46;
-            this.Rashodomer3_CB.Text = "Включить";
+            this.Rashodomer3_CB.Text = "Установлен";
             this.Rashodomer3_CB.UseVisualStyleBackColor = true;
             this.Rashodomer3_CB.CheckedChanged += new System.EventHandler(this.Rashodomer3_CB_CheckedChanged);
             // 
@@ -1284,7 +1284,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer6_CB.Name = "Rashodomer6_CB";
             this.Rashodomer6_CB.Size = new System.Drawing.Size(102, 21);
             this.Rashodomer6_CB.TabIndex = 49;
-            this.Rashodomer6_CB.Text = "Включить";
+            this.Rashodomer6_CB.Text = "Установлен";
             this.Rashodomer6_CB.UseVisualStyleBackColor = true;
             this.Rashodomer6_CB.CheckedChanged += new System.EventHandler(this.Rashodomer6_CB_CheckedChanged);
             // 
@@ -1297,7 +1297,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer5_CB.Name = "Rashodomer5_CB";
             this.Rashodomer5_CB.Size = new System.Drawing.Size(102, 21);
             this.Rashodomer5_CB.TabIndex = 48;
-            this.Rashodomer5_CB.Text = "Включить";
+            this.Rashodomer5_CB.Text = "Установлен";
             this.Rashodomer5_CB.UseVisualStyleBackColor = true;
             this.Rashodomer5_CB.CheckedChanged += new System.EventHandler(this.Rashodomer5_CB_CheckedChanged);
             // 
@@ -1310,7 +1310,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer4_CB.Name = "Rashodomer4_CB";
             this.Rashodomer4_CB.Size = new System.Drawing.Size(102, 21);
             this.Rashodomer4_CB.TabIndex = 47;
-            this.Rashodomer4_CB.Text = "Включить";
+            this.Rashodomer4_CB.Text = "Установлен";
             this.Rashodomer4_CB.UseVisualStyleBackColor = true;
             this.Rashodomer4_CB.CheckedChanged += new System.EventHandler(this.Rashodomer4_CB_CheckedChanged);
             // 

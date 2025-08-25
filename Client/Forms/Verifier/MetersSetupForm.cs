@@ -70,7 +70,6 @@ namespace PoverkaWinForms.Forms.Verifier
         private static void ToggleGroupControls(GroupBox groupBox, CheckBox checkBox, Label caption)
         {
             bool visible = checkBox.Checked;
-            checkBox.Text = visible ? "Выключить" : "Включить";
 
             foreach (Control control in groupBox.Controls)
             {
