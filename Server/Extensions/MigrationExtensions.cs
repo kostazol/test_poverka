@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PoverkaServer.Data;
 using PoverkaServer.Models;
+using PoverkaServer.Settings;
 
 namespace PoverkaServer;
 

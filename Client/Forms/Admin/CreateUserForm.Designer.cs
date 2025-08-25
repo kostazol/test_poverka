@@ -1,4 +1,4 @@
-namespace PoverkaWinForms.Forms
+namespace PoverkaWinForms.Forms.Admin
 {
     partial class CreateUserForm
     {
@@ -116,7 +116,7 @@ namespace PoverkaWinForms.Forms
             // 
             this.cmbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRole.FormattingEnabled = true;
-            this.cmbRole.Items.AddRange(PoverkaWinForms.Roles.All);
+            this.cmbRole.Items.AddRange(PoverkaWinForms.Settings.Roles.All);
             this.cmbRole.Location = new System.Drawing.Point(150, 167);
             this.cmbRole.Name = "cmbRole";
             this.cmbRole.Size = new System.Drawing.Size(250, 28);

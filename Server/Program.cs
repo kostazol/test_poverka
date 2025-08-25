@@ -11,6 +11,7 @@ using PoverkaServer.Endpoints.Modifications;
 using PoverkaServer.Validation;
 using PoverkaServer.Models;
 using PoverkaServer.Services;
+using PoverkaServer.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 

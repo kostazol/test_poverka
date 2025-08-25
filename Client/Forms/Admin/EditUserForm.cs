@@ -1,9 +1,9 @@
 using System;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
-using PoverkaWinForms.UI;
+using PoverkaWinForms.Forms;
 
-namespace PoverkaWinForms.Forms;
+namespace PoverkaWinForms.Forms.Admin;
 
 public partial class EditUserForm : Form
 {
@@ -34,7 +34,7 @@ public partial class EditUserForm : Form
     {
         if (_users is null || _user is null) return;
 
-        await UiHelper.RunSafeAsync(async () =>
+        await FormHelper.RunSafeAsync(async () =>
         {
             SetLoading(true);
             try

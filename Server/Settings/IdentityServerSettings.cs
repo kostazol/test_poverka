@@ -1,4 +1,4 @@
-namespace PoverkaServer;
+namespace PoverkaServer.Settings;
 
 public class IdentityServerSettings
 {

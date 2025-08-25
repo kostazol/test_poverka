@@ -3,9 +3,9 @@ using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
-using PoverkaWinForms.UI;
+using PoverkaWinForms.Forms;
 
-namespace PoverkaWinForms.Forms;
+namespace PoverkaWinForms.Forms.Admin;
 
 public partial class CreateUserForm : Form
 {
@@ -45,7 +45,7 @@ public partial class CreateUserForm : Form
     {
         if (_users is null) return;
 
-        await UiHelper.RunSafeAsync(async () =>
+        await FormHelper.RunSafeAsync(async () =>
         {
             SetLoading(true);
             try

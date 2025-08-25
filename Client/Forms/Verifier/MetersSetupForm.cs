@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace PoverkaWinForms
+namespace PoverkaWinForms.Forms.Verifier
 {
     public partial class MetersSetupForm : Form
     {
