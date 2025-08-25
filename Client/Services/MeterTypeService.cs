@@ -12,6 +12,7 @@ public class MeterTypeService
 {
     private readonly HttpClient _http;
     private readonly TokenService _tokens;
+    private List<MeterTypeDto> _defaultTypes = new();
 
     public MeterTypeService(IHttpClientFactory factory, TokenService tokens, IdentityServerSettings settings)
     {
@@ -22,6 +23,13 @@ public class MeterTypeService
 
     public async Task<List<MeterTypeDto>> GetAllAsync(string search, int? take = null)
     {
+        if (string.IsNullOrWhiteSpace(search))
+        {
+            if (_defaultTypes.Count > 0)
+                return _defaultTypes;
+            take ??= 10;
+        }
+
         var token = await _tokens.GetAccessTokenAsync();
         if (token is null) return new();
 
@@ -42,7 +50,12 @@ public class MeterTypeService
         if (!response.IsSuccessStatusCode) return new();
 
         var items = await response.Content.ReadFromJsonAsync<List<MeterTypeDto>>();
-        return items ?? new();
+        items ??= new();
+
+        if (string.IsNullOrWhiteSpace(search))
+            _defaultTypes = items;
+
+        return items;
     }
 }
 
