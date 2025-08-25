@@ -129,8 +129,6 @@ namespace PoverkaWinForms.Forms.Verifier
             this.label48 = new System.Windows.Forms.Label();
             this.Next_B = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.FlowmetersEnable_TB = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.Rashodomer2_CB = new System.Windows.Forms.CheckBox();
             this.Rashodomer3_CB = new System.Windows.Forms.CheckBox();
             this.Rashodomer6_CB = new System.Windows.Forms.CheckBox();
@@ -298,6 +296,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Rashodomer1_GB
             // 
             this.Rashodomer1_GB.Controls.Add(this.label8);
+            this.Rashodomer1_GB.Controls.Add(this.Rashodomer1_CB);
             this.Rashodomer1_GB.Controls.Add(this.Flow1_Diameter_CB);
             this.Rashodomer1_GB.Controls.Add(this.label7);
             this.Rashodomer1_GB.Controls.Add(this.Flow1_GosReestr_CB);
@@ -312,12 +311,12 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer1_GB.Controls.Add(this.label3);
             this.Rashodomer1_GB.Controls.Add(this.Flow1_ZavodskNomer_TB);
             this.Rashodomer1_GB.Controls.Add(this.label4);
-            this.Rashodomer1_GB.Enabled = false;
+            this.Rashodomer1_GB.Enabled = true;
             this.Rashodomer1_GB.Location = new System.Drawing.Point(68, 139);
             this.Rashodomer1_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer1_GB.Name = "Rashodomer1_GB";
             this.Rashodomer1_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Rashodomer1_GB.Size = new System.Drawing.Size(391, 272);
+            this.Rashodomer1_GB.Size = new System.Drawing.Size(391, 300);
             this.Rashodomer1_GB.TabIndex = 34;
             this.Rashodomer1_GB.TabStop = false;
             this.Rashodomer1_GB.Tag = "FirstFlowmeter";
@@ -326,7 +325,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(20, -6);
+            this.label8.Location = new System.Drawing.Point(20, 0);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(195, 29);
@@ -337,7 +336,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Rashodomer1_CB.AutoSize = true;
             this.Rashodomer1_CB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Rashodomer1_CB.Location = new System.Drawing.Point(352, 122);
+            this.Rashodomer1_CB.Location = new System.Drawing.Point(260, 0);
             this.Rashodomer1_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer1_CB.Name = "Rashodomer1_CB";
             this.Rashodomer1_CB.Size = new System.Drawing.Size(102, 21);
@@ -349,6 +348,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Rashodomer2_GB
             // 
             this.Rashodomer2_GB.Controls.Add(this.label10);
+            this.Rashodomer2_GB.Controls.Add(this.Rashodomer2_CB);
             this.Rashodomer2_GB.Controls.Add(this.Flow2_Diameter_CB);
             this.Rashodomer2_GB.Controls.Add(this.label11);
             this.Rashodomer2_GB.Controls.Add(this.Flow2_GosReestr_CB);
@@ -363,12 +363,12 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer2_GB.Controls.Add(this.label16);
             this.Rashodomer2_GB.Controls.Add(this.Flow2_ZavodskNomer_TB);
             this.Rashodomer2_GB.Controls.Add(this.label17);
-            this.Rashodomer2_GB.Enabled = false;
+            this.Rashodomer2_GB.Enabled = true;
             this.Rashodomer2_GB.Location = new System.Drawing.Point(68, 448);
             this.Rashodomer2_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer2_GB.Name = "Rashodomer2_GB";
             this.Rashodomer2_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Rashodomer2_GB.Size = new System.Drawing.Size(391, 272);
+            this.Rashodomer2_GB.Size = new System.Drawing.Size(391, 300);
             this.Rashodomer2_GB.TabIndex = 36;
             this.Rashodomer2_GB.TabStop = false;
             this.Rashodomer2_GB.Tag = "FirstFlowmeter";
@@ -377,7 +377,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(20, -6);
+            this.label10.Location = new System.Drawing.Point(20, 0);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(195, 29);
@@ -525,6 +525,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Rashodomer3_GB
             // 
             this.Rashodomer3_GB.Controls.Add(this.label9);
+            this.Rashodomer3_GB.Controls.Add(this.Rashodomer3_CB);
             this.Rashodomer3_GB.Controls.Add(this.Flow3_Diameter_CB);
             this.Rashodomer3_GB.Controls.Add(this.label18);
             this.Rashodomer3_GB.Controls.Add(this.Flow3_GosReestr_CB);
@@ -539,12 +540,12 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer3_GB.Controls.Add(this.label23);
             this.Rashodomer3_GB.Controls.Add(this.Flow3_ZavodskNomer_TB);
             this.Rashodomer3_GB.Controls.Add(this.label24);
-            this.Rashodomer3_GB.Enabled = false;
+            this.Rashodomer3_GB.Enabled = true;
             this.Rashodomer3_GB.Location = new System.Drawing.Point(467, 139);
             this.Rashodomer3_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer3_GB.Name = "Rashodomer3_GB";
             this.Rashodomer3_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Rashodomer3_GB.Size = new System.Drawing.Size(391, 272);
+            this.Rashodomer3_GB.Size = new System.Drawing.Size(391, 300);
             this.Rashodomer3_GB.TabIndex = 37;
             this.Rashodomer3_GB.TabStop = false;
             this.Rashodomer3_GB.Tag = "FirstFlowmeter";
@@ -553,7 +554,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(20, -6);
+            this.label9.Location = new System.Drawing.Point(20, 0);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(195, 29);
@@ -700,6 +701,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Rashodomer4_GB
             // 
             this.Rashodomer4_GB.Controls.Add(this.label25);
+            this.Rashodomer4_GB.Controls.Add(this.Rashodomer4_CB);
             this.Rashodomer4_GB.Controls.Add(this.Flow4_Diameter_CB);
             this.Rashodomer4_GB.Controls.Add(this.label26);
             this.Rashodomer4_GB.Controls.Add(this.Flow4_GosReestr_CB);
@@ -714,12 +716,12 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer4_GB.Controls.Add(this.label31);
             this.Rashodomer4_GB.Controls.Add(this.Flow4_ZavodskNomer_TB);
             this.Rashodomer4_GB.Controls.Add(this.label32);
-            this.Rashodomer4_GB.Enabled = false;
+            this.Rashodomer4_GB.Enabled = true;
             this.Rashodomer4_GB.Location = new System.Drawing.Point(467, 448);
             this.Rashodomer4_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer4_GB.Name = "Rashodomer4_GB";
             this.Rashodomer4_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Rashodomer4_GB.Size = new System.Drawing.Size(391, 272);
+            this.Rashodomer4_GB.Size = new System.Drawing.Size(391, 300);
             this.Rashodomer4_GB.TabIndex = 38;
             this.Rashodomer4_GB.TabStop = false;
             this.Rashodomer4_GB.Tag = "FirstFlowmeter";
@@ -728,7 +730,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label25.Location = new System.Drawing.Point(20, -6);
+            this.label25.Location = new System.Drawing.Point(20, 0);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(195, 29);
@@ -875,6 +877,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Rashodomer5_GB
             // 
             this.Rashodomer5_GB.Controls.Add(this.label33);
+            this.Rashodomer5_GB.Controls.Add(this.Rashodomer5_CB);
             this.Rashodomer5_GB.Controls.Add(this.Flow5_Diameter_CB);
             this.Rashodomer5_GB.Controls.Add(this.label34);
             this.Rashodomer5_GB.Controls.Add(this.Flow5_GosReestr_CB);
@@ -889,12 +892,12 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer5_GB.Controls.Add(this.label39);
             this.Rashodomer5_GB.Controls.Add(this.Flow5_ZavodskNomer_TB);
             this.Rashodomer5_GB.Controls.Add(this.label40);
-            this.Rashodomer5_GB.Enabled = false;
+            this.Rashodomer5_GB.Enabled = true;
             this.Rashodomer5_GB.Location = new System.Drawing.Point(865, 139);
             this.Rashodomer5_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer5_GB.Name = "Rashodomer5_GB";
             this.Rashodomer5_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Rashodomer5_GB.Size = new System.Drawing.Size(391, 272);
+            this.Rashodomer5_GB.Size = new System.Drawing.Size(391, 300);
             this.Rashodomer5_GB.TabIndex = 37;
             this.Rashodomer5_GB.TabStop = false;
             this.Rashodomer5_GB.Tag = "FirstFlowmeter";
@@ -903,7 +906,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label33.Location = new System.Drawing.Point(20, -6);
+            this.label33.Location = new System.Drawing.Point(20, 0);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(195, 29);
@@ -1050,6 +1053,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Rashodomer6_GB
             // 
             this.Rashodomer6_GB.Controls.Add(this.label41);
+            this.Rashodomer6_GB.Controls.Add(this.Rashodomer6_CB);
             this.Rashodomer6_GB.Controls.Add(this.Flow6_Diameter_CB);
             this.Rashodomer6_GB.Controls.Add(this.label42);
             this.Rashodomer6_GB.Controls.Add(this.Flow6_GosReestr_CB);
@@ -1064,12 +1068,12 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Rashodomer6_GB.Controls.Add(this.label47);
             this.Rashodomer6_GB.Controls.Add(this.Flow6_ZavodskNomer_TB);
             this.Rashodomer6_GB.Controls.Add(this.label48);
-            this.Rashodomer6_GB.Enabled = false;
+            this.Rashodomer6_GB.Enabled = true;
             this.Rashodomer6_GB.Location = new System.Drawing.Point(865, 448);
             this.Rashodomer6_GB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer6_GB.Name = "Rashodomer6_GB";
             this.Rashodomer6_GB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Rashodomer6_GB.Size = new System.Drawing.Size(391, 272);
+            this.Rashodomer6_GB.Size = new System.Drawing.Size(391, 300);
             this.Rashodomer6_GB.TabIndex = 37;
             this.Rashodomer6_GB.TabStop = false;
             this.Rashodomer6_GB.Tag = "FirstFlowmeter";
@@ -1079,7 +1083,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label41.Location = new System.Drawing.Point(20, -6);
+            this.label41.Location = new System.Drawing.Point(20, 0);
             this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(195, 29);
@@ -1245,30 +1249,11 @@ namespace PoverkaWinForms.Forms.Verifier
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // FlowmetersEnable_TB
-            // 
-            this.FlowmetersEnable_TB.Location = new System.Drawing.Point(1074, 92);
-            this.FlowmetersEnable_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.FlowmetersEnable_TB.Name = "FlowmetersEnable_TB";
-            this.FlowmetersEnable_TB.Size = new System.Drawing.Size(177, 22);
-            this.FlowmetersEnable_TB.TabIndex = 36;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(971, 89);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 44;
-            this.button2.Text = "Тест";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // Rashodomer2_CB
             // 
             this.Rashodomer2_CB.AutoSize = true;
             this.Rashodomer2_CB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Rashodomer2_CB.Location = new System.Drawing.Point(353, 432);
+            this.Rashodomer2_CB.Location = new System.Drawing.Point(260, 0);
             this.Rashodomer2_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer2_CB.Name = "Rashodomer2_CB";
             this.Rashodomer2_CB.Size = new System.Drawing.Size(102, 21);
@@ -1281,7 +1266,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Rashodomer3_CB.AutoSize = true;
             this.Rashodomer3_CB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Rashodomer3_CB.Location = new System.Drawing.Point(751, 123);
+            this.Rashodomer3_CB.Location = new System.Drawing.Point(260, 0);
             this.Rashodomer3_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer3_CB.Name = "Rashodomer3_CB";
             this.Rashodomer3_CB.Size = new System.Drawing.Size(102, 21);
@@ -1294,7 +1279,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Rashodomer6_CB.AutoSize = true;
             this.Rashodomer6_CB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Rashodomer6_CB.Location = new System.Drawing.Point(1149, 433);
+            this.Rashodomer6_CB.Location = new System.Drawing.Point(260, 0);
             this.Rashodomer6_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer6_CB.Name = "Rashodomer6_CB";
             this.Rashodomer6_CB.Size = new System.Drawing.Size(102, 21);
@@ -1307,7 +1292,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Rashodomer5_CB.AutoSize = true;
             this.Rashodomer5_CB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Rashodomer5_CB.Location = new System.Drawing.Point(1151, 124);
+            this.Rashodomer5_CB.Location = new System.Drawing.Point(260, 0);
             this.Rashodomer5_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer5_CB.Name = "Rashodomer5_CB";
             this.Rashodomer5_CB.Size = new System.Drawing.Size(102, 21);
@@ -1320,7 +1305,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Rashodomer4_CB.AutoSize = true;
             this.Rashodomer4_CB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Rashodomer4_CB.Location = new System.Drawing.Point(751, 432);
+            this.Rashodomer4_CB.Location = new System.Drawing.Point(260, 0);
             this.Rashodomer4_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rashodomer4_CB.Name = "Rashodomer4_CB";
             this.Rashodomer4_CB.Size = new System.Drawing.Size(102, 21);
@@ -1334,14 +1319,6 @@ namespace PoverkaWinForms.Forms.Verifier
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1323, 777);
-            this.Controls.Add(this.Rashodomer6_CB);
-            this.Controls.Add(this.Rashodomer5_CB);
-            this.Controls.Add(this.Rashodomer4_CB);
-            this.Controls.Add(this.Rashodomer3_CB);
-            this.Controls.Add(this.Rashodomer2_CB);
-            this.Controls.Add(this.Rashodomer1_CB);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.FlowmetersEnable_TB);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Next_B);
             this.Controls.Add(this.Rashodomer6_GB);
@@ -1475,8 +1452,6 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Button Next_B;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox FlowmetersEnable_TB;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox Rashodomer1_CB;
         private System.Windows.Forms.CheckBox Rashodomer2_CB;
         private System.Windows.Forms.CheckBox Rashodomer3_CB;

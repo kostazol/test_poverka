@@ -8,6 +8,13 @@ namespace PoverkaWinForms.Forms.Verifier
         public MetersSetupForm()
         {
             InitializeComponent();
+
+            Rashodomer1_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer2_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer3_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer4_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer5_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer6_CB_CheckedChanged(null, EventArgs.Empty);
         }
 
         private void MetersSetupForm_Load(object sender, EventArgs e)
@@ -25,46 +32,53 @@ namespace PoverkaWinForms.Forms.Verifier
         private void label14_Click(object sender, EventArgs e) { }
         private void Next_B_Click(object sender, EventArgs e) { }
         private void button1_Click(object sender, EventArgs e) { }
-        private void button2_Click(object sender, EventArgs e) { }
 
-        private void Rashodomer1_CB_CheckedChanged(object sender, EventArgs e)
+        private void Rashodomer1_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer1_GB.Enabled = Rashodomer1_CB.Checked;
-            Rashodomer1_CB.Text = Rashodomer1_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer1_GB, Rashodomer1_CB, label8);
         }
 
-        private void Rashodomer2_CB_CheckedChanged(object sender, EventArgs e)
+        private void Rashodomer2_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer2_GB.Enabled = Rashodomer2_CB.Checked;
-            Rashodomer2_CB.Text = Rashodomer2_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer2_GB, Rashodomer2_CB, label10);
         }
 
-        private void Rashodomer3_CB_CheckedChanged(object sender, EventArgs e)
+        private void Rashodomer3_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer3_GB.Enabled = Rashodomer3_CB.Checked;
-            Rashodomer3_CB.Text = Rashodomer3_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer3_GB, Rashodomer3_CB, label9);
         }
 
-        private void Rashodomer6_CB_CheckedChanged(object sender, EventArgs e)
+        private void Rashodomer6_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer6_GB.Enabled = Rashodomer6_CB.Checked;
-            Rashodomer6_CB.Text = Rashodomer6_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer6_GB, Rashodomer6_CB, label41);
         }
 
-        private void Rashodomer5_CB_CheckedChanged(object sender, EventArgs e)
+        private void Rashodomer5_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer5_GB.Enabled = Rashodomer5_CB.Checked;
-            Rashodomer5_CB.Text = Rashodomer5_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer5_GB, Rashodomer5_CB, label33);
         }
 
-        private void Rashodomer4_CB_CheckedChanged(object sender, EventArgs e)
+        private void Rashodomer4_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer4_GB.Enabled = Rashodomer4_CB.Checked;
-            Rashodomer4_CB.Text = Rashodomer4_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer4_GB, Rashodomer4_CB, label25);
         }
         private void groupBox6_Enter(object sender, EventArgs e)
         {
             // TODO: добавить логику обработки при необходимости
+        }
+
+        private static void ToggleGroupControls(GroupBox groupBox, CheckBox checkBox, Label caption)
+        {
+            bool visible = checkBox.Checked;
+            checkBox.Text = visible ? "Выключить" : "Включить";
+
+            foreach (Control control in groupBox.Controls)
+            {
+                if (control != caption && control != checkBox)
+                {
+                    control.Visible = visible;
+                }
+            }
         }
     }
 }
