@@ -13,6 +13,7 @@ public class ModificationResponse
 
     public int Id => _modification.Id;
     public int RegistrationId => _modification.RegistrationId;
+    public string Name => _modification.Name;
     public string ClassName => _modification.ClassName;
     public double ImpulseWeight => _modification.ImpulseWeight;
     public double Qmin => _modification.Qmin;

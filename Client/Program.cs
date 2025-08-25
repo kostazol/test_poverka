@@ -32,6 +32,7 @@ namespace PoverkaWinForms
             services.AddHttpClient("ApiClient")
                 .AddHttpMessageHandler<HttpErrorHandler>();
             services.AddTransient<UserService>();
+            services.AddTransient<MeterImportService>();
 
             services.AddScoped<MetersSetupForm>();
             services.AddScoped<ConfigurationForm>();

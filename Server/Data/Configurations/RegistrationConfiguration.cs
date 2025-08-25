@@ -15,6 +15,7 @@ public class RegistrationConfiguration : IEntityTypeConfiguration<Registration>
         builder.Property(e => e.EditorName).HasMaxLength(256);
         builder.Property(e => e.CreatedAt);
         builder.Property(e => e.UpdatedAt);
+        builder.HasIndex(e => e.RegistrationNumber).IsUnique();
         builder.HasOne<MeterType>()
             .WithMany()
             .HasForeignKey(e => e.MeterTypeId);

@@ -41,13 +41,48 @@ public static class ModificationEndpoints
 
     private static async Task<Ok<int>> CreateModification([Validate] ModificationRequest request, ModificationService service)
     {
-        var modification = await service.CreateAsync(request.EditorName, request.RegistrationId, request.ClassName, request.ImpulseWeight, request.Qmin, request.Qt1, request.Qt2, request.Qmax, request.Checkpoint1, request.Checkpoint2, request.Checkpoint3, request.Checkpoint4, request.NumberOfMeasurements, request.MinPulseCount, request.MeasurementDurationInSeconds, request.RelativeErrorWithStandartValue);
+        var modification = await service.CreateAsync(
+            request.EditorName,
+            request.RegistrationId,
+            request.Name,
+            request.ClassName,
+            request.ImpulseWeight,
+            request.Qmin,
+            request.Qt1,
+            request.Qt2,
+            request.Qmax,
+            request.Checkpoint1,
+            request.Checkpoint2,
+            request.Checkpoint3,
+            request.Checkpoint4,
+            request.NumberOfMeasurements,
+            request.MinPulseCount,
+            request.MeasurementDurationInSeconds,
+            request.RelativeErrorWithStandartValue);
         return TypedResults.Ok(modification.Id);
     }
 
     private static async Task<Results<NoContent, NotFound>> UpdateModification(int id, [Validate] ModificationRequest request, ModificationService service)
     {
-        var updated = await service.UpdateAsync(id, request.EditorName, request.RegistrationId, request.ClassName, request.ImpulseWeight, request.Qmin, request.Qt1, request.Qt2, request.Qmax, request.Checkpoint1, request.Checkpoint2, request.Checkpoint3, request.Checkpoint4, request.NumberOfMeasurements, request.MinPulseCount, request.MeasurementDurationInSeconds, request.RelativeErrorWithStandartValue);
+        var updated = await service.UpdateAsync(
+            id,
+            request.EditorName,
+            request.RegistrationId,
+            request.Name,
+            request.ClassName,
+            request.ImpulseWeight,
+            request.Qmin,
+            request.Qt1,
+            request.Qt2,
+            request.Qmax,
+            request.Checkpoint1,
+            request.Checkpoint2,
+            request.Checkpoint3,
+            request.Checkpoint4,
+            request.NumberOfMeasurements,
+            request.MinPulseCount,
+            request.MeasurementDurationInSeconds,
+            request.RelativeErrorWithStandartValue);
         return updated ? TypedResults.NoContent() : TypedResults.NotFound();
     }
 

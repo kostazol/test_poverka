@@ -185,6 +185,9 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Type")
+                        .IsUnique();
+
                     b.ToTable("MeterTypes");
                 });
 
@@ -230,6 +233,11 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.Property<short>("MinPulseCount")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<byte>("NumberOfMeasurements")
                         .HasColumnType("smallint");
 
@@ -256,7 +264,8 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RegistrationId");
+                    b.HasIndex("RegistrationId", "Name")
+                        .IsUnique();
 
                     b.ToTable("Modifications");
                 });
@@ -320,6 +329,9 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.HasKey("Id");
 
                     b.HasIndex("MeterTypeId");
+
+                    b.HasIndex("RegistrationNumber")
+                        .IsUnique();
 
                     b.ToTable("Registrations");
                 });

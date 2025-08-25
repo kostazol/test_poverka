@@ -17,22 +17,57 @@ public class ModificationService
 
     public Task<Modification?> GetAsync(int id) => _db.Modifications.FirstOrDefaultAsync(m => m.Id == id);
 
-    public async Task<Modification> CreateAsync(string editorName, int registrationId, string className, double impulseWeight, double qmin, double qt1, double qt2, double qmax, double checkpoint1, double checkpoint2, double checkpoint3, double? checkpoint4, byte numberOfMeasurements, short minPulseCount, short measurementDurationInSeconds, byte relativeErrorWithStandartValue)
+    public async Task<Modification> CreateAsync(
+        string editorName,
+        int registrationId,
+        string name,
+        string className,
+        double impulseWeight,
+        double qmin,
+        double qt1,
+        double qt2,
+        double qmax,
+        double checkpoint1,
+        double checkpoint2,
+        double checkpoint3,
+        double? checkpoint4,
+        byte numberOfMeasurements,
+        short minPulseCount,
+        short measurementDurationInSeconds,
+        byte relativeErrorWithStandartValue)
     {
-        var modification = new Modification(editorName, registrationId, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
+        var modification = new Modification(editorName, registrationId, name, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         _db.Modifications.Add(modification);
         await _db.SaveChangesAsync();
         return modification;
     }
 
-    public async Task<bool> UpdateAsync(int id, string editorName, int registrationId, string className, double impulseWeight, double qmin, double qt1, double qt2, double qmax, double checkpoint1, double checkpoint2, double checkpoint3, double? checkpoint4, byte numberOfMeasurements, short minPulseCount, short measurementDurationInSeconds, byte relativeErrorWithStandartValue)
+    public async Task<bool> UpdateAsync(
+        int id,
+        string editorName,
+        int registrationId,
+        string name,
+        string className,
+        double impulseWeight,
+        double qmin,
+        double qt1,
+        double qt2,
+        double qmax,
+        double checkpoint1,
+        double checkpoint2,
+        double checkpoint3,
+        double? checkpoint4,
+        byte numberOfMeasurements,
+        short minPulseCount,
+        short measurementDurationInSeconds,
+        byte relativeErrorWithStandartValue)
     {
         var modification = await _db.Modifications.FindAsync(id);
         if (modification is null)
         {
             return false;
         }
-        modification.Update(editorName, registrationId, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
+        modification.Update(editorName, registrationId, name, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         await _db.SaveChangesAsync();
         return true;
     }
