@@ -12,8 +12,8 @@ using PoverkaServer.Data;
 namespace PoverkaServer.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250820180458_AddUserNames")]
-    partial class AddUserNames
+    [Migration("20250825050429_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,6 +157,176 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PoverkaServer.Domain.MeterType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("EditorName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MeterTypes");
+                });
+
+            modelBuilder.Entity("PoverkaServer.Domain.Modification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Checkpoint1")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint2")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint3")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Checkpoint4")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("ClassName")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("EditorName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<double>("ImpulseWeight")
+                        .HasColumnType("double precision");
+
+                    b.Property<short>("MeasurementDurationInSeconds")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("MinPulseCount")
+                        .HasColumnType("smallint");
+
+                    b.Property<byte>("NumberOfMeasurements")
+                        .HasColumnType("smallint");
+
+                    b.Property<double>("Qmax")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Qmin")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Qt1")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Qt2")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("RegistrationId")
+                        .HasColumnType("integer");
+
+                    b.Property<byte>("RelativeErrorWithStandartValue")
+                        .HasColumnType("smallint");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegistrationId");
+
+                    b.ToTable("Modifications");
+                });
+
+            modelBuilder.Entity("PoverkaServer.Domain.Registration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("EditorName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<DateOnly>("EndDate")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("HasVerificationModeByG")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("HasVerificationModeByV")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("MeterTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateOnly>("RegistrationDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("RegistrationNumber")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<byte>("RelativeErrorQmin_Qt2")
+                        .HasColumnType("smallint");
+
+                    b.Property<byte>("RelativeErrorQt1_Qmax")
+                        .HasColumnType("smallint");
+
+                    b.Property<byte>("RelativeErrorQt2_Qt1")
+                        .HasColumnType("smallint");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<short>("VerificationInterval")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("VerificationMethodology")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MeterTypeId");
+
+                    b.ToTable("Registrations");
+                });
+
             modelBuilder.Entity("PoverkaServer.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -210,6 +380,10 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Position")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
@@ -280,6 +454,24 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.HasOne("PoverkaServer.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PoverkaServer.Domain.Modification", b =>
+                {
+                    b.HasOne("PoverkaServer.Domain.Registration", null)
+                        .WithMany()
+                        .HasForeignKey("RegistrationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PoverkaServer.Domain.Registration", b =>
+                {
+                    b.HasOne("PoverkaServer.Domain.MeterType", null)
+                        .WithMany()
+                        .HasForeignKey("MeterTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

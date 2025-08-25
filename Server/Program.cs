@@ -5,8 +5,12 @@ using Microsoft.OpenApi.Models;
 using PoverkaServer;
 using PoverkaServer.Data;
 using PoverkaServer.Endpoints;
+using PoverkaServer.Endpoints.MeterTypes;
+using PoverkaServer.Endpoints.Registrations;
+using PoverkaServer.Endpoints.Modifications;
 using PoverkaServer.Validation;
 using PoverkaServer.Models;
+using PoverkaServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,6 +79,10 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddScoped<MeterTypeService>();
+builder.Services.AddScoped<RegistrationService>();
+builder.Services.AddScoped<ModificationService>();
+
 var app = builder.Build();
 
 app.UseSwagger();
@@ -87,5 +95,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapUserEndpoints();
+app.MapMeterTypeEndpoints();
+app.MapRegistrationEndpoints();
+app.MapModificationEndpoints();
 
 await app.RunAsync();
