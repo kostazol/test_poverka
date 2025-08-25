@@ -9,15 +9,17 @@ namespace PoverkaWinForms.Forms.Admin;
 public partial class ConfigurationForm : Form
 {
     private readonly UserService? _users;
+    private readonly MeterImportService? _import;
 
     public ConfigurationForm()
     {
         InitializeComponent();
     }
 
-    public ConfigurationForm(UserService users) : this()
+    public ConfigurationForm(UserService users, MeterImportService import) : this()
     {
         _users = users;
+        _import = import;
     }
 
     private void gridUsers_SelectionChanged(object? sender, EventArgs e)
@@ -103,6 +105,33 @@ public partial class ConfigurationForm : Form
         pnlLoading.Visible = loading;
         panelTop.Enabled = !loading;
         gridUsers.Enabled = !loading;
+    }
+
+    private void btnAddFromFile_Click(object? sender, EventArgs e)
+    {
+        using var dialog = new OpenFileDialog
+        {
+            Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*"
+        };
+
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+            txtCsvPath.Text = dialog.FileName;
+        }
+    }
+
+    private async void btnProcessFile_Click(object? sender, EventArgs e)
+    {
+        if (_import is null || string.IsNullOrWhiteSpace(txtCsvPath.Text))
+        {
+            return;
+        }
+
+        await FormHelper.RunSafeAsync(async () =>
+        {
+            await _import.ImportAsync(txtCsvPath.Text);
+            MessageBox.Show("Файл обработан");
+        });
     }
 }
 
