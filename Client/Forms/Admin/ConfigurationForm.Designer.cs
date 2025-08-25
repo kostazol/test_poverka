@@ -17,6 +17,9 @@ namespace PoverkaWinForms.Forms.Admin
         private System.Windows.Forms.Button btnChangeMyPassword;
         private System.Windows.Forms.TableLayoutPanel pnlLoading;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.TextBox txtCsvPath;
+        private System.Windows.Forms.Button btnAddFromFile;
+        private System.Windows.Forms.Button btnProcessFile;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -46,6 +49,9 @@ namespace PoverkaWinForms.Forms.Admin
             btnEditUser = new Button();
             btnCreateUser = new Button();
             tabSettings = new TabPage();
+            txtCsvPath = new TextBox();
+            btnAddFromFile = new Button();
+            btnProcessFile = new Button();
             tabControl.SuspendLayout();
             tabUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridUsers).BeginInit();
@@ -171,6 +177,9 @@ namespace PoverkaWinForms.Forms.Admin
             //
             // tabSettings
             //
+            tabSettings.Controls.Add(btnProcessFile);
+            tabSettings.Controls.Add(btnAddFromFile);
+            tabSettings.Controls.Add(txtCsvPath);
             tabSettings.Location = new Point(4, 29);
             tabSettings.Name = "tabSettings";
             tabSettings.Padding = new Padding(3);
@@ -178,6 +187,37 @@ namespace PoverkaWinForms.Forms.Admin
             tabSettings.TabIndex = 1;
             tabSettings.Text = "Настройки";
             tabSettings.UseVisualStyleBackColor = true;
+            //
+            // txtCsvPath
+            //
+            txtCsvPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtCsvPath.Location = new Point(8, 8);
+            txtCsvPath.Name = "txtCsvPath";
+            txtCsvPath.ReadOnly = true;
+            txtCsvPath.Size = new Size(760, 27);
+            txtCsvPath.TabIndex = 0;
+            //
+            // btnAddFromFile
+            //
+            btnAddFromFile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddFromFile.Location = new Point(774, 6);
+            btnAddFromFile.Name = "btnAddFromFile";
+            btnAddFromFile.Size = new Size(175, 29);
+            btnAddFromFile.TabIndex = 1;
+            btnAddFromFile.Text = "Добавить из файла";
+            btnAddFromFile.UseVisualStyleBackColor = true;
+            btnAddFromFile.Click += btnAddFromFile_Click;
+            //
+            // btnProcessFile
+            //
+            btnProcessFile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnProcessFile.Location = new Point(774, 41);
+            btnProcessFile.Name = "btnProcessFile";
+            btnProcessFile.Size = new Size(175, 29);
+            btnProcessFile.TabIndex = 2;
+            btnProcessFile.Text = "Обработать";
+            btnProcessFile.UseVisualStyleBackColor = true;
+            btnProcessFile.Click += btnProcessFile_Click;
             //
             // ConfigurationForm
             //
