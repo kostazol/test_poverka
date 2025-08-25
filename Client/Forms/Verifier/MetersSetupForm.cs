@@ -1,20 +1,14 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using PoverkaWinForms.Services;
-using PoverkaWinForms.Settings;
 
 namespace PoverkaWinForms.Forms.Verifier
 {
     public partial class MetersSetupForm : Form
     {
-        private readonly HttpClient _http = null!;
-        private readonly TokenService _tokens = null!;
+        private readonly MeterTypeService _meterTypeService = null!;
         private bool _updating;
 
         public MetersSetupForm()
@@ -29,12 +23,10 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer6_CB_CheckedChanged(null, EventArgs.Empty);
         }
 
-        public MetersSetupForm(IHttpClientFactory factory, TokenService tokens, IdentityServerSettings settings) : this()
-        {
-            _http = factory.CreateClient("ApiClient");
-            _http.BaseAddress = new Uri(settings.Authority);
-            _tokens = tokens;
-        }
+    public MetersSetupForm(MeterTypeService meterTypeService) : this()
+    {
+        _meterTypeService = meterTypeService;
+    }
 
         private void MetersSetupForm_Load(object sender, EventArgs e)
         {
@@ -45,23 +37,7 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
         {
-            var token = await _tokens.GetAccessTokenAsync();
-            if (token is null)
-                return;
-
-            var url = string.IsNullOrWhiteSpace(search)
-                ? "/api/metertypes"
-                : $"/api/metertypes?search={Uri.EscapeDataString(search)}";
-            var request = new HttpRequestMessage(HttpMethod.Get, url);
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = await _http.SendAsync(request);
-            if (!response.IsSuccessStatusCode)
-                return;
-
-            var items = await response.Content.ReadFromJsonAsync<List<MeterTypeDto>>();
-            if (items is null)
-                return;
-
+            var items = await _meterTypeService.GetAllAsync(search);
             if (limit.HasValue)
                 items = items.Take(limit.Value).ToList();
 
@@ -170,6 +146,5 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private record MeterTypeDto(int Id, string Type, string FullName);
     }
 }
