@@ -11,6 +11,9 @@ public class ModificationRequest : IValidatableObject
     [Range(1, int.MaxValue, ErrorMessage = "RegistrationId должен быть положительным.")]
     public required int RegistrationId { get; init; }
 
+    [StringLength(100, MinimumLength = 1, ErrorMessage = "Указана недопустимая длина Name, допускается длина от 1 до 100 символов.")]
+    public required string Name { get; init; }
+
     [StringLength(5, MinimumLength = 1, ErrorMessage = "Указана недопустимая длина ClassName, допускается длина от 1 до 5 символов.")]
     public required string ClassName { get; init; }
 

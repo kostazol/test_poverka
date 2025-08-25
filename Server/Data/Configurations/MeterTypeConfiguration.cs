@@ -15,5 +15,6 @@ public class MeterTypeConfiguration : IEntityTypeConfiguration<MeterType>
         builder.Property(e => e.EditorName).HasMaxLength(256);
         builder.Property(e => e.CreatedAt);
         builder.Property(e => e.UpdatedAt);
+        builder.HasIndex(e => e.Type).IsUnique();
     }
 }

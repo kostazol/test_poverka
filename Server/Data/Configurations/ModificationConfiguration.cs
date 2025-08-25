@@ -10,6 +10,7 @@ public class ModificationConfiguration : IEntityTypeConfiguration<Modification>
     {
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id).UseIdentityByDefaultColumn();
+        builder.Property(e => e.Name).HasMaxLength(100);
         builder.Property(e => e.ClassName).HasMaxLength(5);
         builder.Property(e => e.ImpulseWeight).HasColumnType("double precision");
         builder.Property(e => e.Qmin).HasColumnType("double precision");
@@ -23,6 +24,7 @@ public class ModificationConfiguration : IEntityTypeConfiguration<Modification>
         builder.Property(e => e.EditorName).HasMaxLength(256);
         builder.Property(e => e.CreatedAt);
         builder.Property(e => e.UpdatedAt);
+        builder.HasIndex(e => new { e.RegistrationId, e.Name }).IsUnique();
         builder.HasOne<Registration>()
             .WithMany()
             .HasForeignKey(e => e.RegistrationId);

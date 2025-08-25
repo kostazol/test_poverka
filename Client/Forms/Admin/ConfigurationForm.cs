@@ -8,16 +8,18 @@ namespace PoverkaWinForms.Forms.Admin;
 
 public partial class ConfigurationForm : Form
 {
-    private readonly UserService? _users;
+    private readonly UserService? _userService;
+    private readonly MeterImportService? _meterImportService;
 
     public ConfigurationForm()
     {
         InitializeComponent();
     }
 
-    public ConfigurationForm(UserService users) : this()
+    public ConfigurationForm(UserService userService, MeterImportService meterImportService) : this()
     {
-        _users = users;
+        _userService = userService;
+        _meterImportService = meterImportService;
     }
 
     private void gridUsers_SelectionChanged(object? sender, EventArgs e)
@@ -35,14 +37,14 @@ public partial class ConfigurationForm : Form
 
     private async Task LoadUsersAsync()
     {
-        if (_users is null) return;
+        if (_userService is null) return;
 
         await FormHelper.RunSafeAsync(async () =>
         {
             SetLoading(true);
             try
             {
-                var data = await _users.GetUsersAsync();
+                var data = await _userService.GetUsersAsync();
                 gridUsers.DataSource = data.ToList();
                 if (gridUsers.Columns[nameof(UserDto.Position)] is DataGridViewColumn positionColumn)
                     positionColumn.HeaderText = "Должность";
@@ -60,8 +62,8 @@ public partial class ConfigurationForm : Form
 
     private async void btnCreateUser_Click(object? sender, EventArgs e)
     {
-        if (_users is null) return;
-        using var form = new CreateUserForm(_users);
+        if (_userService is null) return;
+        using var form = new CreateUserForm(_userService);
         var result = form.ShowDialog(this);
         if (result == DialogResult.OK)
             MessageBox.Show("Пользователь создан");
@@ -70,9 +72,9 @@ public partial class ConfigurationForm : Form
 
     private async void btnEditUser_Click(object? sender, EventArgs e)
     {
-        if (_users is null || gridUsers.SelectedRows.Count != 1) return;
+        if (_userService is null || gridUsers.SelectedRows.Count != 1) return;
         if (gridUsers.SelectedRows[0].DataBoundItem is not UserDto user) return;
-        using var form = new EditUserForm(_users, user);
+        using var form = new EditUserForm(_userService, user);
         var result = form.ShowDialog(this);
         if (result == DialogResult.OK)
             MessageBox.Show("Пользователь успешно изменен");
@@ -81,9 +83,9 @@ public partial class ConfigurationForm : Form
 
     private void btnChangePassword_Click(object? sender, EventArgs e)
     {
-        if (_users is null || gridUsers.SelectedRows.Count != 1) return;
+        if (_userService is null || gridUsers.SelectedRows.Count != 1) return;
         if (gridUsers.SelectedRows[0].DataBoundItem is not UserDto user) return;
-        using var form = new SetPasswordForm(_users, user.Id);
+        using var form = new SetPasswordForm(_userService, user.Id);
         var result = form.ShowDialog(this);
         if (result == DialogResult.OK)
             MessageBox.Show("Пароль успешно изменен");
@@ -91,8 +93,8 @@ public partial class ConfigurationForm : Form
 
     private void btnChangeMyPassword_Click(object? sender, EventArgs e)
     {
-        if (_users is null) return;
-        using var form = new ChangePasswordForm(_users);
+        if (_userService is null) return;
+        using var form = new ChangePasswordForm(_userService);
         var result = form.ShowDialog(this);
         if (result == DialogResult.OK)
             MessageBox.Show("Пароль изменен, при следующем входе используйте новый пароль");
@@ -103,6 +105,33 @@ public partial class ConfigurationForm : Form
         pnlLoading.Visible = loading;
         panelTop.Enabled = !loading;
         gridUsers.Enabled = !loading;
+    }
+
+    private void btnAddFromFile_Click(object? sender, EventArgs e)
+    {
+        using var dialog = new OpenFileDialog
+        {
+            Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*"
+        };
+
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+            txtCsvPath.Text = dialog.FileName;
+        }
+    }
+
+    private async void btnProcessFile_Click(object? sender, EventArgs e)
+    {
+        if (_meterImportService is null || string.IsNullOrWhiteSpace(txtCsvPath.Text))
+        {
+            return;
+        }
+
+        await FormHelper.RunSafeAsync(async () =>
+        {
+            await _meterImportService.ImportAsync(txtCsvPath.Text);
+            MessageBox.Show("Файл обработан");
+        });
     }
 }
 

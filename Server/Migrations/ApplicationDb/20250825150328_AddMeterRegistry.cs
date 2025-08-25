@@ -68,6 +68,7 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RegistrationId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     ClassName = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
                     ImpulseWeight = table.Column<double>(type: "double precision", nullable: false),
                     Qmin = table.Column<double>(type: "double precision", nullable: false),
@@ -98,14 +99,27 @@ namespace PoverkaServer.Migrations.ApplicationDb
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Modifications_RegistrationId",
+                name: "IX_MeterTypes_Type",
+                table: "MeterTypes",
+                column: "Type",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Modifications_RegistrationId_Name",
                 table: "Modifications",
-                column: "RegistrationId");
+                columns: new[] { "RegistrationId", "Name" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Registrations_MeterTypeId",
                 table: "Registrations",
                 column: "MeterTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registrations_RegistrationNumber",
+                table: "Registrations",
+                column: "RegistrationNumber",
+                unique: true);
         }
 
         /// <inheritdoc />

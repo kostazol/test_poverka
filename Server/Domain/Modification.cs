@@ -4,9 +4,28 @@ namespace PoverkaServer.Domain;
 
 public class Modification
 {
-    public Modification(string editorName, int registrationId, string className, double impulseWeight, double qmin, double qt1, double qt2, double qmax, double checkpoint1, double checkpoint2, double checkpoint3, double? checkpoint4, byte numberOfMeasurements, short minPulseCount, short measurementDurationInSeconds, byte relativeErrorWithStandartValue)
+    public Modification(
+        string editorName,
+        int registrationId,
+        string name,
+        string className,
+        double impulseWeight,
+        double qmin,
+        double qt1,
+        double qt2,
+        double qmax,
+        double checkpoint1,
+        double checkpoint2,
+        double checkpoint3,
+        double? checkpoint4,
+        byte numberOfMeasurements,
+        short minPulseCount,
+        short measurementDurationInSeconds,
+        byte relativeErrorWithStandartValue)
     {
-        Set(editorName, registrationId, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
+        Set(editorName, registrationId, name, className, impulseWeight, qmin, qt1, qt2, qmax,
+            checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements,
+            minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         CreatedAt = UpdatedAt = DateTime.UtcNow;
     }
 
@@ -18,6 +37,7 @@ public class Modification
 
     public int Id { get; private set; }
     public int RegistrationId { get; private set; }
+    public string Name { get; private set; }
     public string ClassName { get; private set; }
     public double ImpulseWeight { get; private set; }
     public double Qmin { get; private set; }
@@ -35,14 +55,51 @@ public class Modification
     public string EditorName { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
-    public void Update(string editorName, int registrationId, string className, double impulseWeight, double qmin, double qt1, double qt2, double qmax, double checkpoint1, double checkpoint2, double checkpoint3, double? checkpoint4, byte numberOfMeasurements, short minPulseCount, short measurementDurationInSeconds, byte relativeErrorWithStandartValue)
+
+    public void Update(
+        string editorName,
+        int registrationId,
+        string name,
+        string className,
+        double impulseWeight,
+        double qmin,
+        double qt1,
+        double qt2,
+        double qmax,
+        double checkpoint1,
+        double checkpoint2,
+        double checkpoint3,
+        double? checkpoint4,
+        byte numberOfMeasurements,
+        short minPulseCount,
+        short measurementDurationInSeconds,
+        byte relativeErrorWithStandartValue)
     {
-        Set(editorName, registrationId, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
+        Set(editorName, registrationId, name, className, impulseWeight, qmin, qt1, qt2, qmax,
+            checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements,
+            minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         UpdatedAt = DateTime.UtcNow;
     }
 
-    [MemberNotNull(nameof(ClassName), nameof(EditorName))]
-    private void Set(string editorName, int registrationId, string className, double impulseWeight, double qmin, double qt1, double qt2, double qmax, double checkpoint1, double checkpoint2, double checkpoint3, double? checkpoint4, byte numberOfMeasurements, short minPulseCount, short measurementDurationInSeconds, byte relativeErrorWithStandartValue)
+    [MemberNotNull(nameof(Name), nameof(ClassName), nameof(EditorName))]
+    private void Set(
+        string editorName,
+        int registrationId,
+        string name,
+        string className,
+        double impulseWeight,
+        double qmin,
+        double qt1,
+        double qt2,
+        double qmax,
+        double checkpoint1,
+        double checkpoint2,
+        double checkpoint3,
+        double? checkpoint4,
+        byte numberOfMeasurements,
+        short minPulseCount,
+        short measurementDurationInSeconds,
+        byte relativeErrorWithStandartValue)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(registrationId, nameof(registrationId));
         ArgumentOutOfRangeException.ThrowIfNegative(impulseWeight, nameof(impulseWeight));
@@ -64,6 +121,7 @@ public class Modification
 
         EditorName = editorName;
         RegistrationId = registrationId;
+        Name = name;
         ClassName = className;
         ImpulseWeight = impulseWeight;
         Qmin = qmin;
@@ -80,4 +138,3 @@ public class Modification
         RelativeErrorWithStandartValue = relativeErrorWithStandartValue;
     }
 }
-
