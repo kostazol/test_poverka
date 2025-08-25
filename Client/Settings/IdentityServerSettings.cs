@@ -1,4 +1,4 @@
-namespace PoverkaWinForms;
+namespace PoverkaWinForms.Settings;
 
 public class IdentityServerSettings
 {

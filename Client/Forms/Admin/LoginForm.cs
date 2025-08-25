@@ -1,9 +1,10 @@
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using PoverkaWinForms.Services;
-using PoverkaWinForms.UI;
+using PoverkaWinForms.Forms;
+using PoverkaWinForms.Forms.Verifier;
 
-namespace PoverkaWinForms.Forms;
+namespace PoverkaWinForms.Forms.Admin;
 
 public partial class LoginForm : Form
 {
@@ -22,7 +23,7 @@ public partial class LoginForm : Form
         SetLoading(true);
         try
         {
-            await UiHelper.RunSafeAsync(LoginAsync);
+            await FormHelper.RunSafeAsync(LoginAsync);
         }
         finally
         {

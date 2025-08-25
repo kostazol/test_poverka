@@ -1,4 +1,4 @@
-namespace PoverkaWinForms
+namespace PoverkaWinForms.Forms.Verifier
 {
     partial class MetersSetupForm
     {

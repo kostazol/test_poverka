@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
-using PoverkaServer;
+using PoverkaServer.Settings;
 
 namespace PoverkaServer.Models;
 

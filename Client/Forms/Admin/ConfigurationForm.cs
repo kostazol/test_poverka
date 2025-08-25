@@ -2,9 +2,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
-using PoverkaWinForms.UI;
+using PoverkaWinForms.Forms;
 
-namespace PoverkaWinForms.Forms;
+namespace PoverkaWinForms.Forms.Admin;
 
 public partial class ConfigurationForm : Form
 {
@@ -37,7 +37,7 @@ public partial class ConfigurationForm : Form
     {
         if (_users is null) return;
 
-        await UiHelper.RunSafeAsync(async () =>
+        await FormHelper.RunSafeAsync(async () =>
         {
             SetLoading(true);
             try

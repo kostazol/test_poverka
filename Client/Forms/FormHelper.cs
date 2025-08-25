@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PoverkaWinForms.Exceptions;
 
-namespace PoverkaWinForms.UI;
+namespace PoverkaWinForms.Forms;
 
-public static class UiHelper
+public static class FormHelper
 {
     public static async Task RunSafeAsync(Func<Task> action)
     {

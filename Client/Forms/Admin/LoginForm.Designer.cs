@@ -1,6 +1,6 @@
 using System.Windows.Forms;
 
-namespace PoverkaWinForms.Forms;
+namespace PoverkaWinForms.Forms.Admin;
 
 partial class LoginForm
 {

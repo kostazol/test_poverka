@@ -1,4 +1,4 @@
-namespace PoverkaWinForms.Forms
+namespace PoverkaWinForms.Forms.Admin
 {
     partial class EditUserForm
     {

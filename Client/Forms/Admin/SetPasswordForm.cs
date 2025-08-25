@@ -3,40 +3,33 @@ using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
 using PoverkaWinForms.Services;
-using PoverkaWinForms.UI;
+using PoverkaWinForms.Forms;
 
-namespace PoverkaWinForms.Forms;
+namespace PoverkaWinForms.Forms.Admin;
 
-public partial class ChangePasswordForm : Form
+public partial class SetPasswordForm : Form
 {
     private readonly UserService? _users;
+    private readonly string? _userId;
 
-    public ChangePasswordForm()
+    public SetPasswordForm()
     {
         InitializeComponent();
     }
 
-    public ChangePasswordForm(UserService users) : this()
+    public SetPasswordForm(UserService users, string userId) : this()
     {
         _users = users;
+        _userId = userId;
     }
 
-    private void FieldsChanged(object? sender, EventArgs e)
+    private void txtPassword_TextChanged(object? sender, EventArgs e)
     {
-        var passwordValid = IsPasswordValid(txtNewPassword.Text);
-        txtNewPassword.BackColor = txtNewPassword.TextLength == 0 || passwordValid
+        var valid = IsPasswordValid(txtPassword.Text);
+        txtPassword.BackColor = txtPassword.TextLength == 0 || valid
             ? SystemColors.Window
             : Color.MistyRose;
-        var confirmMatches = txtNewPassword.Text == txtConfirmPassword.Text;
-        txtConfirmPassword.BackColor = txtConfirmPassword.TextLength == 0 || confirmMatches
-            ? SystemColors.Window
-            : Color.MistyRose;
-        btnChange.Enabled =
-            !string.IsNullOrWhiteSpace(txtCurrentPassword.Text) &&
-            !string.IsNullOrWhiteSpace(txtNewPassword.Text) &&
-            !string.IsNullOrWhiteSpace(txtConfirmPassword.Text) &&
-            confirmMatches &&
-            passwordValid;
+        btnChange.Enabled = valid;
     }
 
     private static bool IsPasswordValid(string password) =>
@@ -49,15 +42,15 @@ public partial class ChangePasswordForm : Form
 
     private async void btnChange_Click(object? sender, EventArgs e)
     {
-        if (_users is null) return;
+        if (_users is null || _userId is null) return;
 
-        await UiHelper.RunSafeAsync(async () =>
+        await FormHelper.RunSafeAsync(async () =>
         {
             SetLoading(true);
             try
             {
-                var dto = new ChangePasswordDto(txtCurrentPassword.Text, txtNewPassword.Text);
-                await _users.ChangePasswordAsync(dto);
+                var dto = new SetPasswordDto(txtPassword.Text);
+                await _users.SetPasswordAsync(_userId, dto);
                 DialogResult = DialogResult.OK;
                 Close();
             }
