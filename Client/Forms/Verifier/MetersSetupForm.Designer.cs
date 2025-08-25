@@ -241,32 +241,32 @@ namespace PoverkaWinForms.Forms.Verifier
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 75);
+            this.label2.Location = new System.Drawing.Point(20, 43);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 16);
-            this.label2.TabIndex = 23;
+            this.label2.TabIndex = 21;
             this.label2.Text = "Тип";
             // 
             // Flow1_Name_SI_CB
             // 
             this.Flow1_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow1_Name_SI_CB.FormattingEnabled = true;
-            this.Flow1_Name_SI_CB.Location = new System.Drawing.Point(192, 71);
+            this.Flow1_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
             this.Flow1_Name_SI_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow1_Name_SI_CB.Name = "Flow1_Name_SI_CB";
             this.Flow1_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow1_Name_SI_CB.TabIndex = 22;
+            this.Flow1_Name_SI_CB.TabIndex = 20;
             this.Flow1_Name_SI_CB.SelectedIndexChanged += new System.EventHandler(this.Flow1_Name_SI_CB_SelectedIndexChanged);
             // 
             // GosReestr
             // 
             this.GosReestr.AutoSize = true;
-            this.GosReestr.Location = new System.Drawing.Point(20, 43);
+            this.GosReestr.Location = new System.Drawing.Point(20, 75);
             this.GosReestr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.GosReestr.Name = "GosReestr";
             this.GosReestr.Size = new System.Drawing.Size(111, 16);
-            this.GosReestr.TabIndex = 21;
+            this.GosReestr.TabIndex = 23;
             this.GosReestr.Text = "Производитель";
             // 
             // Flow1_GosReestr_CB
@@ -275,11 +275,11 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow1_GosReestr_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow1_GosReestr_CB.FormattingEnabled = true;
             this.Flow1_GosReestr_CB.IntegralHeight = false;
-            this.Flow1_GosReestr_CB.Location = new System.Drawing.Point(192, 41);
+            this.Flow1_GosReestr_CB.Location = new System.Drawing.Point(192, 71);
             this.Flow1_GosReestr_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow1_GosReestr_CB.Name = "Flow1_GosReestr_CB";
             this.Flow1_GosReestr_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow1_GosReestr_CB.TabIndex = 20;
+            this.Flow1_GosReestr_CB.TabIndex = 22;
             this.Flow1_GosReestr_CB.SelectedIndexChanged += new System.EventHandler(this.GosReestrCB_SelectedIndexChanged);
             // 
             // label1
@@ -408,11 +408,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Flow2_GosReestr_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow2_GosReestr_CB.FormattingEnabled = true;
-            this.Flow2_GosReestr_CB.Location = new System.Drawing.Point(192, 41);
+            this.Flow2_GosReestr_CB.Location = new System.Drawing.Point(192, 71);
             this.Flow2_GosReestr_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow2_GosReestr_CB.Name = "Flow2_GosReestr_CB";
             this.Flow2_GosReestr_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow2_GosReestr_CB.TabIndex = 20;
+            this.Flow2_GosReestr_CB.TabIndex = 22;
             this.Flow2_GosReestr_CB.SelectedIndexChanged += new System.EventHandler(this.Flow2_GosReestr_CB_SelectedIndexChanged);
             // 
             // Flow2_Document_CB
@@ -426,13 +426,13 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow2_Document_CB.TabIndex = 32;
             // 
             // label12
-            // 
+            //
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 43);
+            this.label12.Location = new System.Drawing.Point(20, 75);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(111, 16);
-            this.label12.TabIndex = 21;
+            this.label12.TabIndex = 23;
             this.label12.Text = "Производитель";
             // 
             // Flow2_WeightImpulse_TB
@@ -447,11 +447,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Flow2_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow2_Name_SI_CB.FormattingEnabled = true;
-            this.Flow2_Name_SI_CB.Location = new System.Drawing.Point(192, 71);
+            this.Flow2_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
             this.Flow2_Name_SI_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow2_Name_SI_CB.Name = "Flow2_Name_SI_CB";
             this.Flow2_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow2_Name_SI_CB.TabIndex = 22;
+            this.Flow2_Name_SI_CB.TabIndex = 20;
             // 
             // label13
             // 
@@ -466,11 +466,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(20, 75);
+            this.label14.Location = new System.Drawing.Point(20, 43);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(32, 16);
-            this.label14.TabIndex = 23;
+            this.label14.TabIndex = 21;
             this.label14.Text = "Тип";
             this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
@@ -585,11 +585,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Flow3_GosReestr_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow3_GosReestr_CB.FormattingEnabled = true;
-            this.Flow3_GosReestr_CB.Location = new System.Drawing.Point(192, 41);
+            this.Flow3_GosReestr_CB.Location = new System.Drawing.Point(192, 71);
             this.Flow3_GosReestr_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow3_GosReestr_CB.Name = "Flow3_GosReestr_CB";
             this.Flow3_GosReestr_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow3_GosReestr_CB.TabIndex = 20;
+            this.Flow3_GosReestr_CB.TabIndex = 22;
             this.Flow3_GosReestr_CB.SelectedIndexChanged += new System.EventHandler(this.Flow3_GosReestr_CB_SelectedIndexChanged);
             // 
             // Flow3_Document_CB
@@ -603,13 +603,13 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow3_Document_CB.TabIndex = 32;
             // 
             // label19
-            // 
+            //
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(20, 43);
+            this.label19.Location = new System.Drawing.Point(20, 75);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(111, 16);
-            this.label19.TabIndex = 21;
+            this.label19.TabIndex = 23;
             this.label19.Text = "Производитель";
             // 
             // Flow3_WeightImpulse_TB
@@ -624,11 +624,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Flow3_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow3_Name_SI_CB.FormattingEnabled = true;
-            this.Flow3_Name_SI_CB.Location = new System.Drawing.Point(192, 71);
+            this.Flow3_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
             this.Flow3_Name_SI_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow3_Name_SI_CB.Name = "Flow3_Name_SI_CB";
             this.Flow3_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow3_Name_SI_CB.TabIndex = 22;
+            this.Flow3_Name_SI_CB.TabIndex = 20;
             // 
             // label20
             // 
@@ -643,11 +643,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(20, 75);
+            this.label21.Location = new System.Drawing.Point(20, 43);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(32, 16);
-            this.label21.TabIndex = 23;
+            this.label21.TabIndex = 21;
             this.label21.Text = "Тип";
             // 
             // label22
@@ -758,14 +758,14 @@ namespace PoverkaWinForms.Forms.Verifier
             this.label26.Text = "Документ на поверку";
             // 
             // Flow4_GosReestr_CB
-            // 
+            //
             this.Flow4_GosReestr_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow4_GosReestr_CB.FormattingEnabled = true;
-            this.Flow4_GosReestr_CB.Location = new System.Drawing.Point(192, 41);
+            this.Flow4_GosReestr_CB.Location = new System.Drawing.Point(192, 71);
             this.Flow4_GosReestr_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow4_GosReestr_CB.Name = "Flow4_GosReestr_CB";
             this.Flow4_GosReestr_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow4_GosReestr_CB.TabIndex = 20;
+            this.Flow4_GosReestr_CB.TabIndex = 22;
             this.Flow4_GosReestr_CB.SelectedIndexChanged += new System.EventHandler(this.Flow4_GosReestr_CB_SelectedIndexChanged);
             // 
             // Flow4_Document_CB
@@ -781,11 +781,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(20, 43);
+            this.label27.Location = new System.Drawing.Point(20, 75);
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(111, 16);
-            this.label27.TabIndex = 21;
+            this.label27.TabIndex = 23;
             this.label27.Text = "Производитель";
             // 
             // Flow4_WeightImpulse_TB
@@ -800,11 +800,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Flow4_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow4_Name_SI_CB.FormattingEnabled = true;
-            this.Flow4_Name_SI_CB.Location = new System.Drawing.Point(192, 71);
+            this.Flow4_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
             this.Flow4_Name_SI_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow4_Name_SI_CB.Name = "Flow4_Name_SI_CB";
             this.Flow4_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow4_Name_SI_CB.TabIndex = 22;
+            this.Flow4_Name_SI_CB.TabIndex = 20;
             // 
             // label28
             // 
@@ -819,11 +819,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(20, 75);
+            this.label29.Location = new System.Drawing.Point(20, 43);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(136, 16);
-            this.label29.TabIndex = 23;
+            this.label29.TabIndex = 21;
             this.label29.Text = "Наиименование СИ";
             // 
             // label30
@@ -934,14 +934,14 @@ namespace PoverkaWinForms.Forms.Verifier
             this.label34.Text = "Документ на поверку";
             // 
             // Flow5_GosReestr_CB
-            // 
+            //
             this.Flow5_GosReestr_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow5_GosReestr_CB.FormattingEnabled = true;
-            this.Flow5_GosReestr_CB.Location = new System.Drawing.Point(192, 41);
+            this.Flow5_GosReestr_CB.Location = new System.Drawing.Point(192, 71);
             this.Flow5_GosReestr_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow5_GosReestr_CB.Name = "Flow5_GosReestr_CB";
             this.Flow5_GosReestr_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow5_GosReestr_CB.TabIndex = 20;
+            this.Flow5_GosReestr_CB.TabIndex = 22;
             this.Flow5_GosReestr_CB.SelectedIndexChanged += new System.EventHandler(this.Flow5_GosReestr_CB_SelectedIndexChanged);
             // 
             // Flow5_Document_CB
@@ -957,11 +957,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(20, 43);
+            this.label35.Location = new System.Drawing.Point(20, 75);
             this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(111, 16);
-            this.label35.TabIndex = 21;
+            this.label35.TabIndex = 23;
             this.label35.Text = "Производитель";
             // 
             // Flow5_WeightImpulse_TB
@@ -976,11 +976,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Flow5_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow5_Name_SI_CB.FormattingEnabled = true;
-            this.Flow5_Name_SI_CB.Location = new System.Drawing.Point(192, 71);
+            this.Flow5_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
             this.Flow5_Name_SI_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow5_Name_SI_CB.Name = "Flow5_Name_SI_CB";
             this.Flow5_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow5_Name_SI_CB.TabIndex = 22;
+            this.Flow5_Name_SI_CB.TabIndex = 20;
             // 
             // label36
             // 
@@ -995,11 +995,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(20, 75);
+            this.label37.Location = new System.Drawing.Point(20, 43);
             this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(32, 16);
-            this.label37.TabIndex = 23;
+            this.label37.TabIndex = 21;
             this.label37.Text = "Тип";
             // 
             // label38
@@ -1111,14 +1111,14 @@ namespace PoverkaWinForms.Forms.Verifier
             this.label42.Text = "Документ на поверку";
             // 
             // Flow6_GosReestr_CB
-            // 
+            //
             this.Flow6_GosReestr_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow6_GosReestr_CB.FormattingEnabled = true;
-            this.Flow6_GosReestr_CB.Location = new System.Drawing.Point(192, 41);
+            this.Flow6_GosReestr_CB.Location = new System.Drawing.Point(192, 71);
             this.Flow6_GosReestr_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow6_GosReestr_CB.Name = "Flow6_GosReestr_CB";
             this.Flow6_GosReestr_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow6_GosReestr_CB.TabIndex = 20;
+            this.Flow6_GosReestr_CB.TabIndex = 22;
             this.Flow6_GosReestr_CB.SelectedIndexChanged += new System.EventHandler(this.Flow6_GosReestr_CB_SelectedIndexChanged);
             // 
             // Flow6_Document_CB
@@ -1134,11 +1134,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(20, 43);
+            this.label43.Location = new System.Drawing.Point(20, 75);
             this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(111, 16);
-            this.label43.TabIndex = 21;
+            this.label43.TabIndex = 23;
             this.label43.Text = "Производитель";
             // 
             // Flow6_WeightImpulse_TB
@@ -1153,11 +1153,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             this.Flow6_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Flow6_Name_SI_CB.FormattingEnabled = true;
-            this.Flow6_Name_SI_CB.Location = new System.Drawing.Point(192, 71);
+            this.Flow6_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
             this.Flow6_Name_SI_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Flow6_Name_SI_CB.Name = "Flow6_Name_SI_CB";
             this.Flow6_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
-            this.Flow6_Name_SI_CB.TabIndex = 22;
+            this.Flow6_Name_SI_CB.TabIndex = 20;
             // 
             // label44
             // 
@@ -1172,11 +1172,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(20, 75);
+            this.label45.Location = new System.Drawing.Point(20, 43);
             this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(32, 16);
-            this.label45.TabIndex = 23;
+            this.label45.TabIndex = 21;
             this.label45.Text = "Тип";
             // 
             // label46
