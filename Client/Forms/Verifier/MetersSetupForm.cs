@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using PoverkaWinForms.Services;
@@ -37,9 +36,7 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
         {
-            var items = await _meterTypeService.GetAllAsync(search);
-            if (limit.HasValue)
-                items = items.Take(limit.Value).ToList();
+            var items = await _meterTypeService.GetAllAsync(search, limit);
 
             var selStart = combo.SelectionStart;
             _updating = true;
@@ -63,7 +60,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (_updating || sender is not ComboBox combo)
                 return;
 
-            await PopulateMeterTypesAsync(combo, combo.Text, dropDown: true);
+            await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
         }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
         private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }

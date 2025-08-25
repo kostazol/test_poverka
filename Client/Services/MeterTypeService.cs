@@ -20,14 +20,22 @@ public class MeterTypeService
         _tokens = tokens;
     }
 
-    public async Task<List<MeterTypeDto>> GetAllAsync(string search)
+    public async Task<List<MeterTypeDto>> GetAllAsync(string search, int? take = null)
     {
         var token = await _tokens.GetAccessTokenAsync();
         if (token is null) return new();
 
-        var url = string.IsNullOrWhiteSpace(search)
-            ? "/api/metertypes"
-            : $"/api/metertypes?search={Uri.EscapeDataString(search)}";
+        var url = "/api/metertypes";
+        if (!string.IsNullOrWhiteSpace(search) || take.HasValue)
+        {
+            var query = new List<string>();
+            if (!string.IsNullOrWhiteSpace(search))
+                query.Add($"search={Uri.EscapeDataString(search)}");
+            if (take.HasValue)
+                query.Add($"take={take.Value}");
+            url += "?" + string.Join("&", query);
+        }
+
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         var response = await _http.SendAsync(request);
