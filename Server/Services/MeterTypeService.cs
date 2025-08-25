@@ -13,7 +13,23 @@ public class MeterTypeService
         _db = db;
     }
 
-    public Task<List<MeterType>> GetAllAsync() => _db.MeterTypes.ToListAsync();
+    public Task<List<MeterType>> GetAllAsync(string? search = null, int? take = null)
+    {
+        IQueryable<MeterType> query = _db.MeterTypes;
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            var pattern = $"%{search}%";
+            query = query.Where(m => EF.Functions.ILike(m.Type, pattern));
+        }
+
+        if (take.HasValue)
+        {
+            query = query.Take(take.Value);
+        }
+
+        return query.OrderBy(m => m.Type).ToListAsync();
+    }
 
     public Task<MeterType?> GetAsync(int id) => _db.MeterTypes.FindAsync(id).AsTask();
 

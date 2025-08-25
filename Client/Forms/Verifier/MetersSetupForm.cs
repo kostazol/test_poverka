@@ -1,14 +1,31 @@
 using System;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier
 {
     public partial class MetersSetupForm : Form
     {
+        private readonly MeterTypeService _meterTypeService = null!;
+        private bool _updating;
+
         public MetersSetupForm()
         {
             InitializeComponent();
+
+            Rashodomer1_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer2_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer3_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer4_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer5_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer6_CB_CheckedChanged(null, EventArgs.Empty);
         }
+
+    public MetersSetupForm(MeterTypeService meterTypeService) : this()
+    {
+        _meterTypeService = meterTypeService;
+    }
 
         private void MetersSetupForm_Load(object sender, EventArgs e)
         {
@@ -16,6 +33,35 @@ namespace PoverkaWinForms.Forms.Verifier
         }
 
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
+        {
+            var items = await _meterTypeService.GetAllAsync(search, limit);
+
+            var selStart = combo.SelectionStart;
+            _updating = true;
+            combo.BeginUpdate();
+            combo.DataSource = items;
+            combo.DisplayMember = nameof(MeterTypeDto.Type);
+            combo.ValueMember = nameof(MeterTypeDto.Id);
+            combo.SelectedIndex = -1;
+            combo.Text = search;
+            combo.SelectionStart = selStart;
+            combo.SelectionLength = 0;
+            combo.EndUpdate();
+            _updating = false;
+
+            if (dropDown)
+                combo.DroppedDown = true;
+        }
+
+        private async void MeterTypeCB_TextChanged(object? sender, EventArgs e)
+        {
+            if (_updating || sender is not ComboBox combo)
+                return;
+
+            await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
+        }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
         private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
         private void Flow3_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -25,46 +71,77 @@ namespace PoverkaWinForms.Forms.Verifier
         private void label14_Click(object sender, EventArgs e) { }
         private void Next_B_Click(object sender, EventArgs e) { }
         private void button1_Click(object sender, EventArgs e) { }
-        private void button2_Click(object sender, EventArgs e) { }
 
-        private void Rashodomer1_CB_CheckedChanged(object sender, EventArgs e)
+        private async void Rashodomer1_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer1_GB.Enabled = Rashodomer1_CB.Checked;
-            Rashodomer1_CB.Text = Rashodomer1_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer1_GB, Rashodomer1_CB, label8);
+            if (Rashodomer1_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow1_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer2_CB_CheckedChanged(object sender, EventArgs e)
+        private async void Rashodomer2_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer2_GB.Enabled = Rashodomer2_CB.Checked;
-            Rashodomer2_CB.Text = Rashodomer2_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer2_GB, Rashodomer2_CB, label10);
+            if (Rashodomer2_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow2_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer3_CB_CheckedChanged(object sender, EventArgs e)
+        private async void Rashodomer3_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer3_GB.Enabled = Rashodomer3_CB.Checked;
-            Rashodomer3_CB.Text = Rashodomer3_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer3_GB, Rashodomer3_CB, label9);
+            if (Rashodomer3_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow3_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer6_CB_CheckedChanged(object sender, EventArgs e)
+        private async void Rashodomer6_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer6_GB.Enabled = Rashodomer6_CB.Checked;
-            Rashodomer6_CB.Text = Rashodomer6_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer6_GB, Rashodomer6_CB, label41);
+            if (Rashodomer6_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow6_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer5_CB_CheckedChanged(object sender, EventArgs e)
+        private async void Rashodomer5_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer5_GB.Enabled = Rashodomer5_CB.Checked;
-            Rashodomer5_CB.Text = Rashodomer5_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer5_GB, Rashodomer5_CB, label33);
+            if (Rashodomer5_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow5_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer4_CB_CheckedChanged(object sender, EventArgs e)
+        private async void Rashodomer4_CB_CheckedChanged(object? sender, EventArgs e)
         {
-            Rashodomer4_GB.Enabled = Rashodomer4_CB.Checked;
-            Rashodomer4_CB.Text = Rashodomer4_CB.Checked ? "Выключить" : "Включить";
+            ToggleGroupControls(Rashodomer4_GB, Rashodomer4_CB, label25);
+            if (Rashodomer4_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow4_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
         private void groupBox6_Enter(object sender, EventArgs e)
         {
             // TODO: добавить логику обработки при необходимости
         }
+
+        private static void ToggleGroupControls(GroupBox groupBox, CheckBox checkBox, Label caption)
+        {
+            bool visible = checkBox.Checked;
+
+            foreach (Control control in groupBox.Controls)
+            {
+                if (control != caption && control != checkBox)
+                {
+                    control.Visible = visible;
+                }
+            }
+        }
+
     }
 }
