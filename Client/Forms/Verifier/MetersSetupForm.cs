@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 using PoverkaWinForms.Services;
 using PoverkaWinForms.Settings;
 
@@ -41,17 +42,17 @@ namespace PoverkaWinForms.Forms.Verifier
         }
 
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
-        private async void MeterTypeCB_TextChanged(object? sender, EventArgs e)
-        {
-            if (_updating || sender is not ComboBox combo)
-                return;
 
+        private async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
+        {
             var token = await _tokens.GetAccessTokenAsync();
             if (token is null)
                 return;
 
-            var text = combo.Text;
-            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/metertypes?search={Uri.EscapeDataString(text)}");
+            var url = string.IsNullOrWhiteSpace(search)
+                ? "/api/metertypes"
+                : $"/api/metertypes?search={Uri.EscapeDataString(search)}";
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _http.SendAsync(request);
             if (!response.IsSuccessStatusCode)
@@ -61,19 +62,32 @@ namespace PoverkaWinForms.Forms.Verifier
             if (items is null)
                 return;
 
+            if (limit.HasValue)
+                items = items.Take(limit.Value).ToList();
+
             var selStart = combo.SelectionStart;
             _updating = true;
             combo.BeginUpdate();
             combo.DataSource = items;
             combo.DisplayMember = nameof(MeterTypeDto.Type);
             combo.ValueMember = nameof(MeterTypeDto.Id);
-            combo.DroppedDown = true;
             combo.SelectedIndex = -1;
-            combo.Text = text;
+            combo.Text = search;
             combo.SelectionStart = selStart;
             combo.SelectionLength = 0;
             combo.EndUpdate();
             _updating = false;
+
+            if (dropDown)
+                combo.DroppedDown = true;
+        }
+
+        private async void MeterTypeCB_TextChanged(object? sender, EventArgs e)
+        {
+            if (_updating || sender is not ComboBox combo)
+                return;
+
+            await PopulateMeterTypesAsync(combo, combo.Text, dropDown: true);
         }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
         private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -85,34 +99,58 @@ namespace PoverkaWinForms.Forms.Verifier
         private void Next_B_Click(object sender, EventArgs e) { }
         private void button1_Click(object sender, EventArgs e) { }
 
-        private void Rashodomer1_CB_CheckedChanged(object? sender, EventArgs e)
+        private async void Rashodomer1_CB_CheckedChanged(object? sender, EventArgs e)
         {
             ToggleGroupControls(Rashodomer1_GB, Rashodomer1_CB, label8);
+            if (Rashodomer1_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow1_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer2_CB_CheckedChanged(object? sender, EventArgs e)
+        private async void Rashodomer2_CB_CheckedChanged(object? sender, EventArgs e)
         {
             ToggleGroupControls(Rashodomer2_GB, Rashodomer2_CB, label10);
+            if (Rashodomer2_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow2_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer3_CB_CheckedChanged(object? sender, EventArgs e)
+        private async void Rashodomer3_CB_CheckedChanged(object? sender, EventArgs e)
         {
             ToggleGroupControls(Rashodomer3_GB, Rashodomer3_CB, label9);
+            if (Rashodomer3_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow3_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer6_CB_CheckedChanged(object? sender, EventArgs e)
+        private async void Rashodomer6_CB_CheckedChanged(object? sender, EventArgs e)
         {
             ToggleGroupControls(Rashodomer6_GB, Rashodomer6_CB, label41);
+            if (Rashodomer6_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow6_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer5_CB_CheckedChanged(object? sender, EventArgs e)
+        private async void Rashodomer5_CB_CheckedChanged(object? sender, EventArgs e)
         {
             ToggleGroupControls(Rashodomer5_GB, Rashodomer5_CB, label33);
+            if (Rashodomer5_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow5_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
 
-        private void Rashodomer4_CB_CheckedChanged(object? sender, EventArgs e)
+        private async void Rashodomer4_CB_CheckedChanged(object? sender, EventArgs e)
         {
             ToggleGroupControls(Rashodomer4_GB, Rashodomer4_CB, label25);
+            if (Rashodomer4_CB.Checked)
+            {
+                await PopulateMeterTypesAsync(Flow4_Name_SI_CB, string.Empty, limit: 10);
+            }
         }
         private void groupBox6_Enter(object sender, EventArgs e)
         {
