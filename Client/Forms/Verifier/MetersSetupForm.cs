@@ -50,19 +50,20 @@ namespace PoverkaWinForms.Forms.Verifier
             combo.ValueMember = nameof(MeterTypeDto.Id);
             combo.SelectedIndex = -1;
             combo.Text = search;
+            combo.SelectedIndex = -1;
             combo.SelectionStart = selStart;
             combo.SelectionLength = 0;
             combo.EndUpdate();
             _typedTexts[combo] = search;
-            _updating = false;
 
             if (dropDown)
             {
                 combo.DroppedDown = true;
-                combo.SelectedIndex = -1;
                 Cursor.Current = Cursors.Default;
                 Cursor.Show();
             }
+
+            _updating = false;
         }
 
         private async void MeterTypeCB_TextChanged(object? sender, EventArgs e)
