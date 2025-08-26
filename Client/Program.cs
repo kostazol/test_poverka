@@ -33,6 +33,7 @@ namespace PoverkaWinForms
                 .AddHttpMessageHandler<HttpErrorHandler>();
             services.AddTransient<UserService>();
             services.AddTransient<MeterImportService>();
+            services.AddTransient<MeterTypeService>();
 
             services.AddScoped<MetersSetupForm>();
             services.AddScoped<ConfigurationForm>();
