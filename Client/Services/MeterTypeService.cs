@@ -27,7 +27,6 @@ public class MeterTypeService
         {
             if (_defaultTypes.Count > 0)
                 return _defaultTypes;
-            take ??= 10;
         }
 
         var token = await _tokens.GetAccessTokenAsync();

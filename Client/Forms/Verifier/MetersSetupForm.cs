@@ -60,6 +60,12 @@ namespace PoverkaWinForms.Forms.Verifier
             if (_updating || sender is not ComboBox combo)
                 return;
 
+            if (combo.SelectedIndex >= 0)
+            {
+                combo.DroppedDown = false;
+                return;
+            }
+
             await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
         }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -77,7 +83,7 @@ namespace PoverkaWinForms.Forms.Verifier
             ToggleGroupControls(Rashodomer1_GB, Rashodomer1_CB, label8);
             if (Rashodomer1_CB.Checked)
             {
-                await PopulateMeterTypesAsync(Flow1_Name_SI_CB, string.Empty);
+                await PopulateMeterTypesAsync(Flow1_Name_SI_CB, string.Empty, 10);
             }
         }
 
@@ -86,7 +92,7 @@ namespace PoverkaWinForms.Forms.Verifier
             ToggleGroupControls(Rashodomer2_GB, Rashodomer2_CB, label10);
             if (Rashodomer2_CB.Checked)
             {
-                await PopulateMeterTypesAsync(Flow2_Name_SI_CB, string.Empty);
+                await PopulateMeterTypesAsync(Flow2_Name_SI_CB, string.Empty, 10);
             }
         }
 
@@ -95,7 +101,7 @@ namespace PoverkaWinForms.Forms.Verifier
             ToggleGroupControls(Rashodomer3_GB, Rashodomer3_CB, label9);
             if (Rashodomer3_CB.Checked)
             {
-                await PopulateMeterTypesAsync(Flow3_Name_SI_CB, string.Empty);
+                await PopulateMeterTypesAsync(Flow3_Name_SI_CB, string.Empty, 10);
             }
         }
 
@@ -104,7 +110,7 @@ namespace PoverkaWinForms.Forms.Verifier
             ToggleGroupControls(Rashodomer6_GB, Rashodomer6_CB, label41);
             if (Rashodomer6_CB.Checked)
             {
-                await PopulateMeterTypesAsync(Flow6_Name_SI_CB, string.Empty);
+                await PopulateMeterTypesAsync(Flow6_Name_SI_CB, string.Empty, 10);
             }
         }
 
@@ -113,7 +119,7 @@ namespace PoverkaWinForms.Forms.Verifier
             ToggleGroupControls(Rashodomer5_GB, Rashodomer5_CB, label33);
             if (Rashodomer5_CB.Checked)
             {
-                await PopulateMeterTypesAsync(Flow5_Name_SI_CB, string.Empty);
+                await PopulateMeterTypesAsync(Flow5_Name_SI_CB, string.Empty, 10);
             }
         }
 
@@ -122,7 +128,7 @@ namespace PoverkaWinForms.Forms.Verifier
             ToggleGroupControls(Rashodomer4_GB, Rashodomer4_CB, label25);
             if (Rashodomer4_CB.Checked)
             {
-                await PopulateMeterTypesAsync(Flow4_Name_SI_CB, string.Empty);
+                await PopulateMeterTypesAsync(Flow4_Name_SI_CB, string.Empty, 10);
             }
         }
         private void groupBox6_Enter(object sender, EventArgs e)
