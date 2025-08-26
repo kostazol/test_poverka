@@ -66,39 +66,13 @@ namespace PoverkaWinForms.Forms.Verifier
             _updating = false;
         }
 
-        private async void MeterTypeCB_TextChanged(object? sender, EventArgs e)
-        {
-            if (_updating || sender is not ComboBox combo)
-                return;
-
-            if (combo.SelectedIndex >= 0)
-            {
-                combo.DroppedDown = false;
-                return;
-            }
-
-            _typedTexts[combo] = combo.Text;
-
-            if (_searchTokens.TryGetValue(combo, out var prev))
-                prev.Cancel();
-
-            var cts = new CancellationTokenSource();
-            _searchTokens[combo] = cts;
-
-            try
-            {
-                await Task.Delay(300, cts.Token);
-                await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
-            }
-            catch (TaskCanceledException)
-            {
-            }
-        }
-
         private void MeterTypeCB_KeyDown(object? sender, KeyEventArgs e)
         {
             if (sender is not ComboBox combo)
                 return;
+
+            if (_searchTokens.TryGetValue(combo, out var prev))
+                prev.Cancel();
 
             if (e.KeyCode == Keys.Enter)
             {
@@ -147,11 +121,40 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void MeterTypeCB_Click(object? sender, EventArgs e)
+        private async void MeterTypeCB_KeyUp(object? sender, KeyEventArgs e)
+        {
+            if (_updating || sender is not ComboBox combo)
+                return;
+
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down ||
+                e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+                return;
+
+            _typedTexts[combo] = combo.Text;
+
+            if (_searchTokens.TryGetValue(combo, out var prev))
+                prev.Cancel();
+
+            var cts = new CancellationTokenSource();
+            _searchTokens[combo] = cts;
+
+            try
+            {
+                await Task.Delay(300, cts.Token);
+                await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
+            }
+            catch (TaskCanceledException)
+            {
+            }
+        }
+
+        private async void MeterTypeCB_Click(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo)
             {
                 combo.SelectionLength = 0;
+                await PopulateMeterTypesAsync(combo, combo.Text,
+                    combo.Text.Length > 0 ? 20 : 10, dropDown: true);
             }
         }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }

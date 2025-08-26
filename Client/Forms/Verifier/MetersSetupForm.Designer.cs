@@ -260,8 +260,8 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow1_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow1_Name_SI_CB.TabIndex = 20;
             this.Flow1_Name_SI_CB.SelectedIndexChanged += new System.EventHandler(this.Flow1_Name_SI_CB_SelectedIndexChanged);
-            this.Flow1_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
             this.Flow1_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
+            this.Flow1_Name_SI_CB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyUp);
             this.Flow1_Name_SI_CB.Click += new System.EventHandler(this.MeterTypeCB_Click);
             // 
             // GosReestr
@@ -459,8 +459,8 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow2_Name_SI_CB.Name = "Flow2_Name_SI_CB";
             this.Flow2_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow2_Name_SI_CB.TabIndex = 20;
-            this.Flow2_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
             this.Flow2_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
+            this.Flow2_Name_SI_CB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyUp);
             this.Flow2_Name_SI_CB.Click += new System.EventHandler(this.MeterTypeCB_Click);
             // 
             // label13
@@ -641,8 +641,8 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow3_Name_SI_CB.Name = "Flow3_Name_SI_CB";
             this.Flow3_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow3_Name_SI_CB.TabIndex = 20;
-            this.Flow3_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
             this.Flow3_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
+            this.Flow3_Name_SI_CB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyUp);
             this.Flow3_Name_SI_CB.Click += new System.EventHandler(this.MeterTypeCB_Click);
             // 
             // label20
@@ -822,8 +822,8 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow4_Name_SI_CB.Name = "Flow4_Name_SI_CB";
             this.Flow4_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow4_Name_SI_CB.TabIndex = 20;
-            this.Flow4_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
             this.Flow4_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
+            this.Flow4_Name_SI_CB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyUp);
             this.Flow4_Name_SI_CB.Click += new System.EventHandler(this.MeterTypeCB_Click);
             // 
             // label28
@@ -1003,8 +1003,8 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow5_Name_SI_CB.Name = "Flow5_Name_SI_CB";
             this.Flow5_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow5_Name_SI_CB.TabIndex = 20;
-            this.Flow5_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
             this.Flow5_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
+            this.Flow5_Name_SI_CB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyUp);
             this.Flow5_Name_SI_CB.Click += new System.EventHandler(this.MeterTypeCB_Click);
             // 
             // label36
@@ -1185,8 +1185,8 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow6_Name_SI_CB.Name = "Flow6_Name_SI_CB";
             this.Flow6_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow6_Name_SI_CB.TabIndex = 20;
-            this.Flow6_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
             this.Flow6_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
+            this.Flow6_Name_SI_CB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyUp);
             this.Flow6_Name_SI_CB.Click += new System.EventHandler(this.MeterTypeCB_Click);
             // 
             // label44
