@@ -1,6 +1,8 @@
 using System;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Threading;
 using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier
@@ -9,6 +11,8 @@ namespace PoverkaWinForms.Forms.Verifier
     {
         private readonly MeterTypeService _meterTypeService = null!;
         private bool _updating;
+        private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
+        private readonly Dictionary<ComboBox, string> _typedTexts = new();
 
         public MetersSetupForm()
         {
@@ -49,6 +53,7 @@ namespace PoverkaWinForms.Forms.Verifier
             combo.SelectionStart = selStart;
             combo.SelectionLength = 0;
             combo.EndUpdate();
+            _typedTexts[combo] = search;
             _updating = false;
 
             if (dropDown)
@@ -71,15 +76,81 @@ namespace PoverkaWinForms.Forms.Verifier
                 return;
             }
 
-            await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
+            _typedTexts[combo] = combo.Text;
+
+            if (_searchTokens.TryGetValue(combo, out var prev))
+                prev.Cancel();
+
+            var cts = new CancellationTokenSource();
+            _searchTokens[combo] = cts;
+
+            try
+            {
+                await Task.Delay(300, cts.Token);
+                await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
+            }
+            catch (TaskCanceledException)
+            {
+            }
         }
 
         private void MeterTypeCB_KeyDown(object? sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && sender is ComboBox combo && combo.SelectedIndex == -1)
+            if (sender is not ComboBox combo)
+                return;
+
+            if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
+                if (combo.SelectedIndex >= 0)
+                {
+                    _updating = true;
+                    combo.Text = combo.GetItemText(combo.SelectedItem);
+                    combo.SelectionStart = combo.Text.Length;
+                    combo.SelectionLength = 0;
+                    _typedTexts[combo] = combo.Text;
+                    _updating = false;
+                }
                 combo.DroppedDown = false;
+            }
+            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+            {
+                e.Handled = true;
+
+                if (!_typedTexts.TryGetValue(combo, out var text))
+                    text = combo.Text;
+
+                if (!combo.DroppedDown)
+                {
+                    combo.DroppedDown = true;
+                    combo.SelectedIndex = -1;
+                }
+
+                int direction = e.KeyCode == Keys.Down ? 1 : -1;
+                int count = combo.Items.Count;
+                if (count == 0)
+                    return;
+                int newIndex = combo.SelectedIndex + direction;
+                if (newIndex < 0) newIndex = count - 1;
+                if (newIndex >= count) newIndex = 0;
+                combo.SelectedIndex = newIndex;
+
+                BeginInvoke(new Action(() =>
+                {
+                    _updating = true;
+                    combo.Text = text;
+                    combo.SelectionStart = text.Length;
+                    combo.SelectionLength = 0;
+                    _updating = false;
+                }));
+            }
+        }
+
+        private void MeterTypeCB_Click(object? sender, EventArgs e)
+        {
+            if (sender is ComboBox combo)
+            {
+                combo.SelectionLength = 0;
             }
         }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
