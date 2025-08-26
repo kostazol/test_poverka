@@ -52,7 +52,12 @@ namespace PoverkaWinForms.Forms.Verifier
             _updating = false;
 
             if (dropDown)
+            {
                 combo.DroppedDown = true;
+                combo.SelectedIndex = -1;
+                Cursor.Current = Cursors.Default;
+                Cursor.Show();
+            }
         }
 
         private async void MeterTypeCB_TextChanged(object? sender, EventArgs e)
@@ -67,6 +72,15 @@ namespace PoverkaWinForms.Forms.Verifier
             }
 
             await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
+        }
+
+        private void MeterTypeCB_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && sender is ComboBox combo && combo.SelectedIndex == -1)
+            {
+                e.Handled = true;
+                combo.DroppedDown = false;
+            }
         }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
         private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }

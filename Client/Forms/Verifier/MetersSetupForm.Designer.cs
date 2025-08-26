@@ -249,9 +249,9 @@ namespace PoverkaWinForms.Forms.Verifier
             this.label2.Text = "Тип";
             // 
             // Flow1_Name_SI_CB
-            // 
+            //
             this.Flow1_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.Flow1_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Flow1_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Flow1_Name_SI_CB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Flow1_Name_SI_CB.FormattingEnabled = true;
             this.Flow1_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
@@ -261,6 +261,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow1_Name_SI_CB.TabIndex = 20;
             this.Flow1_Name_SI_CB.SelectedIndexChanged += new System.EventHandler(this.Flow1_Name_SI_CB_SelectedIndexChanged);
             this.Flow1_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
+            this.Flow1_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
             // 
             // GosReestr
             // 
@@ -449,7 +450,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow2_Name_SI_CB
             // 
             this.Flow2_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.Flow2_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Flow2_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Flow2_Name_SI_CB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Flow2_Name_SI_CB.FormattingEnabled = true;
             this.Flow2_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
@@ -458,6 +459,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow2_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow2_Name_SI_CB.TabIndex = 20;
             this.Flow2_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
+            this.Flow2_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
             // 
             // label13
             // 
@@ -629,7 +631,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow3_Name_SI_CB
             // 
             this.Flow3_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.Flow3_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Flow3_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Flow3_Name_SI_CB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Flow3_Name_SI_CB.FormattingEnabled = true;
             this.Flow3_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
@@ -638,6 +640,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow3_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow3_Name_SI_CB.TabIndex = 20;
             this.Flow3_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
+            this.Flow3_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
             // 
             // label20
             // 
@@ -808,7 +811,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow4_Name_SI_CB
             // 
             this.Flow4_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.Flow4_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Flow4_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Flow4_Name_SI_CB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Flow4_Name_SI_CB.FormattingEnabled = true;
             this.Flow4_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
@@ -817,6 +820,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow4_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow4_Name_SI_CB.TabIndex = 20;
             this.Flow4_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
+            this.Flow4_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
             // 
             // label28
             // 
@@ -987,7 +991,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow5_Name_SI_CB
             // 
             this.Flow5_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.Flow5_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Flow5_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Flow5_Name_SI_CB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Flow5_Name_SI_CB.FormattingEnabled = true;
             this.Flow5_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
@@ -996,6 +1000,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow5_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow5_Name_SI_CB.TabIndex = 20;
             this.Flow5_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
+            this.Flow5_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
             // 
             // label36
             // 
@@ -1167,7 +1172,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow6_Name_SI_CB
             // 
             this.Flow6_Name_SI_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.Flow6_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Flow6_Name_SI_CB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Flow6_Name_SI_CB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Flow6_Name_SI_CB.FormattingEnabled = true;
             this.Flow6_Name_SI_CB.Location = new System.Drawing.Point(192, 41);
@@ -1176,6 +1181,7 @@ namespace PoverkaWinForms.Forms.Verifier
             this.Flow6_Name_SI_CB.Size = new System.Drawing.Size(177, 24);
             this.Flow6_Name_SI_CB.TabIndex = 20;
             this.Flow6_Name_SI_CB.TextChanged += new System.EventHandler(this.MeterTypeCB_TextChanged);
+            this.Flow6_Name_SI_CB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MeterTypeCB_KeyDown);
             // 
             // label44
             // 
