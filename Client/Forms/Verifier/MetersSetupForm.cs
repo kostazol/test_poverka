@@ -50,7 +50,6 @@ namespace PoverkaWinForms.Forms.Verifier
             combo.ValueMember = nameof(MeterTypeDto.Id);
             combo.SelectedIndex = -1;
             combo.Text = search;
-            combo.SelectedIndex = -1;
             combo.SelectionStart = selStart;
             combo.SelectionLength = 0;
             combo.EndUpdate();
@@ -157,8 +156,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (sender is ComboBox combo)
             {
                 combo.SelectionLength = 0;
-                await PopulateMeterTypesAsync(combo, combo.Text,
-                    combo.Text.Length > 0 ? 20 : 10, dropDown: true);
+                await PopulateMeterTypesAsync(combo, combo.Text, combo.Text.Length > 0 ? 20 : 10, dropDown: true);
             }
         }
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
