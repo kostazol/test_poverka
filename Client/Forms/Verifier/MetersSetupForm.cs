@@ -130,6 +130,10 @@ namespace PoverkaWinForms.Forms.Verifier
                 e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
                 return;
 
+            var keyChar = (char)e.KeyValue;
+            if (!char.IsLetter(keyChar) && e.KeyCode != Keys.Back && e.KeyCode != Keys.Delete)
+                return;
+
             _typedTexts[combo] = combo.Text;
 
             if (_searchTokens.TryGetValue(combo, out var prev))
