@@ -8,12 +8,16 @@ namespace PoverkaWinForms.Forms.Admin;
 
 public partial class LoginForm : Form
 {
-    private readonly TokenService _tokens;
-    private readonly IServiceProvider _provider;
+    private readonly TokenService _tokens = null!;
+    private readonly IServiceProvider _provider = null!;
 
-    public LoginForm(TokenService tokens, IServiceProvider provider)
+    public LoginForm()
     {
         InitializeComponent();
+    }
+
+    public LoginForm(TokenService tokens, IServiceProvider provider) : this()
+    {
         _tokens = tokens;
         _provider = provider;
     }
@@ -44,13 +48,13 @@ public partial class LoginForm : Form
         if (_tokens.Role == "Admin")
         {
             var configForm = _provider.GetRequiredService<ConfigurationForm>();
-            configForm.FormClosed += (_, _) => Close();
+            configForm.FormClosed += ConfigForm_FormClosed;
             configForm.Show();
         }
         else
         {
             var meters = _provider.GetRequiredService<MetersSetupForm>();
-            meters.FormClosed += (_, _) => Close();
+            meters.FormClosed += MetersSetupForm_FormClosed;
             meters.Show();
         }
     }
@@ -64,4 +68,8 @@ public partial class LoginForm : Form
                 control.Enabled = !loading;
         }
     }
+
+    private void ConfigForm_FormClosed(object? sender, FormClosedEventArgs e) => Close();
+
+    private void MetersSetupForm_FormClosed(object? sender, FormClosedEventArgs e) => Close();
 }

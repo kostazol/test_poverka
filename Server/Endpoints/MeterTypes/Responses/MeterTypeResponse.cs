@@ -9,6 +9,7 @@ public class MeterTypeResponse
     public MeterTypeResponse(MeterType meterType) => _meterType = meterType;
 
     public int Id => _meterType.Id;
+    public int ManufacturerId => _meterType.ManufacturerId;
     public string Type => _meterType.Type;
     public string FullName => _meterType.FullName;
     public string EditorName => _meterType.EditorName;

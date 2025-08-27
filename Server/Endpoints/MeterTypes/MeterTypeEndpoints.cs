@@ -37,13 +37,13 @@ public static class MeterTypeEndpoints
 
     private static async Task<Ok<int>> CreateMeterType([Validate] MeterTypeRequest request, MeterTypeService service)
     {
-        var meterType = await service.CreateAsync(request.EditorName, request.Type, request.FullName);
+        var meterType = await service.CreateAsync(request.EditorName, request.ManufacturerId, request.Type, request.FullName);
         return TypedResults.Ok(meterType.Id);
     }
 
     private static async Task<Results<NoContent, NotFound>> UpdateMeterType(int id, [Validate] MeterTypeRequest request, MeterTypeService service)
     {
-        var updated = await service.UpdateAsync(id, request.EditorName, request.Type, request.FullName);
+        var updated = await service.UpdateAsync(id, request.EditorName, request.ManufacturerId, request.Type, request.FullName);
         return updated ? TypedResults.NoContent() : TypedResults.NotFound();
     }
 
