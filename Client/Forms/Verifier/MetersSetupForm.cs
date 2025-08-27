@@ -38,6 +38,16 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
 
+        private void Flow2_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void Flow3_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void Flow4_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void Flow5_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void Flow6_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
         private async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
         {
             var items = await _meterTypeService.GetAllAsync(search, limit);
