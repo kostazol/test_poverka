@@ -419,8 +419,10 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow2_GosReestr_CB
             // 
+            Flow2_GosReestr_CB.AllowDrop = true;
             Flow2_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Flow2_GosReestr_CB.FormattingEnabled = true;
+            Flow2_GosReestr_CB.IntegralHeight = false;
             Flow2_GosReestr_CB.Location = new Point(168, 67);
             Flow2_GosReestr_CB.Margin = new Padding(4);
             Flow2_GosReestr_CB.Name = "Flow2_GosReestr_CB";
@@ -611,8 +613,10 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow3_GosReestr_CB
             // 
+            Flow3_GosReestr_CB.AllowDrop = true;
             Flow3_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Flow3_GosReestr_CB.FormattingEnabled = true;
+            Flow3_GosReestr_CB.IntegralHeight = false;
             Flow3_GosReestr_CB.Location = new Point(168, 67);
             Flow3_GosReestr_CB.Margin = new Padding(4);
             Flow3_GosReestr_CB.Name = "Flow3_GosReestr_CB";
@@ -802,8 +806,10 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow4_GosReestr_CB
             // 
+            Flow4_GosReestr_CB.AllowDrop = true;
             Flow4_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Flow4_GosReestr_CB.FormattingEnabled = true;
+            Flow4_GosReestr_CB.IntegralHeight = false;
             Flow4_GosReestr_CB.Location = new Point(168, 67);
             Flow4_GosReestr_CB.Margin = new Padding(4);
             Flow4_GosReestr_CB.Name = "Flow4_GosReestr_CB";
@@ -993,8 +999,10 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow5_GosReestr_CB
             // 
+            Flow5_GosReestr_CB.AllowDrop = true;
             Flow5_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Flow5_GosReestr_CB.FormattingEnabled = true;
+            Flow5_GosReestr_CB.IntegralHeight = false;
             Flow5_GosReestr_CB.Location = new Point(168, 67);
             Flow5_GosReestr_CB.Margin = new Padding(4);
             Flow5_GosReestr_CB.Name = "Flow5_GosReestr_CB";
@@ -1185,8 +1193,10 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow6_GosReestr_CB
             // 
+            Flow6_GosReestr_CB.AllowDrop = true;
             Flow6_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Flow6_GosReestr_CB.FormattingEnabled = true;
+            Flow6_GosReestr_CB.IntegralHeight = false;
             Flow6_GosReestr_CB.Location = new Point(168, 67);
             Flow6_GosReestr_CB.Margin = new Padding(4);
             Flow6_GosReestr_CB.Name = "Flow6_GosReestr_CB";
