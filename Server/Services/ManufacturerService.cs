@@ -18,8 +18,7 @@ public class ManufacturerService
         IQueryable<Manufacturer> query = _db.Manufacturers;
         if (!string.IsNullOrWhiteSpace(search))
         {
-            var pattern = $"%{search}%";
-            query = query.Where(m => EF.Functions.ILike(m.Name, pattern));
+            query = query.Where(m => EF.Functions.ILike(m.Name, $"%{search}%"));
         }
         if (take.HasValue)
         {

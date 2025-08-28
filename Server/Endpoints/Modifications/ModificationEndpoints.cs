@@ -14,12 +14,12 @@ public static class ModificationEndpoints
 {
     public static IEndpointRouteBuilder MapModificationEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/modifications").RequireAuthorization(new AuthorizeAttribute());
+        var group = app.MapGroup("/api/modifications");
         group.MapGet("", GetModifications).WithName("GetModifications");
         group.MapGet("{id}", GetModification).WithName("GetModification");
-        group.MapPost("", CreateModification).WithName("CreateModification");
-        group.MapPut("{id}", UpdateModification).WithName("UpdateModification");
-        group.MapDelete("{id}", DeleteModification).WithName("DeleteModification");
+        group.MapPost("", CreateModification).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("CreateModification");
+        group.MapPut("{id}", UpdateModification).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("UpdateModification");
+        group.MapDelete("{id}", DeleteModification).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("DeleteModification");
         return app;
     }
 

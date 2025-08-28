@@ -8,18 +8,14 @@ namespace PoverkaWinForms.Forms.Admin;
 
 public partial class LoginForm : Form
 {
-    private readonly TokenService _tokens = null!;
-    private readonly IServiceProvider _provider = null!;
+    private readonly TokenService _tokens;
+    private readonly IServiceProvider _provider;
 
-    public LoginForm()
-    {
-        InitializeComponent();
-    }
-
-    public LoginForm(TokenService tokens, IServiceProvider provider) : this()
+    public LoginForm(TokenService tokens, IServiceProvider provider)
     {
         _tokens = tokens;
         _provider = provider;
+        InitializeComponent();
     }
 
     private async void btnLogin_Click(object sender, EventArgs e)

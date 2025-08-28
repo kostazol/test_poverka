@@ -14,12 +14,12 @@ public static class MeterTypeEndpoints
 {
     public static IEndpointRouteBuilder MapMeterTypeEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/metertypes").RequireAuthorization(new AuthorizeAttribute());
+        var group = app.MapGroup("/api/metertypes");
         group.MapGet("", GetMeterTypes).WithName("GetMeterTypes");
         group.MapGet("{id}", GetMeterType).WithName("GetMeterType");
-        group.MapPost("", CreateMeterType).WithName("CreateMeterType");
-        group.MapPut("{id}", UpdateMeterType).WithName("UpdateMeterType");
-        group.MapDelete("{id}", DeleteMeterType).WithName("DeleteMeterType");
+        group.MapPost("", CreateMeterType).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("CreateMeterType");
+        group.MapPut("{id}", UpdateMeterType).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("UpdateMeterType");
+        group.MapDelete("{id}", DeleteMeterType).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("DeleteMeterType");
         return app;
     }
 

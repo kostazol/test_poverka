@@ -12,12 +12,12 @@ public static class ManufacturerEndpoints
 {
     public static IEndpointRouteBuilder MapManufacturerEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/manufacturers").RequireAuthorization(new AuthorizeAttribute());
+        var group = app.MapGroup("/api/manufacturers");
         group.MapGet("", GetManufacturers).WithName("GetManufacturers");
         group.MapGet("{id}", GetManufacturer).WithName("GetManufacturer");
-        group.MapPost("", CreateManufacturer).WithName("CreateManufacturer");
-        group.MapPut("{id}", UpdateManufacturer).WithName("UpdateManufacturer");
-        group.MapDelete("{id}", DeleteManufacturer).WithName("DeleteManufacturer");
+        group.MapPost("", CreateManufacturer).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("CreateManufacturer");
+        group.MapPut("{id}", UpdateManufacturer).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("UpdateManufacturer");
+        group.MapDelete("{id}", DeleteManufacturer).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("DeleteManufacturer");
         return app;
     }
 

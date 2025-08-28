@@ -13,12 +13,12 @@ public static class RegistrationEndpoints
 {
     public static IEndpointRouteBuilder MapRegistrationEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/registrations").RequireAuthorization(new AuthorizeAttribute());
+        var group = app.MapGroup("/api/registrations");
         group.MapGet("", GetRegistrations).WithName("GetRegistrations");
         group.MapGet("{id}", GetRegistration).WithName("GetRegistration");
-        group.MapPost("", CreateRegistration).WithName("CreateRegistration");
-        group.MapPut("{id}", UpdateRegistration).WithName("UpdateRegistration");
-        group.MapDelete("{id}", DeleteRegistration).WithName("DeleteRegistration");
+        group.MapPost("", CreateRegistration).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("CreateRegistration");
+        group.MapPut("{id}", UpdateRegistration).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("UpdateRegistration");
+        group.MapDelete("{id}", DeleteRegistration).RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" }).WithName("DeleteRegistration");
         return app;
     }
 

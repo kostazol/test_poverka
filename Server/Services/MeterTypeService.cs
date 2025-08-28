@@ -19,8 +19,7 @@ public class MeterTypeService
 
         if (!string.IsNullOrWhiteSpace(search))
         {
-            var pattern = $"%{search}%";
-            query = query.Where(m => EF.Functions.ILike(m.Type, pattern));
+            query = query.Where(m => EF.Functions.ILike(m.Type, $"%{search}%"));
         }
 
         if (take.HasValue)
