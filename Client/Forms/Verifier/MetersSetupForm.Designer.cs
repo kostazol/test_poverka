@@ -274,7 +274,8 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow1_GosReestr_CB
             // 
             Flow1_GosReestr_CB.AllowDrop = true;
-            Flow1_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow1_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow1_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow1_GosReestr_CB.FormattingEnabled = true;
             Flow1_GosReestr_CB.IntegralHeight = false;
             Flow1_GosReestr_CB.Location = new Point(168, 67);
@@ -283,6 +284,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_GosReestr_CB.Size = new Size(155, 23);
             Flow1_GosReestr_CB.TabIndex = 22;
             Flow1_GosReestr_CB.SelectedIndexChanged += GosReestrCB_SelectedIndexChanged;
+            Flow1_GosReestr_CB.Click += ManufacturerCB_Click;
+            Flow1_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow1_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
             // 
             // label1
             // 
@@ -420,7 +424,8 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow2_GosReestr_CB
             // 
             Flow2_GosReestr_CB.AllowDrop = true;
-            Flow2_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow2_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow2_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow2_GosReestr_CB.FormattingEnabled = true;
             Flow2_GosReestr_CB.IntegralHeight = false;
             Flow2_GosReestr_CB.Location = new Point(168, 67);
@@ -429,6 +434,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_GosReestr_CB.Size = new Size(155, 23);
             Flow2_GosReestr_CB.TabIndex = 22;
             Flow2_GosReestr_CB.SelectedIndexChanged += Flow2_GosReestr_CB_SelectedIndexChanged;
+            Flow2_GosReestr_CB.Click += ManufacturerCB_Click;
+            Flow2_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow2_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
             // 
             // Flow2_Document_CB
             // 
@@ -614,7 +622,8 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow3_GosReestr_CB
             // 
             Flow3_GosReestr_CB.AllowDrop = true;
-            Flow3_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow3_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow3_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow3_GosReestr_CB.FormattingEnabled = true;
             Flow3_GosReestr_CB.IntegralHeight = false;
             Flow3_GosReestr_CB.Location = new Point(168, 67);
@@ -623,6 +632,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_GosReestr_CB.Size = new Size(155, 23);
             Flow3_GosReestr_CB.TabIndex = 22;
             Flow3_GosReestr_CB.SelectedIndexChanged += Flow3_GosReestr_CB_SelectedIndexChanged;
+            Flow3_GosReestr_CB.Click += ManufacturerCB_Click;
+            Flow3_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow3_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
             // 
             // Flow3_Document_CB
             // 
@@ -807,7 +819,8 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow4_GosReestr_CB
             // 
             Flow4_GosReestr_CB.AllowDrop = true;
-            Flow4_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow4_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow4_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow4_GosReestr_CB.FormattingEnabled = true;
             Flow4_GosReestr_CB.IntegralHeight = false;
             Flow4_GosReestr_CB.Location = new Point(168, 67);
@@ -816,6 +829,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_GosReestr_CB.Size = new Size(155, 23);
             Flow4_GosReestr_CB.TabIndex = 22;
             Flow4_GosReestr_CB.SelectedIndexChanged += Flow4_GosReestr_CB_SelectedIndexChanged;
+            Flow4_GosReestr_CB.Click += ManufacturerCB_Click;
+            Flow4_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow4_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
             // 
             // Flow4_Document_CB
             // 
@@ -876,7 +892,7 @@ namespace PoverkaWinForms.Forms.Verifier
             label29.Name = "label29";
             label29.Size = new Size(117, 15);
             label29.TabIndex = 21;
-            label29.Text = "Наиименование СИ";
+            label29.Text = "Тип";
             // 
             // label30
             // 
@@ -1000,7 +1016,8 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow5_GosReestr_CB
             // 
             Flow5_GosReestr_CB.AllowDrop = true;
-            Flow5_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow5_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow5_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow5_GosReestr_CB.FormattingEnabled = true;
             Flow5_GosReestr_CB.IntegralHeight = false;
             Flow5_GosReestr_CB.Location = new Point(168, 67);
@@ -1009,6 +1026,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_GosReestr_CB.Size = new Size(155, 23);
             Flow5_GosReestr_CB.TabIndex = 22;
             Flow5_GosReestr_CB.SelectedIndexChanged += Flow5_GosReestr_CB_SelectedIndexChanged;
+            Flow5_GosReestr_CB.Click += ManufacturerCB_Click;
+            Flow5_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow5_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
             // 
             // Flow5_Document_CB
             // 
@@ -1145,7 +1165,6 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer6_GB.TabIndex = 37;
             Rashodomer6_GB.TabStop = false;
             Rashodomer6_GB.Tag = "FirstFlowmeter";
-            Rashodomer6_GB.Enter += groupBox6_Enter;
             // 
             // label41
             // 
@@ -1194,7 +1213,8 @@ namespace PoverkaWinForms.Forms.Verifier
             // Flow6_GosReestr_CB
             // 
             Flow6_GosReestr_CB.AllowDrop = true;
-            Flow6_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow6_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow6_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow6_GosReestr_CB.FormattingEnabled = true;
             Flow6_GosReestr_CB.IntegralHeight = false;
             Flow6_GosReestr_CB.Location = new Point(168, 67);
@@ -1203,6 +1223,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_GosReestr_CB.Size = new Size(155, 23);
             Flow6_GosReestr_CB.TabIndex = 22;
             Flow6_GosReestr_CB.SelectedIndexChanged += Flow6_GosReestr_CB_SelectedIndexChanged;
+            Flow6_GosReestr_CB.Click += ManufacturerCB_Click;
+            Flow6_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow6_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
             // 
             // Flow6_Document_CB
             // 
