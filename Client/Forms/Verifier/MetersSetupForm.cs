@@ -15,19 +15,9 @@ namespace PoverkaWinForms.Forms.Verifier
         private bool _updating;
         private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
-        private readonly List<DateTimePicker> _datePickers = new();
-
         public MetersSetupForm()
         {
             InitializeComponent();
-
-            Rashodomer1_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer2_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer3_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer4_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer5_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer6_CB_CheckedChanged(null, EventArgs.Empty);
-            AddDateFields();
         }
 
         public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService) : this()
@@ -38,6 +28,18 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private async void MetersSetupForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+                return;
+
+            AddDateFields();
+
+            Rashodomer1_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer2_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer3_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer4_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer5_CB_CheckedChanged(null, EventArgs.Empty);
+            Rashodomer6_CB_CheckedChanged(null, EventArgs.Empty);
+
             await _meterTypeService.GetAllAsync(string.Empty, 10);
             await _manufacturerService.GetAllAsync(string.Empty, 10);
         }
@@ -87,7 +89,6 @@ namespace PoverkaWinForms.Forms.Verifier
 
             groupBox.Controls.Add(dateLabel);
             groupBox.Controls.Add(datePicker);
-            _datePickers.Add(datePicker);
 
             int offset = datePicker.Height + 8;
             modificationLabel.Top += offset;
