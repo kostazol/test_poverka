@@ -14,12 +14,13 @@ public static class MeterTypeEndpoints
 {
     public static IEndpointRouteBuilder MapMeterTypeEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/metertypes").RequireAuthorization(new AuthorizeAttribute());
-        group.MapGet("", GetMeterTypes).WithName("GetMeterTypes");
-        group.MapGet("{id}", GetMeterType).WithName("GetMeterType");
-        group.MapPost("", CreateMeterType).WithName("CreateMeterType");
-        group.MapPut("{id}", UpdateMeterType).WithName("UpdateMeterType");
-        group.MapDelete("{id}", DeleteMeterType).WithName("DeleteMeterType");
+        var groupCommon = app.MapGroup("/api/metertypes").RequireAuthorization();
+        var groupAdmin = app.MapGroup("/api/metertypes").RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" });
+        groupCommon.MapGet("", GetMeterTypes).WithName("GetMeterTypes");
+        groupCommon.MapGet("{id}", GetMeterType).WithName("GetMeterType");
+        groupAdmin.MapPost("", CreateMeterType).WithName("CreateMeterType");
+        groupAdmin.MapPut("{id}", UpdateMeterType).WithName("UpdateMeterType");
+        groupAdmin.MapDelete("{id}", DeleteMeterType).WithName("DeleteMeterType");
         return app;
     }
 
@@ -37,13 +38,13 @@ public static class MeterTypeEndpoints
 
     private static async Task<Ok<int>> CreateMeterType([Validate] MeterTypeRequest request, MeterTypeService service)
     {
-        var meterType = await service.CreateAsync(request.EditorName, request.Type, request.FullName);
+        var meterType = await service.CreateAsync(request.EditorName, request.ManufacturerId, request.Type, request.FullName);
         return TypedResults.Ok(meterType.Id);
     }
 
     private static async Task<Results<NoContent, NotFound>> UpdateMeterType(int id, [Validate] MeterTypeRequest request, MeterTypeService service)
     {
-        var updated = await service.UpdateAsync(id, request.EditorName, request.Type, request.FullName);
+        var updated = await service.UpdateAsync(id, request.EditorName, request.ManufacturerId, request.Type, request.FullName);
         return updated ? TypedResults.NoContent() : TypedResults.NotFound();
     }
 

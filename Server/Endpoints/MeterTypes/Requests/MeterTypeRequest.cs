@@ -14,6 +14,9 @@ public class MeterTypeRequest : IValidatableObject
     [StringLength(256, MinimumLength = 1, ErrorMessage = "Указана недопустимая длина FullName, допускается длина от 1 до 256 символов.")]
     public required string FullName { get; init; }
 
+    [Range(1, int.MaxValue, ErrorMessage = "Указан недопустимый ManufacturerId")] 
+    public required int ManufacturerId { get; init; }
+
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         yield break;

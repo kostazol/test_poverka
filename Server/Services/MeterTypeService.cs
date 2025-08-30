@@ -19,8 +19,7 @@ public class MeterTypeService
 
         if (!string.IsNullOrWhiteSpace(search))
         {
-            var pattern = $"%{search}%";
-            query = query.Where(m => EF.Functions.ILike(m.Type, pattern));
+            query = query.Where(m => EF.Functions.ILike(m.Type, $"%{search}%"));
         }
 
         if (take.HasValue)
@@ -33,22 +32,22 @@ public class MeterTypeService
 
     public Task<MeterType?> GetAsync(int id) => _db.MeterTypes.FindAsync(id).AsTask();
 
-    public async Task<MeterType> CreateAsync(string editorName, string type, string fullName)
+    public async Task<MeterType> CreateAsync(string editorName, int manufacturerId, string type, string fullName)
     {
-        var meterType = new MeterType(editorName, type, fullName);
+        var meterType = new MeterType(editorName, manufacturerId, type, fullName);
         _db.MeterTypes.Add(meterType);
         await _db.SaveChangesAsync();
         return meterType;
     }
 
-    public async Task<bool> UpdateAsync(int id, string editorName, string type, string fullName)
+    public async Task<bool> UpdateAsync(int id, string editorName, int manufacturerId, string type, string fullName)
     {
         var meterType = await _db.MeterTypes.FindAsync(id);
         if (meterType is null)
         {
             return false;
         }
-        meterType.Update(editorName, type, fullName);
+        meterType.Update(editorName, manufacturerId, type, fullName);
         await _db.SaveChangesAsync();
         return true;
     }

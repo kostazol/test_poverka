@@ -16,6 +16,7 @@ public class MeterImportService
     private readonly Dictionary<string, int> _meterTypes = new();
     private readonly Dictionary<string, int> _registrations = new();
     private readonly HashSet<(int registrationId, string name)> _modifications = new();
+    private readonly Dictionary<string, int> _manufacturers = new();
 
     public MeterImportService(IHttpClientFactory factory, TokenService tokens, IdentityServerSettings settings)
     {
@@ -47,6 +48,7 @@ public class MeterImportService
             var modificationName = parts[3];
             var registrationNumber = parts[4];
             var verificationInterval = short.Parse(parts[5], culture);
+            var manufacturerName = parts[6];
             var impulseWeight = double.Parse(parts[7], culture);
             var qmin = double.Parse(parts[8], culture);
             var qt1 = double.Parse(parts[9], culture);
@@ -69,7 +71,8 @@ public class MeterImportService
             var hasVerificationModeByV = parts[26].Equals("да", StringComparison.OrdinalIgnoreCase);
             var hasVerificationModeByG = parts[27].Equals("да", StringComparison.OrdinalIgnoreCase);
 
-            var meterTypeId = await CreateMeterTypeAsync(token, fullName, type);
+            var manufacturerId = await CreateManufacturerAsync(token, manufacturerName);
+            var meterTypeId = await CreateMeterTypeAsync(token, fullName, type, manufacturerId);
             var registrationId = await CreateRegistrationAsync(token, meterTypeId, registrationNumber, verificationInterval,
                 verificationMethodology, relativeErrorQt1_Qmax, relativeErrorQt2_Qt1, relativeErrorQmin_Qt2, registrationDate,
                 endDate, hasVerificationModeByV, hasVerificationModeByG);
@@ -82,9 +85,24 @@ public class MeterImportService
 
     private async Task LoadExistingAsync(string token)
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, "/api/metertypes");
+        var request = new HttpRequestMessage(HttpMethod.Get, "/api/manufacturers");
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         var response = await _http.SendAsync(request);
+        if (response.IsSuccessStatusCode)
+        {
+            var items = await response.Content.ReadFromJsonAsync<List<ManufacturerDto>>();
+            if (items != null)
+            {
+                foreach (var m in items)
+                {
+                    _manufacturers[m.Name] = m.Id;
+                }
+            }
+        }
+
+        request = new HttpRequestMessage(HttpMethod.Get, "/api/metertypes");
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        response = await _http.SendAsync(request);
         if (response.IsSuccessStatusCode)
         {
             var items = await response.Content.ReadFromJsonAsync<List<MeterTypeDto>>();
@@ -128,7 +146,26 @@ public class MeterImportService
         }
     }
 
-    private async Task<int> CreateMeterTypeAsync(string token, string fullName, string type)
+    private async Task<int> CreateManufacturerAsync(string token, string name)
+    {
+        if (_manufacturers.TryGetValue(name, out var existingId))
+        {
+            return existingId;
+        }
+
+        var request = new HttpRequestMessage(HttpMethod.Post, "/api/manufacturers")
+        {
+            Content = JsonContent.Create(new { EditorName = "import", Name = name })
+        };
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        var response = await _http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+        var id = await response.Content.ReadFromJsonAsync<int>();
+        _manufacturers[name] = id;
+        return id;
+    }
+
+    private async Task<int> CreateMeterTypeAsync(string token, string fullName, string type, int manufacturerId)
     {
         if (_meterTypes.TryGetValue(type, out var existingId))
         {
@@ -137,7 +174,7 @@ public class MeterImportService
 
         var request = new HttpRequestMessage(HttpMethod.Post, "/api/metertypes")
         {
-            Content = JsonContent.Create(new { EditorName = "import", Type = type, FullName = fullName })
+            Content = JsonContent.Create(new { EditorName = "import", Type = type, FullName = fullName, ManufacturerId = manufacturerId })
         };
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         var response = await _http.SendAsync(request);
@@ -227,4 +264,5 @@ public class MeterImportService
     private record MeterTypeDto(int Id, string Type);
     private record RegistrationDto(int Id, string RegistrationNumber);
     private record ModificationDto(int Id, int RegistrationId, string Name);
+    private record ManufacturerDto(int Id, string Name);
 }

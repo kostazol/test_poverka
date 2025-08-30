@@ -16,6 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<MeterType> MeterTypes => Set<MeterType>();
     public DbSet<Registration> Registrations => Set<Registration>();
     public DbSet<Modification> Modifications => Set<Modification>();
+    public DbSet<Manufacturer> Manufacturers => Set<Manufacturer>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
