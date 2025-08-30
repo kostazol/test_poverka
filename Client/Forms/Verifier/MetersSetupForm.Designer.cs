@@ -43,6 +43,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Name_SI_CB = new ComboBox();
             GosReestr = new Label();
             Flow1_GosReestr_CB = new ComboBox();
+            Flow1_ManufactureDate_DTP = new DateTimePicker();
+            Flow1_ManufactureDate_L = new Label();
             label1 = new Label();
             Rashodomer1_GB = new GroupBox();
             label8 = new Label();
@@ -145,7 +147,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(18, 215);
+            label7.Location = new Point(18, 245);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(125, 15);
@@ -156,7 +158,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             Flow1_Document_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Flow1_Document_CB.FormattingEnabled = true;
-            Flow1_Document_CB.Location = new Point(168, 209);
+            Flow1_Document_CB.Location = new Point(168, 239);
             Flow1_Document_CB.Margin = new Padding(4);
             Flow1_Document_CB.Name = "Flow1_Document_CB";
             Flow1_Document_CB.Size = new Size(155, 23);
@@ -164,7 +166,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow1_WeightImpulse_TB
             // 
-            Flow1_WeightImpulse_TB.Location = new Point(168, 181);
+            Flow1_WeightImpulse_TB.Location = new Point(168, 211);
             Flow1_WeightImpulse_TB.Margin = new Padding(3, 2, 3, 2);
             Flow1_WeightImpulse_TB.Name = "Flow1_WeightImpulse_TB";
             Flow1_WeightImpulse_TB.Size = new Size(155, 23);
@@ -173,7 +175,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(18, 187);
+            label6.Location = new Point(18, 217);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(83, 15);
@@ -183,7 +185,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(18, 158);
+            label5.Location = new Point(18, 188);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(137, 15);
@@ -194,7 +196,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             Flow1_Diameter_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Flow1_Diameter_CB.FormattingEnabled = true;
-            Flow1_Diameter_CB.Location = new Point(168, 152);
+            Flow1_Diameter_CB.Location = new Point(168, 182);
             Flow1_Diameter_CB.Margin = new Padding(4);
             Flow1_Diameter_CB.Name = "Flow1_Diameter_CB";
             Flow1_Diameter_CB.Size = new Size(155, 23);
@@ -202,7 +204,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow1_ZavodskNomer_TB
             // 
-            Flow1_ZavodskNomer_TB.Location = new Point(168, 125);
+            Flow1_ZavodskNomer_TB.Location = new Point(168, 155);
             Flow1_ZavodskNomer_TB.Margin = new Padding(3, 2, 3, 2);
             Flow1_ZavodskNomer_TB.Name = "Flow1_ZavodskNomer_TB";
             Flow1_ZavodskNomer_TB.Size = new Size(155, 23);
@@ -211,7 +213,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(18, 130);
+            label4.Location = new Point(18, 160);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(104, 15);
@@ -221,25 +223,25 @@ namespace PoverkaWinForms.Forms.Verifier
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(18, 100);
+            label3.Location = new Point(18, 130);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(86, 15);
             label3.TabIndex = 25;
             label3.Text = "Модификация";
-            // 
+            //
             // Flow1_Modification_CB
-            // 
+            //
             Flow1_Modification_CB.DropDownStyle = ComboBoxStyle.DropDownList;
             Flow1_Modification_CB.FormattingEnabled = true;
-            Flow1_Modification_CB.Location = new Point(168, 96);
+            Flow1_Modification_CB.Location = new Point(168, 126);
             Flow1_Modification_CB.Margin = new Padding(4);
             Flow1_Modification_CB.Name = "Flow1_Modification_CB";
             Flow1_Modification_CB.Size = new Size(155, 23);
             Flow1_Modification_CB.TabIndex = 24;
-            // 
+            //
             // label2
-            // 
+            //
             label2.AutoSize = true;
             label2.Location = new Point(18, 40);
             label2.Margin = new Padding(4, 0, 4, 0);
@@ -287,9 +289,27 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_GosReestr_CB.Click += ManufacturerCB_Click;
             Flow1_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow1_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
-            // 
+            //
+            // Flow1_ManufactureDate_DTP
+            //
+            Flow1_ManufactureDate_DTP.Location = new Point(168, 96);
+            Flow1_ManufactureDate_DTP.Margin = new Padding(3, 2, 3, 2);
+            Flow1_ManufactureDate_DTP.Name = "Flow1_ManufactureDate_DTP";
+            Flow1_ManufactureDate_DTP.Size = new Size(155, 23);
+            Flow1_ManufactureDate_DTP.TabIndex = 24;
+            //
+            // Flow1_ManufactureDate_L
+            //
+            Flow1_ManufactureDate_L.AutoSize = true;
+            Flow1_ManufactureDate_L.Location = new Point(18, 100);
+            Flow1_ManufactureDate_L.Margin = new Padding(4, 0, 4, 0);
+            Flow1_ManufactureDate_L.Name = "Flow1_ManufactureDate_L";
+            Flow1_ManufactureDate_L.Size = new Size(34, 15);
+            Flow1_ManufactureDate_L.TabIndex = 24;
+            Flow1_ManufactureDate_L.Text = "Дата";
+            //
             // label1
-            // 
+            //
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label1.Location = new Point(192, 22);
@@ -306,7 +326,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer1_GB.Controls.Add(Flow1_Diameter_CB);
             Rashodomer1_GB.Controls.Add(label7);
             Rashodomer1_GB.Controls.Add(Flow1_GosReestr_CB);
+            Rashodomer1_GB.Controls.Add(Flow1_ManufactureDate_DTP);
             Rashodomer1_GB.Controls.Add(Flow1_Document_CB);
+            Rashodomer1_GB.Controls.Add(Flow1_ManufactureDate_L);
             Rashodomer1_GB.Controls.Add(GosReestr);
             Rashodomer1_GB.Controls.Add(Flow1_WeightImpulse_TB);
             Rashodomer1_GB.Controls.Add(Flow1_Name_SI_CB);
@@ -1410,6 +1432,8 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.ComboBox Flow1_Name_SI_CB;
         private System.Windows.Forms.Label GosReestr;
         private System.Windows.Forms.ComboBox Flow1_GosReestr_CB;
+        private System.Windows.Forms.DateTimePicker Flow1_ManufactureDate_DTP;
+        private System.Windows.Forms.Label Flow1_ManufactureDate_L;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox Rashodomer1_GB;
         private System.Windows.Forms.Label label8;
