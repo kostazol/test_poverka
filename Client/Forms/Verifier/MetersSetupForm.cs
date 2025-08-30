@@ -1,8 +1,8 @@
 using System;
-using System.Windows.Forms;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier
@@ -14,7 +14,11 @@ namespace PoverkaWinForms.Forms.Verifier
         private bool _updating;
         private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
-        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService)
+
+        public MetersSetupForm(
+            MeterTypeService meterTypeService,
+            ManufacturerService manufacturerService
+        )
         {
             _meterTypeService = meterTypeService;
             _manufacturerService = manufacturerService;
@@ -37,7 +41,6 @@ namespace PoverkaWinForms.Forms.Verifier
             await _manufacturerService.GetAllAsync(string.Empty, 10);
         }
 
-
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void Flow2_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -50,7 +53,12 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void Flow6_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
+        private async Task PopulateMeterTypesAsync(
+            ComboBox combo,
+            string search,
+            int? limit = null,
+            bool dropDown = false
+        )
         {
             var items = await _meterTypeService.GetAllAsync(search, limit);
 
@@ -77,7 +85,12 @@ namespace PoverkaWinForms.Forms.Verifier
             _updating = false;
         }
 
-        private async Task PopulateManufacturersAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
+        private async Task PopulateManufacturersAsync(
+            ComboBox combo,
+            string search,
+            int? limit = null,
+            bool dropDown = false
+        )
         {
             var items = await _manufacturerService.GetAllAsync(search, limit);
 
@@ -144,18 +157,22 @@ namespace PoverkaWinForms.Forms.Verifier
                 if (count == 0)
                     return;
                 int newIndex = combo.SelectedIndex + direction;
-                if (newIndex < 0) newIndex = count - 1;
-                if (newIndex >= count) newIndex = 0;
+                if (newIndex < 0)
+                    newIndex = count - 1;
+                if (newIndex >= count)
+                    newIndex = 0;
                 combo.SelectedIndex = newIndex;
 
-                BeginInvoke(new Action(() =>
-                {
-                    _updating = true;
-                    combo.Text = text;
-                    combo.SelectionStart = text.Length;
-                    combo.SelectionLength = 0;
-                    _updating = false;
-                }));
+                BeginInvoke(
+                    new Action(() =>
+                    {
+                        _updating = true;
+                        combo.Text = text;
+                        combo.SelectionStart = text.Length;
+                        combo.SelectionLength = 0;
+                        _updating = false;
+                    })
+                );
             }
         }
 
@@ -164,8 +181,13 @@ namespace PoverkaWinForms.Forms.Verifier
             if (_updating || sender is not ComboBox combo)
                 return;
 
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down ||
-                e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            if (
+                e.KeyCode == Keys.Enter
+                || e.KeyCode == Keys.Up
+                || e.KeyCode == Keys.Down
+                || e.KeyCode == Keys.Left
+                || e.KeyCode == Keys.Right
+            )
                 return;
 
             var keyChar = (char)e.KeyValue;
@@ -185,9 +207,7 @@ namespace PoverkaWinForms.Forms.Verifier
                 await Task.Delay(300, cts.Token);
                 await PopulateMeterTypesAsync(combo, combo.Text, limit: 20, dropDown: true);
             }
-            catch (TaskCanceledException)
-            {
-            }
+            catch (TaskCanceledException) { }
         }
 
         private async void MeterTypeCB_Click(object? sender, EventArgs e)
@@ -195,16 +215,27 @@ namespace PoverkaWinForms.Forms.Verifier
             if (sender is ComboBox combo)
             {
                 combo.SelectionLength = 0;
-                await PopulateMeterTypesAsync(combo, combo.Text, combo.Text.Length > 0 ? 20 : 10, dropDown: true);
+                await PopulateMeterTypesAsync(
+                    combo,
+                    combo.Text,
+                    combo.Text.Length > 0 ? 20 : 10,
+                    dropDown: true
+                );
             }
         }
+
         private async void ManufacturerCB_KeyUp(object? sender, KeyEventArgs e)
         {
             if (_updating || sender is not ComboBox combo)
                 return;
 
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down ||
-                e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            if (
+                e.KeyCode == Keys.Enter
+                || e.KeyCode == Keys.Up
+                || e.KeyCode == Keys.Down
+                || e.KeyCode == Keys.Left
+                || e.KeyCode == Keys.Right
+            )
                 return;
 
             var keyChar = (char)e.KeyValue;
@@ -224,9 +255,7 @@ namespace PoverkaWinForms.Forms.Verifier
                 await Task.Delay(300, cts.Token);
                 await PopulateManufacturersAsync(combo, combo.Text, limit: 20, dropDown: true);
             }
-            catch (TaskCanceledException)
-            {
-            }
+            catch (TaskCanceledException) { }
         }
 
         private async void ManufacturerCB_Click(object? sender, EventArgs e)
@@ -234,17 +263,31 @@ namespace PoverkaWinForms.Forms.Verifier
             if (sender is ComboBox combo)
             {
                 combo.SelectionLength = 0;
-                await PopulateManufacturersAsync(combo, combo.Text, combo.Text.Length > 0 ? 20 : 10, dropDown: true);
+                await PopulateManufacturersAsync(
+                    combo,
+                    combo.Text,
+                    combo.Text.Length > 0 ? 20 : 10,
+                    dropDown: true
+                );
             }
         }
+
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
+
         private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
         private void Flow3_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
         private void Flow4_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
         private void Flow5_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
         private void Flow6_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+
         private void label14_Click(object sender, EventArgs e) { }
+
         private void Next_B_Click(object sender, EventArgs e) { }
+
         private void button1_Click(object sender, EventArgs e) { }
 
         private async void Rashodomer1_CB_CheckedChanged(object? sender, EventArgs e)
@@ -253,7 +296,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (Rashodomer1_CB.Checked)
             {
                 await PopulateMeterTypesAsync(Flow1_Name_SI_CB, string.Empty, 10);
-            await PopulateManufacturersAsync(Flow1_GosReestr_CB, string.Empty, 10);
+                await PopulateManufacturersAsync(Flow1_GosReestr_CB, string.Empty, 10);
             }
         }
 
@@ -263,7 +306,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (Rashodomer2_CB.Checked)
             {
                 await PopulateMeterTypesAsync(Flow2_Name_SI_CB, string.Empty, 10);
-            await PopulateManufacturersAsync(Flow2_GosReestr_CB, string.Empty, 10);
+                await PopulateManufacturersAsync(Flow2_GosReestr_CB, string.Empty, 10);
             }
         }
 
@@ -273,7 +316,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (Rashodomer3_CB.Checked)
             {
                 await PopulateMeterTypesAsync(Flow3_Name_SI_CB, string.Empty, 10);
-            await PopulateManufacturersAsync(Flow3_GosReestr_CB, string.Empty, 10);
+                await PopulateManufacturersAsync(Flow3_GosReestr_CB, string.Empty, 10);
             }
         }
 
@@ -283,7 +326,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (Rashodomer6_CB.Checked)
             {
                 await PopulateMeterTypesAsync(Flow6_Name_SI_CB, string.Empty, 10);
-            await PopulateManufacturersAsync(Flow6_GosReestr_CB, string.Empty, 10);
+                await PopulateManufacturersAsync(Flow6_GosReestr_CB, string.Empty, 10);
             }
         }
 
@@ -293,7 +336,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (Rashodomer5_CB.Checked)
             {
                 await PopulateMeterTypesAsync(Flow5_Name_SI_CB, string.Empty, 10);
-            await PopulateManufacturersAsync(Flow5_GosReestr_CB, string.Empty, 10);
+                await PopulateManufacturersAsync(Flow5_GosReestr_CB, string.Empty, 10);
             }
         }
 
@@ -303,12 +346,8 @@ namespace PoverkaWinForms.Forms.Verifier
             if (Rashodomer4_CB.Checked)
             {
                 await PopulateMeterTypesAsync(Flow4_Name_SI_CB, string.Empty, 10);
-            await PopulateManufacturersAsync(Flow4_GosReestr_CB, string.Empty, 10);
+                await PopulateManufacturersAsync(Flow4_GosReestr_CB, string.Empty, 10);
             }
-        }
-        private void groupBox6_Enter(object sender, EventArgs e)
-        {
-            // TODO: добавить логику обработки при необходимости
         }
 
         private static void ToggleGroupControls(GroupBox groupBox, CheckBox checkBox, Label caption)
@@ -323,6 +362,5 @@ namespace PoverkaWinForms.Forms.Verifier
                 }
             }
         }
-
     }
 }

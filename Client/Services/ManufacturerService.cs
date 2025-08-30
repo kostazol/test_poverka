@@ -14,7 +14,11 @@ public class ManufacturerService
     private readonly TokenService _tokens;
     private List<ManufacturerDto> _defaultManufacturers = new();
 
-    public ManufacturerService(IHttpClientFactory factory, TokenService tokens, IdentityServerSettings settings)
+    public ManufacturerService(
+        IHttpClientFactory factory,
+        TokenService tokens,
+        IdentityServerSettings settings
+    )
     {
         _http = factory.CreateClient("ApiClient");
         _http.BaseAddress = new Uri(settings.Authority);
@@ -30,7 +34,8 @@ public class ManufacturerService
         }
 
         var token = await _tokens.GetAccessTokenAsync();
-        if (token is null) return new();
+        if (token is null)
+            return new();
 
         var url = "/api/manufacturers";
         if (!string.IsNullOrWhiteSpace(search) || take.HasValue)
@@ -46,7 +51,8 @@ public class ManufacturerService
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         var response = await _http.SendAsync(request);
-        if (!response.IsSuccessStatusCode) return new();
+        if (!response.IsSuccessStatusCode)
+            return new();
 
         var items = await response.Content.ReadFromJsonAsync<List<ManufacturerDto>>();
         items ??= new();

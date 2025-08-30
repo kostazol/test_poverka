@@ -1165,7 +1165,6 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer6_GB.TabIndex = 37;
             Rashodomer6_GB.TabStop = false;
             Rashodomer6_GB.Tag = "FirstFlowmeter";
-            Rashodomer6_GB.Enter += groupBox6_Enter;
             // 
             // label41
             // 
