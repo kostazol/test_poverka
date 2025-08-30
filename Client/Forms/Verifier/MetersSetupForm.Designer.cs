@@ -294,9 +294,12 @@ namespace PoverkaWinForms.Forms.Verifier
             //
             Flow1_ManufactureDate_DTP.Location = new Point(168, 96);
             Flow1_ManufactureDate_DTP.Margin = new Padding(3, 2, 3, 2);
+            Flow1_ManufactureDate_DTP.CustomFormat = "dd.MM.yyyy";
+            Flow1_ManufactureDate_DTP.Format = DateTimePickerFormat.Custom;
             Flow1_ManufactureDate_DTP.Name = "Flow1_ManufactureDate_DTP";
             Flow1_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow1_ManufactureDate_DTP.TabIndex = 24;
+            Flow1_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
             //
             // Flow1_ManufactureDate_L
             //
@@ -304,9 +307,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_ManufactureDate_L.Location = new Point(18, 100);
             Flow1_ManufactureDate_L.Margin = new Padding(4, 0, 4, 0);
             Flow1_ManufactureDate_L.Name = "Flow1_ManufactureDate_L";
-            Flow1_ManufactureDate_L.Size = new Size(34, 15);
+            Flow1_ManufactureDate_L.Size = new Size(111, 15);
             Flow1_ManufactureDate_L.TabIndex = 24;
-            Flow1_ManufactureDate_L.Text = "Дата";
+            Flow1_ManufactureDate_L.Text = "Дата изготовления";
             //
             // label1
             //
