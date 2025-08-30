@@ -3,35 +3,28 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
-using System.Drawing;
 using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier
 {
     public partial class MetersSetupForm : Form
     {
-        private readonly MeterTypeService _meterTypeService = null!;
-        private readonly ManufacturerService _manufacturerService = null!;
+        private readonly MeterTypeService _meterTypeService;
+        private readonly ManufacturerService _manufacturerService;
         private bool _updating;
         private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
-        public MetersSetupForm()
-        {
-            InitializeComponent();
-        }
-
-        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService) : this()
+        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService)
         {
             _meterTypeService = meterTypeService;
             _manufacturerService = manufacturerService;
+            InitializeComponent();
         }
 
         private async void MetersSetupForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
                 return;
-
-            AddDateFields();
 
             Rashodomer1_CB_CheckedChanged(null, EventArgs.Empty);
             Rashodomer2_CB_CheckedChanged(null, EventArgs.Empty);
@@ -44,68 +37,6 @@ namespace PoverkaWinForms.Forms.Verifier
             await _manufacturerService.GetAllAsync(string.Empty, 10);
         }
 
-        private void AddDateFields()
-        {
-            int offset = AddDateField(Rashodomer1_GB, GosReestr, Flow1_GosReestr_CB, label3, Flow1_Modification_CB,
-                new Control[] { label4, Flow1_ZavodskNomer_TB, label5, Flow1_Diameter_CB, label6, Flow1_WeightImpulse_TB, label7, Flow1_Document_CB });
-            ShiftGroupBoxes(new[] { Rashodomer2_GB, Rashodomer3_GB, Rashodomer4_GB, Rashodomer5_GB, Rashodomer6_GB }, offset);
-
-            offset = AddDateField(Rashodomer2_GB, label12, Flow2_GosReestr_CB, label16, Flow2_Modification_CB,
-                new Control[] { label17, Flow2_ZavodskNomer_TB, label15, Flow2_Diameter_CB, label13, Flow2_WeightImpulse_TB, label11, Flow2_Document_CB });
-            ShiftGroupBoxes(new[] { Rashodomer3_GB, Rashodomer4_GB, Rashodomer5_GB, Rashodomer6_GB }, offset);
-
-            offset = AddDateField(Rashodomer3_GB, label19, Flow3_GosReestr_CB, label23, Flow3_Modification_CB,
-                new Control[] { label24, Flow3_ZavodskNomer_TB, label22, Flow3_Diameter_CB, label20, Flow3_WeightImpulse_TB, label18, Flow3_Document_CB });
-            ShiftGroupBoxes(new[] { Rashodomer4_GB, Rashodomer5_GB, Rashodomer6_GB }, offset);
-
-            offset = AddDateField(Rashodomer4_GB, label27, Flow4_GosReestr_CB, label31, Flow4_Modification_CB,
-                new Control[] { label32, Flow4_ZavodskNomer_TB, label30, Flow4_Diameter_CB, label28, Flow4_WeightImpulse_TB, label26, Flow4_Document_CB });
-            ShiftGroupBoxes(new[] { Rashodomer5_GB, Rashodomer6_GB }, offset);
-
-            offset = AddDateField(Rashodomer5_GB, label35, Flow5_GosReestr_CB, label39, Flow5_Modification_CB,
-                new Control[] { label40, Flow5_ZavodskNomer_TB, label38, Flow5_Diameter_CB, label36, Flow5_WeightImpulse_TB, label34, Flow5_Document_CB });
-            ShiftGroupBoxes(new[] { Rashodomer6_GB }, offset);
-
-            AddDateField(Rashodomer6_GB, label43, Flow6_GosReestr_CB, label47, Flow6_Modification_CB,
-                new Control[] { label48, Flow6_ZavodskNomer_TB, label46, Flow6_Diameter_CB, label44, Flow6_WeightImpulse_TB, label42, Flow6_Document_CB });
-        }
-
-        private int AddDateField(GroupBox groupBox, Label manufacturerLabel, ComboBox manufacturerCombo,
-            Label modificationLabel, ComboBox modificationCombo, Control[] controlsToShift)
-        {
-            var dateLabel = new Label
-            {
-                AutoSize = true,
-                Text = "Дата выпуска",
-                Location = new Point(manufacturerLabel.Left, manufacturerCombo.Bottom + 10)
-            };
-
-            var datePicker = new DateTimePicker
-            {
-                Format = DateTimePickerFormat.Short,
-                Location = new Point(manufacturerCombo.Left, manufacturerCombo.Bottom + 8),
-                Size = manufacturerCombo.Size
-            };
-
-            groupBox.Controls.Add(dateLabel);
-            groupBox.Controls.Add(datePicker);
-
-            int offset = datePicker.Height + 8;
-            modificationLabel.Top += offset;
-            modificationCombo.Top += offset;
-
-            foreach (var ctrl in controlsToShift)
-                ctrl.Top += offset;
-
-            groupBox.Height += offset;
-            return offset;
-        }
-
-        private static void ShiftGroupBoxes(GroupBox[] groups, int offset)
-        {
-            foreach (var gb in groups)
-                gb.Top += offset;
-        }
 
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
 
