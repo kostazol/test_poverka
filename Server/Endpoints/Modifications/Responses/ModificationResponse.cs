@@ -5,14 +5,17 @@ namespace PoverkaServer.Endpoints.Modifications.Responses;
 public class ModificationResponse
 {
     private readonly Modification _modification;
+    private readonly string _registrationNumber;
 
-    public ModificationResponse(Modification modification)
+    public ModificationResponse(Modification modification, string registrationNumber)
     {
         _modification = modification;
+        _registrationNumber = registrationNumber;
     }
 
     public int Id => _modification.Id;
     public int RegistrationId => _modification.RegistrationId;
+    public string RegistrationNumber => _registrationNumber;
     public string Name => _modification.Name;
     public string ClassName => _modification.ClassName;
     public double ImpulseWeight => _modification.ImpulseWeight;

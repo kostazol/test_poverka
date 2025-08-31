@@ -39,4 +39,4 @@ public class ModificationService
     }
 }
 
-public record ModificationDto(int Id, int RegistrationId, string Name);
+public record ModificationDto(int Id, int RegistrationId, string RegistrationNumber, string Name);
