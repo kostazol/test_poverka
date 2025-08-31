@@ -311,6 +311,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow1_ManufactureDate_DTP.TabIndex = 24;
             Flow1_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
+            Flow1_ManufactureDate_DTP.ValueChanged += Flow1_ManufactureDate_DTP_ValueChanged;
             //
             // Flow1_ManufactureDate_L
             //
@@ -486,6 +487,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow2_ManufactureDate_DTP.TabIndex = 24;
             Flow2_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
+            Flow2_ManufactureDate_DTP.ValueChanged += Flow2_ManufactureDate_DTP_ValueChanged;
             //
             // Flow2_ManufactureDate_L
             //
@@ -708,6 +710,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow3_ManufactureDate_DTP.TabIndex = 24;
             Flow3_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
+            Flow3_ManufactureDate_DTP.ValueChanged += Flow3_ManufactureDate_DTP_ValueChanged;
             //
             // Flow3_ManufactureDate_L
             //
@@ -929,6 +932,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow4_ManufactureDate_DTP.TabIndex = 24;
             Flow4_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
+            Flow4_ManufactureDate_DTP.ValueChanged += Flow4_ManufactureDate_DTP_ValueChanged;
             //
             // Flow4_ManufactureDate_L
             //
@@ -1150,6 +1154,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow5_ManufactureDate_DTP.TabIndex = 24;
             Flow5_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
+            Flow5_ManufactureDate_DTP.ValueChanged += Flow5_ManufactureDate_DTP_ValueChanged;
             //
             // Flow5_ManufactureDate_L
             //
@@ -1371,6 +1376,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow6_ManufactureDate_DTP.TabIndex = 24;
             Flow6_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
+            Flow6_ManufactureDate_DTP.ValueChanged += Flow6_ManufactureDate_DTP_ValueChanged;
             //
             // Flow6_ManufactureDate_L
             //

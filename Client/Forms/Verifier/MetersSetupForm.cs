@@ -331,6 +331,24 @@ namespace PoverkaWinForms.Forms.Verifier
         private void Flow6_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
             ResetModifications(Flow6_Modification_CB);
 
+        private void Flow1_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow1_Modification_CB);
+
+        private void Flow2_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow2_Modification_CB);
+
+        private void Flow3_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow3_Modification_CB);
+
+        private void Flow4_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow4_Modification_CB);
+
+        private void Flow5_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow5_Modification_CB);
+
+        private void Flow6_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow6_Modification_CB);
+
         private void label14_Click(object sender, EventArgs e) { }
 
         private void Next_B_Click(object sender, EventArgs e) { }
