@@ -77,7 +77,10 @@ namespace PoverkaWinForms.Forms.Verifier
             if (_updating || sender is not ComboBox combo)
                 return;
 
-            if (string.IsNullOrEmpty(combo.Text) && _previousTexts.TryGetValue(combo, out var text))
+            bool noSelection = combo.SelectedIndex < 0;
+            bool noText = string.IsNullOrEmpty(combo.Text);
+
+            if (noSelection && noText && _previousTexts.TryGetValue(combo, out var text))
             {
                 _updating = true;
                 combo.Text = text;
