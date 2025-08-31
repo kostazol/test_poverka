@@ -189,6 +189,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow1_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow1_Modification_CB.Click += Flow1_Modification_CB_Click;
+            Flow1_Modification_CB.DropDownClosed += RestoreComboText;
             Flow1_Modification_CB.SelectedIndexChanged += Flow1_Modification_CB_SelectedIndexChanged;
             //
             // label2
@@ -213,6 +214,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Name_SI_CB.Click += MeterTypeCB_Click;
             Flow1_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow1_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow1_Name_SI_CB.DropDownClosed += RestoreComboText;
             // 
             // GosReestr
             // 
@@ -240,6 +242,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_GosReestr_CB.Click += ManufacturerCB_Click;
             Flow1_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow1_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow1_GosReestr_CB.DropDownClosed += RestoreComboText;
             //
             // Flow1_ManufactureDate_DTP
             //
@@ -388,6 +391,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_GosReestr_CB.Click += ManufacturerCB_Click;
             Flow2_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow2_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow2_GosReestr_CB.DropDownClosed += RestoreComboText;
             //
             // Flow2_ManufactureDate_DTP
             //
@@ -433,6 +437,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Name_SI_CB.Click += MeterTypeCB_Click;
             Flow2_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow2_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow2_Name_SI_CB.DropDownClosed += RestoreComboText;
             // 
             // label14
             //
@@ -457,6 +462,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow2_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow2_Modification_CB.Click += Flow2_Modification_CB_Click;
+            Flow2_Modification_CB.DropDownClosed += RestoreComboText;
             Flow2_Modification_CB.SelectedIndexChanged += Flow2_Modification_CB_SelectedIndexChanged;
             //
             // label16
@@ -571,6 +577,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_GosReestr_CB.Click += ManufacturerCB_Click;
             Flow3_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow3_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow3_GosReestr_CB.DropDownClosed += RestoreComboText;
             //
             // Flow3_ManufactureDate_DTP
             //
@@ -616,6 +623,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Name_SI_CB.Click += MeterTypeCB_Click;
             Flow3_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow3_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow3_Name_SI_CB.DropDownClosed += RestoreComboText;
             // 
             // label21
             //
@@ -639,6 +647,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow3_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow3_Modification_CB.Click += Flow3_Modification_CB_Click;
+            Flow3_Modification_CB.DropDownClosed += RestoreComboText;
             Flow3_Modification_CB.SelectedIndexChanged += Flow3_Modification_CB_SelectedIndexChanged;
             //
             // label23
@@ -753,6 +762,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_GosReestr_CB.Click += ManufacturerCB_Click;
             Flow4_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow4_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow4_GosReestr_CB.DropDownClosed += RestoreComboText;
             //
             // Flow4_ManufactureDate_DTP
             //
@@ -798,6 +808,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Name_SI_CB.Click += MeterTypeCB_Click;
             Flow4_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow4_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow4_Name_SI_CB.DropDownClosed += RestoreComboText;
             // 
             // label29
             //
@@ -821,6 +832,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow4_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow4_Modification_CB.Click += Flow4_Modification_CB_Click;
+            Flow4_Modification_CB.DropDownClosed += RestoreComboText;
             Flow4_Modification_CB.SelectedIndexChanged += Flow4_Modification_CB_SelectedIndexChanged;
             //
             // label31
@@ -935,6 +947,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_GosReestr_CB.Click += ManufacturerCB_Click;
             Flow5_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow5_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow5_GosReestr_CB.DropDownClosed += RestoreComboText;
             //
             // Flow5_ManufactureDate_DTP
             //
@@ -980,6 +993,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Name_SI_CB.Click += MeterTypeCB_Click;
             Flow5_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow5_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow5_Name_SI_CB.DropDownClosed += RestoreComboText;
             // 
             // label37
             //
@@ -1003,6 +1017,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow5_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow5_Modification_CB.Click += Flow5_Modification_CB_Click;
+            Flow5_Modification_CB.DropDownClosed += RestoreComboText;
             Flow5_Modification_CB.SelectedIndexChanged += Flow5_Modification_CB_SelectedIndexChanged;
             //
             // label39
@@ -1117,6 +1132,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_GosReestr_CB.Click += ManufacturerCB_Click;
             Flow6_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow6_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow6_GosReestr_CB.DropDownClosed += RestoreComboText;
             //
             // Flow6_ManufactureDate_DTP
             //
@@ -1162,6 +1178,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Name_SI_CB.Click += MeterTypeCB_Click;
             Flow6_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow6_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow6_Name_SI_CB.DropDownClosed += RestoreComboText;
             // 
             // label45
             //
@@ -1185,6 +1202,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow6_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow6_Modification_CB.Click += Flow6_Modification_CB_Click;
+            Flow6_Modification_CB.DropDownClosed += RestoreComboText;
             Flow6_Modification_CB.SelectedIndexChanged += Flow6_Modification_CB_SelectedIndexChanged;
             // 
             // label47

@@ -17,6 +17,7 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
         private readonly Dictionary<ComboBox, List<ModificationDto>> _modifications = new();
+        private readonly Dictionary<ComboBox, string> _previousTexts = new();
 
         public MetersSetupForm(
             MeterTypeService meterTypeService,
@@ -48,11 +49,44 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void ResetModifications(ComboBox modificationCombo, TextBox registrationNumberTextBox)
         {
+            if (_updating)
+                return;
+
             modificationCombo.DataSource = null;
             modificationCombo.Items.Clear();
             modificationCombo.SelectedIndex = -1;
             _modifications.Remove(modificationCombo);
             registrationNumberTextBox.Text = string.Empty;
+        }
+
+        private void StoreAndClearCombo(ComboBox combo)
+        {
+            if (string.IsNullOrEmpty(combo.Text))
+                return;
+
+            _updating = true;
+            _previousTexts[combo] = combo.Text;
+            combo.Text = string.Empty;
+            combo.SelectionStart = 0;
+            combo.SelectionLength = 0;
+            _updating = false;
+        }
+
+        private void RestoreComboText(object? sender, EventArgs e)
+        {
+            if (_updating || sender is not ComboBox combo)
+                return;
+
+            if (string.IsNullOrEmpty(combo.Text) && _previousTexts.TryGetValue(combo, out var text))
+            {
+                _updating = true;
+                combo.Text = text;
+                combo.SelectionStart = combo.Text.Length;
+                combo.SelectionLength = 0;
+                _updating = false;
+            }
+
+            _previousTexts.Remove(combo);
         }
 
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
@@ -326,7 +360,7 @@ namespace PoverkaWinForms.Forms.Verifier
         {
             if (sender is ComboBox combo)
             {
-                combo.SelectionLength = 0;
+                StoreAndClearCombo(combo);
                 await PopulateMeterTypesAsync(
                     combo,
                     combo.Text,
@@ -374,7 +408,7 @@ namespace PoverkaWinForms.Forms.Verifier
         {
             if (sender is ComboBox combo)
             {
-                combo.SelectionLength = 0;
+                StoreAndClearCombo(combo);
                 await PopulateManufacturersAsync(
                     combo,
                     combo.Text,
@@ -426,7 +460,9 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void button1_Click(object sender, EventArgs e) { }
 
-        private async void Flow1_Modification_CB_Click(object? sender, EventArgs e) =>
+        private async void Flow1_Modification_CB_Click(object? sender, EventArgs e)
+        {
+            StoreAndClearCombo(Flow1_Modification_CB);
             await PopulateModificationsAsync(
                 Flow1_Modification_CB,
                 Flow1_Name_SI_CB,
@@ -434,8 +470,11 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow1_ManufactureDate_DTP,
                 Flow1_RegistrationNumber_TB
             );
+        }
 
-        private async void Flow2_Modification_CB_Click(object? sender, EventArgs e) =>
+        private async void Flow2_Modification_CB_Click(object? sender, EventArgs e)
+        {
+            StoreAndClearCombo(Flow2_Modification_CB);
             await PopulateModificationsAsync(
                 Flow2_Modification_CB,
                 Flow2_Name_SI_CB,
@@ -443,8 +482,11 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow2_ManufactureDate_DTP,
                 Flow2_RegistrationNumber_TB
             );
+        }
 
-        private async void Flow3_Modification_CB_Click(object? sender, EventArgs e) =>
+        private async void Flow3_Modification_CB_Click(object? sender, EventArgs e)
+        {
+            StoreAndClearCombo(Flow3_Modification_CB);
             await PopulateModificationsAsync(
                 Flow3_Modification_CB,
                 Flow3_Name_SI_CB,
@@ -452,8 +494,11 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow3_ManufactureDate_DTP,
                 Flow3_RegistrationNumber_TB
             );
+        }
 
-        private async void Flow4_Modification_CB_Click(object? sender, EventArgs e) =>
+        private async void Flow4_Modification_CB_Click(object? sender, EventArgs e)
+        {
+            StoreAndClearCombo(Flow4_Modification_CB);
             await PopulateModificationsAsync(
                 Flow4_Modification_CB,
                 Flow4_Name_SI_CB,
@@ -461,8 +506,11 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow4_ManufactureDate_DTP,
                 Flow4_RegistrationNumber_TB
             );
+        }
 
-        private async void Flow5_Modification_CB_Click(object? sender, EventArgs e) =>
+        private async void Flow5_Modification_CB_Click(object? sender, EventArgs e)
+        {
+            StoreAndClearCombo(Flow5_Modification_CB);
             await PopulateModificationsAsync(
                 Flow5_Modification_CB,
                 Flow5_Name_SI_CB,
@@ -470,8 +518,11 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow5_ManufactureDate_DTP,
                 Flow5_RegistrationNumber_TB
             );
+        }
 
-        private async void Flow6_Modification_CB_Click(object? sender, EventArgs e) =>
+        private async void Flow6_Modification_CB_Click(object? sender, EventArgs e)
+        {
+            StoreAndClearCombo(Flow6_Modification_CB);
             await PopulateModificationsAsync(
                 Flow6_Modification_CB,
                 Flow6_Name_SI_CB,
@@ -479,6 +530,7 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow6_ManufactureDate_DTP,
                 Flow6_RegistrationNumber_TB
             );
+        }
 
         private void Flow1_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
             UpdateRegistrationNumber(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
