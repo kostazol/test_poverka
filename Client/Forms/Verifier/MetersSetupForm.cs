@@ -359,7 +359,7 @@ namespace PoverkaWinForms.Forms.Verifier
             catch (TaskCanceledException) { }
         }
 
-        private async void MeterTypeCB_Click(object? sender, EventArgs e)
+        private async void MeterTypeCB_DropDown(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo)
             {
