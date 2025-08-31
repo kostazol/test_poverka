@@ -242,13 +242,15 @@ namespace PoverkaWinForms.Forms.Verifier
             //
             // Flow1_Modification_CB
             //
-            Flow1_Modification_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow1_Modification_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow1_Modification_CB.FormattingEnabled = true;
             Flow1_Modification_CB.Location = new Point(168, 126);
             Flow1_Modification_CB.Margin = new Padding(4);
             Flow1_Modification_CB.Name = "Flow1_Modification_CB";
             Flow1_Modification_CB.Size = new Size(155, 23);
             Flow1_Modification_CB.TabIndex = 24;
+            Flow1_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
+            Flow1_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow1_Modification_CB.Click += Flow1_Modification_CB_Click;
             //
             // label2
@@ -573,13 +575,15 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow2_Modification_CB
             // 
-            Flow2_Modification_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow2_Modification_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow2_Modification_CB.FormattingEnabled = true;
             Flow2_Modification_CB.Location = new Point(168, 126);
             Flow2_Modification_CB.Margin = new Padding(4);
             Flow2_Modification_CB.Name = "Flow2_Modification_CB";
             Flow2_Modification_CB.Size = new Size(155, 23);
             Flow2_Modification_CB.TabIndex = 24;
+            Flow2_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
+            Flow2_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow2_Modification_CB.Click += Flow2_Modification_CB_Click;
             //
             // label16
@@ -795,13 +799,15 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow3_Modification_CB
             // 
-            Flow3_Modification_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow3_Modification_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow3_Modification_CB.FormattingEnabled = true;
             Flow3_Modification_CB.Location = new Point(168, 126);
             Flow3_Modification_CB.Margin = new Padding(4);
             Flow3_Modification_CB.Name = "Flow3_Modification_CB";
             Flow3_Modification_CB.Size = new Size(155, 23);
             Flow3_Modification_CB.TabIndex = 24;
+            Flow3_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
+            Flow3_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow3_Modification_CB.Click += Flow3_Modification_CB_Click;
             //
             // label23
@@ -1017,13 +1023,15 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow4_Modification_CB
             // 
-            Flow4_Modification_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow4_Modification_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow4_Modification_CB.FormattingEnabled = true;
             Flow4_Modification_CB.Location = new Point(168, 126);
             Flow4_Modification_CB.Margin = new Padding(4);
             Flow4_Modification_CB.Name = "Flow4_Modification_CB";
             Flow4_Modification_CB.Size = new Size(155, 23);
             Flow4_Modification_CB.TabIndex = 24;
+            Flow4_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
+            Flow4_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow4_Modification_CB.Click += Flow4_Modification_CB_Click;
             //
             // label31
@@ -1239,13 +1247,15 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow5_Modification_CB
             // 
-            Flow5_Modification_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow5_Modification_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow5_Modification_CB.FormattingEnabled = true;
             Flow5_Modification_CB.Location = new Point(168, 126);
             Flow5_Modification_CB.Margin = new Padding(4);
             Flow5_Modification_CB.Name = "Flow5_Modification_CB";
             Flow5_Modification_CB.Size = new Size(155, 23);
             Flow5_Modification_CB.TabIndex = 24;
+            Flow5_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
+            Flow5_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow5_Modification_CB.Click += Flow5_Modification_CB_Click;
             //
             // label39
@@ -1461,13 +1471,15 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow6_Modification_CB
             // 
-            Flow6_Modification_CB.DropDownStyle = ComboBoxStyle.DropDownList;
+            Flow6_Modification_CB.DropDownStyle = ComboBoxStyle.DropDown;
             Flow6_Modification_CB.FormattingEnabled = true;
             Flow6_Modification_CB.Location = new Point(168, 126);
             Flow6_Modification_CB.Margin = new Padding(4);
             Flow6_Modification_CB.Name = "Flow6_Modification_CB";
             Flow6_Modification_CB.Size = new Size(155, 23);
             Flow6_Modification_CB.TabIndex = 24;
+            Flow6_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
+            Flow6_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow6_Modification_CB.Click += Flow6_Modification_CB_Click;
             // 
             // label47
