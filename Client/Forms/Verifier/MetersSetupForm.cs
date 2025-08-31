@@ -11,17 +11,20 @@ namespace PoverkaWinForms.Forms.Verifier
     {
         private readonly MeterTypeService _meterTypeService;
         private readonly ManufacturerService _manufacturerService;
+        private readonly ModificationService _modificationService;
         private bool _updating;
         private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
 
         public MetersSetupForm(
             MeterTypeService meterTypeService,
-            ManufacturerService manufacturerService
+            ManufacturerService manufacturerService,
+            ModificationService modificationService
         )
         {
             _meterTypeService = meterTypeService;
             _manufacturerService = manufacturerService;
+            _modificationService = modificationService;
             InitializeComponent();
         }
 
@@ -41,17 +44,30 @@ namespace PoverkaWinForms.Forms.Verifier
             await _manufacturerService.GetAllAsync(string.Empty, 10);
         }
 
-        private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private static void ResetModifications(ComboBox modificationCombo)
+        {
+            modificationCombo.DataSource = null;
+            modificationCombo.Items.Clear();
+            modificationCombo.SelectedIndex = -1;
+        }
 
-        private void Flow2_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow1_Modification_CB);
 
-        private void Flow3_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow2_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow2_Modification_CB);
 
-        private void Flow4_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow3_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow3_Modification_CB);
 
-        private void Flow5_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow4_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow4_Modification_CB);
 
-        private void Flow6_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow5_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow5_Modification_CB);
+
+        private void Flow6_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow6_Modification_CB);
 
         private async Task PopulateMeterTypesAsync(
             ComboBox combo,
@@ -114,6 +130,31 @@ namespace PoverkaWinForms.Forms.Verifier
                 Cursor.Show();
             }
 
+            _updating = false;
+        }
+
+        private async Task PopulateModificationsAsync(
+            ComboBox modificationCombo,
+            ComboBox meterTypeCombo,
+            ComboBox manufacturerCombo,
+            DateTimePicker datePicker
+        )
+        {
+            if (meterTypeCombo.SelectedValue is not int meterTypeId)
+                return;
+            if (manufacturerCombo.SelectedValue is not int manufacturerId)
+                return;
+
+            var manufactureDate = DateOnly.FromDateTime(datePicker.Value);
+            var items = await _modificationService.GetAllAsync(meterTypeId, manufacturerId, manufactureDate);
+
+            _updating = true;
+            modificationCombo.BeginUpdate();
+            modificationCombo.DataSource = items;
+            modificationCombo.DisplayMember = nameof(ModificationDto.Name);
+            modificationCombo.ValueMember = nameof(ModificationDto.Id);
+            modificationCombo.SelectedIndex = -1;
+            modificationCombo.EndUpdate();
             _updating = false;
         }
 
@@ -272,23 +313,95 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow1_Modification_CB);
 
-        private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow2_Modification_CB);
 
-        private void Flow3_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow3_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow3_Modification_CB);
 
-        private void Flow4_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow4_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow4_Modification_CB);
 
-        private void Flow5_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow5_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow5_Modification_CB);
 
-        private void Flow6_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow6_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow6_Modification_CB);
+
+        private void Flow1_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow1_Modification_CB);
+
+        private void Flow2_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow2_Modification_CB);
+
+        private void Flow3_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow3_Modification_CB);
+
+        private void Flow4_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow4_Modification_CB);
+
+        private void Flow5_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow5_Modification_CB);
+
+        private void Flow6_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow6_Modification_CB);
 
         private void label14_Click(object sender, EventArgs e) { }
 
         private void Next_B_Click(object sender, EventArgs e) { }
 
         private void button1_Click(object sender, EventArgs e) { }
+
+        private async void Flow1_Modification_CB_Click(object? sender, EventArgs e) =>
+            await PopulateModificationsAsync(
+                Flow1_Modification_CB,
+                Flow1_Name_SI_CB,
+                Flow1_GosReestr_CB,
+                Flow1_ManufactureDate_DTP
+            );
+
+        private async void Flow2_Modification_CB_Click(object? sender, EventArgs e) =>
+            await PopulateModificationsAsync(
+                Flow2_Modification_CB,
+                Flow2_Name_SI_CB,
+                Flow2_GosReestr_CB,
+                Flow2_ManufactureDate_DTP
+            );
+
+        private async void Flow3_Modification_CB_Click(object? sender, EventArgs e) =>
+            await PopulateModificationsAsync(
+                Flow3_Modification_CB,
+                Flow3_Name_SI_CB,
+                Flow3_GosReestr_CB,
+                Flow3_ManufactureDate_DTP
+            );
+
+        private async void Flow4_Modification_CB_Click(object? sender, EventArgs e) =>
+            await PopulateModificationsAsync(
+                Flow4_Modification_CB,
+                Flow4_Name_SI_CB,
+                Flow4_GosReestr_CB,
+                Flow4_ManufactureDate_DTP
+            );
+
+        private async void Flow5_Modification_CB_Click(object? sender, EventArgs e) =>
+            await PopulateModificationsAsync(
+                Flow5_Modification_CB,
+                Flow5_Name_SI_CB,
+                Flow5_GosReestr_CB,
+                Flow5_ManufactureDate_DTP
+            );
+
+        private async void Flow6_Modification_CB_Click(object? sender, EventArgs e) =>
+            await PopulateModificationsAsync(
+                Flow6_Modification_CB,
+                Flow6_Name_SI_CB,
+                Flow6_GosReestr_CB,
+                Flow6_ManufactureDate_DTP
+            );
 
         private async void Rashodomer1_CB_CheckedChanged(object? sender, EventArgs e)
         {

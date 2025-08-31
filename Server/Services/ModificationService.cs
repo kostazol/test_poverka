@@ -15,6 +15,29 @@ public class ModificationService
 
     public Task<List<Modification>> GetAllAsync() => _db.Modifications.ToListAsync();
 
+    public Task<List<Modification>> GetFilteredAsync(int meterTypeId, int manufacturerId, DateOnly manufactureDate) =>
+        _db.Modifications
+            .Join(
+                _db.Registrations,
+                m => m.RegistrationId,
+                r => r.Id,
+                (m, r) => new { m, r }
+            )
+            .Join(
+                _db.MeterTypes,
+                mr => mr.r.MeterTypeId,
+                mt => mt.Id,
+                (mr, mt) => new { mr.m, mr.r, mt }
+            )
+            .Where(x =>
+                x.mt.Id == meterTypeId
+                && x.mt.ManufacturerId == manufacturerId
+                && x.r.RegistrationDate <= manufactureDate
+                && x.r.EndDate >= manufactureDate
+            )
+            .Select(x => x.m)
+            .ToListAsync();
+
     public Task<Modification?> GetAsync(int id) => _db.Modifications.FirstOrDefaultAsync(m => m.Id == id);
 
     public async Task<Modification> CreateAsync(
