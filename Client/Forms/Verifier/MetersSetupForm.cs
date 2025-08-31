@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace PoverkaWinForms.Forms.Verifier
         private bool _updating;
         private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
+        private readonly Dictionary<ComboBox, List<ModificationDto>> _modifications = new();
 
         public MetersSetupForm(
             MeterTypeService meterTypeService,
@@ -44,11 +46,12 @@ namespace PoverkaWinForms.Forms.Verifier
             await _manufacturerService.GetAllAsync(string.Empty, 10);
         }
 
-        private static void ResetModifications(ComboBox modificationCombo)
+        private void ResetModifications(ComboBox modificationCombo)
         {
             modificationCombo.DataSource = null;
             modificationCombo.Items.Clear();
             modificationCombo.SelectedIndex = -1;
+            _modifications.Remove(modificationCombo);
         }
 
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
@@ -147,6 +150,7 @@ namespace PoverkaWinForms.Forms.Verifier
 
             var manufactureDate = DateOnly.FromDateTime(datePicker.Value);
             var items = await _modificationService.GetAllAsync(meterTypeId, manufacturerId, manufactureDate);
+            _modifications[modificationCombo] = items;
 
             _updating = true;
             modificationCombo.BeginUpdate();
@@ -156,6 +160,54 @@ namespace PoverkaWinForms.Forms.Verifier
             modificationCombo.SelectedIndex = -1;
             modificationCombo.EndUpdate();
             _updating = false;
+        }
+
+        private void ModificationCB_TextUpdate(object? sender, EventArgs e)
+        {
+            if (_updating || sender is not ComboBox combo)
+                return;
+            if (!_modifications.TryGetValue(combo, out var all))
+                return;
+
+            var text = combo.Text;
+            var filtered = all
+                .Where(m => m.Name.Contains(text, StringComparison.CurrentCultureIgnoreCase))
+                .ToList();
+
+            _updating = true;
+            combo.BeginUpdate();
+            combo.DataSource = filtered;
+            combo.DisplayMember = nameof(ModificationDto.Name);
+            combo.ValueMember = nameof(ModificationDto.Id);
+            combo.SelectedIndex = -1;
+            combo.Text = text;
+            combo.SelectionStart = text.Length;
+            combo.SelectionLength = 0;
+            combo.EndUpdate();
+            combo.DroppedDown = true;
+            Cursor.Current = Cursors.Default;
+            Cursor.Show();
+            _updating = false;
+        }
+
+        private void ModificationCB_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (sender is not ComboBox combo)
+                return;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                if (combo.SelectedIndex >= 0)
+                {
+                    _updating = true;
+                    combo.Text = combo.GetItemText(combo.SelectedItem);
+                    combo.SelectionStart = combo.Text.Length;
+                    combo.SelectionLength = 0;
+                    _updating = false;
+                }
+                combo.DroppedDown = false;
+            }
         }
 
         private void MeterTypeCB_KeyDown(object? sender, KeyEventArgs e)
