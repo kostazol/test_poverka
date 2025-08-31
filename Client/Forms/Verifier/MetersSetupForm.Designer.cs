@@ -249,6 +249,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Modification_CB.Name = "Flow1_Modification_CB";
             Flow1_Modification_CB.Size = new Size(155, 23);
             Flow1_Modification_CB.TabIndex = 24;
+            Flow1_Modification_CB.Click += Flow1_Modification_CB_Click;
             //
             // label2
             //
@@ -577,7 +578,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Modification_CB.Name = "Flow2_Modification_CB";
             Flow2_Modification_CB.Size = new Size(155, 23);
             Flow2_Modification_CB.TabIndex = 24;
-            // 
+            Flow2_Modification_CB.Click += Flow2_Modification_CB_Click;
+            //
             // label16
             // 
             label16.AutoSize = true;
@@ -797,7 +799,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Modification_CB.Name = "Flow3_Modification_CB";
             Flow3_Modification_CB.Size = new Size(155, 23);
             Flow3_Modification_CB.TabIndex = 24;
-            // 
+            Flow3_Modification_CB.Click += Flow3_Modification_CB_Click;
+            //
             // label23
             // 
             label23.AutoSize = true;
@@ -1017,7 +1020,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Modification_CB.Name = "Flow4_Modification_CB";
             Flow4_Modification_CB.Size = new Size(155, 23);
             Flow4_Modification_CB.TabIndex = 24;
-            // 
+            Flow4_Modification_CB.Click += Flow4_Modification_CB_Click;
+            //
             // label31
             // 
             label31.AutoSize = true;
@@ -1237,7 +1241,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Modification_CB.Name = "Flow5_Modification_CB";
             Flow5_Modification_CB.Size = new Size(155, 23);
             Flow5_Modification_CB.TabIndex = 24;
-            // 
+            Flow5_Modification_CB.Click += Flow5_Modification_CB_Click;
+            //
             // label39
             // 
             label39.AutoSize = true;
@@ -1457,6 +1462,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Modification_CB.Name = "Flow6_Modification_CB";
             Flow6_Modification_CB.Size = new Size(155, 23);
             Flow6_Modification_CB.TabIndex = 24;
+            Flow6_Modification_CB.Click += Flow6_Modification_CB_Click;
             // 
             // label47
             // 

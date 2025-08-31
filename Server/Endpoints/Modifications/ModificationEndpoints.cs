@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PoverkaServer.Endpoints.Modifications.Requests;
 using PoverkaServer.Endpoints.Modifications.Responses;
+using PoverkaServer.Domain;
 using PoverkaServer.Services;
 using PoverkaServer.Validation;
 
@@ -24,9 +25,26 @@ public static class ModificationEndpoints
         return app;
     }
 
-    private static async Task<Ok<IEnumerable<ModificationResponse>>> GetModifications(ModificationService service)
+    private static async Task<Ok<IEnumerable<ModificationResponse>>> GetModifications(
+        int? meterTypeId,
+        int? manufacturerId,
+        DateOnly? manufactureDate,
+        ModificationService service)
     {
-        var items = await service.GetAllAsync();
+        IEnumerable<Modification> items;
+        if (meterTypeId.HasValue && manufacturerId.HasValue && manufactureDate.HasValue)
+        {
+            items = await service.GetFilteredAsync(
+                meterTypeId.Value,
+                manufacturerId.Value,
+                manufactureDate.Value
+            );
+        }
+        else
+        {
+            items = await service.GetAllAsync();
+        }
+
         return TypedResults.Ok(items.Select(m => new ModificationResponse(m)));
     }
 
