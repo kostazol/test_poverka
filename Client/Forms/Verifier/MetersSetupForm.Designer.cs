@@ -30,6 +30,8 @@ namespace PoverkaWinForms.Forms.Verifier
         {
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             Flow1_ZavodskNomer_TB = new TextBox();
+            Flow1_RegistrationNumber_TB = new TextBox();
+            Flow1_RegistrationNumber_L = new Label();
             label4 = new Label();
             label3 = new Label();
             Flow1_Modification_CB = new ComboBox();
@@ -55,6 +57,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Modification_CB = new ComboBox();
             label16 = new Label();
             Flow2_ZavodskNomer_TB = new TextBox();
+            Flow2_RegistrationNumber_TB = new TextBox();
+            Flow2_RegistrationNumber_L = new Label();
             label17 = new Label();
             Rashodomer3_GB = new GroupBox();
             label9 = new Label();
@@ -68,6 +72,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Modification_CB = new ComboBox();
             label23 = new Label();
             Flow3_ZavodskNomer_TB = new TextBox();
+            Flow3_RegistrationNumber_TB = new TextBox();
+            Flow3_RegistrationNumber_L = new Label();
             label24 = new Label();
             Rashodomer4_GB = new GroupBox();
             label25 = new Label();
@@ -81,6 +87,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Modification_CB = new ComboBox();
             label31 = new Label();
             Flow4_ZavodskNomer_TB = new TextBox();
+            Flow4_RegistrationNumber_TB = new TextBox();
+            Flow4_RegistrationNumber_L = new Label();
             label32 = new Label();
             Rashodomer5_GB = new GroupBox();
             label33 = new Label();
@@ -94,6 +102,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Modification_CB = new ComboBox();
             label39 = new Label();
             Flow5_ZavodskNomer_TB = new TextBox();
+            Flow5_RegistrationNumber_TB = new TextBox();
+            Flow5_RegistrationNumber_L = new Label();
             label40 = new Label();
             Rashodomer6_GB = new GroupBox();
             label41 = new Label();
@@ -107,6 +117,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Modification_CB = new ComboBox();
             label47 = new Label();
             Flow6_ZavodskNomer_TB = new TextBox();
+            Flow6_RegistrationNumber_TB = new TextBox();
+            Flow6_RegistrationNumber_L = new Label();
             label48 = new Label();
             Next_B = new Button();
             button1 = new Button();
@@ -120,20 +132,39 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Flow1_ZavodskNomer_TB
             //
-            Flow1_ZavodskNomer_TB.Location = new Point(168, 155);
+            Flow1_ZavodskNomer_TB.Location = new Point(168, 185);
             Flow1_ZavodskNomer_TB.Margin = new Padding(3, 2, 3, 2);
             Flow1_ZavodskNomer_TB.Name = "Flow1_ZavodskNomer_TB";
             Flow1_ZavodskNomer_TB.Size = new Size(155, 23);
-            Flow1_ZavodskNomer_TB.TabIndex = 27;
-            // 
+            Flow1_ZavodskNomer_TB.TabIndex = 28;
+            //
+            // Flow1_RegistrationNumber_TB
+            //
+            Flow1_RegistrationNumber_TB.Location = new Point(168, 155);
+            Flow1_RegistrationNumber_TB.Margin = new Padding(3, 2, 3, 2);
+            Flow1_RegistrationNumber_TB.Name = "Flow1_RegistrationNumber_TB";
+            Flow1_RegistrationNumber_TB.ReadOnly = true;
+            Flow1_RegistrationNumber_TB.Size = new Size(155, 23);
+            Flow1_RegistrationNumber_TB.TabIndex = 27;
+            //
+            // Flow1_RegistrationNumber_L
+            //
+            Flow1_RegistrationNumber_L.AutoSize = true;
+            Flow1_RegistrationNumber_L.Location = new Point(18, 160);
+            Flow1_RegistrationNumber_L.Margin = new Padding(4, 0, 4, 0);
+            Flow1_RegistrationNumber_L.Name = "Flow1_RegistrationNumber_L";
+            Flow1_RegistrationNumber_L.Size = new Size(134, 15);
+            Flow1_RegistrationNumber_L.TabIndex = 26;
+            Flow1_RegistrationNumber_L.Text = "Номер госреестра СИ";
+            //
             // label4
-            // 
+            //
             label4.AutoSize = true;
-            label4.Location = new Point(18, 160);
+            label4.Location = new Point(18, 190);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(104, 15);
-            label4.TabIndex = 26;
+            label4.TabIndex = 29;
             label4.Text = "Заводской номер";
             // 
             // label3
@@ -158,6 +189,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow1_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow1_Modification_CB.Click += Flow1_Modification_CB_Click;
+            Flow1_Modification_CB.SelectedIndexChanged += Flow1_Modification_CB_SelectedIndexChanged;
             //
             // label2
             //
@@ -254,6 +286,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer1_GB.Controls.Add(label2);
             Rashodomer1_GB.Controls.Add(Flow1_Modification_CB);
             Rashodomer1_GB.Controls.Add(label3);
+            Rashodomer1_GB.Controls.Add(Flow1_RegistrationNumber_TB);
+            Rashodomer1_GB.Controls.Add(Flow1_RegistrationNumber_L);
             Rashodomer1_GB.Controls.Add(Flow1_ZavodskNomer_TB);
             Rashodomer1_GB.Controls.Add(label4);
             Rashodomer1_GB.Location = new Point(60, 56);
@@ -301,6 +335,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer2_GB.Controls.Add(label14);
             Rashodomer2_GB.Controls.Add(Flow2_Modification_CB);
             Rashodomer2_GB.Controls.Add(label16);
+            Rashodomer2_GB.Controls.Add(Flow2_RegistrationNumber_TB);
+            Rashodomer2_GB.Controls.Add(Flow2_RegistrationNumber_L);
             Rashodomer2_GB.Controls.Add(Flow2_ZavodskNomer_TB);
             Rashodomer2_GB.Controls.Add(label17);
             Rashodomer2_GB.Location = new Point(60, 346);
@@ -421,6 +457,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow2_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow2_Modification_CB.Click += Flow2_Modification_CB_Click;
+            Flow2_Modification_CB.SelectedIndexChanged += Flow2_Modification_CB_SelectedIndexChanged;
             //
             // label16
             // 
@@ -433,21 +470,40 @@ namespace PoverkaWinForms.Forms.Verifier
             label16.Text = "Модификация";
             // 
             // Flow2_ZavodskNomer_TB
-            // 
-            Flow2_ZavodskNomer_TB.Location = new Point(168, 155);
+            //
+            Flow2_ZavodskNomer_TB.Location = new Point(168, 185);
             Flow2_ZavodskNomer_TB.Margin = new Padding(3, 2, 3, 2);
             Flow2_ZavodskNomer_TB.Name = "Flow2_ZavodskNomer_TB";
             Flow2_ZavodskNomer_TB.Size = new Size(155, 23);
-            Flow2_ZavodskNomer_TB.TabIndex = 27;
-            // 
+            Flow2_ZavodskNomer_TB.TabIndex = 28;
+            //
+            // Flow2_RegistrationNumber_TB
+            //
+            Flow2_RegistrationNumber_TB.Location = new Point(168, 155);
+            Flow2_RegistrationNumber_TB.Margin = new Padding(3, 2, 3, 2);
+            Flow2_RegistrationNumber_TB.Name = "Flow2_RegistrationNumber_TB";
+            Flow2_RegistrationNumber_TB.ReadOnly = true;
+            Flow2_RegistrationNumber_TB.Size = new Size(155, 23);
+            Flow2_RegistrationNumber_TB.TabIndex = 27;
+            //
+            // Flow2_RegistrationNumber_L
+            //
+            Flow2_RegistrationNumber_L.AutoSize = true;
+            Flow2_RegistrationNumber_L.Location = new Point(18, 160);
+            Flow2_RegistrationNumber_L.Margin = new Padding(4, 0, 4, 0);
+            Flow2_RegistrationNumber_L.Name = "Flow2_RegistrationNumber_L";
+            Flow2_RegistrationNumber_L.Size = new Size(134, 15);
+            Flow2_RegistrationNumber_L.TabIndex = 26;
+            Flow2_RegistrationNumber_L.Text = "Номер госреестра СИ";
+            //
             // label17
-            // 
+            //
             label17.AutoSize = true;
-            label17.Location = new Point(18, 160);
+            label17.Location = new Point(18, 190);
             label17.Margin = new Padding(4, 0, 4, 0);
             label17.Name = "label17";
             label17.Size = new Size(104, 15);
-            label17.TabIndex = 26;
+            label17.TabIndex = 29;
             label17.Text = "Заводской номер";
             // 
             // Rashodomer3_GB
@@ -462,6 +518,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer3_GB.Controls.Add(label21);
             Rashodomer3_GB.Controls.Add(Flow3_Modification_CB);
             Rashodomer3_GB.Controls.Add(label23);
+            Rashodomer3_GB.Controls.Add(Flow3_RegistrationNumber_TB);
+            Rashodomer3_GB.Controls.Add(Flow3_RegistrationNumber_L);
             Rashodomer3_GB.Controls.Add(Flow3_ZavodskNomer_TB);
             Rashodomer3_GB.Controls.Add(label24);
             Rashodomer3_GB.Location = new Point(409, 56);
@@ -581,6 +639,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow3_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow3_Modification_CB.Click += Flow3_Modification_CB_Click;
+            Flow3_Modification_CB.SelectedIndexChanged += Flow3_Modification_CB_SelectedIndexChanged;
             //
             // label23
             // 
@@ -593,21 +652,40 @@ namespace PoverkaWinForms.Forms.Verifier
             label23.Text = "Модификация";
             // 
             // Flow3_ZavodskNomer_TB
-            // 
-            Flow3_ZavodskNomer_TB.Location = new Point(168, 155);
+            //
+            Flow3_ZavodskNomer_TB.Location = new Point(168, 185);
             Flow3_ZavodskNomer_TB.Margin = new Padding(3, 2, 3, 2);
             Flow3_ZavodskNomer_TB.Name = "Flow3_ZavodskNomer_TB";
             Flow3_ZavodskNomer_TB.Size = new Size(155, 23);
-            Flow3_ZavodskNomer_TB.TabIndex = 27;
-            // 
+            Flow3_ZavodskNomer_TB.TabIndex = 28;
+            //
+            // Flow3_RegistrationNumber_TB
+            //
+            Flow3_RegistrationNumber_TB.Location = new Point(168, 155);
+            Flow3_RegistrationNumber_TB.Margin = new Padding(3, 2, 3, 2);
+            Flow3_RegistrationNumber_TB.Name = "Flow3_RegistrationNumber_TB";
+            Flow3_RegistrationNumber_TB.ReadOnly = true;
+            Flow3_RegistrationNumber_TB.Size = new Size(155, 23);
+            Flow3_RegistrationNumber_TB.TabIndex = 27;
+            //
+            // Flow3_RegistrationNumber_L
+            //
+            Flow3_RegistrationNumber_L.AutoSize = true;
+            Flow3_RegistrationNumber_L.Location = new Point(18, 160);
+            Flow3_RegistrationNumber_L.Margin = new Padding(4, 0, 4, 0);
+            Flow3_RegistrationNumber_L.Name = "Flow3_RegistrationNumber_L";
+            Flow3_RegistrationNumber_L.Size = new Size(134, 15);
+            Flow3_RegistrationNumber_L.TabIndex = 26;
+            Flow3_RegistrationNumber_L.Text = "Номер госреестра СИ";
+            //
             // label24
-            // 
+            //
             label24.AutoSize = true;
-            label24.Location = new Point(18, 160);
+            label24.Location = new Point(18, 190);
             label24.Margin = new Padding(4, 0, 4, 0);
             label24.Name = "label24";
             label24.Size = new Size(104, 15);
-            label24.TabIndex = 26;
+            label24.TabIndex = 29;
             label24.Text = "Заводской номер";
             // 
             // Rashodomer4_GB
@@ -622,6 +700,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer4_GB.Controls.Add(label29);
             Rashodomer4_GB.Controls.Add(Flow4_Modification_CB);
             Rashodomer4_GB.Controls.Add(label31);
+            Rashodomer4_GB.Controls.Add(Flow4_RegistrationNumber_TB);
+            Rashodomer4_GB.Controls.Add(Flow4_RegistrationNumber_L);
             Rashodomer4_GB.Controls.Add(Flow4_ZavodskNomer_TB);
             Rashodomer4_GB.Controls.Add(label32);
             Rashodomer4_GB.Location = new Point(409, 346);
@@ -741,6 +821,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow4_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow4_Modification_CB.Click += Flow4_Modification_CB_Click;
+            Flow4_Modification_CB.SelectedIndexChanged += Flow4_Modification_CB_SelectedIndexChanged;
             //
             // label31
             // 
@@ -753,21 +834,40 @@ namespace PoverkaWinForms.Forms.Verifier
             label31.Text = "Модификация";
             // 
             // Flow4_ZavodskNomer_TB
-            // 
-            Flow4_ZavodskNomer_TB.Location = new Point(168, 155);
+            //
+            Flow4_ZavodskNomer_TB.Location = new Point(168, 185);
             Flow4_ZavodskNomer_TB.Margin = new Padding(3, 2, 3, 2);
             Flow4_ZavodskNomer_TB.Name = "Flow4_ZavodskNomer_TB";
             Flow4_ZavodskNomer_TB.Size = new Size(155, 23);
-            Flow4_ZavodskNomer_TB.TabIndex = 27;
-            // 
+            Flow4_ZavodskNomer_TB.TabIndex = 28;
+            //
+            // Flow4_RegistrationNumber_TB
+            //
+            Flow4_RegistrationNumber_TB.Location = new Point(168, 155);
+            Flow4_RegistrationNumber_TB.Margin = new Padding(3, 2, 3, 2);
+            Flow4_RegistrationNumber_TB.Name = "Flow4_RegistrationNumber_TB";
+            Flow4_RegistrationNumber_TB.ReadOnly = true;
+            Flow4_RegistrationNumber_TB.Size = new Size(155, 23);
+            Flow4_RegistrationNumber_TB.TabIndex = 27;
+            //
+            // Flow4_RegistrationNumber_L
+            //
+            Flow4_RegistrationNumber_L.AutoSize = true;
+            Flow4_RegistrationNumber_L.Location = new Point(18, 160);
+            Flow4_RegistrationNumber_L.Margin = new Padding(4, 0, 4, 0);
+            Flow4_RegistrationNumber_L.Name = "Flow4_RegistrationNumber_L";
+            Flow4_RegistrationNumber_L.Size = new Size(134, 15);
+            Flow4_RegistrationNumber_L.TabIndex = 26;
+            Flow4_RegistrationNumber_L.Text = "Номер госреестра СИ";
+            //
             // label32
-            // 
+            //
             label32.AutoSize = true;
-            label32.Location = new Point(18, 160);
+            label32.Location = new Point(18, 190);
             label32.Margin = new Padding(4, 0, 4, 0);
             label32.Name = "label32";
             label32.Size = new Size(104, 15);
-            label32.TabIndex = 26;
+            label32.TabIndex = 29;
             label32.Text = "Заводской номер";
             // 
             // Rashodomer5_GB
@@ -782,6 +882,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer5_GB.Controls.Add(label37);
             Rashodomer5_GB.Controls.Add(Flow5_Modification_CB);
             Rashodomer5_GB.Controls.Add(label39);
+            Rashodomer5_GB.Controls.Add(Flow5_RegistrationNumber_TB);
+            Rashodomer5_GB.Controls.Add(Flow5_RegistrationNumber_L);
             Rashodomer5_GB.Controls.Add(Flow5_ZavodskNomer_TB);
             Rashodomer5_GB.Controls.Add(label40);
             Rashodomer5_GB.Location = new Point(757, 56);
@@ -901,6 +1003,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow5_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow5_Modification_CB.Click += Flow5_Modification_CB_Click;
+            Flow5_Modification_CB.SelectedIndexChanged += Flow5_Modification_CB_SelectedIndexChanged;
             //
             // label39
             // 
@@ -913,21 +1016,40 @@ namespace PoverkaWinForms.Forms.Verifier
             label39.Text = "Модификация";
             // 
             // Flow5_ZavodskNomer_TB
-            // 
-            Flow5_ZavodskNomer_TB.Location = new Point(168, 155);
+            //
+            Flow5_ZavodskNomer_TB.Location = new Point(168, 185);
             Flow5_ZavodskNomer_TB.Margin = new Padding(3, 2, 3, 2);
             Flow5_ZavodskNomer_TB.Name = "Flow5_ZavodskNomer_TB";
             Flow5_ZavodskNomer_TB.Size = new Size(155, 23);
-            Flow5_ZavodskNomer_TB.TabIndex = 27;
-            // 
+            Flow5_ZavodskNomer_TB.TabIndex = 28;
+            //
+            // Flow5_RegistrationNumber_TB
+            //
+            Flow5_RegistrationNumber_TB.Location = new Point(168, 155);
+            Flow5_RegistrationNumber_TB.Margin = new Padding(3, 2, 3, 2);
+            Flow5_RegistrationNumber_TB.Name = "Flow5_RegistrationNumber_TB";
+            Flow5_RegistrationNumber_TB.ReadOnly = true;
+            Flow5_RegistrationNumber_TB.Size = new Size(155, 23);
+            Flow5_RegistrationNumber_TB.TabIndex = 27;
+            //
+            // Flow5_RegistrationNumber_L
+            //
+            Flow5_RegistrationNumber_L.AutoSize = true;
+            Flow5_RegistrationNumber_L.Location = new Point(18, 160);
+            Flow5_RegistrationNumber_L.Margin = new Padding(4, 0, 4, 0);
+            Flow5_RegistrationNumber_L.Name = "Flow5_RegistrationNumber_L";
+            Flow5_RegistrationNumber_L.Size = new Size(134, 15);
+            Flow5_RegistrationNumber_L.TabIndex = 26;
+            Flow5_RegistrationNumber_L.Text = "Номер госреестра СИ";
+            //
             // label40
-            // 
+            //
             label40.AutoSize = true;
-            label40.Location = new Point(18, 160);
+            label40.Location = new Point(18, 190);
             label40.Margin = new Padding(4, 0, 4, 0);
             label40.Name = "label40";
             label40.Size = new Size(104, 15);
-            label40.TabIndex = 26;
+            label40.TabIndex = 29;
             label40.Text = "Заводской номер";
             // 
             // Rashodomer6_GB
@@ -942,6 +1064,8 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer6_GB.Controls.Add(label45);
             Rashodomer6_GB.Controls.Add(Flow6_Modification_CB);
             Rashodomer6_GB.Controls.Add(label47);
+            Rashodomer6_GB.Controls.Add(Flow6_RegistrationNumber_TB);
+            Rashodomer6_GB.Controls.Add(Flow6_RegistrationNumber_L);
             Rashodomer6_GB.Controls.Add(Flow6_ZavodskNomer_TB);
             Rashodomer6_GB.Controls.Add(label48);
             Rashodomer6_GB.Location = new Point(757, 346);
@@ -1061,6 +1185,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow6_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow6_Modification_CB.Click += Flow6_Modification_CB_Click;
+            Flow6_Modification_CB.SelectedIndexChanged += Flow6_Modification_CB_SelectedIndexChanged;
             // 
             // label47
             // 
@@ -1073,21 +1198,40 @@ namespace PoverkaWinForms.Forms.Verifier
             label47.Text = "Модификация";
             // 
             // Flow6_ZavodskNomer_TB
-            // 
-            Flow6_ZavodskNomer_TB.Location = new Point(168, 155);
+            //
+            Flow6_ZavodskNomer_TB.Location = new Point(168, 185);
             Flow6_ZavodskNomer_TB.Margin = new Padding(3, 2, 3, 2);
             Flow6_ZavodskNomer_TB.Name = "Flow6_ZavodskNomer_TB";
             Flow6_ZavodskNomer_TB.Size = new Size(155, 23);
-            Flow6_ZavodskNomer_TB.TabIndex = 27;
-            // 
+            Flow6_ZavodskNomer_TB.TabIndex = 28;
+            //
+            // Flow6_RegistrationNumber_TB
+            //
+            Flow6_RegistrationNumber_TB.Location = new Point(168, 155);
+            Flow6_RegistrationNumber_TB.Margin = new Padding(3, 2, 3, 2);
+            Flow6_RegistrationNumber_TB.Name = "Flow6_RegistrationNumber_TB";
+            Flow6_RegistrationNumber_TB.ReadOnly = true;
+            Flow6_RegistrationNumber_TB.Size = new Size(155, 23);
+            Flow6_RegistrationNumber_TB.TabIndex = 27;
+            //
+            // Flow6_RegistrationNumber_L
+            //
+            Flow6_RegistrationNumber_L.AutoSize = true;
+            Flow6_RegistrationNumber_L.Location = new Point(18, 160);
+            Flow6_RegistrationNumber_L.Margin = new Padding(4, 0, 4, 0);
+            Flow6_RegistrationNumber_L.Name = "Flow6_RegistrationNumber_L";
+            Flow6_RegistrationNumber_L.Size = new Size(134, 15);
+            Flow6_RegistrationNumber_L.TabIndex = 26;
+            Flow6_RegistrationNumber_L.Text = "Номер госреестра СИ";
+            //
             // label48
-            // 
+            //
             label48.AutoSize = true;
-            label48.Location = new Point(18, 160);
+            label48.Location = new Point(18, 190);
             label48.Margin = new Padding(4, 0, 4, 0);
             label48.Name = "label48";
             label48.Size = new Size(104, 15);
-            label48.TabIndex = 26;
+            label48.TabIndex = 29;
             label48.Text = "Заводской номер";
             // 
             // Next_B
@@ -1163,6 +1307,8 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox Rashodomer1_GB;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox Flow1_RegistrationNumber_TB;
+        private System.Windows.Forms.Label Flow1_RegistrationNumber_L;
         private System.Windows.Forms.GroupBox Rashodomer2_GB;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox Flow2_GosReestr_CB;
@@ -1174,6 +1320,8 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.ComboBox Flow2_Modification_CB;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox Flow2_ZavodskNomer_TB;
+        private System.Windows.Forms.TextBox Flow2_RegistrationNumber_TB;
+        private System.Windows.Forms.Label Flow2_RegistrationNumber_L;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox Rashodomer3_GB;
         private System.Windows.Forms.Label label9;
@@ -1186,6 +1334,8 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.ComboBox Flow3_Modification_CB;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox Flow3_ZavodskNomer_TB;
+        private System.Windows.Forms.TextBox Flow3_RegistrationNumber_TB;
+        private System.Windows.Forms.Label Flow3_RegistrationNumber_L;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox Rashodomer4_GB;
         private System.Windows.Forms.Label label25;
@@ -1198,6 +1348,8 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.ComboBox Flow4_Modification_CB;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox Flow4_ZavodskNomer_TB;
+        private System.Windows.Forms.TextBox Flow4_RegistrationNumber_TB;
+        private System.Windows.Forms.Label Flow4_RegistrationNumber_L;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.GroupBox Rashodomer5_GB;
         private System.Windows.Forms.Label label33;
@@ -1210,6 +1362,8 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.ComboBox Flow5_Modification_CB;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox Flow5_ZavodskNomer_TB;
+        private System.Windows.Forms.TextBox Flow5_RegistrationNumber_TB;
+        private System.Windows.Forms.Label Flow5_RegistrationNumber_L;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.GroupBox Rashodomer6_GB;
         private System.Windows.Forms.Label label41;
@@ -1222,6 +1376,8 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.ComboBox Flow6_Modification_CB;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.TextBox Flow6_ZavodskNomer_TB;
+        private System.Windows.Forms.TextBox Flow6_RegistrationNumber_TB;
+        private System.Windows.Forms.Label Flow6_RegistrationNumber_L;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Button Next_B;
         private System.Windows.Forms.Button button1;

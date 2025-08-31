@@ -46,31 +46,32 @@ namespace PoverkaWinForms.Forms.Verifier
             await _manufacturerService.GetAllAsync(string.Empty, 10);
         }
 
-        private void ResetModifications(ComboBox modificationCombo)
+        private void ResetModifications(ComboBox modificationCombo, TextBox registrationNumberTextBox)
         {
             modificationCombo.DataSource = null;
             modificationCombo.Items.Clear();
             modificationCombo.SelectedIndex = -1;
             _modifications.Remove(modificationCombo);
+            registrationNumberTextBox.Text = string.Empty;
         }
 
         private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow1_Modification_CB);
+            ResetModifications(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
 
         private void Flow2_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow2_Modification_CB);
+            ResetModifications(Flow2_Modification_CB, Flow2_RegistrationNumber_TB);
 
         private void Flow3_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow3_Modification_CB);
+            ResetModifications(Flow3_Modification_CB, Flow3_RegistrationNumber_TB);
 
         private void Flow4_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow4_Modification_CB);
+            ResetModifications(Flow4_Modification_CB, Flow4_RegistrationNumber_TB);
 
         private void Flow5_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow5_Modification_CB);
+            ResetModifications(Flow5_Modification_CB, Flow5_RegistrationNumber_TB);
 
         private void Flow6_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow6_Modification_CB);
+            ResetModifications(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
 
         private async Task PopulateMeterTypesAsync(
             ComboBox combo,
@@ -140,7 +141,8 @@ namespace PoverkaWinForms.Forms.Verifier
             ComboBox modificationCombo,
             ComboBox meterTypeCombo,
             ComboBox manufacturerCombo,
-            DateTimePicker datePicker
+            DateTimePicker datePicker,
+            TextBox registrationNumberTextBox
         )
         {
             if (meterTypeCombo.SelectedValue is not int meterTypeId)
@@ -160,6 +162,23 @@ namespace PoverkaWinForms.Forms.Verifier
             modificationCombo.SelectedIndex = -1;
             modificationCombo.EndUpdate();
             _updating = false;
+
+            registrationNumberTextBox.Text = string.Empty;
+        }
+
+        private void UpdateRegistrationNumber(ComboBox modificationCombo, TextBox registrationNumberTextBox)
+        {
+            if (
+                modificationCombo.SelectedValue is not int modificationId
+                || !_modifications.TryGetValue(modificationCombo, out var items)
+            )
+            {
+                registrationNumberTextBox.Text = string.Empty;
+                return;
+            }
+
+            var modification = items.FirstOrDefault(m => m.Id == modificationId);
+            registrationNumberTextBox.Text = modification?.RegistrationNumber ?? string.Empty;
         }
 
         private void ModificationCB_TextUpdate(object? sender, EventArgs e)
@@ -366,40 +385,40 @@ namespace PoverkaWinForms.Forms.Verifier
         }
 
         private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow1_Modification_CB);
+            ResetModifications(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
 
         private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow2_Modification_CB);
+            ResetModifications(Flow2_Modification_CB, Flow2_RegistrationNumber_TB);
 
         private void Flow3_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow3_Modification_CB);
+            ResetModifications(Flow3_Modification_CB, Flow3_RegistrationNumber_TB);
 
         private void Flow4_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow4_Modification_CB);
+            ResetModifications(Flow4_Modification_CB, Flow4_RegistrationNumber_TB);
 
         private void Flow5_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow5_Modification_CB);
+            ResetModifications(Flow5_Modification_CB, Flow5_RegistrationNumber_TB);
 
         private void Flow6_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow6_Modification_CB);
+            ResetModifications(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
 
         private void Flow1_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow1_Modification_CB);
+            ResetModifications(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
 
         private void Flow2_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow2_Modification_CB);
+            ResetModifications(Flow2_Modification_CB, Flow2_RegistrationNumber_TB);
 
         private void Flow3_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow3_Modification_CB);
+            ResetModifications(Flow3_Modification_CB, Flow3_RegistrationNumber_TB);
 
         private void Flow4_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow4_Modification_CB);
+            ResetModifications(Flow4_Modification_CB, Flow4_RegistrationNumber_TB);
 
         private void Flow5_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow5_Modification_CB);
+            ResetModifications(Flow5_Modification_CB, Flow5_RegistrationNumber_TB);
 
         private void Flow6_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow6_Modification_CB);
+            ResetModifications(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
 
         private void label14_Click(object sender, EventArgs e) { }
 
@@ -412,7 +431,8 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow1_Modification_CB,
                 Flow1_Name_SI_CB,
                 Flow1_GosReestr_CB,
-                Flow1_ManufactureDate_DTP
+                Flow1_ManufactureDate_DTP,
+                Flow1_RegistrationNumber_TB
             );
 
         private async void Flow2_Modification_CB_Click(object? sender, EventArgs e) =>
@@ -420,7 +440,8 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow2_Modification_CB,
                 Flow2_Name_SI_CB,
                 Flow2_GosReestr_CB,
-                Flow2_ManufactureDate_DTP
+                Flow2_ManufactureDate_DTP,
+                Flow2_RegistrationNumber_TB
             );
 
         private async void Flow3_Modification_CB_Click(object? sender, EventArgs e) =>
@@ -428,7 +449,8 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow3_Modification_CB,
                 Flow3_Name_SI_CB,
                 Flow3_GosReestr_CB,
-                Flow3_ManufactureDate_DTP
+                Flow3_ManufactureDate_DTP,
+                Flow3_RegistrationNumber_TB
             );
 
         private async void Flow4_Modification_CB_Click(object? sender, EventArgs e) =>
@@ -436,7 +458,8 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow4_Modification_CB,
                 Flow4_Name_SI_CB,
                 Flow4_GosReestr_CB,
-                Flow4_ManufactureDate_DTP
+                Flow4_ManufactureDate_DTP,
+                Flow4_RegistrationNumber_TB
             );
 
         private async void Flow5_Modification_CB_Click(object? sender, EventArgs e) =>
@@ -444,7 +467,8 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow5_Modification_CB,
                 Flow5_Name_SI_CB,
                 Flow5_GosReestr_CB,
-                Flow5_ManufactureDate_DTP
+                Flow5_ManufactureDate_DTP,
+                Flow5_RegistrationNumber_TB
             );
 
         private async void Flow6_Modification_CB_Click(object? sender, EventArgs e) =>
@@ -452,8 +476,27 @@ namespace PoverkaWinForms.Forms.Verifier
                 Flow6_Modification_CB,
                 Flow6_Name_SI_CB,
                 Flow6_GosReestr_CB,
-                Flow6_ManufactureDate_DTP
+                Flow6_ManufactureDate_DTP,
+                Flow6_RegistrationNumber_TB
             );
+
+        private void Flow1_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            UpdateRegistrationNumber(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
+
+        private void Flow2_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            UpdateRegistrationNumber(Flow2_Modification_CB, Flow2_RegistrationNumber_TB);
+
+        private void Flow3_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            UpdateRegistrationNumber(Flow3_Modification_CB, Flow3_RegistrationNumber_TB);
+
+        private void Flow4_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            UpdateRegistrationNumber(Flow4_Modification_CB, Flow4_RegistrationNumber_TB);
+
+        private void Flow5_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            UpdateRegistrationNumber(Flow5_Modification_CB, Flow5_RegistrationNumber_TB);
+
+        private void Flow6_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            UpdateRegistrationNumber(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
 
         private async void Rashodomer1_CB_CheckedChanged(object? sender, EventArgs e)
         {

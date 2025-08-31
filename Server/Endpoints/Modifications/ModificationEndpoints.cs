@@ -31,7 +31,7 @@ public static class ModificationEndpoints
         DateOnly? manufactureDate,
         ModificationService service)
     {
-        IEnumerable<Modification> items;
+        IEnumerable<ModificationWithRegistrationNumber> items;
         if (meterTypeId.HasValue && manufacturerId.HasValue && manufactureDate.HasValue)
         {
             items = await service.GetFilteredAsync(
@@ -45,7 +45,7 @@ public static class ModificationEndpoints
             items = await service.GetAllAsync();
         }
 
-        return TypedResults.Ok(items.Select(m => new ModificationResponse(m)));
+        return TypedResults.Ok(items.Select(m => new ModificationResponse(m.Modification, m.RegistrationNumber)));
     }
 
     private static async Task<Results<Ok<ModificationResponse>, NotFound>> GetModification(int id, ModificationService service)
@@ -55,7 +55,7 @@ public static class ModificationEndpoints
         {
             return TypedResults.NotFound();
         }
-        return TypedResults.Ok(new ModificationResponse(item));
+        return TypedResults.Ok(new ModificationResponse(item.Modification, item.RegistrationNumber));
     }
 
     private static async Task<Ok<int>> CreateModification([Validate] ModificationRequest request, ModificationService service)

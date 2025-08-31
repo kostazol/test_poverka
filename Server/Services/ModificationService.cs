@@ -4,6 +4,8 @@ using PoverkaServer.Domain;
 
 namespace PoverkaServer.Services;
 
+public record ModificationWithRegistrationNumber(Modification Modification, string RegistrationNumber);
+
 public class ModificationService
 {
     private readonly ApplicationDbContext _db;
@@ -13,9 +15,17 @@ public class ModificationService
         _db = db;
     }
 
-    public Task<List<Modification>> GetAllAsync() => _db.Modifications.ToListAsync();
+    public Task<List<ModificationWithRegistrationNumber>> GetAllAsync() =>
+        _db.Modifications
+            .Join(
+                _db.Registrations,
+                m => m.RegistrationId,
+                r => r.Id,
+                (m, r) => new ModificationWithRegistrationNumber(m, r.RegistrationNumber)
+            )
+            .ToListAsync();
 
-    public Task<List<Modification>> GetFilteredAsync(int meterTypeId, int manufacturerId, DateOnly manufactureDate) =>
+    public Task<List<ModificationWithRegistrationNumber>> GetFilteredAsync(int meterTypeId, int manufacturerId, DateOnly manufactureDate) =>
         _db.Modifications
             .Join(
                 _db.Registrations,
@@ -35,10 +45,20 @@ public class ModificationService
                 && x.r.RegistrationDate <= manufactureDate
                 && x.r.EndDate >= manufactureDate
             )
-            .Select(x => x.m)
+            .Select(x => new ModificationWithRegistrationNumber(x.m, x.r.RegistrationNumber))
             .ToListAsync();
 
-    public Task<Modification?> GetAsync(int id) => _db.Modifications.FirstOrDefaultAsync(m => m.Id == id);
+    public Task<ModificationWithRegistrationNumber?> GetAsync(int id) =>
+        _db.Modifications
+            .Join(
+                _db.Registrations,
+                m => m.RegistrationId,
+                r => r.Id,
+                (m, r) => new { m, r }
+            )
+            .Where(x => x.m.Id == id)
+            .Select(x => new ModificationWithRegistrationNumber(x.m, x.r.RegistrationNumber))
+            .FirstOrDefaultAsync();
 
     public async Task<Modification> CreateAsync(
         string editorName,
