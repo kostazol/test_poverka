@@ -44,17 +44,30 @@ namespace PoverkaWinForms.Forms.Verifier
             await _manufacturerService.GetAllAsync(string.Empty, 10);
         }
 
-        private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private static void ResetModifications(ComboBox modificationCombo)
+        {
+            modificationCombo.DataSource = null;
+            modificationCombo.Items.Clear();
+            modificationCombo.SelectedIndex = -1;
+        }
 
-        private void Flow2_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow1_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow1_Modification_CB);
 
-        private void Flow3_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow2_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow2_Modification_CB);
 
-        private void Flow4_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow3_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow3_Modification_CB);
 
-        private void Flow5_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow4_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow4_Modification_CB);
 
-        private void Flow6_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow5_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow5_Modification_CB);
+
+        private void Flow6_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow6_Modification_CB);
 
         private async Task PopulateMeterTypesAsync(
             ComboBox combo,
@@ -300,17 +313,23 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void GosReestrCB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow1_Modification_CB);
 
-        private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow2_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow2_Modification_CB);
 
-        private void Flow3_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow3_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow3_Modification_CB);
 
-        private void Flow4_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow4_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow4_Modification_CB);
 
-        private void Flow5_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow5_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow5_Modification_CB);
 
-        private void Flow6_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Flow6_GosReestr_CB_SelectedIndexChanged(object sender, EventArgs e) =>
+            ResetModifications(Flow6_Modification_CB);
 
         private void label14_Click(object sender, EventArgs e) { }
 
