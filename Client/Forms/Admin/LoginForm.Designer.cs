@@ -52,19 +52,17 @@ partial class LoginForm
         pnlLoading.ColumnCount = 1;
         pnlLoading.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
         pnlLoading.Controls.Add(progressBar, 0, 0);
-        pnlLoading.Dock = DockStyle.Fill;
-        pnlLoading.Location = new Point(0, 0);
+        pnlLoading.Location = new Point(10, 100);
         pnlLoading.Name = "pnlLoading";
         pnlLoading.RowCount = 1;
         pnlLoading.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        pnlLoading.Size = new Size(224, 111);
+        pnlLoading.Size = new Size(200, 23);
         pnlLoading.TabIndex = 3;
         pnlLoading.Visible = false;
         //
         // progressBar
         //
-        progressBar.Anchor = AnchorStyles.None;
-        progressBar.Location = new Point(12, 46);
+        progressBar.Dock = DockStyle.Fill;
         progressBar.MarqueeAnimationSpeed = 30;
         progressBar.Name = "progressBar";
         progressBar.Size = new Size(200, 20);
@@ -75,11 +73,11 @@ partial class LoginForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(224, 111);
+        ClientSize = new Size(224, 151);
+        Controls.Add(pnlLoading);
         Controls.Add(btnLogin);
         Controls.Add(txtPass);
         Controls.Add(txtUser);
-        Controls.Add(pnlLoading);
         AcceptButton = btnLogin;
         Name = "LoginForm";
         Text = "Login";
