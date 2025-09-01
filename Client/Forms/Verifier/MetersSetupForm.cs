@@ -18,6 +18,7 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
         private readonly Dictionary<ComboBox, List<ModificationDto>> _modifications = new();
         private readonly Dictionary<ComboBox, string> _previousTexts = new();
+        private readonly Dictionary<ComboBox, (ComboBox meterType, ComboBox manufacturer, DateTimePicker datePicker, TextBox registrationNumber)> _modificationSources = new();
 
         public MetersSetupForm(
             MeterTypeService meterTypeService,
@@ -29,6 +30,13 @@ namespace PoverkaWinForms.Forms.Verifier
             _manufacturerService = manufacturerService;
             _modificationService = modificationService;
             InitializeComponent();
+
+            _modificationSources[Flow1_Modification_CB] = (Flow1_Name_SI_CB, Flow1_GosReestr_CB, Flow1_ManufactureDate_DTP, Flow1_RegistrationNumber_TB);
+            _modificationSources[Flow2_Modification_CB] = (Flow2_Name_SI_CB, Flow2_GosReestr_CB, Flow2_ManufactureDate_DTP, Flow2_RegistrationNumber_TB);
+            _modificationSources[Flow3_Modification_CB] = (Flow3_Name_SI_CB, Flow3_GosReestr_CB, Flow3_ManufactureDate_DTP, Flow3_RegistrationNumber_TB);
+            _modificationSources[Flow4_Modification_CB] = (Flow4_Name_SI_CB, Flow4_GosReestr_CB, Flow4_ManufactureDate_DTP, Flow4_RegistrationNumber_TB);
+            _modificationSources[Flow5_Modification_CB] = (Flow5_Name_SI_CB, Flow5_GosReestr_CB, Flow5_ManufactureDate_DTP, Flow5_RegistrationNumber_TB);
+            _modificationSources[Flow6_Modification_CB] = (Flow6_Name_SI_CB, Flow6_GosReestr_CB, Flow6_ManufactureDate_DTP, Flow6_RegistrationNumber_TB);
         }
 
         private async void MetersSetupForm_Load(object sender, EventArgs e)
@@ -463,76 +471,19 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void button1_Click(object sender, EventArgs e) { }
 
-        private async void Flow1_Modification_CB_Click(object? sender, EventArgs e)
+        private async void ModificationCB_Click(object? sender, EventArgs e)
         {
-            StoreAndClearCombo(Flow1_Modification_CB);
-            await PopulateModificationsAsync(
-                Flow1_Modification_CB,
-                Flow1_Name_SI_CB,
-                Flow1_GosReestr_CB,
-                Flow1_ManufactureDate_DTP,
-                Flow1_RegistrationNumber_TB
-            );
-        }
-
-        private async void Flow2_Modification_CB_Click(object? sender, EventArgs e)
-        {
-            StoreAndClearCombo(Flow2_Modification_CB);
-            await PopulateModificationsAsync(
-                Flow2_Modification_CB,
-                Flow2_Name_SI_CB,
-                Flow2_GosReestr_CB,
-                Flow2_ManufactureDate_DTP,
-                Flow2_RegistrationNumber_TB
-            );
-        }
-
-        private async void Flow3_Modification_CB_Click(object? sender, EventArgs e)
-        {
-            StoreAndClearCombo(Flow3_Modification_CB);
-            await PopulateModificationsAsync(
-                Flow3_Modification_CB,
-                Flow3_Name_SI_CB,
-                Flow3_GosReestr_CB,
-                Flow3_ManufactureDate_DTP,
-                Flow3_RegistrationNumber_TB
-            );
-        }
-
-        private async void Flow4_Modification_CB_Click(object? sender, EventArgs e)
-        {
-            StoreAndClearCombo(Flow4_Modification_CB);
-            await PopulateModificationsAsync(
-                Flow4_Modification_CB,
-                Flow4_Name_SI_CB,
-                Flow4_GosReestr_CB,
-                Flow4_ManufactureDate_DTP,
-                Flow4_RegistrationNumber_TB
-            );
-        }
-
-        private async void Flow5_Modification_CB_Click(object? sender, EventArgs e)
-        {
-            StoreAndClearCombo(Flow5_Modification_CB);
-            await PopulateModificationsAsync(
-                Flow5_Modification_CB,
-                Flow5_Name_SI_CB,
-                Flow5_GosReestr_CB,
-                Flow5_ManufactureDate_DTP,
-                Flow5_RegistrationNumber_TB
-            );
-        }
-
-        private async void Flow6_Modification_CB_Click(object? sender, EventArgs e)
-        {
-            StoreAndClearCombo(Flow6_Modification_CB);
-            await PopulateModificationsAsync(
-                Flow6_Modification_CB,
-                Flow6_Name_SI_CB,
-                Flow6_GosReestr_CB,
-                Flow6_ManufactureDate_DTP,
-                Flow6_RegistrationNumber_TB
-            );
+            if (sender is ComboBox combo && _modificationSources.TryGetValue(combo, out var sources))
+            {
+                StoreAndClearCombo(combo);
+                await PopulateModificationsAsync(
+                    combo,
+                    sources.meterType,
+                    sources.manufacturer,
+                    sources.datePicker,
+                    sources.registrationNumber
+                );
+            }
         }
 
         private void Flow1_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>

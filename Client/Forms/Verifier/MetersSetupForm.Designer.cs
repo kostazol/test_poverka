@@ -188,7 +188,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Modification_CB.TabIndex = 24;
             Flow1_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow1_Modification_CB.KeyDown += ModificationCB_KeyDown;
-            Flow1_Modification_CB.Click += Flow1_Modification_CB_Click;
+            Flow1_Modification_CB.Click += ModificationCB_Click;
             Flow1_Modification_CB.DropDownClosed += RestoreComboText;
             Flow1_Modification_CB.SelectedIndexChanged += Flow1_Modification_CB_SelectedIndexChanged;
             //
@@ -461,7 +461,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Modification_CB.TabIndex = 24;
             Flow2_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow2_Modification_CB.KeyDown += ModificationCB_KeyDown;
-            Flow2_Modification_CB.Click += Flow2_Modification_CB_Click;
+            Flow2_Modification_CB.Click += ModificationCB_Click;
             Flow2_Modification_CB.DropDownClosed += RestoreComboText;
             Flow2_Modification_CB.SelectedIndexChanged += Flow2_Modification_CB_SelectedIndexChanged;
             //
@@ -646,7 +646,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Modification_CB.TabIndex = 24;
             Flow3_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow3_Modification_CB.KeyDown += ModificationCB_KeyDown;
-            Flow3_Modification_CB.Click += Flow3_Modification_CB_Click;
+            Flow3_Modification_CB.Click += ModificationCB_Click;
             Flow3_Modification_CB.DropDownClosed += RestoreComboText;
             Flow3_Modification_CB.SelectedIndexChanged += Flow3_Modification_CB_SelectedIndexChanged;
             //
@@ -831,7 +831,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Modification_CB.TabIndex = 24;
             Flow4_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow4_Modification_CB.KeyDown += ModificationCB_KeyDown;
-            Flow4_Modification_CB.Click += Flow4_Modification_CB_Click;
+            Flow4_Modification_CB.Click += ModificationCB_Click;
             Flow4_Modification_CB.DropDownClosed += RestoreComboText;
             Flow4_Modification_CB.SelectedIndexChanged += Flow4_Modification_CB_SelectedIndexChanged;
             //
@@ -1016,7 +1016,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Modification_CB.TabIndex = 24;
             Flow5_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow5_Modification_CB.KeyDown += ModificationCB_KeyDown;
-            Flow5_Modification_CB.Click += Flow5_Modification_CB_Click;
+            Flow5_Modification_CB.Click += ModificationCB_Click;
             Flow5_Modification_CB.DropDownClosed += RestoreComboText;
             Flow5_Modification_CB.SelectedIndexChanged += Flow5_Modification_CB_SelectedIndexChanged;
             //
@@ -1201,7 +1201,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Modification_CB.TabIndex = 24;
             Flow6_Modification_CB.TextUpdate += ModificationCB_TextUpdate;
             Flow6_Modification_CB.KeyDown += ModificationCB_KeyDown;
-            Flow6_Modification_CB.Click += Flow6_Modification_CB_Click;
+            Flow6_Modification_CB.Click += ModificationCB_Click;
             Flow6_Modification_CB.DropDownClosed += RestoreComboText;
             Flow6_Modification_CB.SelectedIndexChanged += Flow6_Modification_CB_SelectedIndexChanged;
             // 
