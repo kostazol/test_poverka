@@ -324,7 +324,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer1_CB.TabIndex = 36;
             Rashodomer1_CB.Text = "Установлен";
             Rashodomer1_CB.UseVisualStyleBackColor = true;
-            Rashodomer1_CB.CheckedChanged += Rashodomer1_CB_CheckedChanged;
+            Rashodomer1_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
             // Rashodomer2_GB
             // 
@@ -373,7 +373,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer2_CB.TabIndex = 45;
             Rashodomer2_CB.Text = "Установлен";
             Rashodomer2_CB.UseVisualStyleBackColor = true;
-            Rashodomer2_CB.CheckedChanged += Rashodomer2_CB_CheckedChanged;
+            Rashodomer2_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
             // Flow2_GosReestr_CB
             //
@@ -559,7 +559,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer3_CB.TabIndex = 46;
             Rashodomer3_CB.Text = "Установлен";
             Rashodomer3_CB.UseVisualStyleBackColor = true;
-            Rashodomer3_CB.CheckedChanged += Rashodomer3_CB_CheckedChanged;
+            Rashodomer3_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
             // Flow3_GosReestr_CB
             //
@@ -744,7 +744,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer4_CB.TabIndex = 47;
             Rashodomer4_CB.Text = "Установлен";
             Rashodomer4_CB.UseVisualStyleBackColor = true;
-            Rashodomer4_CB.CheckedChanged += Rashodomer4_CB_CheckedChanged;
+            Rashodomer4_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
             // Flow4_GosReestr_CB
             //
@@ -929,7 +929,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer5_CB.TabIndex = 48;
             Rashodomer5_CB.Text = "Установлен";
             Rashodomer5_CB.UseVisualStyleBackColor = true;
-            Rashodomer5_CB.CheckedChanged += Rashodomer5_CB_CheckedChanged;
+            Rashodomer5_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
             // Flow5_GosReestr_CB
             //
@@ -1114,7 +1114,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer6_CB.TabIndex = 49;
             Rashodomer6_CB.Text = "Установлен";
             Rashodomer6_CB.UseVisualStyleBackColor = true;
-            Rashodomer6_CB.CheckedChanged += Rashodomer6_CB_CheckedChanged;
+            Rashodomer6_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
             // Flow6_GosReestr_CB
             //

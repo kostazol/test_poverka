@@ -36,12 +36,12 @@ namespace PoverkaWinForms.Forms.Verifier
             if (DesignMode)
                 return;
 
-            Rashodomer1_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer2_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer3_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer4_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer5_CB_CheckedChanged(null, EventArgs.Empty);
-            Rashodomer6_CB_CheckedChanged(null, EventArgs.Empty);
+            RashodomerCB_CheckedChanged(Rashodomer1_CB, EventArgs.Empty);
+            RashodomerCB_CheckedChanged(Rashodomer2_CB, EventArgs.Empty);
+            RashodomerCB_CheckedChanged(Rashodomer3_CB, EventArgs.Empty);
+            RashodomerCB_CheckedChanged(Rashodomer4_CB, EventArgs.Empty);
+            RashodomerCB_CheckedChanged(Rashodomer5_CB, EventArgs.Empty);
+            RashodomerCB_CheckedChanged(Rashodomer6_CB, EventArgs.Empty);
 
             await _meterTypeService.GetAllAsync(string.Empty, 10);
             await _manufacturerService.GetAllAsync(string.Empty, 10);
@@ -518,64 +518,38 @@ namespace PoverkaWinForms.Forms.Verifier
         private void Flow6_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
             UpdateRegistrationNumber(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
 
-        private async void Rashodomer1_CB_CheckedChanged(object? sender, EventArgs e)
+        private async void RashodomerCB_CheckedChanged(object? sender, EventArgs e)
         {
-            ToggleGroupControls(Rashodomer1_GB, Rashodomer1_CB, label8);
-            if (Rashodomer1_CB.Checked)
-            {
-                await PopulateMeterTypesAsync(Flow1_Name_SI_CB, string.Empty, 10);
-                await PopulateManufacturersAsync(Flow1_GosReestr_CB, string.Empty, 10);
-            }
-        }
+            if (sender is not CheckBox checkBox)
+                return;
 
-        private async void Rashodomer2_CB_CheckedChanged(object? sender, EventArgs e)
-        {
-            ToggleGroupControls(Rashodomer2_GB, Rashodomer2_CB, label10);
-            if (Rashodomer2_CB.Checked)
-            {
-                await PopulateMeterTypesAsync(Flow2_Name_SI_CB, string.Empty, 10);
-                await PopulateManufacturersAsync(Flow2_GosReestr_CB, string.Empty, 10);
-            }
-        }
+            string flow = new string(checkBox.Name.Where(char.IsDigit).ToArray());
+            if (string.IsNullOrEmpty(flow))
+                return;
 
-        private async void Rashodomer3_CB_CheckedChanged(object? sender, EventArgs e)
-        {
-            ToggleGroupControls(Rashodomer3_GB, Rashodomer3_CB, label9);
-            if (Rashodomer3_CB.Checked)
-            {
-                await PopulateMeterTypesAsync(Flow3_Name_SI_CB, string.Empty, 10);
-                await PopulateManufacturersAsync(Flow3_GosReestr_CB, string.Empty, 10);
-            }
-        }
+            GroupBox? groupBox = Controls.Find($"Rashodomer{flow}_GB", true)
+                .FirstOrDefault() as GroupBox;
+            if (groupBox is null)
+                return;
 
-        private async void Rashodomer6_CB_CheckedChanged(object? sender, EventArgs e)
-        {
-            ToggleGroupControls(Rashodomer6_GB, Rashodomer6_CB, label41);
-            if (Rashodomer6_CB.Checked)
-            {
-                await PopulateMeterTypesAsync(Flow6_Name_SI_CB, string.Empty, 10);
-                await PopulateManufacturersAsync(Flow6_GosReestr_CB, string.Empty, 10);
-            }
-        }
+            Label? caption = groupBox.Controls.OfType<Label>().FirstOrDefault();
+            if (caption is null)
+                return;
 
-        private async void Rashodomer5_CB_CheckedChanged(object? sender, EventArgs e)
-        {
-            ToggleGroupControls(Rashodomer5_GB, Rashodomer5_CB, label33);
-            if (Rashodomer5_CB.Checked)
-            {
-                await PopulateMeterTypesAsync(Flow5_Name_SI_CB, string.Empty, 10);
-                await PopulateManufacturersAsync(Flow5_GosReestr_CB, string.Empty, 10);
-            }
-        }
+            ToggleGroupControls(groupBox, checkBox, caption);
 
-        private async void Rashodomer4_CB_CheckedChanged(object? sender, EventArgs e)
-        {
-            ToggleGroupControls(Rashodomer4_GB, Rashodomer4_CB, label25);
-            if (Rashodomer4_CB.Checked)
-            {
-                await PopulateMeterTypesAsync(Flow4_Name_SI_CB, string.Empty, 10);
-                await PopulateManufacturersAsync(Flow4_GosReestr_CB, string.Empty, 10);
-            }
+            if (!checkBox.Checked)
+                return;
+
+            ComboBox? meterType = Controls.Find($"Flow{flow}_Name_SI_CB", true)
+                .FirstOrDefault() as ComboBox;
+            if (meterType is not null)
+                await PopulateMeterTypesAsync(meterType, string.Empty, 10);
+
+            ComboBox? manufacturer = Controls.Find($"Flow{flow}_GosReestr_CB", true)
+                .FirstOrDefault() as ComboBox;
+            if (manufacturer is not null)
+                await PopulateManufacturersAsync(manufacturer, string.Empty, 10);
         }
 
         private static void ToggleGroupControls(GroupBox groupBox, CheckBox checkBox, Label caption)
