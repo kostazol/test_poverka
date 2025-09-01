@@ -213,22 +213,20 @@ namespace PoverkaWinForms.Forms.Admin
             this.pnlLoading.ColumnCount = 1;
             this.pnlLoading.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlLoading.Controls.Add(this.progressBar, 0, 0);
-            this.pnlLoading.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLoading.Location = new System.Drawing.Point(0, 0);
+            this.pnlLoading.Location = new System.Drawing.Point(150, 388);
             this.pnlLoading.Name = "pnlLoading";
             this.pnlLoading.RowCount = 1;
             this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Size = new System.Drawing.Size(600, 394);
-            this.pnlLoading.TabIndex = 15;
+            this.pnlLoading.Size = new System.Drawing.Size(250, 23);
+            this.pnlLoading.TabIndex = 17;
             this.pnlLoading.Visible = false;
             //
             // progressBar
             //
-            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(200, 187);
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.MarqueeAnimationSpeed = 30;
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(200, 20);
+            this.progressBar.Size = new System.Drawing.Size(250, 20);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar.TabIndex = 0;
             //
@@ -236,7 +234,7 @@ namespace PoverkaWinForms.Forms.Admin
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 394);
+            this.ClientSize = new System.Drawing.Size(600, 440);
             this.Controls.Add(this.pnlLoading);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreate);
