@@ -114,16 +114,16 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        internal async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
+        private async Task PopulateComboAsync<T>(ComboBox combo, string search, int? limit, bool dropDown, Func<string, int?, Task<List<T>>> fetch, string displayMember, string valueMember)
         {
-            var items = await _meterTypeService.GetAllAsync(search, limit);
+            var items = await fetch(search, limit);
 
             var selStart = combo.SelectionStart;
             _updating = true;
             combo.BeginUpdate();
             combo.DataSource = items;
-            combo.DisplayMember = nameof(MeterTypeDto.Type);
-            combo.ValueMember = nameof(MeterTypeDto.Id);
+            combo.DisplayMember = displayMember;
+            combo.ValueMember = valueMember;
             combo.SelectedIndex = -1;
             combo.Text = search;
             combo.SelectionStart = selStart;
@@ -141,32 +141,9 @@ namespace PoverkaWinForms.Forms.Verifier
             _updating = false;
         }
 
-        internal async Task PopulateManufacturersAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
-        {
-            var items = await _manufacturerService.GetAllAsync(search, limit);
+        internal Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false) => PopulateComboAsync(combo, search, limit, dropDown, _meterTypeService.GetAllAsync, nameof(MeterTypeDto.Type), nameof(MeterTypeDto.Id));
 
-            var selStart = combo.SelectionStart;
-            _updating = true;
-            combo.BeginUpdate();
-            combo.DataSource = items;
-            combo.DisplayMember = nameof(ManufacturerDto.Name);
-            combo.ValueMember = nameof(ManufacturerDto.Id);
-            combo.SelectedIndex = -1;
-            combo.Text = search;
-            combo.SelectionStart = selStart;
-            combo.SelectionLength = 0;
-            combo.EndUpdate();
-            _typedTexts[combo] = search;
-
-            if (dropDown)
-            {
-                combo.DroppedDown = true;
-                Cursor.Current = Cursors.Default;
-                Cursor.Show();
-            }
-
-            _updating = false;
-        }
+        internal Task PopulateManufacturersAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false) => PopulateComboAsync(combo, search, limit, dropDown, _manufacturerService.GetAllAsync, nameof(ManufacturerDto.Name), nameof(ManufacturerDto.Id));
 
         private async Task PopulateModificationsAsync(ComboBox modificationCombo, ComboBox meterTypeCombo, ComboBox manufacturerCombo, DateTimePicker datePicker, TextBox registrationNumberTextBox)
         {
