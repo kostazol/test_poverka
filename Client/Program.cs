@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PoverkaWinForms.Forms.Admin;
+using PoverkaWinForms.Forms.Common;
 using PoverkaWinForms.Forms.Verifier;
 using PoverkaWinForms.Http;
 using PoverkaWinForms.Services;

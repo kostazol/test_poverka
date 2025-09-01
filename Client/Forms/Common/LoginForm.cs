@@ -2,9 +2,10 @@ using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using PoverkaWinForms.Services;
 using PoverkaWinForms.Forms;
+using PoverkaWinForms.Forms.Admin;
 using PoverkaWinForms.Forms.Verifier;
 
-namespace PoverkaWinForms.Forms.Admin;
+namespace PoverkaWinForms.Forms.Common;
 
 public partial class LoginForm : Form
 {

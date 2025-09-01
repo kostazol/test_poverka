@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using PoverkaWinForms.Services;
 using PoverkaWinForms.Forms;
 
-namespace PoverkaWinForms.Forms.Admin;
+namespace PoverkaWinForms.Forms.Common;
 
 public partial class ChangePasswordForm : Form
 {
