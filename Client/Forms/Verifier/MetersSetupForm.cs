@@ -20,65 +20,7 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, string> _previousTexts = new();
         private readonly List<FlowMeterSection> _flowMeters = new();
 
-        private sealed class FlowMeterSection
-        {
-            public FlowMeterSection(
-                CheckBox checkBox,
-                GroupBox groupBox,
-                Label caption,
-                ComboBox meterType,
-                ComboBox manufacturer,
-                ComboBox modification,
-                DateTimePicker manufactureDate,
-                TextBox registrationNumber
-            )
-            {
-                CheckBox = checkBox;
-                GroupBox = groupBox;
-                Caption = caption;
-                MeterType = meterType;
-                Manufacturer = manufacturer;
-                Modification = modification;
-                ManufactureDate = manufactureDate;
-                RegistrationNumber = registrationNumber;
-            }
-
-            public CheckBox CheckBox { get; }
-            public GroupBox GroupBox { get; }
-            public Label Caption { get; }
-            public ComboBox MeterType { get; }
-            public ComboBox Manufacturer { get; }
-            public ComboBox Modification { get; }
-            public DateTimePicker ManufactureDate { get; }
-            public TextBox RegistrationNumber { get; }
-
-            public void ToggleControls()
-            {
-                bool visible = CheckBox.Checked;
-                foreach (Control control in GroupBox.Controls)
-                {
-                    if (control != Caption && control != CheckBox)
-                        control.Visible = visible;
-                }
-            }
-
-            public async Task OnCheckedChangedAsync(MetersSetupForm form)
-            {
-                ToggleControls();
-
-                if (!CheckBox.Checked)
-                    return;
-
-                await form.PopulateMeterTypesAsync(MeterType, string.Empty, 10);
-                await form.PopulateManufacturersAsync(Manufacturer, string.Empty, 10);
-            }
-        }
-
-        public MetersSetupForm(
-            MeterTypeService meterTypeService,
-            ManufacturerService manufacturerService,
-            ModificationService modificationService
-        )
+        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService, ModificationService modificationService)
         {
             _meterTypeService = meterTypeService;
             _manufacturerService = manufacturerService;
@@ -89,78 +31,12 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void InitializeFlowMeters()
         {
-            _flowMeters.Add(
-                new FlowMeterSection(
-                    Rashodomer1_CB,
-                    Rashodomer1_GB,
-                    label8,
-                    Flow1_Name_SI_CB,
-                    Flow1_GosReestr_CB,
-                    Flow1_Modification_CB,
-                    Flow1_ManufactureDate_DTP,
-                    Flow1_RegistrationNumber_TB
-                )
-            );
-            _flowMeters.Add(
-                new FlowMeterSection(
-                    Rashodomer2_CB,
-                    Rashodomer2_GB,
-                    label10,
-                    Flow2_Name_SI_CB,
-                    Flow2_GosReestr_CB,
-                    Flow2_Modification_CB,
-                    Flow2_ManufactureDate_DTP,
-                    Flow2_RegistrationNumber_TB
-                )
-            );
-            _flowMeters.Add(
-                new FlowMeterSection(
-                    Rashodomer3_CB,
-                    Rashodomer3_GB,
-                    label9,
-                    Flow3_Name_SI_CB,
-                    Flow3_GosReestr_CB,
-                    Flow3_Modification_CB,
-                    Flow3_ManufactureDate_DTP,
-                    Flow3_RegistrationNumber_TB
-                )
-            );
-            _flowMeters.Add(
-                new FlowMeterSection(
-                    Rashodomer4_CB,
-                    Rashodomer4_GB,
-                    label25,
-                    Flow4_Name_SI_CB,
-                    Flow4_GosReestr_CB,
-                    Flow4_Modification_CB,
-                    Flow4_ManufactureDate_DTP,
-                    Flow4_RegistrationNumber_TB
-                )
-            );
-            _flowMeters.Add(
-                new FlowMeterSection(
-                    Rashodomer5_CB,
-                    Rashodomer5_GB,
-                    label33,
-                    Flow5_Name_SI_CB,
-                    Flow5_GosReestr_CB,
-                    Flow5_Modification_CB,
-                    Flow5_ManufactureDate_DTP,
-                    Flow5_RegistrationNumber_TB
-                )
-            );
-            _flowMeters.Add(
-                new FlowMeterSection(
-                    Rashodomer6_CB,
-                    Rashodomer6_GB,
-                    label41,
-                    Flow6_Name_SI_CB,
-                    Flow6_GosReestr_CB,
-                    Flow6_Modification_CB,
-                    Flow6_ManufactureDate_DTP,
-                    Flow6_RegistrationNumber_TB
-                )
-            );
+            _flowMeters.Add(new FlowMeterSection(Rashodomer1_CB, Rashodomer1_GB, label8, Flow1_Name_SI_CB, Flow1_GosReestr_CB, Flow1_Modification_CB, Flow1_ManufactureDate_DTP, Flow1_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Rashodomer2_CB, Rashodomer2_GB, label10, Flow2_Name_SI_CB, Flow2_GosReestr_CB, Flow2_Modification_CB, Flow2_ManufactureDate_DTP, Flow2_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Rashodomer3_CB, Rashodomer3_GB, label9, Flow3_Name_SI_CB, Flow3_GosReestr_CB, Flow3_Modification_CB, Flow3_ManufactureDate_DTP, Flow3_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Rashodomer4_CB, Rashodomer4_GB, label25, Flow4_Name_SI_CB, Flow4_GosReestr_CB, Flow4_Modification_CB, Flow4_ManufactureDate_DTP, Flow4_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Rashodomer5_CB, Rashodomer5_GB, label33, Flow5_Name_SI_CB, Flow5_GosReestr_CB, Flow5_Modification_CB, Flow5_ManufactureDate_DTP, Flow5_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Rashodomer6_CB, Rashodomer6_GB, label41, Flow6_Name_SI_CB, Flow6_GosReestr_CB, Flow6_Modification_CB, Flow6_ManufactureDate_DTP, Flow6_RegistrationNumber_TB));
 
             foreach (var meter in _flowMeters)
             {
@@ -248,12 +124,7 @@ namespace PoverkaWinForms.Forms.Verifier
         private void Flow6_Name_SI_CB_SelectedIndexChanged(object sender, EventArgs e) =>
             ResetModifications(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
 
-        private async Task PopulateMeterTypesAsync(
-            ComboBox combo,
-            string search,
-            int? limit = null,
-            bool dropDown = false
-        )
+        internal async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
         {
             var items = await _meterTypeService.GetAllAsync(search, limit);
 
@@ -280,12 +151,7 @@ namespace PoverkaWinForms.Forms.Verifier
             _updating = false;
         }
 
-        private async Task PopulateManufacturersAsync(
-            ComboBox combo,
-            string search,
-            int? limit = null,
-            bool dropDown = false
-        )
+        internal async Task PopulateManufacturersAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
         {
             var items = await _manufacturerService.GetAllAsync(search, limit);
 
@@ -312,13 +178,7 @@ namespace PoverkaWinForms.Forms.Verifier
             _updating = false;
         }
 
-        private async Task PopulateModificationsAsync(
-            ComboBox modificationCombo,
-            ComboBox meterTypeCombo,
-            ComboBox manufacturerCombo,
-            DateTimePicker datePicker,
-            TextBox registrationNumberTextBox
-        )
+        private async Task PopulateModificationsAsync(ComboBox modificationCombo, ComboBox meterTypeCombo, ComboBox manufacturerCombo, DateTimePicker datePicker, TextBox registrationNumberTextBox)
         {
             if (meterTypeCombo.SelectedValue is not int meterTypeId)
                 return;
@@ -450,16 +310,14 @@ namespace PoverkaWinForms.Forms.Verifier
                     newIndex = 0;
                 combo.SelectedIndex = newIndex;
 
-                BeginInvoke(
-                    new Action(() =>
-                    {
-                        _updating = true;
-                        combo.Text = text;
-                        combo.SelectionStart = text.Length;
-                        combo.SelectionLength = 0;
-                        _updating = false;
-                    })
-                );
+                BeginInvoke(new Action(() =>
+                {
+                    _updating = true;
+                    combo.Text = text;
+                    combo.SelectionStart = text.Length;
+                    combo.SelectionLength = 0;
+                    _updating = false;
+                }));
             }
         }
 
@@ -502,12 +360,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (sender is ComboBox combo)
             {
                 StoreAndClearCombo(combo);
-                await PopulateMeterTypesAsync(
-                    combo,
-                    combo.Text,
-                    combo.Text.Length > 0 ? 20 : 10,
-                    dropDown: true
-                );
+                await PopulateMeterTypesAsync(combo, combo.Text, combo.Text.Length > 0 ? 20 : 10, dropDown: true);
             }
         }
 
@@ -550,12 +403,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (sender is ComboBox combo)
             {
                 StoreAndClearCombo(combo);
-                await PopulateManufacturersAsync(
-                    combo,
-                    combo.Text,
-                    combo.Text.Length > 0 ? 20 : 10,
-                    dropDown: true
-                );
+                await PopulateManufacturersAsync(combo, combo.Text, combo.Text.Length > 0 ? 20 : 10, dropDown: true);
             }
         }
 
@@ -606,13 +454,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
             {
                 StoreAndClearCombo(combo);
-                await PopulateModificationsAsync(
-                    combo,
-                    meter.MeterType,
-                    meter.Manufacturer,
-                    meter.ManufactureDate,
-                    meter.RegistrationNumber
-                );
+                await PopulateModificationsAsync(combo, meter.MeterType, meter.Manufacturer, meter.ManufactureDate, meter.RegistrationNumber);
             }
         }
 
