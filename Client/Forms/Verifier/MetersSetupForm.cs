@@ -31,15 +31,15 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void InitializeFlowMeters()
         {
-            _flowMeters.Add(new FlowMeterSection(Flow1_CB, Flow1_GB, Flow1_Title_Label, Flow1_Type_CB, Flow1_Manufacturer_CB, Flow1_Modification_CB, Flow1_ManufactureDate_DTP, Flow1_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Flow2_CB, Flow2_GB, Flow2_Title_Label, Flow2_Type_CB, Flow2_Manufacturer_CB, Flow2_Modification_CB, Flow2_ManufactureDate_DTP, Flow2_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Flow3_CB, Flow3_GB, Flow3_Title_Label, Flow3_Type_CB, Flow3_Manufacturer_CB, Flow3_Modification_CB, Flow3_ManufactureDate_DTP, Flow3_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Flow4_CB, Flow4_GB, Flow4_Title_Label, Flow4_Type_CB, Flow4_Manufacturer_CB, Flow4_Modification_CB, Flow4_ManufactureDate_DTP, Flow4_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Flow5_CB, Flow5_GB, Flow5_Title_Label, Flow5_Type_CB, Flow5_Manufacturer_CB, Flow5_Modification_CB, Flow5_ManufactureDate_DTP, Flow5_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Flow6_CB, Flow6_GB, Flow6_Title_Label, Flow6_Type_CB, Flow6_Manufacturer_CB, Flow6_Modification_CB, Flow6_ManufactureDate_DTP, Flow6_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Flow1CheckBox, Flow1GroupBox, Flow1TitleLabel, Flow1TypeComboBox, Flow1ManufacturerComboBox, Flow1ModificationComboBox, Flow1ManufactureDateDateTimePicker, Flow1RegistrationNumberTextBox));
+            _flowMeters.Add(new FlowMeterSection(Flow2CheckBox, Flow2GroupBox, Flow2TitleLabel, Flow2TypeComboBox, Flow2ManufacturerComboBox, Flow2ModificationComboBox, Flow2ManufactureDateDateTimePicker, Flow2RegistrationNumberTextBox));
+            _flowMeters.Add(new FlowMeterSection(Flow3CheckBox, Flow3GroupBox, Flow3TitleLabel, Flow3TypeComboBox, Flow3ManufacturerComboBox, Flow3ModificationComboBox, Flow3ManufactureDateDateTimePicker, Flow3RegistrationNumberTextBox));
+            _flowMeters.Add(new FlowMeterSection(Flow4CheckBox, Flow4GroupBox, Flow4TitleLabel, Flow4TypeComboBox, Flow4ManufacturerComboBox, Flow4ModificationComboBox, Flow4ManufactureDateDateTimePicker, Flow4RegistrationNumberTextBox));
+            _flowMeters.Add(new FlowMeterSection(Flow5CheckBox, Flow5GroupBox, Flow5TitleLabel, Flow5TypeComboBox, Flow5ManufacturerComboBox, Flow5ModificationComboBox, Flow5ManufactureDateDateTimePicker, Flow5RegistrationNumberTextBox));
+            _flowMeters.Add(new FlowMeterSection(Flow6CheckBox, Flow6GroupBox, Flow6TitleLabel, Flow6TypeComboBox, Flow6ManufacturerComboBox, Flow6ModificationComboBox, Flow6ManufactureDateDateTimePicker, Flow6RegistrationNumberTextBox));
         }
 
-        private async void MetersSetupForm_Load(object sender, EventArgs e)
+        private async void MetersSetupFormLoad(object sender, EventArgs e)
         {
             if (DesignMode)
             {
@@ -48,7 +48,7 @@ namespace PoverkaWinForms.Forms.Verifier
 
             foreach (var meter in _flowMeters)
             {
-                FlowCB_CheckedChanged(meter.CheckBox, EventArgs.Empty);
+                FlowCheckBoxCheckedChanged(meter.CheckBox, EventArgs.Empty);
             }
 
             await _meterTypeService.GetAllAsync(string.Empty, 10);
@@ -106,7 +106,7 @@ namespace PoverkaWinForms.Forms.Verifier
             _previousTexts.Remove(combo);
         }
 
-        private void TypeCB_SelectedIndexChanged(object? sender, EventArgs e)
+        private void TypeComboBoxSelectedIndexChanged(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
             {
@@ -208,7 +208,7 @@ namespace PoverkaWinForms.Forms.Verifier
             registrationNumberTextBox.Text = modification?.RegistrationNumber ?? string.Empty;
         }
 
-        private void ModificationCB_TextUpdate(object? sender, EventArgs e)
+        private void ModificationComboBoxTextUpdate(object? sender, EventArgs e)
         {
             if (_updating || sender is not ComboBox combo)
             {
@@ -241,7 +241,7 @@ namespace PoverkaWinForms.Forms.Verifier
             _updating = false;
         }
 
-        private void ModificationCB_KeyDown(object? sender, KeyEventArgs e)
+        private void ModificationComboBoxKeyDown(object? sender, KeyEventArgs e)
         {
             if (sender is not ComboBox combo)
             {
@@ -263,7 +263,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void MeterTypeCB_KeyDown(object? sender, KeyEventArgs e)
+        private void MeterTypeComboBoxKeyDown(object? sender, KeyEventArgs e)
         {
             if (sender is not ComboBox combo)
             {
@@ -332,7 +332,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private async void MeterTypeCB_KeyUp(object? sender, KeyEventArgs e)
+        private async void MeterTypeComboBoxKeyUp(object? sender, KeyEventArgs e)
         {
             if (_updating || sender is not ComboBox combo)
             {
@@ -368,7 +368,7 @@ namespace PoverkaWinForms.Forms.Verifier
             catch (TaskCanceledException) { }
         }
 
-        private async void MeterTypeCB_Click(object? sender, EventArgs e)
+        private async void MeterTypeComboBoxClick(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo)
             {
@@ -377,7 +377,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private async void ManufacturerCB_KeyUp(object? sender, KeyEventArgs e)
+        private async void ManufacturerComboBoxKeyUp(object? sender, KeyEventArgs e)
         {
             if (_updating || sender is not ComboBox combo)
             {
@@ -413,7 +413,7 @@ namespace PoverkaWinForms.Forms.Verifier
             catch (TaskCanceledException) { }
         }
 
-        private async void ManufacturerCB_Click(object? sender, EventArgs e)
+        private async void ManufacturerComboBoxClick(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo)
             {
@@ -422,7 +422,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void ManufacturerCB_SelectedIndexChanged(object? sender, EventArgs e)
+        private void ManufacturerComboBoxSelectedIndexChanged(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
             {
@@ -430,7 +430,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void ManufactureDateDTP_ValueChanged(object? sender, EventArgs e)
+        private void ManufactureDateDateTimePickerValueChanged(object? sender, EventArgs e)
         {
             if (sender is DateTimePicker picker && picker.Tag is FlowMeterSection meter)
             {
@@ -438,7 +438,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private async void ModificationCB_Click(object? sender, EventArgs e)
+        private async void ModificationComboBoxClick(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
             {
@@ -447,7 +447,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void ModificationCB_SelectedIndexChanged(object? sender, EventArgs e)
+        private void ModificationComboBoxSelectedIndexChanged(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
             {
@@ -455,7 +455,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private async void FlowCB_CheckedChanged(object? sender, EventArgs e)
+        private async void FlowCheckBoxCheckedChanged(object? sender, EventArgs e)
         {
             if (sender is CheckBox checkBox && checkBox.Tag is FlowMeterSection meter)
             {
