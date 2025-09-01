@@ -24,111 +24,103 @@ namespace PoverkaWinForms.Forms.Admin
 
         private void InitializeComponent()
         {
-            lblPassword = new Label();
-            txtPassword = new TextBox();
-            lblPasswordHint = new Label();
-            btnChange = new Button();
-            btnCancel = new Button();
-            pnlLoading = new TableLayoutPanel();
-            progressBar = new ProgressBar();
-            pnlLoading.SuspendLayout();
-            SuspendLayout();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblPasswordHint = new System.Windows.Forms.Label();
+            this.btnChange = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.pnlLoading = new System.Windows.Forms.TableLayoutPanel();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.pnlLoading.SuspendLayout();
+            this.SuspendLayout();
             // 
             // lblPassword
             // 
-            lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(10, 11);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(49, 15);
-            lblPassword.TabIndex = 0;
-            lblPassword.Text = "Пароль";
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(12, 15);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(63, 20);
+            this.lblPassword.TabIndex = 0;
+            this.lblPassword.Text = "Пароль";
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(131, 9);
-            txtPassword.Margin = new Padding(3, 2, 3, 2);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(219, 23);
-            txtPassword.TabIndex = 1;
-            txtPassword.UseSystemPasswordChar = true;
-            txtPassword.TextChanged += txtPassword_TextChanged;
+            this.txtPassword.Location = new System.Drawing.Point(150, 12);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(250, 27);
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // lblPasswordHint
             // 
-            lblPasswordHint.AutoSize = true;
-            lblPasswordHint.ForeColor = SystemColors.GrayText;
-            lblPasswordHint.Location = new Point(131, 32);
-            lblPasswordHint.Name = "lblPasswordHint";
-            lblPasswordHint.Size = new Size(253, 45);
-            lblPasswordHint.TabIndex = 2;
-            lblPasswordHint.Text = "Пароль должен быть не короче 6 символов,\nсодержать цифру и спецсимвол,\nстрочную и заглавную буквы.";
+            this.lblPasswordHint.AutoSize = true;
+            this.lblPasswordHint.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblPasswordHint.Location = new System.Drawing.Point(150, 42);
+            this.lblPasswordHint.Name = "lblPasswordHint";
+            this.lblPasswordHint.Size = new System.Drawing.Size(413, 60);
+            this.lblPasswordHint.TabIndex = 2;
+            this.lblPasswordHint.Text = "Пароль должен быть не короче 6 символов,\nсодержать цифру и спецсимвол,\nстрочную и заглавную буквы.";
             // 
             // btnChange
             // 
-            btnChange.Enabled = false;
-            btnChange.Location = new Point(131, 99);
-            btnChange.Margin = new Padding(3, 2, 3, 2);
-            btnChange.Name = "btnChange";
-            btnChange.Size = new Size(82, 22);
-            btnChange.TabIndex = 3;
-            btnChange.Text = "Изменить";
-            btnChange.UseVisualStyleBackColor = true;
-            btnChange.Click += btnChange_Click;
+            this.btnChange.Enabled = false;
+            this.btnChange.Location = new System.Drawing.Point(150, 132);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(94, 29);
+            this.btnChange.TabIndex = 3;
+            this.btnChange.Text = "Изменить";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(268, 99);
-            btnCancel.Margin = new Padding(3, 2, 3, 2);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(82, 22);
-            btnCancel.TabIndex = 4;
-            btnCancel.Text = "Отменить";
-            btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += btnCancel_Click;
+            this.btnCancel.Location = new System.Drawing.Point(306, 132);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(94, 29);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Отменить";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // pnlLoading
-            // 
-            pnlLoading.ColumnCount = 1;
-            pnlLoading.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            pnlLoading.Controls.Add(progressBar, 0, 0);
-            pnlLoading.Dock = DockStyle.Fill;
-            pnlLoading.Location = new Point(0, 0);
-            pnlLoading.Margin = new Padding(3, 2, 3, 2);
-            pnlLoading.Name = "pnlLoading";
-            pnlLoading.RowCount = 1;
-            pnlLoading.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            pnlLoading.Size = new Size(525, 142);
-            pnlLoading.TabIndex = 5;
-            pnlLoading.Visible = false;
-            // 
+            //
+            this.pnlLoading.ColumnCount = 1;
+            this.pnlLoading.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLoading.Controls.Add(this.progressBar, 0, 0);
+            this.pnlLoading.Location = new System.Drawing.Point(150, 167);
+            this.pnlLoading.Name = "pnlLoading";
+            this.pnlLoading.RowCount = 1;
+            this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLoading.Size = new System.Drawing.Size(250, 23);
+            this.pnlLoading.TabIndex = 5;
+            this.pnlLoading.Visible = false;
+            //
             // progressBar
-            // 
-            progressBar.Anchor = AnchorStyles.None;
-            progressBar.Location = new Point(175, 63);
-            progressBar.Margin = new Padding(3, 2, 3, 2);
-            progressBar.MarqueeAnimationSpeed = 30;
-            progressBar.Name = "progressBar";
-            progressBar.Size = new Size(175, 15);
-            progressBar.Style = ProgressBarStyle.Marquee;
-            progressBar.TabIndex = 0;
+            //
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar.MarqueeAnimationSpeed = 30;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(250, 20);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 0;
             // 
             // SetPasswordForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(525, 142);
-            Controls.Add(btnCancel);
-            Controls.Add(btnChange);
-            Controls.Add(lblPasswordHint);
-            Controls.Add(txtPassword);
-            Controls.Add(lblPassword);
-            Controls.Add(pnlLoading);
-            Margin = new Padding(3, 2, 3, 2);
-            Name = "SetPasswordForm";
-            Text = "Установить пароль";
-            pnlLoading.ResumeLayout(false);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(600, 210);
+            this.Controls.Add(this.pnlLoading);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnChange);
+            this.Controls.Add(this.lblPasswordHint);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.lblPassword);
+            this.Name = "SetPasswordForm";
+            this.Text = "Установить пароль";
+            this.pnlLoading.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion

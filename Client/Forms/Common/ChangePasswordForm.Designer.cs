@@ -28,157 +28,147 @@ namespace PoverkaWinForms.Forms.Common
 
         private void InitializeComponent()
         {
-            lblCurrentPassword = new Label();
-            txtCurrentPassword = new TextBox();
-            lblNewPassword = new Label();
-            txtNewPassword = new TextBox();
-            lblPasswordHint = new Label();
-            lblConfirmPassword = new Label();
-            txtConfirmPassword = new TextBox();
-            btnChange = new Button();
-            btnCancel = new Button();
-            pnlLoading = new TableLayoutPanel();
-            progressBar = new ProgressBar();
-            pnlLoading.SuspendLayout();
-            SuspendLayout();
+            this.lblCurrentPassword = new System.Windows.Forms.Label();
+            this.txtCurrentPassword = new System.Windows.Forms.TextBox();
+            this.lblNewPassword = new System.Windows.Forms.Label();
+            this.txtNewPassword = new System.Windows.Forms.TextBox();
+            this.lblPasswordHint = new System.Windows.Forms.Label();
+            this.lblConfirmPassword = new System.Windows.Forms.Label();
+            this.txtConfirmPassword = new System.Windows.Forms.TextBox();
+            this.btnChange = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.pnlLoading = new System.Windows.Forms.TableLayoutPanel();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.pnlLoading.SuspendLayout();
+            this.SuspendLayout();
             // 
             // lblCurrentPassword
             // 
-            lblCurrentPassword.AutoSize = true;
-            lblCurrentPassword.Location = new Point(10, 11);
-            lblCurrentPassword.Name = "lblCurrentPassword";
-            lblCurrentPassword.Size = new Size(100, 15);
-            lblCurrentPassword.TabIndex = 0;
-            lblCurrentPassword.Text = "Текущий пароль";
+            this.lblCurrentPassword.AutoSize = true;
+            this.lblCurrentPassword.Location = new System.Drawing.Point(12, 15);
+            this.lblCurrentPassword.Name = "lblCurrentPassword";
+            this.lblCurrentPassword.Size = new System.Drawing.Size(119, 20);
+            this.lblCurrentPassword.TabIndex = 0;
+            this.lblCurrentPassword.Text = "Текущий пароль";
             // 
             // txtCurrentPassword
             // 
-            txtCurrentPassword.Location = new Point(158, 9);
-            txtCurrentPassword.Margin = new Padding(3, 2, 3, 2);
-            txtCurrentPassword.Name = "txtCurrentPassword";
-            txtCurrentPassword.Size = new Size(219, 23);
-            txtCurrentPassword.TabIndex = 1;
-            txtCurrentPassword.UseSystemPasswordChar = true;
-            txtCurrentPassword.TextChanged += FieldsChanged;
+            this.txtCurrentPassword.Location = new System.Drawing.Point(180, 12);
+            this.txtCurrentPassword.Name = "txtCurrentPassword";
+            this.txtCurrentPassword.Size = new System.Drawing.Size(250, 27);
+            this.txtCurrentPassword.TabIndex = 1;
+            this.txtCurrentPassword.UseSystemPasswordChar = true;
+            this.txtCurrentPassword.TextChanged += new System.EventHandler(this.FieldsChanged);
             // 
             // lblNewPassword
             // 
-            lblNewPassword.AutoSize = true;
-            lblNewPassword.Location = new Point(10, 39);
-            lblNewPassword.Name = "lblNewPassword";
-            lblNewPassword.Size = new Size(88, 15);
-            lblNewPassword.TabIndex = 2;
-            lblNewPassword.Text = "Новый пароль";
+            this.lblNewPassword.AutoSize = true;
+            this.lblNewPassword.Location = new System.Drawing.Point(12, 52);
+            this.lblNewPassword.Name = "lblNewPassword";
+            this.lblNewPassword.Size = new System.Drawing.Size(106, 20);
+            this.lblNewPassword.TabIndex = 2;
+            this.lblNewPassword.Text = "Новый пароль";
             // 
             // txtNewPassword
             // 
-            txtNewPassword.Location = new Point(158, 37);
-            txtNewPassword.Margin = new Padding(3, 2, 3, 2);
-            txtNewPassword.Name = "txtNewPassword";
-            txtNewPassword.Size = new Size(219, 23);
-            txtNewPassword.TabIndex = 3;
-            txtNewPassword.UseSystemPasswordChar = true;
-            txtNewPassword.TextChanged += FieldsChanged;
+            this.txtNewPassword.Location = new System.Drawing.Point(180, 49);
+            this.txtNewPassword.Name = "txtNewPassword";
+            this.txtNewPassword.Size = new System.Drawing.Size(250, 27);
+            this.txtNewPassword.TabIndex = 3;
+            this.txtNewPassword.UseSystemPasswordChar = true;
+            this.txtNewPassword.TextChanged += new System.EventHandler(this.FieldsChanged);
             // 
             // lblPasswordHint
             // 
-            lblPasswordHint.AutoSize = true;
-            lblPasswordHint.ForeColor = SystemColors.GrayText;
-            lblPasswordHint.Location = new Point(158, 59);
-            lblPasswordHint.Name = "lblPasswordHint";
-            lblPasswordHint.Size = new Size(253, 45);
-            lblPasswordHint.TabIndex = 4;
-            lblPasswordHint.Text = "Пароль должен быть не короче 6 символов,\nсодержать цифру и спецсимвол,\nстрочную и заглавную буквы.";
+            this.lblPasswordHint.AutoSize = true;
+            this.lblPasswordHint.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblPasswordHint.Location = new System.Drawing.Point(180, 79);
+            this.lblPasswordHint.Name = "lblPasswordHint";
+            this.lblPasswordHint.Size = new System.Drawing.Size(413, 60);
+            this.lblPasswordHint.TabIndex = 4;
+            this.lblPasswordHint.Text = "Пароль должен быть не короче 6 символов,\nсодержать цифру и спецсимвол,\nстрочную и заглавную буквы.";
             // 
             // lblConfirmPassword
             // 
-            lblConfirmPassword.AutoSize = true;
-            lblConfirmPassword.Location = new Point(10, 129);
-            lblConfirmPassword.Name = "lblConfirmPassword";
-            lblConfirmPassword.Size = new Size(109, 15);
-            lblConfirmPassword.TabIndex = 5;
-            lblConfirmPassword.Text = "Повторите пароль";
+            this.lblConfirmPassword.AutoSize = true;
+            this.lblConfirmPassword.Location = new System.Drawing.Point(12, 172);
+            this.lblConfirmPassword.Name = "lblConfirmPassword";
+            this.lblConfirmPassword.Size = new System.Drawing.Size(142, 20);
+            this.lblConfirmPassword.TabIndex = 5;
+            this.lblConfirmPassword.Text = "Повторите пароль";
             // 
             // txtConfirmPassword
             // 
-            txtConfirmPassword.Location = new Point(158, 127);
-            txtConfirmPassword.Margin = new Padding(3, 2, 3, 2);
-            txtConfirmPassword.Name = "txtConfirmPassword";
-            txtConfirmPassword.Size = new Size(219, 23);
-            txtConfirmPassword.TabIndex = 6;
-            txtConfirmPassword.UseSystemPasswordChar = true;
-            txtConfirmPassword.TextChanged += FieldsChanged;
+            this.txtConfirmPassword.Location = new System.Drawing.Point(180, 169);
+            this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.Size = new System.Drawing.Size(250, 27);
+            this.txtConfirmPassword.TabIndex = 6;
+            this.txtConfirmPassword.UseSystemPasswordChar = true;
+            this.txtConfirmPassword.TextChanged += new System.EventHandler(this.FieldsChanged);
             // 
             // btnChange
             // 
-            btnChange.Enabled = false;
-            btnChange.Location = new Point(158, 159);
-            btnChange.Margin = new Padding(3, 2, 3, 2);
-            btnChange.Name = "btnChange";
-            btnChange.Size = new Size(82, 22);
-            btnChange.TabIndex = 7;
-            btnChange.Text = "Изменить";
-            btnChange.UseVisualStyleBackColor = true;
-            btnChange.Click += btnChange_Click;
+            this.btnChange.Enabled = false;
+            this.btnChange.Location = new System.Drawing.Point(180, 212);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(94, 29);
+            this.btnChange.TabIndex = 7;
+            this.btnChange.Text = "Изменить";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(329, 159);
-            btnCancel.Margin = new Padding(3, 2, 3, 2);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(82, 22);
-            btnCancel.TabIndex = 8;
-            btnCancel.Text = "Отменить";
-            btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += btnCancel_Click;
+            this.btnCancel.Location = new System.Drawing.Point(376, 212);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(94, 29);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Отменить";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // pnlLoading
-            // 
-            pnlLoading.ColumnCount = 1;
-            pnlLoading.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            pnlLoading.Controls.Add(progressBar, 0, 0);
-            pnlLoading.Dock = DockStyle.Fill;
-            pnlLoading.Location = new Point(0, 0);
-            pnlLoading.Margin = new Padding(3, 2, 3, 2);
-            pnlLoading.Name = "pnlLoading";
-            pnlLoading.RowCount = 1;
-            pnlLoading.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            pnlLoading.Size = new Size(560, 190);
-            pnlLoading.TabIndex = 9;
-            pnlLoading.Visible = false;
-            // 
+            //
+            this.pnlLoading.ColumnCount = 1;
+            this.pnlLoading.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLoading.Controls.Add(this.progressBar, 0, 0);
+            this.pnlLoading.Location = new System.Drawing.Point(180, 247);
+            this.pnlLoading.Name = "pnlLoading";
+            this.pnlLoading.RowCount = 1;
+            this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLoading.Size = new System.Drawing.Size(290, 23);
+            this.pnlLoading.TabIndex = 9;
+            this.pnlLoading.Visible = false;
+            //
             // progressBar
-            // 
-            progressBar.Anchor = AnchorStyles.None;
-            progressBar.Location = new Point(192, 87);
-            progressBar.Margin = new Padding(3, 2, 3, 2);
-            progressBar.MarqueeAnimationSpeed = 30;
-            progressBar.Name = "progressBar";
-            progressBar.Size = new Size(175, 15);
-            progressBar.Style = ProgressBarStyle.Marquee;
-            progressBar.TabIndex = 0;
+            //
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar.MarqueeAnimationSpeed = 30;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(290, 20);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 0;
             // 
             // ChangePasswordForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 190);
-            Controls.Add(btnCancel);
-            Controls.Add(btnChange);
-            Controls.Add(txtConfirmPassword);
-            Controls.Add(lblConfirmPassword);
-            Controls.Add(lblPasswordHint);
-            Controls.Add(txtNewPassword);
-            Controls.Add(lblNewPassword);
-            Controls.Add(txtCurrentPassword);
-            Controls.Add(lblCurrentPassword);
-            Controls.Add(pnlLoading);
-            Margin = new Padding(3, 2, 3, 2);
-            Name = "ChangePasswordForm";
-            Text = "Изменить пароль";
-            pnlLoading.ResumeLayout(false);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(640, 300);
+            this.Controls.Add(this.pnlLoading);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnChange);
+            this.Controls.Add(this.txtConfirmPassword);
+            this.Controls.Add(this.lblConfirmPassword);
+            this.Controls.Add(this.lblPasswordHint);
+            this.Controls.Add(this.txtNewPassword);
+            this.Controls.Add(this.lblNewPassword);
+            this.Controls.Add(this.txtCurrentPassword);
+            this.Controls.Add(this.lblCurrentPassword);
+            this.Name = "ChangePasswordForm";
+            this.Text = "Изменить пароль";
+            this.pnlLoading.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
