@@ -36,9 +36,9 @@ namespace PoverkaWinForms.Forms.Verifier
             label3 = new Label();
             Flow1_Modification_CB = new ComboBox();
             label2 = new Label();
-            Flow1_Name_SI_CB = new ComboBox();
-            GosReestr = new Label();
-            Flow1_GosReestr_CB = new ComboBox();
+            Flow1_Type_CB = new ComboBox();
+            Flow1_Manufacturer_L = new Label();
+            Flow1_Manufacturer_CB = new ComboBox();
             Flow1_ManufactureDate_DTP = new DateTimePicker();
             Flow1_ManufactureDate_L = new Label();
             label1 = new Label();
@@ -48,11 +48,11 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer2_GB = new GroupBox();
             label10 = new Label();
             Rashodomer2_CB = new CheckBox();
-            Flow2_GosReestr_CB = new ComboBox();
+            Flow2_Manufacturer_CB = new ComboBox();
             Flow2_ManufactureDate_DTP = new DateTimePicker();
             Flow2_ManufactureDate_L = new Label();
             label12 = new Label();
-            Flow2_Name_SI_CB = new ComboBox();
+            Flow2_Type_CB = new ComboBox();
             label14 = new Label();
             Flow2_Modification_CB = new ComboBox();
             label16 = new Label();
@@ -63,11 +63,11 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer3_GB = new GroupBox();
             label9 = new Label();
             Rashodomer3_CB = new CheckBox();
-            Flow3_GosReestr_CB = new ComboBox();
+            Flow3_Manufacturer_CB = new ComboBox();
             Flow3_ManufactureDate_DTP = new DateTimePicker();
             Flow3_ManufactureDate_L = new Label();
             label19 = new Label();
-            Flow3_Name_SI_CB = new ComboBox();
+            Flow3_Type_CB = new ComboBox();
             label21 = new Label();
             Flow3_Modification_CB = new ComboBox();
             label23 = new Label();
@@ -78,11 +78,11 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer4_GB = new GroupBox();
             label25 = new Label();
             Rashodomer4_CB = new CheckBox();
-            Flow4_GosReestr_CB = new ComboBox();
+            Flow4_Manufacturer_CB = new ComboBox();
             Flow4_ManufactureDate_DTP = new DateTimePicker();
             Flow4_ManufactureDate_L = new Label();
             label27 = new Label();
-            Flow4_Name_SI_CB = new ComboBox();
+            Flow4_Type_CB = new ComboBox();
             label29 = new Label();
             Flow4_Modification_CB = new ComboBox();
             label31 = new Label();
@@ -93,11 +93,11 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer5_GB = new GroupBox();
             label33 = new Label();
             Rashodomer5_CB = new CheckBox();
-            Flow5_GosReestr_CB = new ComboBox();
+            Flow5_Manufacturer_CB = new ComboBox();
             Flow5_ManufactureDate_DTP = new DateTimePicker();
             Flow5_ManufactureDate_L = new Label();
             label35 = new Label();
-            Flow5_Name_SI_CB = new ComboBox();
+            Flow5_Type_CB = new ComboBox();
             label37 = new Label();
             Flow5_Modification_CB = new ComboBox();
             label39 = new Label();
@@ -108,11 +108,11 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer6_GB = new GroupBox();
             label41 = new Label();
             Rashodomer6_CB = new CheckBox();
-            Flow6_GosReestr_CB = new ComboBox();
+            Flow6_Manufacturer_CB = new ComboBox();
             Flow6_ManufactureDate_DTP = new DateTimePicker();
             Flow6_ManufactureDate_L = new Label();
             label43 = new Label();
-            Flow6_Name_SI_CB = new ComboBox();
+            Flow6_Type_CB = new ComboBox();
             label45 = new Label();
             Flow6_Modification_CB = new ComboBox();
             label47 = new Label();
@@ -202,47 +202,47 @@ namespace PoverkaWinForms.Forms.Verifier
             label2.TabIndex = 21;
             label2.Text = "Тип";
             // 
-            // Flow1_Name_SI_CB
+            // Flow1_Type_CB
             // 
-            Flow1_Name_SI_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow1_Name_SI_CB.Location = new Point(168, 38);
-            Flow1_Name_SI_CB.Margin = new Padding(4);
-            Flow1_Name_SI_CB.Name = "Flow1_Name_SI_CB";
-            Flow1_Name_SI_CB.Size = new Size(155, 23);
-            Flow1_Name_SI_CB.TabIndex = 20;
-            Flow1_Name_SI_CB.SelectedIndexChanged += Flow1_Name_SI_CB_SelectedIndexChanged;
-            Flow1_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow1_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
-            Flow1_Name_SI_CB.Click += MeterTypeCB_Click;
-            Flow1_Name_SI_CB.DropDownClosed += RestoreComboText;
+            Flow1_Type_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow1_Type_CB.Location = new Point(168, 38);
+            Flow1_Type_CB.Margin = new Padding(4);
+            Flow1_Type_CB.Name = "Flow1_Type_CB";
+            Flow1_Type_CB.Size = new Size(155, 23);
+            Flow1_Type_CB.TabIndex = 20;
+            Flow1_Type_CB.SelectedIndexChanged += Flow1_Type_CB_SelectedIndexChanged;
+            Flow1_Type_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow1_Type_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow1_Type_CB.Click += MeterTypeCB_Click;
+            Flow1_Type_CB.DropDownClosed += RestoreComboText;
             // 
-            // GosReestr
+            // Flow1_Manufacturer_L
             // 
-            GosReestr.AutoSize = true;
-            GosReestr.Location = new Point(18, 70);
-            GosReestr.Margin = new Padding(4, 0, 4, 0);
-            GosReestr.Name = "GosReestr";
-            GosReestr.Size = new Size(92, 15);
-            GosReestr.TabIndex = 23;
-            GosReestr.Text = "Производитель";
+            Flow1_Manufacturer_L.AutoSize = true;
+            Flow1_Manufacturer_L.Location = new Point(18, 70);
+            Flow1_Manufacturer_L.Margin = new Padding(4, 0, 4, 0);
+            Flow1_Manufacturer_L.Name = "Flow1_Manufacturer_L";
+            Flow1_Manufacturer_L.Size = new Size(92, 15);
+            Flow1_Manufacturer_L.TabIndex = 23;
+            Flow1_Manufacturer_L.Text = "Производитель";
             // 
-            // Flow1_GosReestr_CB
+            // Flow1_Manufacturer_CB
             // 
-            Flow1_GosReestr_CB.AllowDrop = true;
-            Flow1_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow1_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
-            Flow1_GosReestr_CB.FormattingEnabled = true;
-            Flow1_GosReestr_CB.IntegralHeight = false;
-            Flow1_GosReestr_CB.Location = new Point(168, 67);
-            Flow1_GosReestr_CB.Margin = new Padding(4);
-            Flow1_GosReestr_CB.Name = "Flow1_GosReestr_CB";
-            Flow1_GosReestr_CB.Size = new Size(155, 23);
-            Flow1_GosReestr_CB.TabIndex = 22;
-            Flow1_GosReestr_CB.SelectedIndexChanged += GosReestrCB_SelectedIndexChanged;
-            Flow1_GosReestr_CB.Click += ManufacturerCB_Click;
-            Flow1_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow1_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
-            Flow1_GosReestr_CB.DropDownClosed += RestoreComboText;
+            Flow1_Manufacturer_CB.AllowDrop = true;
+            Flow1_Manufacturer_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow1_Manufacturer_CB.DropDownStyle = ComboBoxStyle.DropDown;
+            Flow1_Manufacturer_CB.FormattingEnabled = true;
+            Flow1_Manufacturer_CB.IntegralHeight = false;
+            Flow1_Manufacturer_CB.Location = new Point(168, 67);
+            Flow1_Manufacturer_CB.Margin = new Padding(4);
+            Flow1_Manufacturer_CB.Name = "Flow1_Manufacturer_CB";
+            Flow1_Manufacturer_CB.Size = new Size(155, 23);
+            Flow1_Manufacturer_CB.TabIndex = 22;
+            Flow1_Manufacturer_CB.SelectedIndexChanged += Flow1_Manufacturer_CB_SelectedIndexChanged;
+            Flow1_Manufacturer_CB.Click += ManufacturerCB_Click;
+            Flow1_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow1_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow1_Manufacturer_CB.DropDownClosed += RestoreComboText;
             //
             // Flow1_ManufactureDate_DTP
             //
@@ -281,11 +281,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             Rashodomer1_GB.Controls.Add(label8);
             Rashodomer1_GB.Controls.Add(Rashodomer1_CB);
-            Rashodomer1_GB.Controls.Add(Flow1_GosReestr_CB);
+            Rashodomer1_GB.Controls.Add(Flow1_Manufacturer_CB);
             Rashodomer1_GB.Controls.Add(Flow1_ManufactureDate_DTP);
             Rashodomer1_GB.Controls.Add(Flow1_ManufactureDate_L);
-            Rashodomer1_GB.Controls.Add(GosReestr);
-            Rashodomer1_GB.Controls.Add(Flow1_Name_SI_CB);
+            Rashodomer1_GB.Controls.Add(Flow1_Manufacturer_L);
+            Rashodomer1_GB.Controls.Add(Flow1_Type_CB);
             Rashodomer1_GB.Controls.Add(label2);
             Rashodomer1_GB.Controls.Add(Flow1_Modification_CB);
             Rashodomer1_GB.Controls.Add(label3);
@@ -330,11 +330,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             Rashodomer2_GB.Controls.Add(label10);
             Rashodomer2_GB.Controls.Add(Rashodomer2_CB);
-            Rashodomer2_GB.Controls.Add(Flow2_GosReestr_CB);
+            Rashodomer2_GB.Controls.Add(Flow2_Manufacturer_CB);
             Rashodomer2_GB.Controls.Add(Flow2_ManufactureDate_DTP);
             Rashodomer2_GB.Controls.Add(Flow2_ManufactureDate_L);
             Rashodomer2_GB.Controls.Add(label12);
-            Rashodomer2_GB.Controls.Add(Flow2_Name_SI_CB);
+            Rashodomer2_GB.Controls.Add(Flow2_Type_CB);
             Rashodomer2_GB.Controls.Add(label14);
             Rashodomer2_GB.Controls.Add(Flow2_Modification_CB);
             Rashodomer2_GB.Controls.Add(label16);
@@ -375,23 +375,23 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer2_CB.UseVisualStyleBackColor = true;
             Rashodomer2_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
-            // Flow2_GosReestr_CB
+            // Flow2_Manufacturer_CB
             //
-            Flow2_GosReestr_CB.AllowDrop = true;
-            Flow2_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow2_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
-            Flow2_GosReestr_CB.FormattingEnabled = true;
-            Flow2_GosReestr_CB.IntegralHeight = false;
-            Flow2_GosReestr_CB.Location = new Point(168, 67);
-            Flow2_GosReestr_CB.Margin = new Padding(4);
-            Flow2_GosReestr_CB.Name = "Flow2_GosReestr_CB";
-            Flow2_GosReestr_CB.Size = new Size(155, 23);
-            Flow2_GosReestr_CB.TabIndex = 22;
-            Flow2_GosReestr_CB.SelectedIndexChanged += Flow2_GosReestr_CB_SelectedIndexChanged;
-            Flow2_GosReestr_CB.Click += ManufacturerCB_Click;
-            Flow2_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow2_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
-            Flow2_GosReestr_CB.DropDownClosed += RestoreComboText;
+            Flow2_Manufacturer_CB.AllowDrop = true;
+            Flow2_Manufacturer_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow2_Manufacturer_CB.DropDownStyle = ComboBoxStyle.DropDown;
+            Flow2_Manufacturer_CB.FormattingEnabled = true;
+            Flow2_Manufacturer_CB.IntegralHeight = false;
+            Flow2_Manufacturer_CB.Location = new Point(168, 67);
+            Flow2_Manufacturer_CB.Margin = new Padding(4);
+            Flow2_Manufacturer_CB.Name = "Flow2_Manufacturer_CB";
+            Flow2_Manufacturer_CB.Size = new Size(155, 23);
+            Flow2_Manufacturer_CB.TabIndex = 22;
+            Flow2_Manufacturer_CB.SelectedIndexChanged += Flow2_Manufacturer_CB_SelectedIndexChanged;
+            Flow2_Manufacturer_CB.Click += ManufacturerCB_Click;
+            Flow2_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow2_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow2_Manufacturer_CB.DropDownClosed += RestoreComboText;
             //
             // Flow2_ManufactureDate_DTP
             //
@@ -425,19 +425,19 @@ namespace PoverkaWinForms.Forms.Verifier
             label12.TabIndex = 23;
             label12.Text = "Производитель";
             // 
-            // Flow2_Name_SI_CB
+            // Flow2_Type_CB
             //
-            Flow2_Name_SI_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow2_Name_SI_CB.Location = new Point(168, 38);
-            Flow2_Name_SI_CB.Margin = new Padding(4);
-            Flow2_Name_SI_CB.Name = "Flow2_Name_SI_CB";
-            Flow2_Name_SI_CB.Size = new Size(155, 23);
-            Flow2_Name_SI_CB.TabIndex = 20;
-            Flow2_Name_SI_CB.SelectedIndexChanged += Flow2_Name_SI_CB_SelectedIndexChanged;
-            Flow2_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow2_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
-            Flow2_Name_SI_CB.Click += MeterTypeCB_Click;
-            Flow2_Name_SI_CB.DropDownClosed += RestoreComboText;
+            Flow2_Type_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow2_Type_CB.Location = new Point(168, 38);
+            Flow2_Type_CB.Margin = new Padding(4);
+            Flow2_Type_CB.Name = "Flow2_Type_CB";
+            Flow2_Type_CB.Size = new Size(155, 23);
+            Flow2_Type_CB.TabIndex = 20;
+            Flow2_Type_CB.SelectedIndexChanged += Flow2_Type_CB_SelectedIndexChanged;
+            Flow2_Type_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow2_Type_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow2_Type_CB.Click += MeterTypeCB_Click;
+            Flow2_Type_CB.DropDownClosed += RestoreComboText;
             // 
             // label14
             //
@@ -515,11 +515,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             Rashodomer3_GB.Controls.Add(label9);
             Rashodomer3_GB.Controls.Add(Rashodomer3_CB);
-            Rashodomer3_GB.Controls.Add(Flow3_GosReestr_CB);
+            Rashodomer3_GB.Controls.Add(Flow3_Manufacturer_CB);
             Rashodomer3_GB.Controls.Add(Flow3_ManufactureDate_DTP);
             Rashodomer3_GB.Controls.Add(Flow3_ManufactureDate_L);
             Rashodomer3_GB.Controls.Add(label19);
-            Rashodomer3_GB.Controls.Add(Flow3_Name_SI_CB);
+            Rashodomer3_GB.Controls.Add(Flow3_Type_CB);
             Rashodomer3_GB.Controls.Add(label21);
             Rashodomer3_GB.Controls.Add(Flow3_Modification_CB);
             Rashodomer3_GB.Controls.Add(label23);
@@ -560,23 +560,23 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer3_CB.UseVisualStyleBackColor = true;
             Rashodomer3_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
-            // Flow3_GosReestr_CB
+            // Flow3_Manufacturer_CB
             //
-            Flow3_GosReestr_CB.AllowDrop = true;
-            Flow3_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow3_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
-            Flow3_GosReestr_CB.FormattingEnabled = true;
-            Flow3_GosReestr_CB.IntegralHeight = false;
-            Flow3_GosReestr_CB.Location = new Point(168, 67);
-            Flow3_GosReestr_CB.Margin = new Padding(4);
-            Flow3_GosReestr_CB.Name = "Flow3_GosReestr_CB";
-            Flow3_GosReestr_CB.Size = new Size(155, 23);
-            Flow3_GosReestr_CB.TabIndex = 22;
-            Flow3_GosReestr_CB.SelectedIndexChanged += Flow3_GosReestr_CB_SelectedIndexChanged;
-            Flow3_GosReestr_CB.Click += ManufacturerCB_Click;
-            Flow3_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow3_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
-            Flow3_GosReestr_CB.DropDownClosed += RestoreComboText;
+            Flow3_Manufacturer_CB.AllowDrop = true;
+            Flow3_Manufacturer_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow3_Manufacturer_CB.DropDownStyle = ComboBoxStyle.DropDown;
+            Flow3_Manufacturer_CB.FormattingEnabled = true;
+            Flow3_Manufacturer_CB.IntegralHeight = false;
+            Flow3_Manufacturer_CB.Location = new Point(168, 67);
+            Flow3_Manufacturer_CB.Margin = new Padding(4);
+            Flow3_Manufacturer_CB.Name = "Flow3_Manufacturer_CB";
+            Flow3_Manufacturer_CB.Size = new Size(155, 23);
+            Flow3_Manufacturer_CB.TabIndex = 22;
+            Flow3_Manufacturer_CB.SelectedIndexChanged += Flow3_Manufacturer_CB_SelectedIndexChanged;
+            Flow3_Manufacturer_CB.Click += ManufacturerCB_Click;
+            Flow3_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow3_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow3_Manufacturer_CB.DropDownClosed += RestoreComboText;
             //
             // Flow3_ManufactureDate_DTP
             //
@@ -610,19 +610,19 @@ namespace PoverkaWinForms.Forms.Verifier
             label19.TabIndex = 23;
             label19.Text = "Производитель";
             // 
-            // Flow3_Name_SI_CB
+            // Flow3_Type_CB
             //
-            Flow3_Name_SI_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow3_Name_SI_CB.Location = new Point(168, 38);
-            Flow3_Name_SI_CB.Margin = new Padding(4);
-            Flow3_Name_SI_CB.Name = "Flow3_Name_SI_CB";
-            Flow3_Name_SI_CB.Size = new Size(155, 23);
-            Flow3_Name_SI_CB.TabIndex = 20;
-            Flow3_Name_SI_CB.SelectedIndexChanged += Flow3_Name_SI_CB_SelectedIndexChanged;
-            Flow3_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow3_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
-            Flow3_Name_SI_CB.Click += MeterTypeCB_Click;
-            Flow3_Name_SI_CB.DropDownClosed += RestoreComboText;
+            Flow3_Type_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow3_Type_CB.Location = new Point(168, 38);
+            Flow3_Type_CB.Margin = new Padding(4);
+            Flow3_Type_CB.Name = "Flow3_Type_CB";
+            Flow3_Type_CB.Size = new Size(155, 23);
+            Flow3_Type_CB.TabIndex = 20;
+            Flow3_Type_CB.SelectedIndexChanged += Flow3_Type_CB_SelectedIndexChanged;
+            Flow3_Type_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow3_Type_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow3_Type_CB.Click += MeterTypeCB_Click;
+            Flow3_Type_CB.DropDownClosed += RestoreComboText;
             // 
             // label21
             //
@@ -700,11 +700,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             Rashodomer4_GB.Controls.Add(label25);
             Rashodomer4_GB.Controls.Add(Rashodomer4_CB);
-            Rashodomer4_GB.Controls.Add(Flow4_GosReestr_CB);
+            Rashodomer4_GB.Controls.Add(Flow4_Manufacturer_CB);
             Rashodomer4_GB.Controls.Add(Flow4_ManufactureDate_DTP);
             Rashodomer4_GB.Controls.Add(Flow4_ManufactureDate_L);
             Rashodomer4_GB.Controls.Add(label27);
-            Rashodomer4_GB.Controls.Add(Flow4_Name_SI_CB);
+            Rashodomer4_GB.Controls.Add(Flow4_Type_CB);
             Rashodomer4_GB.Controls.Add(label29);
             Rashodomer4_GB.Controls.Add(Flow4_Modification_CB);
             Rashodomer4_GB.Controls.Add(label31);
@@ -745,23 +745,23 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer4_CB.UseVisualStyleBackColor = true;
             Rashodomer4_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
-            // Flow4_GosReestr_CB
+            // Flow4_Manufacturer_CB
             //
-            Flow4_GosReestr_CB.AllowDrop = true;
-            Flow4_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow4_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
-            Flow4_GosReestr_CB.FormattingEnabled = true;
-            Flow4_GosReestr_CB.IntegralHeight = false;
-            Flow4_GosReestr_CB.Location = new Point(168, 67);
-            Flow4_GosReestr_CB.Margin = new Padding(4);
-            Flow4_GosReestr_CB.Name = "Flow4_GosReestr_CB";
-            Flow4_GosReestr_CB.Size = new Size(155, 23);
-            Flow4_GosReestr_CB.TabIndex = 22;
-            Flow4_GosReestr_CB.SelectedIndexChanged += Flow4_GosReestr_CB_SelectedIndexChanged;
-            Flow4_GosReestr_CB.Click += ManufacturerCB_Click;
-            Flow4_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow4_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
-            Flow4_GosReestr_CB.DropDownClosed += RestoreComboText;
+            Flow4_Manufacturer_CB.AllowDrop = true;
+            Flow4_Manufacturer_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow4_Manufacturer_CB.DropDownStyle = ComboBoxStyle.DropDown;
+            Flow4_Manufacturer_CB.FormattingEnabled = true;
+            Flow4_Manufacturer_CB.IntegralHeight = false;
+            Flow4_Manufacturer_CB.Location = new Point(168, 67);
+            Flow4_Manufacturer_CB.Margin = new Padding(4);
+            Flow4_Manufacturer_CB.Name = "Flow4_Manufacturer_CB";
+            Flow4_Manufacturer_CB.Size = new Size(155, 23);
+            Flow4_Manufacturer_CB.TabIndex = 22;
+            Flow4_Manufacturer_CB.SelectedIndexChanged += Flow4_Manufacturer_CB_SelectedIndexChanged;
+            Flow4_Manufacturer_CB.Click += ManufacturerCB_Click;
+            Flow4_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow4_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow4_Manufacturer_CB.DropDownClosed += RestoreComboText;
             //
             // Flow4_ManufactureDate_DTP
             //
@@ -795,19 +795,19 @@ namespace PoverkaWinForms.Forms.Verifier
             label27.TabIndex = 23;
             label27.Text = "Производитель";
             // 
-            // Flow4_Name_SI_CB
+            // Flow4_Type_CB
             //
-            Flow4_Name_SI_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow4_Name_SI_CB.Location = new Point(168, 38);
-            Flow4_Name_SI_CB.Margin = new Padding(4);
-            Flow4_Name_SI_CB.Name = "Flow4_Name_SI_CB";
-            Flow4_Name_SI_CB.Size = new Size(155, 23);
-            Flow4_Name_SI_CB.TabIndex = 20;
-            Flow4_Name_SI_CB.SelectedIndexChanged += Flow4_Name_SI_CB_SelectedIndexChanged;
-            Flow4_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow4_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
-            Flow4_Name_SI_CB.Click += MeterTypeCB_Click;
-            Flow4_Name_SI_CB.DropDownClosed += RestoreComboText;
+            Flow4_Type_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow4_Type_CB.Location = new Point(168, 38);
+            Flow4_Type_CB.Margin = new Padding(4);
+            Flow4_Type_CB.Name = "Flow4_Type_CB";
+            Flow4_Type_CB.Size = new Size(155, 23);
+            Flow4_Type_CB.TabIndex = 20;
+            Flow4_Type_CB.SelectedIndexChanged += Flow4_Type_CB_SelectedIndexChanged;
+            Flow4_Type_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow4_Type_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow4_Type_CB.Click += MeterTypeCB_Click;
+            Flow4_Type_CB.DropDownClosed += RestoreComboText;
             // 
             // label29
             //
@@ -885,11 +885,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             Rashodomer5_GB.Controls.Add(label33);
             Rashodomer5_GB.Controls.Add(Rashodomer5_CB);
-            Rashodomer5_GB.Controls.Add(Flow5_GosReestr_CB);
+            Rashodomer5_GB.Controls.Add(Flow5_Manufacturer_CB);
             Rashodomer5_GB.Controls.Add(Flow5_ManufactureDate_DTP);
             Rashodomer5_GB.Controls.Add(Flow5_ManufactureDate_L);
             Rashodomer5_GB.Controls.Add(label35);
-            Rashodomer5_GB.Controls.Add(Flow5_Name_SI_CB);
+            Rashodomer5_GB.Controls.Add(Flow5_Type_CB);
             Rashodomer5_GB.Controls.Add(label37);
             Rashodomer5_GB.Controls.Add(Flow5_Modification_CB);
             Rashodomer5_GB.Controls.Add(label39);
@@ -930,23 +930,23 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer5_CB.UseVisualStyleBackColor = true;
             Rashodomer5_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
-            // Flow5_GosReestr_CB
+            // Flow5_Manufacturer_CB
             //
-            Flow5_GosReestr_CB.AllowDrop = true;
-            Flow5_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow5_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
-            Flow5_GosReestr_CB.FormattingEnabled = true;
-            Flow5_GosReestr_CB.IntegralHeight = false;
-            Flow5_GosReestr_CB.Location = new Point(168, 67);
-            Flow5_GosReestr_CB.Margin = new Padding(4);
-            Flow5_GosReestr_CB.Name = "Flow5_GosReestr_CB";
-            Flow5_GosReestr_CB.Size = new Size(155, 23);
-            Flow5_GosReestr_CB.TabIndex = 22;
-            Flow5_GosReestr_CB.SelectedIndexChanged += Flow5_GosReestr_CB_SelectedIndexChanged;
-            Flow5_GosReestr_CB.Click += ManufacturerCB_Click;
-            Flow5_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow5_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
-            Flow5_GosReestr_CB.DropDownClosed += RestoreComboText;
+            Flow5_Manufacturer_CB.AllowDrop = true;
+            Flow5_Manufacturer_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow5_Manufacturer_CB.DropDownStyle = ComboBoxStyle.DropDown;
+            Flow5_Manufacturer_CB.FormattingEnabled = true;
+            Flow5_Manufacturer_CB.IntegralHeight = false;
+            Flow5_Manufacturer_CB.Location = new Point(168, 67);
+            Flow5_Manufacturer_CB.Margin = new Padding(4);
+            Flow5_Manufacturer_CB.Name = "Flow5_Manufacturer_CB";
+            Flow5_Manufacturer_CB.Size = new Size(155, 23);
+            Flow5_Manufacturer_CB.TabIndex = 22;
+            Flow5_Manufacturer_CB.SelectedIndexChanged += Flow5_Manufacturer_CB_SelectedIndexChanged;
+            Flow5_Manufacturer_CB.Click += ManufacturerCB_Click;
+            Flow5_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow5_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow5_Manufacturer_CB.DropDownClosed += RestoreComboText;
             //
             // Flow5_ManufactureDate_DTP
             //
@@ -980,19 +980,19 @@ namespace PoverkaWinForms.Forms.Verifier
             label35.TabIndex = 23;
             label35.Text = "Производитель";
             // 
-            // Flow5_Name_SI_CB
+            // Flow5_Type_CB
             //
-            Flow5_Name_SI_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow5_Name_SI_CB.Location = new Point(168, 38);
-            Flow5_Name_SI_CB.Margin = new Padding(4);
-            Flow5_Name_SI_CB.Name = "Flow5_Name_SI_CB";
-            Flow5_Name_SI_CB.Size = new Size(155, 23);
-            Flow5_Name_SI_CB.TabIndex = 20;
-            Flow5_Name_SI_CB.SelectedIndexChanged += Flow5_Name_SI_CB_SelectedIndexChanged;
-            Flow5_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow5_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
-            Flow5_Name_SI_CB.Click += MeterTypeCB_Click;
-            Flow5_Name_SI_CB.DropDownClosed += RestoreComboText;
+            Flow5_Type_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow5_Type_CB.Location = new Point(168, 38);
+            Flow5_Type_CB.Margin = new Padding(4);
+            Flow5_Type_CB.Name = "Flow5_Type_CB";
+            Flow5_Type_CB.Size = new Size(155, 23);
+            Flow5_Type_CB.TabIndex = 20;
+            Flow5_Type_CB.SelectedIndexChanged += Flow5_Type_CB_SelectedIndexChanged;
+            Flow5_Type_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow5_Type_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow5_Type_CB.Click += MeterTypeCB_Click;
+            Flow5_Type_CB.DropDownClosed += RestoreComboText;
             // 
             // label37
             //
@@ -1070,11 +1070,11 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             Rashodomer6_GB.Controls.Add(label41);
             Rashodomer6_GB.Controls.Add(Rashodomer6_CB);
-            Rashodomer6_GB.Controls.Add(Flow6_GosReestr_CB);
+            Rashodomer6_GB.Controls.Add(Flow6_Manufacturer_CB);
             Rashodomer6_GB.Controls.Add(Flow6_ManufactureDate_DTP);
             Rashodomer6_GB.Controls.Add(Flow6_ManufactureDate_L);
             Rashodomer6_GB.Controls.Add(label43);
-            Rashodomer6_GB.Controls.Add(Flow6_Name_SI_CB);
+            Rashodomer6_GB.Controls.Add(Flow6_Type_CB);
             Rashodomer6_GB.Controls.Add(label45);
             Rashodomer6_GB.Controls.Add(Flow6_Modification_CB);
             Rashodomer6_GB.Controls.Add(label47);
@@ -1115,23 +1115,23 @@ namespace PoverkaWinForms.Forms.Verifier
             Rashodomer6_CB.UseVisualStyleBackColor = true;
             Rashodomer6_CB.CheckedChanged += RashodomerCB_CheckedChanged;
             // 
-            // Flow6_GosReestr_CB
+            // Flow6_Manufacturer_CB
             //
-            Flow6_GosReestr_CB.AllowDrop = true;
-            Flow6_GosReestr_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow6_GosReestr_CB.DropDownStyle = ComboBoxStyle.DropDown;
-            Flow6_GosReestr_CB.FormattingEnabled = true;
-            Flow6_GosReestr_CB.IntegralHeight = false;
-            Flow6_GosReestr_CB.Location = new Point(168, 67);
-            Flow6_GosReestr_CB.Margin = new Padding(4);
-            Flow6_GosReestr_CB.Name = "Flow6_GosReestr_CB";
-            Flow6_GosReestr_CB.Size = new Size(155, 23);
-            Flow6_GosReestr_CB.TabIndex = 22;
-            Flow6_GosReestr_CB.SelectedIndexChanged += Flow6_GosReestr_CB_SelectedIndexChanged;
-            Flow6_GosReestr_CB.Click += ManufacturerCB_Click;
-            Flow6_GosReestr_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow6_GosReestr_CB.KeyUp += ManufacturerCB_KeyUp;
-            Flow6_GosReestr_CB.DropDownClosed += RestoreComboText;
+            Flow6_Manufacturer_CB.AllowDrop = true;
+            Flow6_Manufacturer_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow6_Manufacturer_CB.DropDownStyle = ComboBoxStyle.DropDown;
+            Flow6_Manufacturer_CB.FormattingEnabled = true;
+            Flow6_Manufacturer_CB.IntegralHeight = false;
+            Flow6_Manufacturer_CB.Location = new Point(168, 67);
+            Flow6_Manufacturer_CB.Margin = new Padding(4);
+            Flow6_Manufacturer_CB.Name = "Flow6_Manufacturer_CB";
+            Flow6_Manufacturer_CB.Size = new Size(155, 23);
+            Flow6_Manufacturer_CB.TabIndex = 22;
+            Flow6_Manufacturer_CB.SelectedIndexChanged += Flow6_Manufacturer_CB_SelectedIndexChanged;
+            Flow6_Manufacturer_CB.Click += ManufacturerCB_Click;
+            Flow6_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow6_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
+            Flow6_Manufacturer_CB.DropDownClosed += RestoreComboText;
             //
             // Flow6_ManufactureDate_DTP
             //
@@ -1165,19 +1165,19 @@ namespace PoverkaWinForms.Forms.Verifier
             label43.TabIndex = 23;
             label43.Text = "Производитель";
             // 
-            // Flow6_Name_SI_CB
+            // Flow6_Type_CB
             //
-            Flow6_Name_SI_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
-            Flow6_Name_SI_CB.Location = new Point(168, 38);
-            Flow6_Name_SI_CB.Margin = new Padding(4);
-            Flow6_Name_SI_CB.Name = "Flow6_Name_SI_CB";
-            Flow6_Name_SI_CB.Size = new Size(155, 23);
-            Flow6_Name_SI_CB.TabIndex = 20;
-            Flow6_Name_SI_CB.SelectedIndexChanged += Flow6_Name_SI_CB_SelectedIndexChanged;
-            Flow6_Name_SI_CB.KeyDown += MeterTypeCB_KeyDown;
-            Flow6_Name_SI_CB.KeyUp += MeterTypeCB_KeyUp;
-            Flow6_Name_SI_CB.Click += MeterTypeCB_Click;
-            Flow6_Name_SI_CB.DropDownClosed += RestoreComboText;
+            Flow6_Type_CB.AutoCompleteSource = AutoCompleteSource.ListItems;
+            Flow6_Type_CB.Location = new Point(168, 38);
+            Flow6_Type_CB.Margin = new Padding(4);
+            Flow6_Type_CB.Name = "Flow6_Type_CB";
+            Flow6_Type_CB.Size = new Size(155, 23);
+            Flow6_Type_CB.TabIndex = 20;
+            Flow6_Type_CB.SelectedIndexChanged += Flow6_Type_CB_SelectedIndexChanged;
+            Flow6_Type_CB.KeyDown += MeterTypeCB_KeyDown;
+            Flow6_Type_CB.KeyUp += MeterTypeCB_KeyUp;
+            Flow6_Type_CB.Click += MeterTypeCB_Click;
+            Flow6_Type_CB.DropDownClosed += RestoreComboText;
             // 
             // label45
             //
@@ -1314,9 +1314,9 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox Flow1_Modification_CB;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox Flow1_Name_SI_CB;
-        private System.Windows.Forms.Label GosReestr;
-        private System.Windows.Forms.ComboBox Flow1_GosReestr_CB;
+        private System.Windows.Forms.ComboBox Flow1_Type_CB;
+        private System.Windows.Forms.Label Flow1_Manufacturer_L;
+        private System.Windows.Forms.ComboBox Flow1_Manufacturer_CB;
         private System.Windows.Forms.DateTimePicker Flow1_ManufactureDate_DTP;
         private System.Windows.Forms.Label Flow1_ManufactureDate_L;
         private System.Windows.Forms.Label label1;
@@ -1326,11 +1326,11 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.Label Flow1_RegistrationNumber_L;
         private System.Windows.Forms.GroupBox Rashodomer2_GB;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox Flow2_GosReestr_CB;
+        private System.Windows.Forms.ComboBox Flow2_Manufacturer_CB;
         private System.Windows.Forms.DateTimePicker Flow2_ManufactureDate_DTP;
         private System.Windows.Forms.Label Flow2_ManufactureDate_L;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox Flow2_Name_SI_CB;
+        private System.Windows.Forms.ComboBox Flow2_Type_CB;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox Flow2_Modification_CB;
         private System.Windows.Forms.Label label16;
@@ -1340,11 +1340,11 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox Rashodomer3_GB;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox Flow3_GosReestr_CB;
+        private System.Windows.Forms.ComboBox Flow3_Manufacturer_CB;
         private System.Windows.Forms.DateTimePicker Flow3_ManufactureDate_DTP;
         private System.Windows.Forms.Label Flow3_ManufactureDate_L;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ComboBox Flow3_Name_SI_CB;
+        private System.Windows.Forms.ComboBox Flow3_Type_CB;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox Flow3_Modification_CB;
         private System.Windows.Forms.Label label23;
@@ -1354,11 +1354,11 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox Rashodomer4_GB;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.ComboBox Flow4_GosReestr_CB;
+        private System.Windows.Forms.ComboBox Flow4_Manufacturer_CB;
         private System.Windows.Forms.DateTimePicker Flow4_ManufactureDate_DTP;
         private System.Windows.Forms.Label Flow4_ManufactureDate_L;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ComboBox Flow4_Name_SI_CB;
+        private System.Windows.Forms.ComboBox Flow4_Type_CB;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox Flow4_Modification_CB;
         private System.Windows.Forms.Label label31;
@@ -1368,11 +1368,11 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.GroupBox Rashodomer5_GB;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.ComboBox Flow5_GosReestr_CB;
+        private System.Windows.Forms.ComboBox Flow5_Manufacturer_CB;
         private System.Windows.Forms.DateTimePicker Flow5_ManufactureDate_DTP;
         private System.Windows.Forms.Label Flow5_ManufactureDate_L;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.ComboBox Flow5_Name_SI_CB;
+        private System.Windows.Forms.ComboBox Flow5_Type_CB;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.ComboBox Flow5_Modification_CB;
         private System.Windows.Forms.Label label39;
@@ -1382,11 +1382,11 @@ namespace PoverkaWinForms.Forms.Verifier
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.GroupBox Rashodomer6_GB;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.ComboBox Flow6_GosReestr_CB;
+        private System.Windows.Forms.ComboBox Flow6_Manufacturer_CB;
         private System.Windows.Forms.DateTimePicker Flow6_ManufactureDate_DTP;
         private System.Windows.Forms.Label Flow6_ManufactureDate_L;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.ComboBox Flow6_Name_SI_CB;
+        private System.Windows.Forms.ComboBox Flow6_Type_CB;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.ComboBox Flow6_Modification_CB;
         private System.Windows.Forms.Label label47;
