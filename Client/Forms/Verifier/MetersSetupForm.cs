@@ -31,21 +31,25 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void InitializeFlowMeters()
         {
-            _flowMeters.Add(new FlowMeterSection(Rashodomer1_CB, Rashodomer1_GB, label8, Flow1_Type_CB, Flow1_Manufacturer_CB, Flow1_Modification_CB, Flow1_ManufactureDate_DTP, Flow1_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Rashodomer2_CB, Rashodomer2_GB, label10, Flow2_Type_CB, Flow2_Manufacturer_CB, Flow2_Modification_CB, Flow2_ManufactureDate_DTP, Flow2_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Rashodomer3_CB, Rashodomer3_GB, label9, Flow3_Type_CB, Flow3_Manufacturer_CB, Flow3_Modification_CB, Flow3_ManufactureDate_DTP, Flow3_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Rashodomer4_CB, Rashodomer4_GB, label25, Flow4_Type_CB, Flow4_Manufacturer_CB, Flow4_Modification_CB, Flow4_ManufactureDate_DTP, Flow4_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Rashodomer5_CB, Rashodomer5_GB, label33, Flow5_Type_CB, Flow5_Manufacturer_CB, Flow5_Modification_CB, Flow5_ManufactureDate_DTP, Flow5_RegistrationNumber_TB));
-            _flowMeters.Add(new FlowMeterSection(Rashodomer6_CB, Rashodomer6_GB, label41, Flow6_Type_CB, Flow6_Manufacturer_CB, Flow6_Modification_CB, Flow6_ManufactureDate_DTP, Flow6_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Flow1_CB, Flow1_GB, Flow1_Title_Label, Flow1_Type_CB, Flow1_Manufacturer_CB, Flow1_Modification_CB, Flow1_ManufactureDate_DTP, Flow1_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Flow2_CB, Flow2_GB, Flow2_Title_Label, Flow2_Type_CB, Flow2_Manufacturer_CB, Flow2_Modification_CB, Flow2_ManufactureDate_DTP, Flow2_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Flow3_CB, Flow3_GB, Flow3_Title_Label, Flow3_Type_CB, Flow3_Manufacturer_CB, Flow3_Modification_CB, Flow3_ManufactureDate_DTP, Flow3_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Flow4_CB, Flow4_GB, Flow4_Title_Label, Flow4_Type_CB, Flow4_Manufacturer_CB, Flow4_Modification_CB, Flow4_ManufactureDate_DTP, Flow4_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Flow5_CB, Flow5_GB, Flow5_Title_Label, Flow5_Type_CB, Flow5_Manufacturer_CB, Flow5_Modification_CB, Flow5_ManufactureDate_DTP, Flow5_RegistrationNumber_TB));
+            _flowMeters.Add(new FlowMeterSection(Flow6_CB, Flow6_GB, Flow6_Title_Label, Flow6_Type_CB, Flow6_Manufacturer_CB, Flow6_Modification_CB, Flow6_ManufactureDate_DTP, Flow6_RegistrationNumber_TB));
         }
 
         private async void MetersSetupForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
+            {
                 return;
+            }
 
             foreach (var meter in _flowMeters)
-                RashodomerCB_CheckedChanged(meter.CheckBox, EventArgs.Empty);
+            {
+                FlowCB_CheckedChanged(meter.CheckBox, EventArgs.Empty);
+            }
 
             await _meterTypeService.GetAllAsync(string.Empty, 10);
             await _manufacturerService.GetAllAsync(string.Empty, 10);
@@ -54,7 +58,9 @@ namespace PoverkaWinForms.Forms.Verifier
         private void ResetModifications(ComboBox modificationCombo, TextBox registrationNumberTextBox)
         {
             if (_updating)
+            {
                 return;
+            }
 
             modificationCombo.DataSource = null;
             modificationCombo.Items.Clear();
@@ -66,7 +72,9 @@ namespace PoverkaWinForms.Forms.Verifier
         private void StoreAndClearCombo(ComboBox combo)
         {
             if (string.IsNullOrEmpty(combo.Text))
+            {
                 return;
+            }
 
             _updating = true;
             _previousTexts[combo] = combo.Text;
@@ -79,7 +87,9 @@ namespace PoverkaWinForms.Forms.Verifier
         private void RestoreComboText(object? sender, EventArgs e)
         {
             if (_updating || sender is not ComboBox combo)
+            {
                 return;
+            }
 
             bool noSelection = combo.SelectedIndex < 0;
             bool noText = string.IsNullOrEmpty(combo.Text);
@@ -99,7 +109,9 @@ namespace PoverkaWinForms.Forms.Verifier
         private void TypeCB_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
+            {
                 ResetModifications(meter.Modification, meter.RegistrationNumber);
+            }
         }
 
         internal async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
@@ -159,9 +171,14 @@ namespace PoverkaWinForms.Forms.Verifier
         private async Task PopulateModificationsAsync(ComboBox modificationCombo, ComboBox meterTypeCombo, ComboBox manufacturerCombo, DateTimePicker datePicker, TextBox registrationNumberTextBox)
         {
             if (meterTypeCombo.SelectedValue is not int meterTypeId)
+            {
                 return;
+            }
+
             if (manufacturerCombo.SelectedValue is not int manufacturerId)
+            {
                 return;
+            }
 
             var manufactureDate = DateOnly.FromDateTime(datePicker.Value);
             var items = await _modificationService.GetAllAsync(meterTypeId, manufacturerId, manufactureDate);
@@ -181,10 +198,7 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void UpdateRegistrationNumber(ComboBox modificationCombo, TextBox registrationNumberTextBox)
         {
-            if (
-                modificationCombo.SelectedValue is not int modificationId
-                || !_modifications.TryGetValue(modificationCombo, out var items)
-            )
+            if (modificationCombo.SelectedValue is not int modificationId || !_modifications.TryGetValue(modificationCombo, out var items))
             {
                 registrationNumberTextBox.Text = string.Empty;
                 return;
@@ -197,9 +211,14 @@ namespace PoverkaWinForms.Forms.Verifier
         private void ModificationCB_TextUpdate(object? sender, EventArgs e)
         {
             if (_updating || sender is not ComboBox combo)
+            {
                 return;
+            }
+
             if (!_modifications.TryGetValue(combo, out var all))
+            {
                 return;
+            }
 
             var text = combo.Text;
             var filtered = all
@@ -225,7 +244,9 @@ namespace PoverkaWinForms.Forms.Verifier
         private void ModificationCB_KeyDown(object? sender, KeyEventArgs e)
         {
             if (sender is not ComboBox combo)
+            {
                 return;
+            }
 
             if (e.KeyCode == Keys.Enter)
             {
@@ -245,10 +266,14 @@ namespace PoverkaWinForms.Forms.Verifier
         private void MeterTypeCB_KeyDown(object? sender, KeyEventArgs e)
         {
             if (sender is not ComboBox combo)
+            {
                 return;
+            }
 
             if (_searchTokens.TryGetValue(combo, out var prev))
+            {
                 prev.Cancel();
+            }
 
             if (e.KeyCode == Keys.Enter)
             {
@@ -269,7 +294,9 @@ namespace PoverkaWinForms.Forms.Verifier
                 e.Handled = true;
 
                 if (!_typedTexts.TryGetValue(combo, out var text))
+                {
                     text = combo.Text;
+                }
 
                 if (!combo.DroppedDown)
                 {
@@ -280,12 +307,18 @@ namespace PoverkaWinForms.Forms.Verifier
                 int direction = e.KeyCode == Keys.Down ? 1 : -1;
                 int count = combo.Items.Count;
                 if (count == 0)
+                {
                     return;
+                }
                 int newIndex = combo.SelectedIndex + direction;
                 if (newIndex < 0)
+                {
                     newIndex = count - 1;
+                }
                 if (newIndex >= count)
+                {
                     newIndex = 0;
+                }
                 combo.SelectedIndex = newIndex;
 
                 BeginInvoke(new Action(() =>
@@ -302,25 +335,27 @@ namespace PoverkaWinForms.Forms.Verifier
         private async void MeterTypeCB_KeyUp(object? sender, KeyEventArgs e)
         {
             if (_updating || sender is not ComboBox combo)
+            {
                 return;
+            }
 
-            if (
-                e.KeyCode == Keys.Enter
-                || e.KeyCode == Keys.Up
-                || e.KeyCode == Keys.Down
-                || e.KeyCode == Keys.Left
-                || e.KeyCode == Keys.Right
-            )
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
                 return;
+            }
 
             var keyChar = (char)e.KeyValue;
             if (!char.IsLetter(keyChar) && e.KeyCode != Keys.Back && e.KeyCode != Keys.Delete)
+            {
                 return;
+            }
 
             _typedTexts[combo] = combo.Text;
 
             if (_searchTokens.TryGetValue(combo, out var prev))
+            {
                 prev.Cancel();
+            }
 
             var cts = new CancellationTokenSource();
             _searchTokens[combo] = cts;
@@ -345,25 +380,27 @@ namespace PoverkaWinForms.Forms.Verifier
         private async void ManufacturerCB_KeyUp(object? sender, KeyEventArgs e)
         {
             if (_updating || sender is not ComboBox combo)
+            {
                 return;
+            }
 
-            if (
-                e.KeyCode == Keys.Enter
-                || e.KeyCode == Keys.Up
-                || e.KeyCode == Keys.Down
-                || e.KeyCode == Keys.Left
-                || e.KeyCode == Keys.Right
-            )
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
                 return;
+            }
 
             var keyChar = (char)e.KeyValue;
             if (!char.IsLetter(keyChar) && e.KeyCode != Keys.Back && e.KeyCode != Keys.Delete)
+            {
                 return;
+            }
 
             _typedTexts[combo] = combo.Text;
 
             if (_searchTokens.TryGetValue(combo, out var prev))
+            {
                 prev.Cancel();
+            }
 
             var cts = new CancellationTokenSource();
             _searchTokens[combo] = cts;
@@ -388,13 +425,17 @@ namespace PoverkaWinForms.Forms.Verifier
         private void ManufacturerCB_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
+            {
                 ResetModifications(meter.Modification, meter.RegistrationNumber);
+            }
         }
 
         private void ManufactureDateDTP_ValueChanged(object? sender, EventArgs e)
         {
             if (sender is DateTimePicker picker && picker.Tag is FlowMeterSection meter)
+            {
                 ResetModifications(meter.Modification, meter.RegistrationNumber);
+            }
         }
 
         private async void ModificationCB_Click(object? sender, EventArgs e)
@@ -409,10 +450,12 @@ namespace PoverkaWinForms.Forms.Verifier
         private void ModificationCB_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
+            {
                 UpdateRegistrationNumber(combo, meter.RegistrationNumber);
+            }
         }
 
-        private async void RashodomerCB_CheckedChanged(object? sender, EventArgs e)
+        private async void FlowCB_CheckedChanged(object? sender, EventArgs e)
         {
             if (sender is CheckBox checkBox && checkBox.Tag is FlowMeterSection meter)
             {
