@@ -18,6 +18,7 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
         private readonly Dictionary<ComboBox, List<ModificationDto>> _modifications = new();
         private readonly Dictionary<ComboBox, string> _previousTexts = new();
+        private readonly Dictionary<ComboBox, int> _previousIndices = new();
         private readonly List<FlowMeterSection> _flowMeters = new();
 
         public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService, ModificationService modificationService)
@@ -78,6 +79,8 @@ namespace PoverkaWinForms.Forms.Verifier
 
             _updating = true;
             _previousTexts[combo] = combo.Text;
+            _previousIndices[combo] = combo.SelectedIndex;
+            combo.SelectedIndex = -1;
             combo.Text = string.Empty;
             combo.SelectionStart = 0;
             combo.SelectionLength = 0;
@@ -98,12 +101,17 @@ namespace PoverkaWinForms.Forms.Verifier
             {
                 _updating = true;
                 combo.Text = text;
+                if (_previousIndices.TryGetValue(combo, out var index))
+                {
+                    combo.SelectedIndex = index;
+                }
                 combo.SelectionStart = combo.Text.Length;
                 combo.SelectionLength = 0;
                 _updating = false;
             }
 
             _previousTexts.Remove(combo);
+            _previousIndices.Remove(combo);
         }
 
         private void TypeComboBoxSelectedIndexChanged(object? sender, EventArgs e)
