@@ -37,16 +37,6 @@ namespace PoverkaWinForms.Forms.Verifier
             _flowMeters.Add(new FlowMeterSection(Rashodomer4_CB, Rashodomer4_GB, label25, Flow4_Name_SI_CB, Flow4_GosReestr_CB, Flow4_Modification_CB, Flow4_ManufactureDate_DTP, Flow4_RegistrationNumber_TB));
             _flowMeters.Add(new FlowMeterSection(Rashodomer5_CB, Rashodomer5_GB, label33, Flow5_Name_SI_CB, Flow5_GosReestr_CB, Flow5_Modification_CB, Flow5_ManufactureDate_DTP, Flow5_RegistrationNumber_TB));
             _flowMeters.Add(new FlowMeterSection(Rashodomer6_CB, Rashodomer6_GB, label41, Flow6_Name_SI_CB, Flow6_GosReestr_CB, Flow6_Modification_CB, Flow6_ManufactureDate_DTP, Flow6_RegistrationNumber_TB));
-
-            foreach (var meter in _flowMeters)
-            {
-                meter.CheckBox.Tag = meter;
-                meter.MeterType.Tag = meter;
-                meter.Manufacturer.Tag = meter;
-                meter.Modification.Tag = meter;
-                meter.ManufactureDate.Tag = meter;
-                meter.RegistrationNumber.Tag = meter;
-            }
         }
 
         private async void MetersSetupForm_Load(object sender, EventArgs e)

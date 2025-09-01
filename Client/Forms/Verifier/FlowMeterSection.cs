@@ -15,6 +15,13 @@ internal sealed class FlowMeterSection
         Modification = modification;
         ManufactureDate = manufactureDate;
         RegistrationNumber = registrationNumber;
+
+        checkBox.Tag = this;
+        meterType.Tag = this;
+        manufacturer.Tag = this;
+        modification.Tag = this;
+        manufactureDate.Tag = this;
+        registrationNumber.Tag = this;
     }
 
     public CheckBox CheckBox { get; }
