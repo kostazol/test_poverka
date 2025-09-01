@@ -358,7 +358,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (sender is ComboBox combo)
             {
                 StoreAndClearCombo(combo);
-                await PopulateMeterTypesAsync(combo, combo.Text, combo.Text.Length > 0 ? 20 : 10, dropDown: true);
+                await PopulateMeterTypesAsync(combo, string.Empty, limit: 10, dropDown: true);
             }
         }
 
@@ -403,7 +403,7 @@ namespace PoverkaWinForms.Forms.Verifier
             if (sender is ComboBox combo)
             {
                 StoreAndClearCombo(combo);
-                await PopulateManufacturersAsync(combo, combo.Text, combo.Text.Length > 0 ? 20 : 10, dropDown: true);
+                await PopulateManufacturersAsync(combo, string.Empty, limit: 10, dropDown: true);
             }
         }
 
