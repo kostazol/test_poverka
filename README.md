@@ -19,9 +19,13 @@ Client/
     TokenService.cs
     UserService.cs
   Forms/
-    LoginForm.cs
-    MetersSetupForm.cs
-    ConfigurationForm.cs
+    Common/
+      LoginForm.cs
+      ChangePasswordForm.cs
+    Admin/
+      ConfigurationForm.cs
+    Verifier/
+      MetersSetupForm.cs
 ```
 
 ## Что дальше
