@@ -29,151 +29,160 @@ namespace PoverkaWinForms.Forms.Admin
 
         private void InitializeComponent()
         {
-            this.lblLastName = new System.Windows.Forms.Label();
-            this.txtLastName = new System.Windows.Forms.TextBox();
-            this.lblFirstName = new System.Windows.Forms.Label();
-            this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.lblMiddleName = new System.Windows.Forms.Label();
-            this.txtMiddleName = new System.Windows.Forms.TextBox();
-            this.lblPosition = new System.Windows.Forms.Label();
-            this.txtPosition = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.pnlLoading = new System.Windows.Forms.TableLayoutPanel();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.pnlLoading.SuspendLayout();
-            this.SuspendLayout();
+            lblLastName = new Label();
+            txtLastName = new TextBox();
+            lblFirstName = new Label();
+            txtFirstName = new TextBox();
+            lblMiddleName = new Label();
+            txtMiddleName = new TextBox();
+            lblPosition = new Label();
+            txtPosition = new TextBox();
+            btnSave = new Button();
+            btnCancel = new Button();
+            pnlLoading = new TableLayoutPanel();
+            progressBar = new ProgressBar();
+            pnlLoading.SuspendLayout();
+            SuspendLayout();
             // 
             // lblLastName
             // 
-            this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(12, 15);
-            this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(75, 20);
-            this.lblLastName.TabIndex = 0;
-            this.lblLastName.Text = "Фамилия";
+            lblLastName.AutoSize = true;
+            lblLastName.Location = new Point(10, 11);
+            lblLastName.Name = "lblLastName";
+            lblLastName.Size = new Size(58, 15);
+            lblLastName.TabIndex = 0;
+            lblLastName.Text = "Фамилия";
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(150, 12);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(250, 27);
-            this.txtLastName.TabIndex = 1;
+            txtLastName.Location = new Point(131, 9);
+            txtLastName.Margin = new Padding(3, 2, 3, 2);
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(219, 23);
+            txtLastName.TabIndex = 1;
             // 
             // lblFirstName
             // 
-            this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(12, 52);
-            this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(42, 20);
-            this.lblFirstName.TabIndex = 2;
-            this.lblFirstName.Text = "Имя";
+            lblFirstName.AutoSize = true;
+            lblFirstName.Location = new Point(10, 39);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(31, 15);
+            lblFirstName.TabIndex = 2;
+            lblFirstName.Text = "Имя";
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(150, 49);
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(250, 27);
-            this.txtFirstName.TabIndex = 3;
+            txtFirstName.Location = new Point(131, 37);
+            txtFirstName.Margin = new Padding(3, 2, 3, 2);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.Size = new Size(219, 23);
+            txtFirstName.TabIndex = 3;
             // 
             // lblMiddleName
             // 
-            this.lblMiddleName.AutoSize = true;
-            this.lblMiddleName.Location = new System.Drawing.Point(12, 89);
-            this.lblMiddleName.Name = "lblMiddleName";
-            this.lblMiddleName.Size = new System.Drawing.Size(76, 20);
-            this.lblMiddleName.TabIndex = 4;
-            this.lblMiddleName.Text = "Отчество";
+            lblMiddleName.AutoSize = true;
+            lblMiddleName.Location = new Point(10, 67);
+            lblMiddleName.Name = "lblMiddleName";
+            lblMiddleName.Size = new Size(58, 15);
+            lblMiddleName.TabIndex = 4;
+            lblMiddleName.Text = "Отчество";
             // 
             // txtMiddleName
             // 
-            this.txtMiddleName.Location = new System.Drawing.Point(150, 86);
-            this.txtMiddleName.Name = "txtMiddleName";
-            this.txtMiddleName.Size = new System.Drawing.Size(250, 27);
-            this.txtMiddleName.TabIndex = 5;
-            //
+            txtMiddleName.Location = new Point(131, 64);
+            txtMiddleName.Margin = new Padding(3, 2, 3, 2);
+            txtMiddleName.Name = "txtMiddleName";
+            txtMiddleName.Size = new Size(219, 23);
+            txtMiddleName.TabIndex = 5;
+            // 
             // lblPosition
-            //
-            this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(12, 126);
-            this.lblPosition.Name = "lblPosition";
-            this.lblPosition.Size = new System.Drawing.Size(88, 20);
-            this.lblPosition.TabIndex = 6;
-            this.lblPosition.Text = "Должность";
-            //
+            // 
+            lblPosition.AutoSize = true;
+            lblPosition.Location = new Point(10, 94);
+            lblPosition.Name = "lblPosition";
+            lblPosition.Size = new Size(69, 15);
+            lblPosition.TabIndex = 6;
+            lblPosition.Text = "Должность";
+            // 
             // txtPosition
-            //
-            this.txtPosition.Location = new System.Drawing.Point(150, 123);
-            this.txtPosition.Name = "txtPosition";
-            this.txtPosition.Size = new System.Drawing.Size(250, 27);
-            this.txtPosition.TabIndex = 7;
-            //
+            // 
+            txtPosition.Location = new Point(131, 92);
+            txtPosition.Margin = new Padding(3, 2, 3, 2);
+            txtPosition.Name = "txtPosition";
+            txtPosition.Size = new Size(219, 23);
+            txtPosition.TabIndex = 7;
+            // 
             // btnSave
-            //
-            this.btnSave.Location = new System.Drawing.Point(150, 167);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(94, 29);
-            this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "Сохранить";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            //
+            // 
+            btnSave.Location = new Point(131, 125);
+            btnSave.Margin = new Padding(3, 2, 3, 2);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(82, 22);
+            btnSave.TabIndex = 8;
+            btnSave.Text = "Сохранить";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
             // btnCancel
-            //
-            this.btnCancel.Location = new System.Drawing.Point(306, 167);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(94, 29);
-            this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "Отменить";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            //
+            // 
+            btnCancel.Location = new Point(268, 125);
+            btnCancel.Margin = new Padding(3, 2, 3, 2);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(82, 22);
+            btnCancel.TabIndex = 9;
+            btnCancel.Text = "Отменить";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // pnlLoading
-            //
-            this.pnlLoading.ColumnCount = 1;
-            this.pnlLoading.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Controls.Add(this.progressBar, 0, 0);
-            this.pnlLoading.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLoading.Location = new System.Drawing.Point(0, 0);
-            this.pnlLoading.Name = "pnlLoading";
-            this.pnlLoading.RowCount = 1;
-            this.pnlLoading.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLoading.Size = new System.Drawing.Size(414, 208);
-            this.pnlLoading.TabIndex = 10;
-            this.pnlLoading.Visible = false;
-            //
+            // 
+            pnlLoading.ColumnCount = 1;
+            pnlLoading.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            pnlLoading.Controls.Add(progressBar, 0, 0);
+            pnlLoading.Dock = DockStyle.Fill;
+            pnlLoading.Location = new Point(0, 0);
+            pnlLoading.Margin = new Padding(3, 2, 3, 2);
+            pnlLoading.Name = "pnlLoading";
+            pnlLoading.RowCount = 1;
+            pnlLoading.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            pnlLoading.Size = new Size(362, 156);
+            pnlLoading.TabIndex = 10;
+            pnlLoading.Visible = false;
+            // 
             // progressBar
-            //
-            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(107, 94);
-            this.progressBar.MarqueeAnimationSpeed = 30;
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(200, 20);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar.TabIndex = 0;
-            //
+            // 
+            progressBar.Anchor = AnchorStyles.None;
+            progressBar.Location = new Point(93, 70);
+            progressBar.Margin = new Padding(3, 2, 3, 2);
+            progressBar.MarqueeAnimationSpeed = 30;
+            progressBar.Name = "progressBar";
+            progressBar.Size = new Size(175, 15);
+            progressBar.Style = ProgressBarStyle.Marquee;
+            progressBar.TabIndex = 0;
+            // 
             // EditUserForm
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 208);
-            this.Controls.Add(this.pnlLoading);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtPosition);
-            this.Controls.Add(this.lblPosition);
-            this.Controls.Add(this.txtMiddleName);
-            this.Controls.Add(this.lblMiddleName);
-            this.Controls.Add(this.txtFirstName);
-            this.Controls.Add(this.lblFirstName);
-            this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.lblLastName);
-            this.Name = "EditUserForm";
-            this.Text = "Изменение пользователя";
-            this.Load += new System.EventHandler(this.EditUserForm_Load);
-            this.pnlLoading.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(362, 156);
+            Controls.Add(btnCancel);
+            Controls.Add(btnSave);
+            Controls.Add(txtPosition);
+            Controls.Add(lblPosition);
+            Controls.Add(txtMiddleName);
+            Controls.Add(lblMiddleName);
+            Controls.Add(txtFirstName);
+            Controls.Add(lblFirstName);
+            Controls.Add(txtLastName);
+            Controls.Add(lblLastName);
+            Controls.Add(pnlLoading);
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "EditUserForm";
+            Text = "Изменение пользователя";
+            Load += EditUserForm_Load;
+            pnlLoading.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
