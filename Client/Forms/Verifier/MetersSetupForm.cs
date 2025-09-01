@@ -18,7 +18,6 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
         private readonly Dictionary<ComboBox, List<ModificationDto>> _modifications = new();
         private readonly Dictionary<ComboBox, string> _previousTexts = new();
-        private readonly Dictionary<ComboBox, (ComboBox meterType, ComboBox manufacturer, DateTimePicker datePicker, TextBox registrationNumber)> _modificationSources = new();
 
         public MetersSetupForm(
             MeterTypeService meterTypeService,
@@ -30,13 +29,6 @@ namespace PoverkaWinForms.Forms.Verifier
             _manufacturerService = manufacturerService;
             _modificationService = modificationService;
             InitializeComponent();
-
-            _modificationSources[Flow1_Modification_CB] = (Flow1_Name_SI_CB, Flow1_GosReestr_CB, Flow1_ManufactureDate_DTP, Flow1_RegistrationNumber_TB);
-            _modificationSources[Flow2_Modification_CB] = (Flow2_Name_SI_CB, Flow2_GosReestr_CB, Flow2_ManufactureDate_DTP, Flow2_RegistrationNumber_TB);
-            _modificationSources[Flow3_Modification_CB] = (Flow3_Name_SI_CB, Flow3_GosReestr_CB, Flow3_ManufactureDate_DTP, Flow3_RegistrationNumber_TB);
-            _modificationSources[Flow4_Modification_CB] = (Flow4_Name_SI_CB, Flow4_GosReestr_CB, Flow4_ManufactureDate_DTP, Flow4_RegistrationNumber_TB);
-            _modificationSources[Flow5_Modification_CB] = (Flow5_Name_SI_CB, Flow5_GosReestr_CB, Flow5_ManufactureDate_DTP, Flow5_RegistrationNumber_TB);
-            _modificationSources[Flow6_Modification_CB] = (Flow6_Name_SI_CB, Flow6_GosReestr_CB, Flow6_ManufactureDate_DTP, Flow6_RegistrationNumber_TB);
         }
 
         private async void MetersSetupForm_Load(object sender, EventArgs e)
@@ -367,7 +359,7 @@ namespace PoverkaWinForms.Forms.Verifier
             catch (TaskCanceledException) { }
         }
 
-        private async void MeterTypeCB_DropDown(object? sender, EventArgs e)
+        private async void MeterTypeCB_Click(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo)
             {
@@ -473,16 +465,38 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private async void ModificationCB_Click(object? sender, EventArgs e)
         {
-            if (sender is ComboBox combo && _modificationSources.TryGetValue(combo, out var sources))
+            if (sender is ComboBox combo)
             {
                 StoreAndClearCombo(combo);
-                await PopulateModificationsAsync(
-                    combo,
-                    sources.meterType,
-                    sources.manufacturer,
-                    sources.datePicker,
-                    sources.registrationNumber
-                );
+
+                var flow = combo.Name.Split('_')[0];
+
+                var meterType = Controls
+                    .Find($"{flow}_Name_SI_CB", true)
+                    .FirstOrDefault() as ComboBox;
+
+                var manufacturer = Controls
+                    .Find($"{flow}_GosReestr_CB", true)
+                    .FirstOrDefault() as ComboBox;
+
+                var datePicker = Controls
+                    .Find($"{flow}_ManufactureDate_DTP", true)
+                    .FirstOrDefault() as DateTimePicker;
+
+                var registrationNumber = Controls
+                    .Find($"{flow}_RegistrationNumber_TB", true)
+                    .FirstOrDefault() as TextBox;
+
+                if (meterType != null && manufacturer != null && datePicker != null && registrationNumber != null)
+                {
+                    await PopulateModificationsAsync(
+                        combo,
+                        meterType,
+                        manufacturer,
+                        datePicker,
+                        registrationNumber
+                    );
+                }
             }
         }
 
