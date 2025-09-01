@@ -448,8 +448,7 @@ namespace PoverkaWinForms.Forms.Verifier
             label14.Size = new Size(28, 15);
             label14.TabIndex = 21;
             label14.Text = "Тип";
-            label14.Click += label14_Click;
-            // 
+            //
             // Flow2_Modification_CB
             //
             Flow2_Modification_CB.DropDownStyle = ComboBoxStyle.DropDown;
@@ -1261,10 +1260,9 @@ namespace PoverkaWinForms.Forms.Verifier
             Next_B.TabIndex = 42;
             Next_B.Text = "Далее";
             Next_B.UseVisualStyleBackColor = true;
-            Next_B.Click += Next_B_Click;
-            // 
+            //
             // button1
-            // 
+            //
             button1.Location = new Point(60, 682);
             button1.Margin = new Padding(4);
             button1.Name = "button1";
@@ -1272,10 +1270,9 @@ namespace PoverkaWinForms.Forms.Verifier
             button1.TabIndex = 43;
             button1.Text = "Выход";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
+            //
             // MetersSetupForm
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1158, 728);

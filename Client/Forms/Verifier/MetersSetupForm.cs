@@ -433,12 +433,6 @@ namespace PoverkaWinForms.Forms.Verifier
         private void Flow6_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
             ResetModifications(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
 
-        private void label14_Click(object sender, EventArgs e) { }
-
-        private void Next_B_Click(object sender, EventArgs e) { }
-
-        private void button1_Click(object sender, EventArgs e) { }
-
         private async void ModificationCB_Click(object? sender, EventArgs e)
         {
             if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
