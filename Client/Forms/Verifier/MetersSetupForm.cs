@@ -18,6 +18,61 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
         private readonly Dictionary<ComboBox, List<ModificationDto>> _modifications = new();
         private readonly Dictionary<ComboBox, string> _previousTexts = new();
+        private readonly List<FlowMeterSection> _flowMeters = new();
+
+        private sealed class FlowMeterSection
+        {
+            public FlowMeterSection(
+                CheckBox checkBox,
+                GroupBox groupBox,
+                Label caption,
+                ComboBox meterType,
+                ComboBox manufacturer,
+                ComboBox modification,
+                DateTimePicker manufactureDate,
+                TextBox registrationNumber
+            )
+            {
+                CheckBox = checkBox;
+                GroupBox = groupBox;
+                Caption = caption;
+                MeterType = meterType;
+                Manufacturer = manufacturer;
+                Modification = modification;
+                ManufactureDate = manufactureDate;
+                RegistrationNumber = registrationNumber;
+            }
+
+            public CheckBox CheckBox { get; }
+            public GroupBox GroupBox { get; }
+            public Label Caption { get; }
+            public ComboBox MeterType { get; }
+            public ComboBox Manufacturer { get; }
+            public ComboBox Modification { get; }
+            public DateTimePicker ManufactureDate { get; }
+            public TextBox RegistrationNumber { get; }
+
+            public void ToggleControls()
+            {
+                bool visible = CheckBox.Checked;
+                foreach (Control control in GroupBox.Controls)
+                {
+                    if (control != Caption && control != CheckBox)
+                        control.Visible = visible;
+                }
+            }
+
+            public async Task OnCheckedChangedAsync(MetersSetupForm form)
+            {
+                ToggleControls();
+
+                if (!CheckBox.Checked)
+                    return;
+
+                await form.PopulateMeterTypesAsync(MeterType, string.Empty, 10);
+                await form.PopulateManufacturersAsync(Manufacturer, string.Empty, 10);
+            }
+        }
 
         public MetersSetupForm(
             MeterTypeService meterTypeService,
@@ -29,6 +84,93 @@ namespace PoverkaWinForms.Forms.Verifier
             _manufacturerService = manufacturerService;
             _modificationService = modificationService;
             InitializeComponent();
+            InitializeFlowMeters();
+        }
+
+        private void InitializeFlowMeters()
+        {
+            _flowMeters.Add(
+                new FlowMeterSection(
+                    Rashodomer1_CB,
+                    Rashodomer1_GB,
+                    label8,
+                    Flow1_Name_SI_CB,
+                    Flow1_GosReestr_CB,
+                    Flow1_Modification_CB,
+                    Flow1_ManufactureDate_DTP,
+                    Flow1_RegistrationNumber_TB
+                )
+            );
+            _flowMeters.Add(
+                new FlowMeterSection(
+                    Rashodomer2_CB,
+                    Rashodomer2_GB,
+                    label10,
+                    Flow2_Name_SI_CB,
+                    Flow2_GosReestr_CB,
+                    Flow2_Modification_CB,
+                    Flow2_ManufactureDate_DTP,
+                    Flow2_RegistrationNumber_TB
+                )
+            );
+            _flowMeters.Add(
+                new FlowMeterSection(
+                    Rashodomer3_CB,
+                    Rashodomer3_GB,
+                    label9,
+                    Flow3_Name_SI_CB,
+                    Flow3_GosReestr_CB,
+                    Flow3_Modification_CB,
+                    Flow3_ManufactureDate_DTP,
+                    Flow3_RegistrationNumber_TB
+                )
+            );
+            _flowMeters.Add(
+                new FlowMeterSection(
+                    Rashodomer4_CB,
+                    Rashodomer4_GB,
+                    label25,
+                    Flow4_Name_SI_CB,
+                    Flow4_GosReestr_CB,
+                    Flow4_Modification_CB,
+                    Flow4_ManufactureDate_DTP,
+                    Flow4_RegistrationNumber_TB
+                )
+            );
+            _flowMeters.Add(
+                new FlowMeterSection(
+                    Rashodomer5_CB,
+                    Rashodomer5_GB,
+                    label33,
+                    Flow5_Name_SI_CB,
+                    Flow5_GosReestr_CB,
+                    Flow5_Modification_CB,
+                    Flow5_ManufactureDate_DTP,
+                    Flow5_RegistrationNumber_TB
+                )
+            );
+            _flowMeters.Add(
+                new FlowMeterSection(
+                    Rashodomer6_CB,
+                    Rashodomer6_GB,
+                    label41,
+                    Flow6_Name_SI_CB,
+                    Flow6_GosReestr_CB,
+                    Flow6_Modification_CB,
+                    Flow6_ManufactureDate_DTP,
+                    Flow6_RegistrationNumber_TB
+                )
+            );
+
+            foreach (var meter in _flowMeters)
+            {
+                meter.CheckBox.Tag = meter;
+                meter.MeterType.Tag = meter;
+                meter.Manufacturer.Tag = meter;
+                meter.Modification.Tag = meter;
+                meter.ManufactureDate.Tag = meter;
+                meter.RegistrationNumber.Tag = meter;
+            }
         }
 
         private async void MetersSetupForm_Load(object sender, EventArgs e)
@@ -36,12 +178,8 @@ namespace PoverkaWinForms.Forms.Verifier
             if (DesignMode)
                 return;
 
-            RashodomerCB_CheckedChanged(Rashodomer1_CB, EventArgs.Empty);
-            RashodomerCB_CheckedChanged(Rashodomer2_CB, EventArgs.Empty);
-            RashodomerCB_CheckedChanged(Rashodomer3_CB, EventArgs.Empty);
-            RashodomerCB_CheckedChanged(Rashodomer4_CB, EventArgs.Empty);
-            RashodomerCB_CheckedChanged(Rashodomer5_CB, EventArgs.Empty);
-            RashodomerCB_CheckedChanged(Rashodomer6_CB, EventArgs.Empty);
+            foreach (var meter in _flowMeters)
+                RashodomerCB_CheckedChanged(meter.CheckBox, EventArgs.Empty);
 
             await _meterTypeService.GetAllAsync(string.Empty, 10);
             await _manufacturerService.GetAllAsync(string.Empty, 10);
@@ -465,38 +603,16 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private async void ModificationCB_Click(object? sender, EventArgs e)
         {
-            if (sender is ComboBox combo)
+            if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
             {
                 StoreAndClearCombo(combo);
-
-                var flow = combo.Name.Split('_')[0];
-
-                var meterType = Controls
-                    .Find($"{flow}_Name_SI_CB", true)
-                    .FirstOrDefault() as ComboBox;
-
-                var manufacturer = Controls
-                    .Find($"{flow}_GosReestr_CB", true)
-                    .FirstOrDefault() as ComboBox;
-
-                var datePicker = Controls
-                    .Find($"{flow}_ManufactureDate_DTP", true)
-                    .FirstOrDefault() as DateTimePicker;
-
-                var registrationNumber = Controls
-                    .Find($"{flow}_RegistrationNumber_TB", true)
-                    .FirstOrDefault() as TextBox;
-
-                if (meterType != null && manufacturer != null && datePicker != null && registrationNumber != null)
-                {
-                    await PopulateModificationsAsync(
-                        combo,
-                        meterType,
-                        manufacturer,
-                        datePicker,
-                        registrationNumber
-                    );
-                }
+                await PopulateModificationsAsync(
+                    combo,
+                    meter.MeterType,
+                    meter.Manufacturer,
+                    meter.ManufactureDate,
+                    meter.RegistrationNumber
+                );
             }
         }
 
@@ -520,48 +636,9 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private async void RashodomerCB_CheckedChanged(object? sender, EventArgs e)
         {
-            if (sender is not CheckBox checkBox)
-                return;
-
-            string flow = new string(checkBox.Name.Where(char.IsDigit).ToArray());
-            if (string.IsNullOrEmpty(flow))
-                return;
-
-            GroupBox? groupBox = Controls.Find($"Rashodomer{flow}_GB", true)
-                .FirstOrDefault() as GroupBox;
-            if (groupBox is null)
-                return;
-
-            Label? caption = groupBox.Controls.OfType<Label>().FirstOrDefault();
-            if (caption is null)
-                return;
-
-            ToggleGroupControls(groupBox, checkBox, caption);
-
-            if (!checkBox.Checked)
-                return;
-
-            ComboBox? meterType = Controls.Find($"Flow{flow}_Name_SI_CB", true)
-                .FirstOrDefault() as ComboBox;
-            if (meterType is not null)
-                await PopulateMeterTypesAsync(meterType, string.Empty, 10);
-
-            ComboBox? manufacturer = Controls.Find($"Flow{flow}_GosReestr_CB", true)
-                .FirstOrDefault() as ComboBox;
-            if (manufacturer is not null)
-                await PopulateManufacturersAsync(manufacturer, string.Empty, 10);
-        }
-
-        private static void ToggleGroupControls(GroupBox groupBox, CheckBox checkBox, Label caption)
-        {
-            bool visible = checkBox.Checked;
-
-            foreach (Control control in groupBox.Controls)
+            if (sender is CheckBox checkBox && checkBox.Tag is FlowMeterSection meter)
             {
-                if (control != caption && control != checkBox)
-                {
-                    control.Visible = visible;
-                }
+                await meter.OnCheckedChangedAsync(this);
             }
         }
     }
