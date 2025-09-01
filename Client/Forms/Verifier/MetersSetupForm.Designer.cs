@@ -190,7 +190,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow1_Modification_CB.Click += ModificationCB_Click;
             Flow1_Modification_CB.DropDownClosed += RestoreComboText;
-            Flow1_Modification_CB.SelectedIndexChanged += Flow1_Modification_CB_SelectedIndexChanged;
+            Flow1_Modification_CB.SelectedIndexChanged += ModificationCB_SelectedIndexChanged;
             //
             // label2
             //
@@ -210,7 +210,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Type_CB.Name = "Flow1_Type_CB";
             Flow1_Type_CB.Size = new Size(155, 23);
             Flow1_Type_CB.TabIndex = 20;
-            Flow1_Type_CB.SelectedIndexChanged += Flow1_Type_CB_SelectedIndexChanged;
+            Flow1_Type_CB.SelectedIndexChanged += TypeCB_SelectedIndexChanged;
             Flow1_Type_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow1_Type_CB.KeyUp += MeterTypeCB_KeyUp;
             Flow1_Type_CB.Click += MeterTypeCB_Click;
@@ -238,7 +238,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_Manufacturer_CB.Name = "Flow1_Manufacturer_CB";
             Flow1_Manufacturer_CB.Size = new Size(155, 23);
             Flow1_Manufacturer_CB.TabIndex = 22;
-            Flow1_Manufacturer_CB.SelectedIndexChanged += Flow1_Manufacturer_CB_SelectedIndexChanged;
+            Flow1_Manufacturer_CB.SelectedIndexChanged += ManufacturerCB_SelectedIndexChanged;
             Flow1_Manufacturer_CB.Click += ManufacturerCB_Click;
             Flow1_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow1_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
@@ -254,7 +254,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow1_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow1_ManufactureDate_DTP.TabIndex = 24;
             Flow1_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
-            Flow1_ManufactureDate_DTP.ValueChanged += Flow1_ManufactureDate_DTP_ValueChanged;
+            Flow1_ManufactureDate_DTP.ValueChanged += ManufactureDateDTP_ValueChanged;
             //
             // Flow1_ManufactureDate_L
             //
@@ -387,7 +387,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Manufacturer_CB.Name = "Flow2_Manufacturer_CB";
             Flow2_Manufacturer_CB.Size = new Size(155, 23);
             Flow2_Manufacturer_CB.TabIndex = 22;
-            Flow2_Manufacturer_CB.SelectedIndexChanged += Flow2_Manufacturer_CB_SelectedIndexChanged;
+            Flow2_Manufacturer_CB.SelectedIndexChanged += ManufacturerCB_SelectedIndexChanged;
             Flow2_Manufacturer_CB.Click += ManufacturerCB_Click;
             Flow2_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow2_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
@@ -403,7 +403,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow2_ManufactureDate_DTP.TabIndex = 24;
             Flow2_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
-            Flow2_ManufactureDate_DTP.ValueChanged += Flow2_ManufactureDate_DTP_ValueChanged;
+            Flow2_ManufactureDate_DTP.ValueChanged += ManufactureDateDTP_ValueChanged;
             //
             // Flow2_ManufactureDate_L
             //
@@ -433,7 +433,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Type_CB.Name = "Flow2_Type_CB";
             Flow2_Type_CB.Size = new Size(155, 23);
             Flow2_Type_CB.TabIndex = 20;
-            Flow2_Type_CB.SelectedIndexChanged += Flow2_Type_CB_SelectedIndexChanged;
+            Flow2_Type_CB.SelectedIndexChanged += TypeCB_SelectedIndexChanged;
             Flow2_Type_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow2_Type_CB.KeyUp += MeterTypeCB_KeyUp;
             Flow2_Type_CB.Click += MeterTypeCB_Click;
@@ -462,7 +462,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow2_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow2_Modification_CB.Click += ModificationCB_Click;
             Flow2_Modification_CB.DropDownClosed += RestoreComboText;
-            Flow2_Modification_CB.SelectedIndexChanged += Flow2_Modification_CB_SelectedIndexChanged;
+            Flow2_Modification_CB.SelectedIndexChanged += ModificationCB_SelectedIndexChanged;
             //
             // label16
             // 
@@ -572,7 +572,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Manufacturer_CB.Name = "Flow3_Manufacturer_CB";
             Flow3_Manufacturer_CB.Size = new Size(155, 23);
             Flow3_Manufacturer_CB.TabIndex = 22;
-            Flow3_Manufacturer_CB.SelectedIndexChanged += Flow3_Manufacturer_CB_SelectedIndexChanged;
+            Flow3_Manufacturer_CB.SelectedIndexChanged += ManufacturerCB_SelectedIndexChanged;
             Flow3_Manufacturer_CB.Click += ManufacturerCB_Click;
             Flow3_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow3_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
@@ -588,7 +588,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow3_ManufactureDate_DTP.TabIndex = 24;
             Flow3_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
-            Flow3_ManufactureDate_DTP.ValueChanged += Flow3_ManufactureDate_DTP_ValueChanged;
+            Flow3_ManufactureDate_DTP.ValueChanged += ManufactureDateDTP_ValueChanged;
             //
             // Flow3_ManufactureDate_L
             //
@@ -618,7 +618,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Type_CB.Name = "Flow3_Type_CB";
             Flow3_Type_CB.Size = new Size(155, 23);
             Flow3_Type_CB.TabIndex = 20;
-            Flow3_Type_CB.SelectedIndexChanged += Flow3_Type_CB_SelectedIndexChanged;
+            Flow3_Type_CB.SelectedIndexChanged += TypeCB_SelectedIndexChanged;
             Flow3_Type_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow3_Type_CB.KeyUp += MeterTypeCB_KeyUp;
             Flow3_Type_CB.Click += MeterTypeCB_Click;
@@ -647,7 +647,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow3_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow3_Modification_CB.Click += ModificationCB_Click;
             Flow3_Modification_CB.DropDownClosed += RestoreComboText;
-            Flow3_Modification_CB.SelectedIndexChanged += Flow3_Modification_CB_SelectedIndexChanged;
+            Flow3_Modification_CB.SelectedIndexChanged += ModificationCB_SelectedIndexChanged;
             //
             // label23
             // 
@@ -757,7 +757,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Manufacturer_CB.Name = "Flow4_Manufacturer_CB";
             Flow4_Manufacturer_CB.Size = new Size(155, 23);
             Flow4_Manufacturer_CB.TabIndex = 22;
-            Flow4_Manufacturer_CB.SelectedIndexChanged += Flow4_Manufacturer_CB_SelectedIndexChanged;
+            Flow4_Manufacturer_CB.SelectedIndexChanged += ManufacturerCB_SelectedIndexChanged;
             Flow4_Manufacturer_CB.Click += ManufacturerCB_Click;
             Flow4_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow4_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
@@ -773,7 +773,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow4_ManufactureDate_DTP.TabIndex = 24;
             Flow4_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
-            Flow4_ManufactureDate_DTP.ValueChanged += Flow4_ManufactureDate_DTP_ValueChanged;
+            Flow4_ManufactureDate_DTP.ValueChanged += ManufactureDateDTP_ValueChanged;
             //
             // Flow4_ManufactureDate_L
             //
@@ -803,7 +803,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Type_CB.Name = "Flow4_Type_CB";
             Flow4_Type_CB.Size = new Size(155, 23);
             Flow4_Type_CB.TabIndex = 20;
-            Flow4_Type_CB.SelectedIndexChanged += Flow4_Type_CB_SelectedIndexChanged;
+            Flow4_Type_CB.SelectedIndexChanged += TypeCB_SelectedIndexChanged;
             Flow4_Type_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow4_Type_CB.KeyUp += MeterTypeCB_KeyUp;
             Flow4_Type_CB.Click += MeterTypeCB_Click;
@@ -832,7 +832,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow4_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow4_Modification_CB.Click += ModificationCB_Click;
             Flow4_Modification_CB.DropDownClosed += RestoreComboText;
-            Flow4_Modification_CB.SelectedIndexChanged += Flow4_Modification_CB_SelectedIndexChanged;
+            Flow4_Modification_CB.SelectedIndexChanged += ModificationCB_SelectedIndexChanged;
             //
             // label31
             // 
@@ -942,7 +942,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Manufacturer_CB.Name = "Flow5_Manufacturer_CB";
             Flow5_Manufacturer_CB.Size = new Size(155, 23);
             Flow5_Manufacturer_CB.TabIndex = 22;
-            Flow5_Manufacturer_CB.SelectedIndexChanged += Flow5_Manufacturer_CB_SelectedIndexChanged;
+            Flow5_Manufacturer_CB.SelectedIndexChanged += ManufacturerCB_SelectedIndexChanged;
             Flow5_Manufacturer_CB.Click += ManufacturerCB_Click;
             Flow5_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow5_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
@@ -958,7 +958,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow5_ManufactureDate_DTP.TabIndex = 24;
             Flow5_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
-            Flow5_ManufactureDate_DTP.ValueChanged += Flow5_ManufactureDate_DTP_ValueChanged;
+            Flow5_ManufactureDate_DTP.ValueChanged += ManufactureDateDTP_ValueChanged;
             //
             // Flow5_ManufactureDate_L
             //
@@ -988,7 +988,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Type_CB.Name = "Flow5_Type_CB";
             Flow5_Type_CB.Size = new Size(155, 23);
             Flow5_Type_CB.TabIndex = 20;
-            Flow5_Type_CB.SelectedIndexChanged += Flow5_Type_CB_SelectedIndexChanged;
+            Flow5_Type_CB.SelectedIndexChanged += TypeCB_SelectedIndexChanged;
             Flow5_Type_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow5_Type_CB.KeyUp += MeterTypeCB_KeyUp;
             Flow5_Type_CB.Click += MeterTypeCB_Click;
@@ -1017,7 +1017,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow5_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow5_Modification_CB.Click += ModificationCB_Click;
             Flow5_Modification_CB.DropDownClosed += RestoreComboText;
-            Flow5_Modification_CB.SelectedIndexChanged += Flow5_Modification_CB_SelectedIndexChanged;
+            Flow5_Modification_CB.SelectedIndexChanged += ModificationCB_SelectedIndexChanged;
             //
             // label39
             // 
@@ -1127,7 +1127,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Manufacturer_CB.Name = "Flow6_Manufacturer_CB";
             Flow6_Manufacturer_CB.Size = new Size(155, 23);
             Flow6_Manufacturer_CB.TabIndex = 22;
-            Flow6_Manufacturer_CB.SelectedIndexChanged += Flow6_Manufacturer_CB_SelectedIndexChanged;
+            Flow6_Manufacturer_CB.SelectedIndexChanged += ManufacturerCB_SelectedIndexChanged;
             Flow6_Manufacturer_CB.Click += ManufacturerCB_Click;
             Flow6_Manufacturer_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow6_Manufacturer_CB.KeyUp += ManufacturerCB_KeyUp;
@@ -1143,7 +1143,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_ManufactureDate_DTP.Size = new Size(155, 23);
             Flow6_ManufactureDate_DTP.TabIndex = 24;
             Flow6_ManufactureDate_DTP.Value = new DateTime(2025, 8, 31, 0, 0, 0, 0);
-            Flow6_ManufactureDate_DTP.ValueChanged += Flow6_ManufactureDate_DTP_ValueChanged;
+            Flow6_ManufactureDate_DTP.ValueChanged += ManufactureDateDTP_ValueChanged;
             //
             // Flow6_ManufactureDate_L
             //
@@ -1173,7 +1173,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Type_CB.Name = "Flow6_Type_CB";
             Flow6_Type_CB.Size = new Size(155, 23);
             Flow6_Type_CB.TabIndex = 20;
-            Flow6_Type_CB.SelectedIndexChanged += Flow6_Type_CB_SelectedIndexChanged;
+            Flow6_Type_CB.SelectedIndexChanged += TypeCB_SelectedIndexChanged;
             Flow6_Type_CB.KeyDown += MeterTypeCB_KeyDown;
             Flow6_Type_CB.KeyUp += MeterTypeCB_KeyUp;
             Flow6_Type_CB.Click += MeterTypeCB_Click;
@@ -1202,7 +1202,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Flow6_Modification_CB.KeyDown += ModificationCB_KeyDown;
             Flow6_Modification_CB.Click += ModificationCB_Click;
             Flow6_Modification_CB.DropDownClosed += RestoreComboText;
-            Flow6_Modification_CB.SelectedIndexChanged += Flow6_Modification_CB_SelectedIndexChanged;
+            Flow6_Modification_CB.SelectedIndexChanged += ModificationCB_SelectedIndexChanged;
             // 
             // label47
             // 

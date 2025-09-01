@@ -96,23 +96,11 @@ namespace PoverkaWinForms.Forms.Verifier
             _previousTexts.Remove(combo);
         }
 
-        private void Flow1_Type_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
-
-        private void Flow2_Type_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow2_Modification_CB, Flow2_RegistrationNumber_TB);
-
-        private void Flow3_Type_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow3_Modification_CB, Flow3_RegistrationNumber_TB);
-
-        private void Flow4_Type_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow4_Modification_CB, Flow4_RegistrationNumber_TB);
-
-        private void Flow5_Type_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow5_Modification_CB, Flow5_RegistrationNumber_TB);
-
-        private void Flow6_Type_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
+        private void TypeCB_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
+                ResetModifications(meter.Modification, meter.RegistrationNumber);
+        }
 
         internal async Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false)
         {
@@ -397,41 +385,17 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void Flow1_Manufacturer_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
+        private void ManufacturerCB_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
+                ResetModifications(meter.Modification, meter.RegistrationNumber);
+        }
 
-        private void Flow2_Manufacturer_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow2_Modification_CB, Flow2_RegistrationNumber_TB);
-
-        private void Flow3_Manufacturer_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow3_Modification_CB, Flow3_RegistrationNumber_TB);
-
-        private void Flow4_Manufacturer_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow4_Modification_CB, Flow4_RegistrationNumber_TB);
-
-        private void Flow5_Manufacturer_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow5_Modification_CB, Flow5_RegistrationNumber_TB);
-
-        private void Flow6_Manufacturer_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
-
-        private void Flow1_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
-
-        private void Flow2_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow2_Modification_CB, Flow2_RegistrationNumber_TB);
-
-        private void Flow3_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow3_Modification_CB, Flow3_RegistrationNumber_TB);
-
-        private void Flow4_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow4_Modification_CB, Flow4_RegistrationNumber_TB);
-
-        private void Flow5_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow5_Modification_CB, Flow5_RegistrationNumber_TB);
-
-        private void Flow6_ManufactureDate_DTP_ValueChanged(object sender, EventArgs e) =>
-            ResetModifications(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
+        private void ManufactureDateDTP_ValueChanged(object? sender, EventArgs e)
+        {
+            if (sender is DateTimePicker picker && picker.Tag is FlowMeterSection meter)
+                ResetModifications(meter.Modification, meter.RegistrationNumber);
+        }
 
         private async void ModificationCB_Click(object? sender, EventArgs e)
         {
@@ -442,23 +406,11 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void Flow1_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            UpdateRegistrationNumber(Flow1_Modification_CB, Flow1_RegistrationNumber_TB);
-
-        private void Flow2_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            UpdateRegistrationNumber(Flow2_Modification_CB, Flow2_RegistrationNumber_TB);
-
-        private void Flow3_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            UpdateRegistrationNumber(Flow3_Modification_CB, Flow3_RegistrationNumber_TB);
-
-        private void Flow4_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            UpdateRegistrationNumber(Flow4_Modification_CB, Flow4_RegistrationNumber_TB);
-
-        private void Flow5_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            UpdateRegistrationNumber(Flow5_Modification_CB, Flow5_RegistrationNumber_TB);
-
-        private void Flow6_Modification_CB_SelectedIndexChanged(object sender, EventArgs e) =>
-            UpdateRegistrationNumber(Flow6_Modification_CB, Flow6_RegistrationNumber_TB);
+        private void ModificationCB_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (sender is ComboBox combo && combo.Tag is FlowMeterSection meter)
+                UpdateRegistrationNumber(combo, meter.RegistrationNumber);
+        }
 
         private async void RashodomerCB_CheckedChanged(object? sender, EventArgs e)
         {
