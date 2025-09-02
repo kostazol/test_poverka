@@ -1260,6 +1260,7 @@ namespace PoverkaWinForms.Forms.Verifier
             NextButton.TabIndex = 42;
             NextButton.Text = "Далее";
             NextButton.UseVisualStyleBackColor = true;
+            NextButton.Click += NextButtonClick;
             //
             // ExitButton
             //

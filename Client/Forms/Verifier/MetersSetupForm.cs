@@ -447,5 +447,11 @@ namespace PoverkaWinForms.Forms.Verifier
                 await meter.OnCheckedChangedAsync(this);
             }
         }
+
+        private void NextButtonClick(object? sender, EventArgs e)
+        {
+            var programForm = new VerificationProgramForm();
+            programForm.Show();
+        }
     }
 }
