@@ -8,7 +8,7 @@ internal record FlowMeterInfo(
     ModificationDto? Modification,
     RegistrationDto? Registration)
 {
-    private static string ToYesNo(bool? value) => value == true ? "да" : "нет";
+    private static string? ToYesNo(bool? value) => value is null ? null : value.Value ? "да" : "нет";
 
     private static string? FormatYears(short? years)
     {
