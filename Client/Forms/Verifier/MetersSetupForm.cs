@@ -452,6 +452,16 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private async void NextButton_Click(object? sender, EventArgs e)
         {
+            for (int i = 0; i < _flowMeters.Count; i++)
+            {
+                var meter = _flowMeters[i];
+                if (meter.CheckBox.Checked && !meter.IsComplete())
+                {
+                    MessageBox.Show($"Отключите расходомер или заполните все данные расходомера {i + 1}");
+                    return;
+                }
+            }
+
             var infos = (await Task.WhenAll(_flowMeters.Select(m => m.ToInfoAsync(_registrationService)))).ToList();
             using var programForm = new VerificationProgramForm(infos);
             programForm.ShowDialog(this);

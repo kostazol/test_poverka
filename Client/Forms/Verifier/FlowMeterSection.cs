@@ -34,6 +34,14 @@ internal sealed class FlowMeterSection
     public DateTimePicker ManufactureDate { get; }
     public TextBox RegistrationNumber { get; }
 
+    public bool IsComplete()
+    {
+        return MeterType.SelectedItem != null
+            && Manufacturer.SelectedItem != null
+            && Modification.SelectedItem != null
+            && !string.IsNullOrWhiteSpace(RegistrationNumber.Text);
+    }
+
     public void ToggleControls()
     {
         bool visible = CheckBox.Checked;
