@@ -14,7 +14,7 @@ public partial class VerificationProgramForm : Form
         _meters = Array.Empty<FlowMeterInfo>();
     }
 
-    public VerificationProgramForm(IReadOnlyList<FlowMeterInfo> meters)
+    internal VerificationProgramForm(IReadOnlyList<FlowMeterInfo> meters)
     {
         InitializeComponent();
         _meters = meters;

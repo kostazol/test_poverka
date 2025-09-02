@@ -34,11 +34,6 @@ internal sealed class FlowMeterSection
     public DateTimePicker ManufactureDate { get; }
     public TextBox RegistrationNumber { get; }
 
-    public MeterTypeDto? SelectedType { get; private set; }
-    public ManufacturerDto? SelectedManufacturer { get; private set; }
-    public ModificationDto? SelectedModification { get; private set; }
-    public RegistrationDto? SelectedRegistration { get; private set; }
-
     public void ToggleControls()
     {
         bool visible = CheckBox.Checked;
@@ -60,25 +55,21 @@ internal sealed class FlowMeterSection
         await form.PopulateManufacturersAsync(Manufacturer, string.Empty, 10);
     }
 
-    public async Task SaveSelectionsAsync(RegistrationService registrations)
+    public async Task<FlowMeterInfo> ToInfoAsync(RegistrationService registrations)
     {
         if (!CheckBox.Checked)
         {
-            SelectedType = null;
-            SelectedManufacturer = null;
-            SelectedModification = null;
-            SelectedRegistration = null;
-            return;
+            return new FlowMeterInfo(null, null, null, null);
         }
 
-        SelectedType = MeterType.SelectedItem as MeterTypeDto;
-        SelectedManufacturer = Manufacturer.SelectedItem as ManufacturerDto;
-        SelectedModification = Modification.SelectedItem as ModificationDto;
+        var selectedType = MeterType.SelectedItem as MeterTypeDto;
+        var selectedManufacturer = Manufacturer.SelectedItem as ManufacturerDto;
+        var selectedModification = Modification.SelectedItem as ModificationDto;
 
-        SelectedRegistration = SelectedModification is null
+        var selectedRegistration = selectedModification is null
             ? null
-            : await registrations.GetAsync(SelectedModification.RegistrationId);
-    }
+            : await registrations.GetAsync(selectedModification.RegistrationId);
 
-    public FlowMeterInfo ToInfo() => new(SelectedType, SelectedManufacturer, SelectedModification, SelectedRegistration);
+        return new FlowMeterInfo(selectedType, selectedManufacturer, selectedModification, selectedRegistration);
+    }
 }

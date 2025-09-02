@@ -452,12 +452,7 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private async void NextButtonClick(object? sender, EventArgs e)
         {
-            foreach (var meter in _flowMeters)
-            {
-                await meter.SaveSelectionsAsync(_registrationService);
-            }
-
-            var infos = _flowMeters.Select(m => m.ToInfo()).ToList();
+            var infos = (await Task.WhenAll(_flowMeters.Select(m => m.ToInfoAsync(_registrationService)))).ToList();
             using var programForm = new VerificationProgramForm(infos);
             programForm.ShowDialog(this);
         }
