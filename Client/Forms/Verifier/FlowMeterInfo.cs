@@ -27,25 +27,56 @@ internal record FlowMeterInfo(
         return $"{y} {suffix}";
     }
 
+    public string? FullName => MeterType?.FullName;
+
+    public string? Type => MeterType?.Type;
+
+    public string? ModificationName => Modification?.Name;
+
+    public string? RegistrationNumber => Registration?.RegistrationNumber;
+
+    public string? VerificationIntervalMonths =>
+        Registration is null ? null : (Registration.VerificationInterval * 12).ToString();
+
+    public string? VerificationInterval => FormatYears(Registration?.VerificationInterval);
+
+    public string? ManufacturerName => Manufacturer?.Name;
+
+    public string? VerificationModeByV => ToYesNo(Registration?.HasVerificationModeByV);
+
+    public string? VerificationModeByG => ToYesNo(Registration?.HasVerificationModeByG);
+
+    public string? ImpulseWeight => Modification?.ImpulseWeight.ToString();
+
+    public string? MeasuredImpulseWeight => string.Empty;
+
+    public string? MinPulseCount => Modification?.MinPulseCount.ToString();
+
+    public string? MeasurementDurationInSeconds => Modification?.MeasurementDurationInSeconds.ToString();
+
+    public string? Qmax => Modification?.Qmax.ToString();
+
+    public string? VerificationMethodology => Registration?.VerificationMethodology;
+
     public IEnumerable<(string Label, string? Value)> Rows
     {
         get
         {
-            yield return ("Полное наименование", MeterType?.FullName);
-            yield return ("Тип", MeterType?.Type);
-            yield return ("Модификация", Modification?.Name);
-            yield return ("Номер госреестра СИ", Registration?.RegistrationNumber);
-            yield return ("Межповерочный интервал (месяцев)", Registration is null ? null : (Registration.VerificationInterval * 12).ToString());
-            yield return ("Межповерочный интервал", FormatYears(Registration?.VerificationInterval));
-            yield return ("Изготовитель", Manufacturer?.Name);
-            yield return ("Режим поверки V, м3", ToYesNo(Registration?.HasVerificationModeByV));
-            yield return ("Режим поверки Q, м3", ToYesNo(Registration?.HasVerificationModeByG));
-            yield return ("Вес импульса, л/имп", Modification?.ImpulseWeight.ToString());
-            yield return ("Измеренный вес импульса", string.Empty);
-            yield return ("Кол-во импульсов (требуемое)", Modification?.MinPulseCount.ToString());
-            yield return ("Время поверки, с", Modification?.MeasurementDurationInSeconds.ToString());
-            yield return ("Qmax", Modification?.Qmax.ToString());
-            yield return ("Методика поверки", Registration?.VerificationMethodology);
+            yield return ("Полное наименование", FullName);
+            yield return ("Тип", Type);
+            yield return ("Модификация", ModificationName);
+            yield return ("Номер госреестра СИ", RegistrationNumber);
+            yield return ("Межповерочный интервал (месяцев)", VerificationIntervalMonths);
+            yield return ("Межповерочный интервал", VerificationInterval);
+            yield return ("Изготовитель", ManufacturerName);
+            yield return ("Режим поверки V, м3", VerificationModeByV);
+            yield return ("Режим поверки Q, м3", VerificationModeByG);
+            yield return ("Вес импульса, л/имп", ImpulseWeight);
+            yield return ("Измеренный вес импульса", MeasuredImpulseWeight);
+            yield return ("Кол-во импульсов (требуемое)", MinPulseCount);
+            yield return ("Время поверки, с", MeasurementDurationInSeconds);
+            yield return ("Qmax", Qmax);
+            yield return ("Методика поверки", VerificationMethodology);
         }
     }
 }
