@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier;
 
@@ -33,10 +34,10 @@ internal sealed class FlowMeterSection
     public DateTimePicker ManufactureDate { get; }
     public TextBox RegistrationNumber { get; }
 
-    public string? SelectedType { get; private set; }
-    public string? SelectedManufacturer { get; private set; }
-    public string? SelectedModification { get; private set; }
-    public string? SelectedRegistration { get; private set; }
+    public MeterTypeDto? SelectedType { get; private set; }
+    public ManufacturerDto? SelectedManufacturer { get; private set; }
+    public ModificationDto? SelectedModification { get; private set; }
+    public RegistrationDto? SelectedRegistration { get; private set; }
 
     public void ToggleControls()
     {
@@ -59,7 +60,7 @@ internal sealed class FlowMeterSection
         await form.PopulateManufacturersAsync(Manufacturer, string.Empty, 10);
     }
 
-    public void SaveSelections()
+    public async Task SaveSelectionsAsync(RegistrationService registrations)
     {
         if (!CheckBox.Checked)
         {
@@ -70,16 +71,13 @@ internal sealed class FlowMeterSection
             return;
         }
 
-        SelectedType = MeterType.SelectedIndex >= 0
-            ? MeterType.GetItemText(MeterType.SelectedItem)
-            : MeterType.Text;
-        SelectedManufacturer = Manufacturer.SelectedIndex >= 0
-            ? Manufacturer.GetItemText(Manufacturer.SelectedItem)
-            : Manufacturer.Text;
-        SelectedModification = Modification.SelectedIndex >= 0
-            ? Modification.GetItemText(Modification.SelectedItem)
-            : Modification.Text;
-        SelectedRegistration = RegistrationNumber.Text;
+        SelectedType = MeterType.SelectedItem as MeterTypeDto;
+        SelectedManufacturer = Manufacturer.SelectedItem as ManufacturerDto;
+        SelectedModification = Modification.SelectedItem as ModificationDto;
+
+        SelectedRegistration = SelectedModification is null
+            ? null
+            : await registrations.GetAsync(SelectedModification.RegistrationId);
     }
 
     public FlowMeterInfo ToInfo() => new(SelectedType, SelectedManufacturer, SelectedModification, SelectedRegistration);

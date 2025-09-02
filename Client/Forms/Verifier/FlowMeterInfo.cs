@@ -1,4 +1,9 @@
+using PoverkaWinForms.Services;
+
 namespace PoverkaWinForms.Forms.Verifier;
 
-internal record FlowMeterInfo(string? Type, string? Manufacturer, string? Modification, string? RegistrationNumber);
-
+internal record FlowMeterInfo(
+    MeterTypeDto? MeterType,
+    ManufacturerDto? Manufacturer,
+    ModificationDto? Modification,
+    RegistrationDto? Registration);

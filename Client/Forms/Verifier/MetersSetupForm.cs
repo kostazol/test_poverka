@@ -13,6 +13,7 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly MeterTypeService _meterTypeService;
         private readonly ManufacturerService _manufacturerService;
         private readonly ModificationService _modificationService;
+        private readonly RegistrationService _registrationService;
         private bool _updating;
         private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
@@ -21,11 +22,12 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, int> _previousIndices = new();
         private readonly List<FlowMeterSection> _flowMeters = new();
 
-        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService, ModificationService modificationService)
+        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService, ModificationService modificationService, RegistrationService registrationService)
         {
             _meterTypeService = meterTypeService;
             _manufacturerService = manufacturerService;
             _modificationService = modificationService;
+            _registrationService = registrationService;
             InitializeComponent();
             InitializeFlowMeters();
         }
@@ -448,11 +450,11 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private void NextButtonClick(object? sender, EventArgs e)
+        private async void NextButtonClick(object? sender, EventArgs e)
         {
             foreach (var meter in _flowMeters)
             {
-                meter.SaveSelections();
+                await meter.SaveSelectionsAsync(_registrationService);
             }
 
             var infos = _flowMeters.Select(m => m.ToInfo()).ToList();

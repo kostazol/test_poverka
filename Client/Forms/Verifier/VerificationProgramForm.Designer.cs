@@ -67,7 +67,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // ParameterColumn
             // 
-            ParameterColumn.HeaderText = "";
+            ParameterColumn.HeaderText = "Наименование";
             ParameterColumn.Name = "ParameterColumn";
             ParameterColumn.ReadOnly = true;
             ParameterColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
