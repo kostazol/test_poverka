@@ -450,8 +450,14 @@ namespace PoverkaWinForms.Forms.Verifier
 
         private void NextButtonClick(object? sender, EventArgs e)
         {
-            var programForm = new VerificationProgramForm();
-            programForm.Show();
+            foreach (var meter in _flowMeters)
+            {
+                meter.SaveSelections();
+            }
+
+            var infos = _flowMeters.Select(m => m.ToInfo()).ToList();
+            using var programForm = new VerificationProgramForm(infos);
+            programForm.ShowDialog(this);
         }
     }
 }
