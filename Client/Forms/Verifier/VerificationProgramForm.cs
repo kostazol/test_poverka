@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace PoverkaWinForms.Forms.Verifier;
@@ -21,28 +20,40 @@ public partial class VerificationProgramForm : Form
         _meters = meters;
     }
 
-    private void VerificationProgramFormLoad(object? sender, EventArgs e)
+    private void VerificationProgramForm_Load(object? sender, EventArgs e)
     {
         if (DesignMode)
         {
             return;
         }
 
-        var meterRows = _meters.Select(m => m.Rows.ToList()).ToList();
-        if (meterRows.Count == 0)
+        var rows = new (string Label, Func<FlowMeterInfo, string?> Selector)[]
         {
-            return;
-        }
+            ("Полное наименование", m => m.FullName),
+            ("Тип", m => m.Type),
+            ("Модификация", m => m.ModificationName),
+            ("Номер госреестра СИ", m => m.RegistrationNumber),
+            ("Межповерочный интервал (месяцев)", m => m.VerificationIntervalMonths),
+            ("Межповерочный интервал", m => m.VerificationInterval),
+            ("Изготовитель", m => m.ManufacturerName),
+            ("Режим поверки V, м3", m => m.VerificationModeByV),
+            ("Режим поверки Q, м3", m => m.VerificationModeByG),
+            ("Вес импульса, л/имп", m => m.ImpulseWeight),
+            ("Измеренный вес импульса", m => m.MeasuredImpulseWeight),
+            ("Кол-во импульсов (требуемое)", m => m.MinPulseCount),
+            ("Время поверки, с", m => m.MeasurementDurationInSeconds),
+            ("Qmax", m => m.Qmax),
+            ("Методика поверки", m => m.VerificationMethodology)
+        };
 
-        int rowCount = meterRows[0].Count;
-        for (int row = 0; row < rowCount; row++)
+        foreach (var row in rows)
         {
             int rowIndex = ProgramDataGridView.Rows.Add();
-            ProgramDataGridView.Rows[rowIndex].Cells[0].Value = meterRows[0][row].Label;
+            ProgramDataGridView.Rows[rowIndex].Cells[0].Value = row.Label;
 
-            for (int i = 0; i < meterRows.Count && i < 6; i++)
+            for (int i = 0; i < _meters.Count && i < 6; i++)
             {
-                ProgramDataGridView.Rows[rowIndex].Cells[i + 1].Value = meterRows[i][row].Value;
+                ProgramDataGridView.Rows[rowIndex].Cells[i + 1].Value = row.Selector(_meters[i]);
             }
         }
     }

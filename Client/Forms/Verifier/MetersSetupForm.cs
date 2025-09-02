@@ -42,7 +42,7 @@ namespace PoverkaWinForms.Forms.Verifier
             _flowMeters.Add(new FlowMeterSection(Flow6CheckBox, Flow6GroupBox, Flow6TitleLabel, Flow6TypeComboBox, Flow6ManufacturerComboBox, Flow6ModificationComboBox, Flow6ManufactureDateDateTimePicker, Flow6RegistrationNumberTextBox));
         }
 
-        private async void MetersSetupFormLoad(object sender, EventArgs e)
+        private async void MetersSetupForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
             {
@@ -450,7 +450,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private async void NextButtonClick(object? sender, EventArgs e)
+        private async void NextButton_Click(object? sender, EventArgs e)
         {
             var infos = (await Task.WhenAll(_flowMeters.Select(m => m.ToInfoAsync(_registrationService)))).ToList();
             using var programForm = new VerificationProgramForm(infos);

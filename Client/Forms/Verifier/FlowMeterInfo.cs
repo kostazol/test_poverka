@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier;
@@ -57,26 +56,4 @@ internal record FlowMeterInfo(
     public string? Qmax => Modification?.Qmax.ToString();
 
     public string? VerificationMethodology => Registration?.VerificationMethodology;
-
-    public IEnumerable<(string Label, string? Value)> Rows
-    {
-        get
-        {
-            yield return ("Полное наименование", FullName);
-            yield return ("Тип", Type);
-            yield return ("Модификация", ModificationName);
-            yield return ("Номер госреестра СИ", RegistrationNumber);
-            yield return ("Межповерочный интервал (месяцев)", VerificationIntervalMonths);
-            yield return ("Межповерочный интервал", VerificationInterval);
-            yield return ("Изготовитель", ManufacturerName);
-            yield return ("Режим поверки V, м3", VerificationModeByV);
-            yield return ("Режим поверки Q, м3", VerificationModeByG);
-            yield return ("Вес импульса, л/имп", ImpulseWeight);
-            yield return ("Измеренный вес импульса", MeasuredImpulseWeight);
-            yield return ("Кол-во импульсов (требуемое)", MinPulseCount);
-            yield return ("Время поверки, с", MeasurementDurationInSeconds);
-            yield return ("Qmax", Qmax);
-            yield return ("Методика поверки", VerificationMethodology);
-        }
-    }
 }

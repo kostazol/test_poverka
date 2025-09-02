@@ -124,7 +124,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Name = "VerificationProgramForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Программа поверки";
-            Load += VerificationProgramFormLoad;
+            Load += VerificationProgramForm_Load;
             ((System.ComponentModel.ISupportInitialize)ProgramDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();

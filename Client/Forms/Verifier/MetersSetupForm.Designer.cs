@@ -1260,7 +1260,7 @@ namespace PoverkaWinForms.Forms.Verifier
             NextButton.TabIndex = 42;
             NextButton.Text = "Далее";
             NextButton.UseVisualStyleBackColor = true;
-            NextButton.Click += NextButtonClick;
+            NextButton.Click += NextButton_Click;
             //
             // ExitButton
             //
@@ -1290,7 +1290,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Name = "MetersSetupForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Настройка параметров поверяемых преобразователей";
-            Load += MetersSetupFormLoad;
+            Load += MetersSetupForm_Load;
             Flow1GroupBox.ResumeLayout(false);
             Flow1GroupBox.PerformLayout();
             Flow2GroupBox.ResumeLayout(false);
