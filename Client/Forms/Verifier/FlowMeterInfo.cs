@@ -23,33 +23,18 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, ManufacturerDto? Manufact
     }
 
     public string? FullName => MeterType?.FullName;
-
     public string? Type => MeterType?.Type;
-
     public string? ModificationName => Modification?.Name;
-
     public string? RegistrationNumber => Registration?.RegistrationNumber;
-
-    public string? VerificationIntervalMonths =>
-        Registration is null ? null : (Registration.VerificationInterval * 12).ToString();
-
+    public string? VerificationIntervalMonths => Registration is null ? null : (Registration.VerificationInterval * 12).ToString();
     public string? VerificationInterval => FormatYears(Registration?.VerificationInterval);
-
     public string? ManufacturerName => Manufacturer?.Name;
-
     public string? VerificationModeByV => ToYesNo(Registration?.HasVerificationModeByV);
-
     public string? VerificationModeByG => ToYesNo(Registration?.HasVerificationModeByG);
-
     public string? ImpulseWeight => Modification?.ImpulseWeight.ToString();
-
     public string? MeasuredImpulseWeight => string.Empty;
-
     public string? MinPulseCount => Modification?.MinPulseCount.ToString();
-
     public string? MeasurementDurationInSeconds => Modification?.MeasurementDurationInSeconds.ToString();
-
     public string? Qmax => Modification?.Qmax.ToString();
-
     public string? VerificationMethodology => Registration?.VerificationMethodology;
 }
