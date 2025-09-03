@@ -34,7 +34,6 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, ManufacturerDto? Manufact
     public string? VerificationModeByV => ToYesNo(Registration?.HasVerificationModeByV);
     public string? VerificationModeByG => ToYesNo(Registration?.HasVerificationModeByG);
     public string? ImpulseWeight => Modification?.ImpulseWeight.ToString();
-    public string? MeasuredImpulseWeight => string.Empty;
     public string? MinPulseCount => Modification?.MinPulseCount.ToString();
     public string? MeasurementDurationInSeconds => Modification?.MeasurementDurationInSeconds.ToString();
     public string? Qmax => Modification?.Qmax.ToString();
@@ -44,7 +43,6 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, ManufacturerDto? Manufact
     public string? Checkpoint3 => Modification?.Checkpoint3.ToString();
     public string? Checkpoint4 => Modification?.Checkpoint4.ToString();
     public string? NumberOfMeasurements => Modification?.NumberOfMeasurements.ToString();
-    public string? MeasuredVerificationTime => string.Empty;
     public string? RelativeErrorQt1Qmax => FormatRelative(Registration?.RelativeErrorQt1Qmax);
     public string? RelativeErrorQt2Qt1 => FormatRelative(Registration?.RelativeErrorQt2Qt1);
 
