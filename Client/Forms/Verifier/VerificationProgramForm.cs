@@ -66,7 +66,7 @@ public partial class VerificationProgramForm : Form
                 dataGridViewRow.Cells[i + 1].Value = row.Get(_meters[i]);
             }
 
-            if (row.Label == "Методика поверки")
+            if (row.Label == "Методика поверки" || row.Label.StartsWith("Полное наименование"))
             {
                 dataGridViewRow.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 dataGridViewRow.Height *= 2;
