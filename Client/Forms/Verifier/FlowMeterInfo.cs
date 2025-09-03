@@ -2,11 +2,7 @@ using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier;
 
-internal record FlowMeterInfo(
-    MeterTypeDto? MeterType,
-    ManufacturerDto? Manufacturer,
-    ModificationDto? Modification,
-    RegistrationDto? Registration)
+internal record FlowMeterInfo(MeterTypeDto? MeterType, ManufacturerDto? Manufacturer, ModificationDto? Modification, RegistrationDto? Registration)
 {
     private static string? ToYesNo(bool? value) => value is null ? null : value.Value ? "да" : "нет";
 

@@ -35,10 +35,4 @@ public class RegistrationService
     }
 }
 
-public record RegistrationDto(
-    int Id,
-    string RegistrationNumber,
-    short VerificationInterval,
-    string VerificationMethodology,
-    bool HasVerificationModeByV,
-    bool HasVerificationModeByG);
+public record RegistrationDto(int Id, string RegistrationNumber, short VerificationInterval, string VerificationMethodology, bool HasVerificationModeByV, bool HasVerificationModeByG);
