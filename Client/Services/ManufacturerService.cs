@@ -14,11 +14,7 @@ public class ManufacturerService
     private readonly TokenService _tokens;
     private List<ManufacturerDto> _defaultManufacturers = new();
 
-    public ManufacturerService(
-        IHttpClientFactory factory,
-        TokenService tokens,
-        IdentityServerSettings settings
-    )
+    public ManufacturerService(IHttpClientFactory factory, TokenService tokens, IdentityServerSettings settings)
     {
         _http = factory.CreateClient("ApiClient");
         _http.BaseAddress = new Uri(settings.Authority);
