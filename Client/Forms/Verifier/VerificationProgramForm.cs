@@ -69,8 +69,12 @@ public partial class VerificationProgramForm : Form
                 var cell = dataGridViewRow.Cells[i + 1];
                 var value = row.Get(_meters[i]);
                 cell.Value = value;
-                cell.ReadOnly = true;
-                cell.Style.BackColor = Color.LightGray;
+                bool editable = row.Label.StartsWith("Измененн", StringComparison.OrdinalIgnoreCase);
+                cell.ReadOnly = !editable;
+                if (!editable)
+                {
+                    cell.Style.BackColor = Color.LightGray;
+                }
 
                 if (row.Label == "Кол-во импульсов (расчетное)" &&
                     _meters[i].Modification is not null &&
