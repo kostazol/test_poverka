@@ -39,4 +39,4 @@ public class ModificationService
     }
 }
 
-public record ModificationDto(int Id, int RegistrationId, string RegistrationNumber, string Name, double ImpulseWeight, short MinPulseCount, short MeasurementDurationInSeconds, double Qmax);
+public record ModificationDto(int Id, int RegistrationId, string RegistrationNumber, string Name, double ImpulseWeight, short MinPulseCount, short MeasurementDurationInSeconds, double Qmax, double Checkpoint1, double Checkpoint2, double Checkpoint3, double Checkpoint4, short NumberOfMeasurements);
