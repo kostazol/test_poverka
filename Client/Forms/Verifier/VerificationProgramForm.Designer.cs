@@ -67,6 +67,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // ParameterColumn
             // 
+            ParameterColumn.FillWeight = 150F;
             ParameterColumn.HeaderText = "Наименование";
             ParameterColumn.Name = "ParameterColumn";
             ParameterColumn.ReadOnly = true;
@@ -74,6 +75,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Place1Column
             // 
+            Place1Column.FillWeight = 100F;
             Place1Column.HeaderText = "Место 1";
             Place1Column.Name = "Place1Column";
             Place1Column.ReadOnly = true;
@@ -81,6 +83,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Place2Column
             // 
+            Place2Column.FillWeight = 100F;
             Place2Column.HeaderText = "Место 2";
             Place2Column.Name = "Place2Column";
             Place2Column.ReadOnly = true;
@@ -88,6 +91,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Place3Column
             // 
+            Place3Column.FillWeight = 100F;
             Place3Column.HeaderText = "Место 3";
             Place3Column.Name = "Place3Column";
             Place3Column.ReadOnly = true;
@@ -95,6 +99,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Place4Column
             // 
+            Place4Column.FillWeight = 100F;
             Place4Column.HeaderText = "Место 4";
             Place4Column.Name = "Place4Column";
             Place4Column.ReadOnly = true;
@@ -102,6 +107,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Place5Column
             // 
+            Place5Column.FillWeight = 100F;
             Place5Column.HeaderText = "Место 5";
             Place5Column.Name = "Place5Column";
             Place5Column.ReadOnly = true;
@@ -109,6 +115,7 @@ namespace PoverkaWinForms.Forms.Verifier
             // 
             // Place6Column
             // 
+            Place6Column.FillWeight = 100F;
             Place6Column.HeaderText = "Место 6";
             Place6Column.Name = "Place6Column";
             Place6Column.ReadOnly = true;

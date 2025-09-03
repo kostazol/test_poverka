@@ -59,10 +59,17 @@ public partial class VerificationProgramForm : Form
         foreach (var row in rows)
         {
             int gridRow = ProgramDataGridView.Rows.Add();
-            ProgramDataGridView.Rows[gridRow].Cells[0].Value = row.Label;
+            var dataGridViewRow = ProgramDataGridView.Rows[gridRow];
+            dataGridViewRow.Cells[0].Value = row.Label;
             for (int i = 0; i < _meters.Count && i < 6; i++)
             {
-                ProgramDataGridView.Rows[gridRow].Cells[i + 1].Value = row.Get(_meters[i]);
+                dataGridViewRow.Cells[i + 1].Value = row.Get(_meters[i]);
+            }
+
+            if (row.Label == "Методика поверки")
+            {
+                dataGridViewRow.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                dataGridViewRow.Height *= 2;
             }
         }
     }
