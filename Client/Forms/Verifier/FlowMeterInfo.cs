@@ -1,3 +1,4 @@
+using System.Globalization;
 using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier;
@@ -35,6 +36,21 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, ManufacturerDto? Manufact
     public string? VerificationModeByG => ToYesNo(Registration?.HasVerificationModeByG);
     public string? ImpulseWeight => Modification?.ImpulseWeight.ToString();
     public string? MinPulseCount => Modification?.MinPulseCount.ToString();
+    public string? CalculatedPulseCount
+    {
+        get
+        {
+            if (Modification is null)
+                return null;
+
+            var weight = Modification.ImpulseWeight;
+            if (weight == 0)
+                return null;
+
+            var result = (Modification.MeasurementDurationInSeconds / 3600d * weight) / (weight / 1000d);
+            return result.ToString(CultureInfo.InvariantCulture);
+        }
+    }
     public string? MeasurementDurationInSeconds => Modification?.MeasurementDurationInSeconds.ToString();
     public string? Qmax => Modification?.Qmax.ToString();
     public string? VerificationMethodology => Registration?.VerificationMethodology;

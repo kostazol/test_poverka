@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace PoverkaWinForms.Forms.Verifier;
@@ -36,10 +37,11 @@ public partial class VerificationProgramForm : Form
             ("Вес импульса, л/имп", m => m.ImpulseWeight),
             ("Измененный вес импульса", _ => string.Empty),
             ("Кол-во импульсов (требуемое)", m => m.MinPulseCount),
+            ("Кол-во импульсов (расчетное)", m => m.CalculatedPulseCount),
             ("Время поверки, с", m => m.MeasurementDurationInSeconds),
+            ("Измененное время поверки", _ => string.Empty),
             ("Qmax", m => m.Qmax),
             ("Методика поверки", m => m.VerificationMethodology),
-            ("Измененное время поверки", _ => string.Empty),
             ("Кол-во изм-й в точке", m => m.NumberOfMeasurements),
             ("Котрольная точка 1", m => m.Checkpoint1),
             ("Измененное кол-во импульсов", _ => string.Empty),
@@ -62,25 +64,28 @@ public partial class VerificationProgramForm : Form
             dataGridViewRow.Cells[0].Value = row.Label;
             dataGridViewRow.Cells[0].ReadOnly = true;
 
-            bool editable = row.Label.StartsWith("Измененн");
             for (int i = 0; i < _meters.Count && i < 6; i++)
             {
                 var cell = dataGridViewRow.Cells[i + 1];
-                cell.Value = row.Get(_meters[i]);
-                cell.ReadOnly = !editable;
-                if (!editable)
+                var value = row.Get(_meters[i]);
+                cell.Value = value;
+                cell.ReadOnly = true;
+                cell.Style.BackColor = Color.LightGray;
+
+                if (row.Label == "Кол-во импульсов (расчетное)" &&
+                    _meters[i].Modification is not null &&
+                    double.TryParse(_meters[i].MinPulseCount, NumberStyles.Any, CultureInfo.InvariantCulture, out var required) &&
+                    double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var calculated) &&
+                    required > calculated)
                 {
-                    cell.Style.BackColor = Color.LightGray;
+                    cell.Style.BackColor = Color.MistyRose;
                 }
             }
             for (int i = _meters.Count; i < 6; i++)
             {
                 var cell = dataGridViewRow.Cells[i + 1];
-                cell.ReadOnly = !editable;
-                if (!editable)
-                {
-                    cell.Style.BackColor = Color.LightGray;
-                }
+                cell.ReadOnly = true;
+                cell.Style.BackColor = Color.LightGray;
             }
 
             if (row.Label == "Методика поверки")

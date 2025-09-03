@@ -60,7 +60,7 @@ namespace PoverkaWinForms.Forms.Verifier
             ProgramDataGridView.Columns.AddRange(new DataGridViewColumn[] { ParameterColumn, Place1Column, Place2Column, Place3Column, Place4Column, Place5Column, Place6Column });
             ProgramDataGridView.Location = new Point(12, 70);
             ProgramDataGridView.Name = "ProgramDataGridView";
-            ProgramDataGridView.ReadOnly = false;
+            ProgramDataGridView.ReadOnly = true;
             ProgramDataGridView.RowHeadersVisible = false;
             ProgramDataGridView.Size = new Size(1134, 646);
             ProgramDataGridView.TabIndex = 1;
@@ -78,7 +78,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Place1Column.FillWeight = 100F;
             Place1Column.HeaderText = "Место 1";
             Place1Column.Name = "Place1Column";
-            Place1Column.ReadOnly = false;
+            Place1Column.ReadOnly = true;
             Place1Column.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Place2Column
@@ -86,7 +86,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Place2Column.FillWeight = 100F;
             Place2Column.HeaderText = "Место 2";
             Place2Column.Name = "Place2Column";
-            Place2Column.ReadOnly = false;
+            Place2Column.ReadOnly = true;
             Place2Column.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Place3Column
@@ -94,7 +94,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Place3Column.FillWeight = 100F;
             Place3Column.HeaderText = "Место 3";
             Place3Column.Name = "Place3Column";
-            Place3Column.ReadOnly = false;
+            Place3Column.ReadOnly = true;
             Place3Column.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Place4Column
@@ -102,7 +102,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Place4Column.FillWeight = 100F;
             Place4Column.HeaderText = "Место 4";
             Place4Column.Name = "Place4Column";
-            Place4Column.ReadOnly = false;
+            Place4Column.ReadOnly = true;
             Place4Column.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Place5Column
@@ -110,7 +110,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Place5Column.FillWeight = 100F;
             Place5Column.HeaderText = "Место 5";
             Place5Column.Name = "Place5Column";
-            Place5Column.ReadOnly = false;
+            Place5Column.ReadOnly = true;
             Place5Column.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Place6Column
@@ -118,7 +118,7 @@ namespace PoverkaWinForms.Forms.Verifier
             Place6Column.FillWeight = 100F;
             Place6Column.HeaderText = "Место 6";
             Place6Column.Name = "Place6Column";
-            Place6Column.ReadOnly = false;
+            Place6Column.ReadOnly = true;
             Place6Column.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // VerificationProgramForm
