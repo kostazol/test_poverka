@@ -32,24 +32,41 @@ public class MeterTypeService
 
     public Task<MeterType?> GetAsync(int id) => _db.MeterTypes.FindAsync(id).AsTask();
 
-    public async Task<MeterType> CreateAsync(string editorName, int manufacturerId, string type, string fullName)
+    public async Task<MeterType> CreateAsync(string editorName, string manufacturerName, string type, string fullName)
     {
-        var meterType = new MeterType(editorName, manufacturerId, type, fullName);
+        var meterType = new MeterType(editorName, manufacturerName, type, fullName);
         _db.MeterTypes.Add(meterType);
         await _db.SaveChangesAsync();
         return meterType;
     }
 
-    public async Task<bool> UpdateAsync(int id, string editorName, int manufacturerId, string type, string fullName)
+    public async Task<bool> UpdateAsync(int id, string editorName, string manufacturerName, string type, string fullName)
     {
         var meterType = await _db.MeterTypes.FindAsync(id);
         if (meterType is null)
         {
             return false;
         }
-        meterType.Update(editorName, manufacturerId, type, fullName);
+        meterType.Update(editorName, manufacturerName, type, fullName);
         await _db.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<List<string>> GetManufacturersAsync(string? search = null, int? take = null)
+    {
+        IQueryable<string> query = _db.MeterTypes.Select(m => m.ManufacturerName).Distinct();
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            query = query.Where(m => EF.Functions.ILike(m, $"%{search}%"));
+        }
+
+        if (take.HasValue)
+        {
+            query = query.Take(take.Value);
+        }
+
+        return await query.OrderBy(m => m).ToListAsync();
     }
 
     public async Task DeleteAsync(int id)

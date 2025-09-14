@@ -154,38 +154,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PoverkaServer.Domain.Manufacturer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("EditorName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Manufacturers");
-                });
-
             modelBuilder.Entity("PoverkaServer.Domain.MeterType", b =>
                 {
                     b.Property<int>("Id")
@@ -207,8 +175,10 @@ namespace PoverkaServer.Migrations.ApplicationDb
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.Property<int>("ManufacturerId")
-                        .HasColumnType("integer");
+                    b.Property<string>("ManufacturerName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -220,7 +190,7 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ManufacturerId", "Type")
+                    b.HasIndex("ManufacturerName", "Type")
                         .IsUnique();
 
                     b.ToTable("MeterTypes");
@@ -499,15 +469,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PoverkaServer.Domain.MeterType", b =>
-                {
-                    b.HasOne("PoverkaServer.Domain.Manufacturer", null)
-                        .WithMany()
-                        .HasForeignKey("ManufacturerId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

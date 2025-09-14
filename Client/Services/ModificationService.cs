@@ -20,13 +20,13 @@ public class ModificationService
         _tokens = tokens;
     }
 
-    public async Task<List<ModificationDto>> GetAllAsync(int meterTypeId, int manufacturerId, DateOnly manufactureDate)
+    public async Task<List<ModificationDto>> GetAllAsync(int meterTypeId, string manufacturerName, DateOnly manufactureDate)
     {
         var token = await _tokens.GetAccessTokenAsync();
         if (token is null)
             return new();
 
-        var url = $"/api/modifications?meterTypeId={meterTypeId}&manufacturerId={manufacturerId}&manufactureDate={manufactureDate:yyyy-MM-dd}";
+        var url = $"/api/modifications?meterTypeId={meterTypeId}&manufacturerName={Uri.EscapeDataString(manufacturerName)}&manufactureDate={manufactureDate:yyyy-MM-dd}";
 
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);

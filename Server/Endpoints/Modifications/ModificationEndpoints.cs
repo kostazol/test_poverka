@@ -27,16 +27,16 @@ public static class ModificationEndpoints
 
     private static async Task<Ok<IEnumerable<ModificationResponse>>> GetModifications(
         int? meterTypeId,
-        int? manufacturerId,
+        string? manufacturerName,
         DateOnly? manufactureDate,
         ModificationService service)
     {
         IEnumerable<ModificationWithRegistrationNumber> items;
-        if (meterTypeId.HasValue && manufacturerId.HasValue && manufactureDate.HasValue)
+        if (meterTypeId.HasValue && !string.IsNullOrWhiteSpace(manufacturerName) && manufactureDate.HasValue)
         {
             items = await service.GetFilteredAsync(
                 meterTypeId.Value,
-                manufacturerId.Value,
+                manufacturerName,
                 manufactureDate.Value
             );
         }

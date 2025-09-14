@@ -25,7 +25,7 @@ public class ModificationService
             )
             .ToListAsync();
 
-    public Task<List<ModificationWithRegistrationNumber>> GetFilteredAsync(int meterTypeId, int manufacturerId, DateOnly manufactureDate) =>
+    public Task<List<ModificationWithRegistrationNumber>> GetFilteredAsync(int meterTypeId, string manufacturerName, DateOnly manufactureDate) =>
         _db.Modifications
             .Join(
                 _db.Registrations,
@@ -41,7 +41,7 @@ public class ModificationService
             )
             .Where(x =>
                 x.mt.Id == meterTypeId
-                && x.mt.ManufacturerId == manufacturerId
+                && x.mt.ManufacturerName == manufacturerName
                 && x.r.RegistrationDate <= manufactureDate
                 && x.r.EndDate >= manufactureDate
             )
