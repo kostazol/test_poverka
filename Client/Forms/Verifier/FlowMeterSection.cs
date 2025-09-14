@@ -37,7 +37,7 @@ internal sealed class FlowMeterSection
     public bool IsComplete()
     {
         return MeterType.SelectedItem != null
-            && Manufacturer.SelectedItem != null
+            && !string.IsNullOrWhiteSpace(Manufacturer.Text)
             && Modification.SelectedItem != null
             && !string.IsNullOrWhiteSpace(RegistrationNumber.Text);
     }
@@ -71,13 +71,13 @@ internal sealed class FlowMeterSection
         }
 
         var selectedType = MeterType.SelectedItem as MeterTypeDto;
-        var selectedManufacturer = Manufacturer.SelectedItem as ManufacturerDto;
+        var manufacturerName = string.IsNullOrWhiteSpace(Manufacturer.Text) ? null : Manufacturer.Text;
         var selectedModification = Modification.SelectedItem as ModificationDto;
 
         var selectedRegistration = selectedModification is null
             ? null
             : await registrations.GetAsync(selectedModification.RegistrationId);
 
-        return new FlowMeterInfo(selectedType, selectedManufacturer, selectedModification, selectedRegistration);
+        return new FlowMeterInfo(selectedType, manufacturerName, selectedModification, selectedRegistration);
     }
 }

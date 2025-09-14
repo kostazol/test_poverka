@@ -12,7 +12,8 @@ public class ModificationConfiguration : IEntityTypeConfiguration<Modification>
         builder.Property(e => e.Id).UseIdentityByDefaultColumn();
         builder.Property(e => e.Name).HasMaxLength(100);
         builder.Property(e => e.ClassName).HasMaxLength(5);
-        builder.Property(e => e.ImpulseWeight).HasColumnType("double precision");
+        builder.Property(e => e.PasportImpulseWeight).HasColumnType("double precision");
+        builder.Property(e => e.VerificationImpulseWeight).HasColumnType("double precision");
         builder.Property(e => e.Qmin).HasColumnType("double precision");
         builder.Property(e => e.Qt1).HasColumnType("double precision");
         builder.Property(e => e.Qt2).HasColumnType("double precision");

@@ -9,7 +9,8 @@ public class Modification
         int registrationId,
         string name,
         string className,
-        double impulseWeight,
+        double pasportImpulseWeight,
+        double verificationImpulseWeight,
         double qmin,
         double qt1,
         double qt2,
@@ -23,7 +24,7 @@ public class Modification
         short measurementDurationInSeconds,
         byte relativeErrorWithStandartValue)
     {
-        Set(editorName, registrationId, name, className, impulseWeight, qmin, qt1, qt2, qmax,
+        Set(editorName, registrationId, name, className, pasportImpulseWeight, verificationImpulseWeight, qmin, qt1, qt2, qmax,
             checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements,
             minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         CreatedAt = UpdatedAt = DateTime.UtcNow;
@@ -39,7 +40,8 @@ public class Modification
     public int RegistrationId { get; private set; }
     public string Name { get; private set; }
     public string ClassName { get; private set; }
-    public double ImpulseWeight { get; private set; }
+    public double PasportImpulseWeight { get; private set; }
+    public double VerificationImpulseWeight { get; private set; }
     public double Qmin { get; private set; }
     public double Qt1 { get; private set; }
     public double Qt2 { get; private set; }
@@ -61,7 +63,8 @@ public class Modification
         int registrationId,
         string name,
         string className,
-        double impulseWeight,
+        double pasportImpulseWeight,
+        double verificationImpulseWeight,
         double qmin,
         double qt1,
         double qt2,
@@ -75,7 +78,7 @@ public class Modification
         short measurementDurationInSeconds,
         byte relativeErrorWithStandartValue)
     {
-        Set(editorName, registrationId, name, className, impulseWeight, qmin, qt1, qt2, qmax,
+        Set(editorName, registrationId, name, className, pasportImpulseWeight, verificationImpulseWeight, qmin, qt1, qt2, qmax,
             checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements,
             minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         UpdatedAt = DateTime.UtcNow;
@@ -87,7 +90,8 @@ public class Modification
         int registrationId,
         string name,
         string className,
-        double impulseWeight,
+        double pasportImpulseWeight,
+        double verificationImpulseWeight,
         double qmin,
         double qt1,
         double qt2,
@@ -102,7 +106,8 @@ public class Modification
         byte relativeErrorWithStandartValue)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(registrationId, nameof(registrationId));
-        ArgumentOutOfRangeException.ThrowIfNegative(impulseWeight, nameof(impulseWeight));
+        ArgumentOutOfRangeException.ThrowIfNegative(pasportImpulseWeight, nameof(pasportImpulseWeight));
+        ArgumentOutOfRangeException.ThrowIfNegative(verificationImpulseWeight, nameof(verificationImpulseWeight));
         ArgumentOutOfRangeException.ThrowIfNegative(qmin, nameof(qmin));
         ArgumentOutOfRangeException.ThrowIfNegative(qt1, nameof(qt1));
         ArgumentOutOfRangeException.ThrowIfNegative(qt2, nameof(qt2));
@@ -123,7 +128,8 @@ public class Modification
         RegistrationId = registrationId;
         Name = name;
         ClassName = className;
-        ImpulseWeight = impulseWeight;
+        PasportImpulseWeight = pasportImpulseWeight;
+        VerificationImpulseWeight = verificationImpulseWeight;
         Qmin = qmin;
         Qt1 = qt1;
         Qt2 = qt2;

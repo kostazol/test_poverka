@@ -18,7 +18,8 @@ public class ModificationResponse
     public string RegistrationNumber => _registrationNumber;
     public string Name => _modification.Name;
     public string ClassName => _modification.ClassName;
-    public double ImpulseWeight => _modification.ImpulseWeight;
+    public double PasportImpulseWeight => _modification.PasportImpulseWeight;
+    public double VerificationImpulseWeight => _modification.VerificationImpulseWeight;
     public double Qmin => _modification.Qmin;
     public double Qt1 => _modification.Qt1;
     public double Qt2 => _modification.Qt2;

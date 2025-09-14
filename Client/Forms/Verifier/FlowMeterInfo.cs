@@ -3,7 +3,7 @@ using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier;
 
-internal record FlowMeterInfo(MeterTypeDto? MeterType, ManufacturerDto? Manufacturer, ModificationDto? Modification, RegistrationDto? Registration)
+internal record FlowMeterInfo(MeterTypeDto? MeterType, string? ManufacturerName, ModificationDto? Modification, RegistrationDto? Registration)
 {
     private static string? ToYesNo(bool? value) => value is null ? null : value.Value ? "да" : "нет";
 
@@ -31,10 +31,10 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, ManufacturerDto? Manufact
     public string? RegistrationNumber => Registration?.RegistrationNumber;
     public string? VerificationIntervalMonths => Registration is null ? null : (Registration.VerificationInterval * 12).ToString();
     public string? VerificationInterval => FormatYears(Registration?.VerificationInterval);
-    public string? ManufacturerName => Manufacturer?.Name;
     public string? VerificationModeByV => ToYesNo(Registration?.HasVerificationModeByV);
     public string? VerificationModeByG => ToYesNo(Registration?.HasVerificationModeByG);
-    public string? ImpulseWeight => Modification?.ImpulseWeight.ToString();
+    public string? PasportImpulseWeight => Modification?.PasportImpulseWeight.ToString();
+    public string? VerificationImpulseWeight => Modification?.VerificationImpulseWeight.ToString();
     public string? MinPulseCount => Modification?.MinPulseCount.ToString();
     public string? CalculatedPulseCount
     {
@@ -43,7 +43,7 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, ManufacturerDto? Manufact
             if (Modification is null)
                 return null;
 
-            var weight = Modification.ImpulseWeight;
+            var weight = Modification.PasportImpulseWeight;
             if (weight == 0)
                 return null;
 

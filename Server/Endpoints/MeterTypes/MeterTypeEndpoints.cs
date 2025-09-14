@@ -17,6 +17,7 @@ public static class MeterTypeEndpoints
         var groupCommon = app.MapGroup("/api/metertypes").RequireAuthorization();
         var groupAdmin = app.MapGroup("/api/metertypes").RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" });
         groupCommon.MapGet("", GetMeterTypes).WithName("GetMeterTypes");
+        groupCommon.MapGet("manufacturers", GetManufacturers).WithName("GetMeterManufacturers");
         groupCommon.MapGet("{id}", GetMeterType).WithName("GetMeterType");
         groupAdmin.MapPost("", CreateMeterType).WithName("CreateMeterType");
         groupAdmin.MapPut("{id}", UpdateMeterType).WithName("UpdateMeterType");
@@ -36,15 +37,21 @@ public static class MeterTypeEndpoints
         return item is null ? TypedResults.NotFound() : TypedResults.Ok(new MeterTypeResponse(item));
     }
 
+    private static async Task<Ok<List<string>>> GetManufacturers(string? search, int? take, MeterTypeService service)
+    {
+        var items = await service.GetManufacturersAsync(search, take);
+        return TypedResults.Ok(items);
+    }
+
     private static async Task<Ok<int>> CreateMeterType([Validate] MeterTypeRequest request, MeterTypeService service)
     {
-        var meterType = await service.CreateAsync(request.EditorName, request.ManufacturerId, request.Type, request.FullName);
+        var meterType = await service.CreateAsync(request.EditorName, request.ManufacturerName, request.Type, request.FullName);
         return TypedResults.Ok(meterType.Id);
     }
 
     private static async Task<Results<NoContent, NotFound>> UpdateMeterType(int id, [Validate] MeterTypeRequest request, MeterTypeService service)
     {
-        var updated = await service.UpdateAsync(id, request.EditorName, request.ManufacturerId, request.Type, request.FullName);
+        var updated = await service.UpdateAsync(id, request.EditorName, request.ManufacturerName, request.Type, request.FullName);
         return updated ? TypedResults.NoContent() : TypedResults.NotFound();
     }
 

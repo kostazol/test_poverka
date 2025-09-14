@@ -8,7 +8,6 @@ using PoverkaServer.Endpoints;
 using PoverkaServer.Endpoints.MeterTypes;
 using PoverkaServer.Endpoints.Registrations;
 using PoverkaServer.Endpoints.Modifications;
-using PoverkaServer.Endpoints.Manufacturers;
 using PoverkaServer.Validation;
 using PoverkaServer.Models;
 using PoverkaServer.Services;
@@ -84,7 +83,6 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<MeterTypeService>();
 builder.Services.AddScoped<RegistrationService>();
 builder.Services.AddScoped<ModificationService>();
-builder.Services.AddScoped<ManufacturerService>();
 
 var app = builder.Build();
 
@@ -101,6 +99,5 @@ app.MapUserEndpoints();
 app.MapMeterTypeEndpoints();
 app.MapRegistrationEndpoints();
 app.MapModificationEndpoints();
-app.MapManufacturerEndpoints();
 
 await app.RunAsync();

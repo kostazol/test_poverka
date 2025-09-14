@@ -25,7 +25,7 @@ public class ModificationService
             )
             .ToListAsync();
 
-    public Task<List<ModificationWithRegistrationNumber>> GetFilteredAsync(int meterTypeId, int manufacturerId, DateOnly manufactureDate) =>
+    public Task<List<ModificationWithRegistrationNumber>> GetFilteredAsync(int meterTypeId, string manufacturerName, DateOnly manufactureDate) =>
         _db.Modifications
             .Join(
                 _db.Registrations,
@@ -41,7 +41,7 @@ public class ModificationService
             )
             .Where(x =>
                 x.mt.Id == meterTypeId
-                && x.mt.ManufacturerId == manufacturerId
+                && x.mt.ManufacturerName == manufacturerName
                 && x.r.RegistrationDate <= manufactureDate
                 && x.r.EndDate >= manufactureDate
             )
@@ -65,7 +65,8 @@ public class ModificationService
         int registrationId,
         string name,
         string className,
-        double impulseWeight,
+        double pasportImpulseWeight,
+        double verificationImpulseWeight,
         double qmin,
         double qt1,
         double qt2,
@@ -79,7 +80,7 @@ public class ModificationService
         short measurementDurationInSeconds,
         byte relativeErrorWithStandartValue)
     {
-        var modification = new Modification(editorName, registrationId, name, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
+        var modification = new Modification(editorName, registrationId, name, className, pasportImpulseWeight, verificationImpulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         _db.Modifications.Add(modification);
         await _db.SaveChangesAsync();
         return modification;
@@ -91,7 +92,8 @@ public class ModificationService
         int registrationId,
         string name,
         string className,
-        double impulseWeight,
+        double pasportImpulseWeight,
+        double verificationImpulseWeight,
         double qmin,
         double qt1,
         double qt2,
@@ -110,7 +112,7 @@ public class ModificationService
         {
             return false;
         }
-        modification.Update(editorName, registrationId, name, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
+        modification.Update(editorName, registrationId, name, className, pasportImpulseWeight, verificationImpulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
         await _db.SaveChangesAsync();
         return true;
     }
