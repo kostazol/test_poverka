@@ -12,7 +12,7 @@ using PoverkaServer.Data;
 namespace PoverkaServer.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250914173536_AddMeterRegistry")]
+    [Migration("20250914175754_AddMeterRegistry")]
     partial class AddMeterRegistry
     {
         /// <inheritdoc />
