@@ -48,7 +48,7 @@ public class MeterImportService
             var registrationNumber = parts[4];
             var verificationInterval = short.Parse(parts[5], culture);
             var manufacturerName = parts[6];
-            var impulseWeight = double.Parse(parts[7], culture);
+            var pasportImpulseWeight = double.Parse(parts[7], culture);
             var qmin = double.Parse(parts[8], culture);
             var qt1 = double.Parse(parts[9], culture);
             var qt2 = double.Parse(parts[10], culture);
@@ -75,7 +75,7 @@ public class MeterImportService
                 verificationMethodology, relativeErrorQt1_Qmax, relativeErrorQt2_Qt1, relativeErrorQmin_Qt2, registrationDate,
                 endDate, hasVerificationModeByV, hasVerificationModeByG);
 
-            await CreateModificationAsync(token, registrationId, modificationName, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1,
+            await CreateModificationAsync(token, registrationId, modificationName, className, pasportImpulseWeight, qmin, qt1, qt2, qmax, checkpoint1,
                 checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDuration,
                 relativeErrorWithStandartValue);
         }
@@ -185,7 +185,7 @@ public class MeterImportService
     }
 
     private async Task<int?> CreateModificationAsync(string token, int registrationId, string name, string className,
-        double impulseWeight, double qmin, double qt1, double qt2, double qmax, double checkpoint1,
+        double pasportImpulseWeight, double qmin, double qt1, double qt2, double qmax, double checkpoint1,
         double checkpoint2, double checkpoint3, double? checkpoint4, byte numberOfMeasurements,
         short minPulseCount, short measurementDuration, byte relativeErrorWithStandartValue)
     {
@@ -202,7 +202,8 @@ public class MeterImportService
                 RegistrationId = registrationId,
                 Name = name,
                 ClassName = className,
-                ImpulseWeight = impulseWeight,
+                PasportImpulseWeight = pasportImpulseWeight,
+                VerificationImpulseWeight = pasportImpulseWeight,
                 Qmin = qmin,
                 Qt1 = qt1,
                 Qt2 = qt2,

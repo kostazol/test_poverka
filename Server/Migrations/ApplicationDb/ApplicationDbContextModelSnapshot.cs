@@ -229,9 +229,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.Property<double>("ImpulseWeight")
-                        .HasColumnType("double precision");
-
                     b.Property<short>("MeasurementDurationInSeconds")
                         .HasColumnType("smallint");
 
@@ -245,6 +242,9 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
                     b.Property<byte>("NumberOfMeasurements")
                         .HasColumnType("smallint");
+
+                    b.Property<double>("PasportImpulseWeight")
+                        .HasColumnType("double precision");
 
                     b.Property<double>("Qmax")
                         .HasColumnType("double precision");
@@ -266,6 +266,9 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<double>("VerificationImpulseWeight")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 

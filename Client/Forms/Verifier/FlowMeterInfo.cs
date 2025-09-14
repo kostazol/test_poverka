@@ -33,7 +33,8 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, string? ManufacturerName,
     public string? VerificationInterval => FormatYears(Registration?.VerificationInterval);
     public string? VerificationModeByV => ToYesNo(Registration?.HasVerificationModeByV);
     public string? VerificationModeByG => ToYesNo(Registration?.HasVerificationModeByG);
-    public string? ImpulseWeight => Modification?.ImpulseWeight.ToString();
+    public string? PasportImpulseWeight => Modification?.PasportImpulseWeight.ToString();
+    public string? VerificationImpulseWeight => Modification?.VerificationImpulseWeight.ToString();
     public string? MinPulseCount => Modification?.MinPulseCount.ToString();
     public string? CalculatedPulseCount
     {
@@ -42,7 +43,7 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, string? ManufacturerName,
             if (Modification is null)
                 return null;
 
-            var weight = Modification.ImpulseWeight;
+            var weight = Modification.PasportImpulseWeight;
             if (weight == 0)
                 return null;
 

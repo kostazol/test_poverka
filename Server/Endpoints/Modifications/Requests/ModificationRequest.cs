@@ -17,8 +17,10 @@ public class ModificationRequest : IValidatableObject
     [StringLength(5, MinimumLength = 1, ErrorMessage = "Указана недопустимая длина ClassName, допускается длина от 1 до 5 символов.")]
     public required string ClassName { get; init; }
 
-    [Range(0, double.MaxValue, ErrorMessage = "ImpulseWeight должен быть положительным.")]
-    public required double ImpulseWeight { get; init; }
+    [Range(0, double.MaxValue, ErrorMessage = "PasportImpulseWeight должен быть положительным.")]
+    public required double PasportImpulseWeight { get; init; }
+    [Range(0, double.MaxValue, ErrorMessage = "VerificationImpulseWeight должен быть положительным.")]
+    public required double VerificationImpulseWeight { get; init; }
     [Range(0, double.MaxValue, ErrorMessage = "Qmin должен быть положительным.")]
     public required double Qmin { get; init; }
     [Range(0, double.MaxValue, ErrorMessage = "Qt1 должен быть положительным.")]
