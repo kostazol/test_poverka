@@ -35,6 +35,7 @@ namespace PoverkaWinForms
             services.AddTransient<MeterTypeService>();
             services.AddTransient<ManufacturerService>();
             services.AddTransient<ModificationService>();
+            services.AddTransient<RegistrationService>();
 
             services.AddScoped<MetersSetupForm>();
             services.AddScoped<ConfigurationForm>();

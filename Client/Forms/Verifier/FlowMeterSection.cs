@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PoverkaWinForms.Services;
 
 namespace PoverkaWinForms.Forms.Verifier;
 
@@ -33,6 +34,14 @@ internal sealed class FlowMeterSection
     public DateTimePicker ManufactureDate { get; }
     public TextBox RegistrationNumber { get; }
 
+    public bool IsComplete()
+    {
+        return MeterType.SelectedItem != null
+            && Manufacturer.SelectedItem != null
+            && Modification.SelectedItem != null
+            && !string.IsNullOrWhiteSpace(RegistrationNumber.Text);
+    }
+
     public void ToggleControls()
     {
         bool visible = CheckBox.Checked;
@@ -52,5 +61,23 @@ internal sealed class FlowMeterSection
 
         await form.PopulateMeterTypesAsync(MeterType, string.Empty, 10);
         await form.PopulateManufacturersAsync(Manufacturer, string.Empty, 10);
+    }
+
+    public async Task<FlowMeterInfo> ToInfoAsync(RegistrationService registrations)
+    {
+        if (!CheckBox.Checked)
+        {
+            return new FlowMeterInfo(null, null, null, null);
+        }
+
+        var selectedType = MeterType.SelectedItem as MeterTypeDto;
+        var selectedManufacturer = Manufacturer.SelectedItem as ManufacturerDto;
+        var selectedModification = Modification.SelectedItem as ModificationDto;
+
+        var selectedRegistration = selectedModification is null
+            ? null
+            : await registrations.GetAsync(selectedModification.RegistrationId);
+
+        return new FlowMeterInfo(selectedType, selectedManufacturer, selectedModification, selectedRegistration);
     }
 }

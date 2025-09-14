@@ -13,6 +13,7 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly MeterTypeService _meterTypeService;
         private readonly ManufacturerService _manufacturerService;
         private readonly ModificationService _modificationService;
+        private readonly RegistrationService _registrationService;
         private bool _updating;
         private readonly Dictionary<ComboBox, CancellationTokenSource> _searchTokens = new();
         private readonly Dictionary<ComboBox, string> _typedTexts = new();
@@ -21,11 +22,12 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, int> _previousIndices = new();
         private readonly List<FlowMeterSection> _flowMeters = new();
 
-        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService, ModificationService modificationService)
+        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService, ModificationService modificationService, RegistrationService registrationService)
         {
             _meterTypeService = meterTypeService;
             _manufacturerService = manufacturerService;
             _modificationService = modificationService;
+            _registrationService = registrationService;
             InitializeComponent();
             InitializeFlowMeters();
         }
@@ -40,7 +42,7 @@ namespace PoverkaWinForms.Forms.Verifier
             _flowMeters.Add(new FlowMeterSection(Flow6CheckBox, Flow6GroupBox, Flow6TitleLabel, Flow6TypeComboBox, Flow6ManufacturerComboBox, Flow6ModificationComboBox, Flow6ManufactureDateDateTimePicker, Flow6RegistrationNumberTextBox));
         }
 
-        private async void MetersSetupFormLoad(object sender, EventArgs e)
+        private async void MetersSetupForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
             {
@@ -446,6 +448,23 @@ namespace PoverkaWinForms.Forms.Verifier
             {
                 await meter.OnCheckedChangedAsync(this);
             }
+        }
+
+        private async void NextButton_Click(object? sender, EventArgs e)
+        {
+            for (int i = 0; i < _flowMeters.Count; i++)
+            {
+                var meter = _flowMeters[i];
+                if (meter.CheckBox.Checked && !meter.IsComplete())
+                {
+                    MessageBox.Show($"Отключите расходомер или заполните все данные расходомера {i + 1}");
+                    return;
+                }
+            }
+
+            var infos = (await Task.WhenAll(_flowMeters.Select(m => m.ToInfoAsync(_registrationService)))).ToList();
+            using var programForm = new VerificationProgramForm(infos);
+            programForm.ShowDialog(this);
         }
     }
 }
