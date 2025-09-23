@@ -72,15 +72,57 @@ public class ModificationService
         double qt2,
         double qmax,
         double checkpoint1,
+        double checkpoint1RequiredTime,
+        double checkpoint1TimeMultiplier,
+        double checkpoint1PulseCount,
         double checkpoint2,
+        double checkpoint2RequiredTime,
+        double checkpoint2TimeMultiplier,
+        double checkpoint2PulseCount,
         double checkpoint3,
+        double checkpoint3RequiredTime,
+        double checkpoint3TimeMultiplier,
+        double checkpoint3PulseCount,
         double? checkpoint4,
+        double? checkpoint4RequiredTime,
+        double? checkpoint4TimeMultiplier,
+        double? checkpoint4PulseCount,
         byte numberOfMeasurements,
         short minPulseCount,
         short measurementDurationInSeconds,
-        byte relativeErrorWithStandartValue)
+        double flowSetpointPercent)
     {
-        var modification = new Modification(editorName, registrationId, name, className, pasportImpulseWeight, verificationImpulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
+        var modification = new Modification(
+            editorName,
+            registrationId,
+            name,
+            className,
+            pasportImpulseWeight,
+            verificationImpulseWeight,
+            qmin,
+            qt1,
+            qt2,
+            qmax,
+            checkpoint1,
+            checkpoint1RequiredTime,
+            checkpoint1TimeMultiplier,
+            checkpoint1PulseCount,
+            checkpoint2,
+            checkpoint2RequiredTime,
+            checkpoint2TimeMultiplier,
+            checkpoint2PulseCount,
+            checkpoint3,
+            checkpoint3RequiredTime,
+            checkpoint3TimeMultiplier,
+            checkpoint3PulseCount,
+            checkpoint4,
+            checkpoint4RequiredTime,
+            checkpoint4TimeMultiplier,
+            checkpoint4PulseCount,
+            numberOfMeasurements,
+            minPulseCount,
+            measurementDurationInSeconds,
+            flowSetpointPercent);
         _db.Modifications.Add(modification);
         await _db.SaveChangesAsync();
         return modification;
@@ -99,20 +141,62 @@ public class ModificationService
         double qt2,
         double qmax,
         double checkpoint1,
+        double checkpoint1RequiredTime,
+        double checkpoint1TimeMultiplier,
+        double checkpoint1PulseCount,
         double checkpoint2,
+        double checkpoint2RequiredTime,
+        double checkpoint2TimeMultiplier,
+        double checkpoint2PulseCount,
         double checkpoint3,
+        double checkpoint3RequiredTime,
+        double checkpoint3TimeMultiplier,
+        double checkpoint3PulseCount,
         double? checkpoint4,
+        double? checkpoint4RequiredTime,
+        double? checkpoint4TimeMultiplier,
+        double? checkpoint4PulseCount,
         byte numberOfMeasurements,
         short minPulseCount,
         short measurementDurationInSeconds,
-        byte relativeErrorWithStandartValue)
+        double flowSetpointPercent)
     {
         var modification = await _db.Modifications.FindAsync(id);
         if (modification is null)
         {
             return false;
         }
-        modification.Update(editorName, registrationId, name, className, pasportImpulseWeight, verificationImpulseWeight, qmin, qt1, qt2, qmax, checkpoint1, checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDurationInSeconds, relativeErrorWithStandartValue);
+        modification.Update(
+            editorName,
+            registrationId,
+            name,
+            className,
+            pasportImpulseWeight,
+            verificationImpulseWeight,
+            qmin,
+            qt1,
+            qt2,
+            qmax,
+            checkpoint1,
+            checkpoint1RequiredTime,
+            checkpoint1TimeMultiplier,
+            checkpoint1PulseCount,
+            checkpoint2,
+            checkpoint2RequiredTime,
+            checkpoint2TimeMultiplier,
+            checkpoint2PulseCount,
+            checkpoint3,
+            checkpoint3RequiredTime,
+            checkpoint3TimeMultiplier,
+            checkpoint3PulseCount,
+            checkpoint4,
+            checkpoint4RequiredTime,
+            checkpoint4TimeMultiplier,
+            checkpoint4PulseCount,
+            numberOfMeasurements,
+            minPulseCount,
+            measurementDurationInSeconds,
+            flowSetpointPercent);
         await _db.SaveChangesAsync();
         return true;
     }

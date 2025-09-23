@@ -207,13 +207,49 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.Property<double>("Checkpoint1")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("Checkpoint1PulseCount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint1RequiredTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint1TimeMultiplier")
+                        .HasColumnType("double precision");
+
                     b.Property<double>("Checkpoint2")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint2PulseCount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint2RequiredTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint2TimeMultiplier")
                         .HasColumnType("double precision");
 
                     b.Property<double>("Checkpoint3")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("Checkpoint3PulseCount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint3RequiredTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint3TimeMultiplier")
+                        .HasColumnType("double precision");
+
                     b.Property<double?>("Checkpoint4")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Checkpoint4PulseCount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Checkpoint4RequiredTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Checkpoint4TimeMultiplier")
                         .HasColumnType("double precision");
 
                     b.Property<string>("ClassName")
@@ -228,6 +264,9 @@ namespace PoverkaServer.Migrations.ApplicationDb
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
+
+                    b.Property<double>("FlowSetpointPercent")
+                        .HasColumnType("double precision");
 
                     b.Property<short>("MeasurementDurationInSeconds")
                         .HasColumnType("smallint");
@@ -260,9 +299,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
                     b.Property<int>("RegistrationId")
                         .HasColumnType("integer");
-
-                    b.Property<byte>("RelativeErrorWithStandartValue")
-                        .HasColumnType("smallint");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");

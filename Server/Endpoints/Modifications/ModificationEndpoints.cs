@@ -72,13 +72,25 @@ public static class ModificationEndpoints
             request.Qt2,
             request.Qmax,
             request.Checkpoint1,
+            request.Checkpoint1RequiredTime,
+            request.Checkpoint1TimeMultiplier,
+            request.Checkpoint1PulseCount,
             request.Checkpoint2,
+            request.Checkpoint2RequiredTime,
+            request.Checkpoint2TimeMultiplier,
+            request.Checkpoint2PulseCount,
             request.Checkpoint3,
+            request.Checkpoint3RequiredTime,
+            request.Checkpoint3TimeMultiplier,
+            request.Checkpoint3PulseCount,
             request.Checkpoint4,
+            request.Checkpoint4RequiredTime,
+            request.Checkpoint4TimeMultiplier,
+            request.Checkpoint4PulseCount,
             request.NumberOfMeasurements,
             request.MinPulseCount,
             request.MeasurementDurationInSeconds,
-            request.RelativeErrorWithStandartValue);
+            request.FlowSetpointPercent);
         return TypedResults.Ok(modification.Id);
     }
 
@@ -97,13 +109,25 @@ public static class ModificationEndpoints
             request.Qt2,
             request.Qmax,
             request.Checkpoint1,
+            request.Checkpoint1RequiredTime,
+            request.Checkpoint1TimeMultiplier,
+            request.Checkpoint1PulseCount,
             request.Checkpoint2,
+            request.Checkpoint2RequiredTime,
+            request.Checkpoint2TimeMultiplier,
+            request.Checkpoint2PulseCount,
             request.Checkpoint3,
+            request.Checkpoint3RequiredTime,
+            request.Checkpoint3TimeMultiplier,
+            request.Checkpoint3PulseCount,
             request.Checkpoint4,
+            request.Checkpoint4RequiredTime,
+            request.Checkpoint4TimeMultiplier,
+            request.Checkpoint4PulseCount,
             request.NumberOfMeasurements,
             request.MinPulseCount,
             request.MeasurementDurationInSeconds,
-            request.RelativeErrorWithStandartValue);
+            request.FlowSetpointPercent);
         return updated ? TypedResults.NoContent() : TypedResults.NotFound();
     }
 

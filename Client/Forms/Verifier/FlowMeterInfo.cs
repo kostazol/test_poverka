@@ -9,6 +9,8 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, string? ManufacturerName,
 
     private static string? FormatRelative(double? value) => value.HasValue ? $"±{value}" : null;
 
+    private static string? FormatDouble(double? value) => value?.ToString(CultureInfo.CurrentCulture);
+
     private static string? FormatYears(short? years)
     {
         if (!years.HasValue)
@@ -33,8 +35,8 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, string? ManufacturerName,
     public string? VerificationInterval => FormatYears(Registration?.VerificationInterval);
     public string? VerificationModeByV => ToYesNo(Registration?.HasVerificationModeByV);
     public string? VerificationModeByG => ToYesNo(Registration?.HasVerificationModeByG);
-    public string? PasportImpulseWeight => Modification?.PasportImpulseWeight.ToString();
-    public string? VerificationImpulseWeight => Modification?.VerificationImpulseWeight.ToString();
+    public string? PasportImpulseWeight => FormatDouble(Modification?.PasportImpulseWeight);
+    public string? VerificationImpulseWeight => FormatDouble(Modification?.VerificationImpulseWeight);
     public string? MinPulseCount => Modification?.MinPulseCount.ToString();
     public string? CalculatedPulseCount
     {
@@ -52,13 +54,14 @@ internal record FlowMeterInfo(MeterTypeDto? MeterType, string? ManufacturerName,
         }
     }
     public string? MeasurementDurationInSeconds => Modification?.MeasurementDurationInSeconds.ToString();
-    public string? Qmax => Modification?.Qmax.ToString();
+    public string? Qmax => FormatDouble(Modification?.Qmax);
     public string? VerificationMethodology => Registration?.VerificationMethodology;
-    public string? Checkpoint1 => Modification?.Checkpoint1.ToString();
-    public string? Checkpoint2 => Modification?.Checkpoint2.ToString();
-    public string? Checkpoint3 => Modification?.Checkpoint3.ToString();
-    public string? Checkpoint4 => Modification?.Checkpoint4.ToString();
+    public string? Checkpoint1 => FormatDouble(Modification?.Checkpoint1);
+    public string? Checkpoint2 => FormatDouble(Modification?.Checkpoint2);
+    public string? Checkpoint3 => FormatDouble(Modification?.Checkpoint3);
+    public string? Checkpoint4 => FormatDouble(Modification?.Checkpoint4);
     public string? NumberOfMeasurements => Modification?.NumberOfMeasurements.ToString();
+    public string? FlowSetpointPercent => FormatDouble(Modification?.FlowSetpointPercent);
     public string? RelativeErrorQt1Qmax => FormatRelative(Registration?.RelativeErrorQt1Qmax);
     public string? RelativeErrorQt2Qt1 => FormatRelative(Registration?.RelativeErrorQt2Qt1);
 
