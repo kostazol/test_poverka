@@ -13,28 +13,12 @@ namespace PoverkaServer.Migrations.ApplicationDb
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Manufacturers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Manufacturers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MeterTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ManufacturerId = table.Column<int>(type: "integer", nullable: false),
+                    ManufacturerName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     Type = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     FullName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
@@ -44,12 +28,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MeterTypes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MeterTypes_Manufacturers_ManufacturerId",
-                        column: x => x.ManufacturerId,
-                        principalTable: "Manufacturers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,19 +71,32 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     RegistrationId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     ClassName = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
-                    ImpulseWeight = table.Column<double>(type: "double precision", nullable: false),
+                    PasportImpulseWeight = table.Column<double>(type: "double precision", nullable: false),
+                    VerificationImpulseWeight = table.Column<double>(type: "double precision", nullable: false),
                     Qmin = table.Column<double>(type: "double precision", nullable: false),
                     Qt1 = table.Column<double>(type: "double precision", nullable: false),
                     Qt2 = table.Column<double>(type: "double precision", nullable: false),
                     Qmax = table.Column<double>(type: "double precision", nullable: false),
                     Checkpoint1 = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint1RequiredTime = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint1TimeMultiplier = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint1PulseCount = table.Column<double>(type: "double precision", nullable: false),
                     Checkpoint2 = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint2RequiredTime = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint2TimeMultiplier = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint2PulseCount = table.Column<double>(type: "double precision", nullable: false),
                     Checkpoint3 = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint3RequiredTime = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint3TimeMultiplier = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint3PulseCount = table.Column<double>(type: "double precision", nullable: false),
                     Checkpoint4 = table.Column<double>(type: "double precision", nullable: true),
+                    Checkpoint4RequiredTime = table.Column<double>(type: "double precision", nullable: true),
+                    Checkpoint4TimeMultiplier = table.Column<double>(type: "double precision", nullable: true),
+                    Checkpoint4PulseCount = table.Column<double>(type: "double precision", nullable: true),
                     NumberOfMeasurements = table.Column<byte>(type: "smallint", nullable: false),
                     MinPulseCount = table.Column<short>(type: "smallint", nullable: false),
                     MeasurementDurationInSeconds = table.Column<short>(type: "smallint", nullable: false),
-                    RelativeErrorWithStandartValue = table.Column<byte>(type: "smallint", nullable: false),
+                    FlowSetpointPercent = table.Column<double>(type: "double precision", nullable: false),
                     EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
@@ -122,15 +113,9 @@ namespace PoverkaServer.Migrations.ApplicationDb
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Manufacturers_Name",
-                table: "Manufacturers",
-                column: "Name",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MeterTypes_ManufacturerId_Type",
+                name: "IX_MeterTypes_ManufacturerName_Type",
                 table: "MeterTypes",
-                columns: new[] { "ManufacturerId", "Type" },
+                columns: new[] { "ManufacturerName", "Type" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -162,9 +147,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
             migrationBuilder.DropTable(
                 name: "MeterTypes");
-
-            migrationBuilder.DropTable(
-                name: "Manufacturers");
         }
     }
 }

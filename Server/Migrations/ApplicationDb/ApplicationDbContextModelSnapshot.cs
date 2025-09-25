@@ -154,38 +154,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PoverkaServer.Domain.Manufacturer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("EditorName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Manufacturers");
-                });
-
             modelBuilder.Entity("PoverkaServer.Domain.MeterType", b =>
                 {
                     b.Property<int>("Id")
@@ -207,8 +175,10 @@ namespace PoverkaServer.Migrations.ApplicationDb
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.Property<int>("ManufacturerId")
-                        .HasColumnType("integer");
+                    b.Property<string>("ManufacturerName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -220,7 +190,7 @@ namespace PoverkaServer.Migrations.ApplicationDb
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ManufacturerId", "Type")
+                    b.HasIndex("ManufacturerName", "Type")
                         .IsUnique();
 
                     b.ToTable("MeterTypes");
@@ -237,13 +207,49 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.Property<double>("Checkpoint1")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("Checkpoint1PulseCount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint1RequiredTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint1TimeMultiplier")
+                        .HasColumnType("double precision");
+
                     b.Property<double>("Checkpoint2")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint2PulseCount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint2RequiredTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint2TimeMultiplier")
                         .HasColumnType("double precision");
 
                     b.Property<double>("Checkpoint3")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("Checkpoint3PulseCount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint3RequiredTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Checkpoint3TimeMultiplier")
+                        .HasColumnType("double precision");
+
                     b.Property<double?>("Checkpoint4")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Checkpoint4PulseCount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Checkpoint4RequiredTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Checkpoint4TimeMultiplier")
                         .HasColumnType("double precision");
 
                     b.Property<string>("ClassName")
@@ -259,7 +265,7 @@ namespace PoverkaServer.Migrations.ApplicationDb
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.Property<double>("ImpulseWeight")
+                    b.Property<double>("FlowSetpointPercent")
                         .HasColumnType("double precision");
 
                     b.Property<short>("MeasurementDurationInSeconds")
@@ -276,6 +282,9 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.Property<byte>("NumberOfMeasurements")
                         .HasColumnType("smallint");
 
+                    b.Property<double>("PasportImpulseWeight")
+                        .HasColumnType("double precision");
+
                     b.Property<double>("Qmax")
                         .HasColumnType("double precision");
 
@@ -291,11 +300,11 @@ namespace PoverkaServer.Migrations.ApplicationDb
                     b.Property<int>("RegistrationId")
                         .HasColumnType("integer");
 
-                    b.Property<byte>("RelativeErrorWithStandartValue")
-                        .HasColumnType("smallint");
-
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<double>("VerificationImpulseWeight")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
@@ -499,15 +508,6 @@ namespace PoverkaServer.Migrations.ApplicationDb
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PoverkaServer.Domain.MeterType", b =>
-                {
-                    b.HasOne("PoverkaServer.Domain.Manufacturer", null)
-                        .WithMany()
-                        .HasForeignKey("ManufacturerId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

@@ -13,10 +13,9 @@ public class MeterImportService
 {
     private readonly HttpClient _http;
     private readonly TokenService _tokens;
-    private readonly Dictionary<string, int> _meterTypes = new();
+    private readonly Dictionary<(string ManufacturerName, string Type), int> _meterTypes = new();
     private readonly Dictionary<string, int> _registrations = new();
     private readonly HashSet<(int registrationId, string name)> _modifications = new();
-    private readonly Dictionary<string, int> _manufacturers = new();
 
     public MeterImportService(IHttpClientFactory factory, TokenService tokens, IdentityServerSettings settings)
     {
@@ -42,6 +41,10 @@ public class MeterImportService
             }
 
             var parts = line.Split(';');
+            if (parts.Length < 41)
+            {
+                continue;
+            }
             var fullName = parts[0];
             var type = parts[1];
             var className = parts[2];
@@ -49,60 +52,85 @@ public class MeterImportService
             var registrationNumber = parts[4];
             var verificationInterval = short.Parse(parts[5], culture);
             var manufacturerName = parts[6];
-            var impulseWeight = double.Parse(parts[7], culture);
-            var qmin = double.Parse(parts[8], culture);
-            var qt1 = double.Parse(parts[9], culture);
-            var qt2 = double.Parse(parts[10], culture);
-            var qmax = double.Parse(parts[11], culture);
-            var checkpoint1 = double.Parse(parts[12], culture);
-            var checkpoint2 = double.Parse(parts[13], culture);
-            var checkpoint3 = double.Parse(parts[14], culture);
-            double? checkpoint4 = string.IsNullOrWhiteSpace(parts[15]) ? null : double.Parse(parts[15], culture);
-            var numberOfMeasurements = byte.Parse(parts[16], culture);
-            var minPulseCount = short.Parse(parts[17], culture);
-            var measurementDuration = short.Parse(parts[18], culture);
-            var verificationMethodology = parts[19];
-            var relativeErrorQt1_Qmax = byte.Parse(parts[20], culture);
-            var relativeErrorQt2_Qt1 = byte.Parse(parts[21], culture);
-            var relativeErrorQmin_Qt2 = byte.Parse(parts[22], culture);
-            var registrationDate = DateOnly.Parse(parts[23], culture);
-            var endDate = DateOnly.Parse(parts[24], culture);
-            var relativeErrorWithStandartValue = byte.Parse(parts[25], culture);
-            var hasVerificationModeByV = parts[26].Equals("да", StringComparison.OrdinalIgnoreCase);
-            var hasVerificationModeByG = parts[27].Equals("да", StringComparison.OrdinalIgnoreCase);
+            var pasportImpulseWeight = double.Parse(parts[7], culture);
+            var verificationImpulseWeight = double.Parse(parts[8], culture);
+            var qmin = double.Parse(parts[9], culture);
+            var qt1 = double.Parse(parts[10], culture);
+            var qt2 = double.Parse(parts[11], culture);
+            var qmax = double.Parse(parts[12], culture);
+            var checkpoint1 = double.Parse(parts[13], culture);
+            var checkpoint1RequiredTime = double.Parse(parts[14], culture);
+            var checkpoint1TimeMultiplier = double.Parse(parts[15], culture);
+            var checkpoint1PulseCount = double.Parse(parts[16], culture);
+            var checkpoint2 = double.Parse(parts[17], culture);
+            var checkpoint2RequiredTime = double.Parse(parts[18], culture);
+            var checkpoint2TimeMultiplier = double.Parse(parts[19], culture);
+            var checkpoint2PulseCount = double.Parse(parts[20], culture);
+            var checkpoint3 = double.Parse(parts[21], culture);
+            var checkpoint3RequiredTime = double.Parse(parts[22], culture);
+            var checkpoint3TimeMultiplier = double.Parse(parts[23], culture);
+            var checkpoint3PulseCount = double.Parse(parts[24], culture);
+            double? checkpoint4 = ParseNullableDouble(parts[25], culture);
+            double? checkpoint4RequiredTime = ParseNullableDouble(parts[26], culture);
+            double? checkpoint4TimeMultiplier = ParseNullableDouble(parts[27], culture);
+            double? checkpoint4PulseCount = ParseNullableDouble(parts[28], culture);
+            var numberOfMeasurements = byte.Parse(parts[29], culture);
+            var minPulseCount = short.Parse(parts[30], culture);
+            var measurementDuration = short.Parse(parts[31], culture);
+            var verificationMethodology = parts[32];
+            var relativeErrorQt1_Qmax = byte.Parse(parts[33], culture);
+            var relativeErrorQt2_Qt1 = byte.Parse(parts[34], culture);
+            var relativeErrorQmin_Qt2 = byte.Parse(parts[35], culture);
+            var registrationDate = DateOnly.Parse(parts[36], culture);
+            var endDate = DateOnly.Parse(parts[37], culture);
+            var flowSetpointPercent = double.Parse(parts[38], culture);
+            var hasVerificationModeByV = parts[39].Equals("да", StringComparison.OrdinalIgnoreCase);
+            var hasVerificationModeByG = parts[40].Equals("да", StringComparison.OrdinalIgnoreCase);
 
-            var manufacturerId = await CreateManufacturerAsync(token, manufacturerName);
-            var meterTypeId = await CreateMeterTypeAsync(token, fullName, type, manufacturerId);
+            var meterTypeId = await CreateMeterTypeAsync(token, fullName, type, manufacturerName);
             var registrationId = await CreateRegistrationAsync(token, meterTypeId, registrationNumber, verificationInterval,
                 verificationMethodology, relativeErrorQt1_Qmax, relativeErrorQt2_Qt1, relativeErrorQmin_Qt2, registrationDate,
                 endDate, hasVerificationModeByV, hasVerificationModeByG);
 
-            await CreateModificationAsync(token, registrationId, modificationName, className, impulseWeight, qmin, qt1, qt2, qmax, checkpoint1,
-                checkpoint2, checkpoint3, checkpoint4, numberOfMeasurements, minPulseCount, measurementDuration,
-                relativeErrorWithStandartValue);
+            await CreateModificationAsync(
+                token,
+                registrationId,
+                modificationName,
+                className,
+                pasportImpulseWeight,
+                verificationImpulseWeight,
+                qmin,
+                qt1,
+                qt2,
+                qmax,
+                checkpoint1,
+                checkpoint1RequiredTime,
+                checkpoint1TimeMultiplier,
+                checkpoint1PulseCount,
+                checkpoint2,
+                checkpoint2RequiredTime,
+                checkpoint2TimeMultiplier,
+                checkpoint2PulseCount,
+                checkpoint3,
+                checkpoint3RequiredTime,
+                checkpoint3TimeMultiplier,
+                checkpoint3PulseCount,
+                checkpoint4,
+                checkpoint4RequiredTime,
+                checkpoint4TimeMultiplier,
+                checkpoint4PulseCount,
+                numberOfMeasurements,
+                minPulseCount,
+                measurementDuration,
+                flowSetpointPercent);
         }
     }
 
     private async Task LoadExistingAsync(string token)
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, "/api/manufacturers");
+        var request = new HttpRequestMessage(HttpMethod.Get, "/api/metertypes");
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         var response = await _http.SendAsync(request);
-        if (response.IsSuccessStatusCode)
-        {
-            var items = await response.Content.ReadFromJsonAsync<List<ManufacturerDto>>();
-            if (items != null)
-            {
-                foreach (var m in items)
-                {
-                    _manufacturers[m.Name] = m.Id;
-                }
-            }
-        }
-
-        request = new HttpRequestMessage(HttpMethod.Get, "/api/metertypes");
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        response = await _http.SendAsync(request);
         if (response.IsSuccessStatusCode)
         {
             var items = await response.Content.ReadFromJsonAsync<List<MeterTypeDto>>();
@@ -110,7 +138,7 @@ public class MeterImportService
             {
                 foreach (var m in items)
                 {
-                    _meterTypes[m.Type] = m.Id;
+                    _meterTypes[(m.ManufacturerName, m.Type)] = m.Id;
                 }
             }
         }
@@ -146,41 +174,22 @@ public class MeterImportService
         }
     }
 
-    private async Task<int> CreateManufacturerAsync(string token, string name)
+    private async Task<int> CreateMeterTypeAsync(string token, string fullName, string type, string manufacturerName)
     {
-        if (_manufacturers.TryGetValue(name, out var existingId))
-        {
-            return existingId;
-        }
-
-        var request = new HttpRequestMessage(HttpMethod.Post, "/api/manufacturers")
-        {
-            Content = JsonContent.Create(new { EditorName = "import", Name = name })
-        };
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        var response = await _http.SendAsync(request);
-        response.EnsureSuccessStatusCode();
-        var id = await response.Content.ReadFromJsonAsync<int>();
-        _manufacturers[name] = id;
-        return id;
-    }
-
-    private async Task<int> CreateMeterTypeAsync(string token, string fullName, string type, int manufacturerId)
-    {
-        if (_meterTypes.TryGetValue(type, out var existingId))
+        if (_meterTypes.TryGetValue((manufacturerName, type), out var existingId))
         {
             return existingId;
         }
 
         var request = new HttpRequestMessage(HttpMethod.Post, "/api/metertypes")
         {
-            Content = JsonContent.Create(new { EditorName = "import", Type = type, FullName = fullName, ManufacturerId = manufacturerId })
+            Content = JsonContent.Create(new { EditorName = "import", Type = type, FullName = fullName, ManufacturerName = manufacturerName })
         };
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         var response = await _http.SendAsync(request);
         response.EnsureSuccessStatusCode();
         var id = await response.Content.ReadFromJsonAsync<int>();
-        _meterTypes[type] = id;
+        _meterTypes[(manufacturerName, type)] = id;
         return id;
     }
 
@@ -220,10 +229,37 @@ public class MeterImportService
         return id;
     }
 
-    private async Task<int?> CreateModificationAsync(string token, int registrationId, string name, string className,
-        double impulseWeight, double qmin, double qt1, double qt2, double qmax, double checkpoint1,
-        double checkpoint2, double checkpoint3, double? checkpoint4, byte numberOfMeasurements,
-        short minPulseCount, short measurementDuration, byte relativeErrorWithStandartValue)
+    private async Task<int?> CreateModificationAsync(
+        string token,
+        int registrationId,
+        string name,
+        string className,
+        double pasportImpulseWeight,
+        double verificationImpulseWeight,
+        double qmin,
+        double qt1,
+        double qt2,
+        double qmax,
+        double checkpoint1,
+        double checkpoint1RequiredTime,
+        double checkpoint1TimeMultiplier,
+        double checkpoint1PulseCount,
+        double checkpoint2,
+        double checkpoint2RequiredTime,
+        double checkpoint2TimeMultiplier,
+        double checkpoint2PulseCount,
+        double checkpoint3,
+        double checkpoint3RequiredTime,
+        double checkpoint3TimeMultiplier,
+        double checkpoint3PulseCount,
+        double? checkpoint4,
+        double? checkpoint4RequiredTime,
+        double? checkpoint4TimeMultiplier,
+        double? checkpoint4PulseCount,
+        byte numberOfMeasurements,
+        short minPulseCount,
+        short measurementDuration,
+        double flowSetpointPercent)
     {
         if (!_modifications.Add((registrationId, name)))
         {
@@ -238,19 +274,32 @@ public class MeterImportService
                 RegistrationId = registrationId,
                 Name = name,
                 ClassName = className,
-                ImpulseWeight = impulseWeight,
+                PasportImpulseWeight = pasportImpulseWeight,
+                VerificationImpulseWeight = verificationImpulseWeight,
                 Qmin = qmin,
                 Qt1 = qt1,
                 Qt2 = qt2,
                 Qmax = qmax,
                 Checkpoint1 = checkpoint1,
+                Checkpoint1RequiredTime = checkpoint1RequiredTime,
+                Checkpoint1TimeMultiplier = checkpoint1TimeMultiplier,
+                Checkpoint1PulseCount = checkpoint1PulseCount,
                 Checkpoint2 = checkpoint2,
+                Checkpoint2RequiredTime = checkpoint2RequiredTime,
+                Checkpoint2TimeMultiplier = checkpoint2TimeMultiplier,
+                Checkpoint2PulseCount = checkpoint2PulseCount,
                 Checkpoint3 = checkpoint3,
+                Checkpoint3RequiredTime = checkpoint3RequiredTime,
+                Checkpoint3TimeMultiplier = checkpoint3TimeMultiplier,
+                Checkpoint3PulseCount = checkpoint3PulseCount,
                 Checkpoint4 = checkpoint4,
+                Checkpoint4RequiredTime = checkpoint4RequiredTime,
+                Checkpoint4TimeMultiplier = checkpoint4TimeMultiplier,
+                Checkpoint4PulseCount = checkpoint4PulseCount,
                 NumberOfMeasurements = numberOfMeasurements,
                 MinPulseCount = minPulseCount,
                 MeasurementDurationInSeconds = measurementDuration,
-                RelativeErrorWithStandartValue = relativeErrorWithStandartValue
+                FlowSetpointPercent = flowSetpointPercent
             })
         };
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -261,8 +310,10 @@ public class MeterImportService
         return id;
     }
 
-    private record MeterTypeDto(int Id, string Type);
+    private static double? ParseNullableDouble(string value, CultureInfo culture) =>
+        string.IsNullOrWhiteSpace(value) ? null : double.Parse(value, culture);
+
+    private record MeterTypeDto(int Id, string ManufacturerName, string Type);
     private record RegistrationDto(int Id, string RegistrationNumber);
     private record ModificationDto(int Id, int RegistrationId, string Name);
-    private record ManufacturerDto(int Id, string Name);
 }

@@ -11,7 +11,6 @@ namespace PoverkaWinForms.Forms.Verifier
     public partial class MetersSetupForm : Form
     {
         private readonly MeterTypeService _meterTypeService;
-        private readonly ManufacturerService _manufacturerService;
         private readonly ModificationService _modificationService;
         private readonly RegistrationService _registrationService;
         private bool _updating;
@@ -22,10 +21,9 @@ namespace PoverkaWinForms.Forms.Verifier
         private readonly Dictionary<ComboBox, int> _previousIndices = new();
         private readonly List<FlowMeterSection> _flowMeters = new();
 
-        public MetersSetupForm(MeterTypeService meterTypeService, ManufacturerService manufacturerService, ModificationService modificationService, RegistrationService registrationService)
+        public MetersSetupForm(MeterTypeService meterTypeService, ModificationService modificationService, RegistrationService registrationService)
         {
             _meterTypeService = meterTypeService;
-            _manufacturerService = manufacturerService;
             _modificationService = modificationService;
             _registrationService = registrationService;
             InitializeComponent();
@@ -55,7 +53,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
 
             await _meterTypeService.GetAllAsync(string.Empty, 10);
-            await _manufacturerService.GetAllAsync(string.Empty, 10);
+            await _meterTypeService.GetManufacturersAsync(string.Empty, 10);
         }
 
         private void ResetModifications(ComboBox modificationCombo, TextBox registrationNumberTextBox)
@@ -124,7 +122,7 @@ namespace PoverkaWinForms.Forms.Verifier
             }
         }
 
-        private async Task PopulateComboAsync<T>(ComboBox combo, string search, int? limit, bool dropDown, Func<string, int?, Task<List<T>>> fetch, string displayMember, string valueMember)
+        private async Task PopulateComboAsync<T>(ComboBox combo, string search, int? limit, bool dropDown, Func<string, int?, Task<List<T>>> fetch, string? displayMember, string? valueMember)
         {
             var items = await fetch(search, limit);
 
@@ -132,8 +130,15 @@ namespace PoverkaWinForms.Forms.Verifier
             _updating = true;
             combo.BeginUpdate();
             combo.DataSource = items;
-            combo.DisplayMember = displayMember;
-            combo.ValueMember = valueMember;
+            if (!string.IsNullOrEmpty(displayMember))
+                combo.DisplayMember = displayMember;
+            else
+                combo.DisplayMember = string.Empty;
+
+            if (!string.IsNullOrEmpty(valueMember))
+                combo.ValueMember = valueMember;
+            else
+                combo.ValueMember = string.Empty;
             combo.SelectedIndex = -1;
             combo.Text = search;
             combo.SelectionStart = selStart;
@@ -153,7 +158,7 @@ namespace PoverkaWinForms.Forms.Verifier
 
         internal Task PopulateMeterTypesAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false) => PopulateComboAsync(combo, search, limit, dropDown, _meterTypeService.GetAllAsync, nameof(MeterTypeDto.Type), nameof(MeterTypeDto.Id));
 
-        internal Task PopulateManufacturersAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false) => PopulateComboAsync(combo, search, limit, dropDown, _manufacturerService.GetAllAsync, nameof(ManufacturerDto.Name), nameof(ManufacturerDto.Id));
+        internal Task PopulateManufacturersAsync(ComboBox combo, string search, int? limit = null, bool dropDown = false) => PopulateComboAsync(combo, search, limit, dropDown, _meterTypeService.GetManufacturersAsync, null, null);
 
         private async Task PopulateModificationsAsync(ComboBox modificationCombo, ComboBox meterTypeCombo, ComboBox manufacturerCombo, DateTimePicker datePicker, TextBox registrationNumberTextBox)
         {
@@ -162,13 +167,14 @@ namespace PoverkaWinForms.Forms.Verifier
                 return;
             }
 
-            if (manufacturerCombo.SelectedValue is not int manufacturerId)
+            var manufacturerName = string.IsNullOrWhiteSpace(manufacturerCombo.Text) ? null : manufacturerCombo.Text;
+            if (manufacturerName is null)
             {
                 return;
             }
 
             var manufactureDate = DateOnly.FromDateTime(datePicker.Value);
-            var items = await _modificationService.GetAllAsync(meterTypeId, manufacturerId, manufactureDate);
+            var items = await _modificationService.GetAllAsync(meterTypeId, manufacturerName, manufactureDate);
             _modifications[modificationCombo] = items;
 
             _updating = true;

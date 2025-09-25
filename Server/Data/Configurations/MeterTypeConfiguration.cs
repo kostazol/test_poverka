@@ -10,16 +10,12 @@ public class MeterTypeConfiguration : IEntityTypeConfiguration<MeterType>
     {
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id).UseIdentityByDefaultColumn();
-        builder.Property(e => e.ManufacturerId);
+        builder.Property(e => e.ManufacturerName).HasMaxLength(256);
         builder.Property(e => e.Type).HasMaxLength(100);
         builder.Property(e => e.FullName).HasMaxLength(256);
         builder.Property(e => e.EditorName).HasMaxLength(256);
         builder.Property(e => e.CreatedAt);
         builder.Property(e => e.UpdatedAt);
-        builder.HasOne<Manufacturer>()
-            .WithMany()
-            .HasForeignKey(e => e.ManufacturerId)
-            .OnDelete(DeleteBehavior.Restrict);
-        builder.HasIndex(e => new { e.ManufacturerId, e.Type }).IsUnique();
+        builder.HasIndex(e => new { e.ManufacturerName, e.Type }).IsUnique();
     }
 }
