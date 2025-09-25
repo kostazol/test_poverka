@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -10,160 +12,141 @@ namespace PoverkaServer.Migrations.ApplicationDb
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "RelativeErrorWithStandartValue",
-                table: "Modifications");
+            migrationBuilder.CreateTable(
+                name: "MeterTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ManufacturerName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    Type = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    FullName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MeterTypes", x => x.Id);
+                });
 
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint1PulseCount",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
+            migrationBuilder.CreateTable(
+                name: "Registrations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    MeterTypeId = table.Column<int>(type: "integer", nullable: false),
+                    RegistrationNumber = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    VerificationInterval = table.Column<short>(type: "smallint", nullable: false),
+                    VerificationMethodology = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    RelativeErrorQt1_Qmax = table.Column<byte>(type: "smallint", nullable: false),
+                    RelativeErrorQt2_Qt1 = table.Column<byte>(type: "smallint", nullable: false),
+                    RelativeErrorQmin_Qt2 = table.Column<byte>(type: "smallint", nullable: false),
+                    RegistrationDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    EndDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    HasVerificationModeByV = table.Column<bool>(type: "boolean", nullable: false),
+                    HasVerificationModeByG = table.Column<bool>(type: "boolean", nullable: false),
+                    EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Registrations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Registrations_MeterTypes_MeterTypeId",
+                        column: x => x.MeterTypeId,
+                        principalTable: "MeterTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint1RequiredTime",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
+            migrationBuilder.CreateTable(
+                name: "Modifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RegistrationId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    ClassName = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
+                    PasportImpulseWeight = table.Column<double>(type: "double precision", nullable: false),
+                    VerificationImpulseWeight = table.Column<double>(type: "double precision", nullable: false),
+                    Qmin = table.Column<double>(type: "double precision", nullable: false),
+                    Qt1 = table.Column<double>(type: "double precision", nullable: false),
+                    Qt2 = table.Column<double>(type: "double precision", nullable: false),
+                    Qmax = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint1 = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint1RequiredTime = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint1TimeMultiplier = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint1PulseCount = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint2 = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint2RequiredTime = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint2TimeMultiplier = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint2PulseCount = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint3 = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint3RequiredTime = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint3TimeMultiplier = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint3PulseCount = table.Column<double>(type: "double precision", nullable: false),
+                    Checkpoint4 = table.Column<double>(type: "double precision", nullable: true),
+                    Checkpoint4RequiredTime = table.Column<double>(type: "double precision", nullable: true),
+                    Checkpoint4TimeMultiplier = table.Column<double>(type: "double precision", nullable: true),
+                    Checkpoint4PulseCount = table.Column<double>(type: "double precision", nullable: true),
+                    NumberOfMeasurements = table.Column<byte>(type: "smallint", nullable: false),
+                    MinPulseCount = table.Column<short>(type: "smallint", nullable: false),
+                    MeasurementDurationInSeconds = table.Column<short>(type: "smallint", nullable: false),
+                    FlowSetpointPercent = table.Column<double>(type: "double precision", nullable: false),
+                    EditorName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modifications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Modifications_Registrations_RegistrationId",
+                        column: x => x.RegistrationId,
+                        principalTable: "Registrations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint1TimeMultiplier",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
+            migrationBuilder.CreateIndex(
+                name: "IX_MeterTypes_ManufacturerName_Type",
+                table: "MeterTypes",
+                columns: new[] { "ManufacturerName", "Type" },
+                unique: true);
 
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint2PulseCount",
+            migrationBuilder.CreateIndex(
+                name: "IX_Modifications_RegistrationId_Name",
                 table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
+                columns: new[] { "RegistrationId", "Name" },
+                unique: true);
 
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint2RequiredTime",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
+            migrationBuilder.CreateIndex(
+                name: "IX_Registrations_MeterTypeId",
+                table: "Registrations",
+                column: "MeterTypeId");
 
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint2TimeMultiplier",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
-
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint3PulseCount",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
-
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint3RequiredTime",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
-
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint3TimeMultiplier",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
-
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint4PulseCount",
-                table: "Modifications",
-                type: "double precision",
-                nullable: true);
-
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint4RequiredTime",
-                table: "Modifications",
-                type: "double precision",
-                nullable: true);
-
-            migrationBuilder.AddColumn<double>(
-                name: "Checkpoint4TimeMultiplier",
-                table: "Modifications",
-                type: "double precision",
-                nullable: true);
-
-            migrationBuilder.AddColumn<double>(
-                name: "FlowSetpointPercent",
-                table: "Modifications",
-                type: "double precision",
-                nullable: false,
-                defaultValue: 0.0);
+            migrationBuilder.CreateIndex(
+                name: "IX_Registrations_RegistrationNumber",
+                table: "Registrations",
+                column: "RegistrationNumber",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Checkpoint1PulseCount",
-                table: "Modifications");
+            migrationBuilder.DropTable(
+                name: "Modifications");
 
-            migrationBuilder.DropColumn(
-                name: "Checkpoint1RequiredTime",
-                table: "Modifications");
+            migrationBuilder.DropTable(
+                name: "Registrations");
 
-            migrationBuilder.DropColumn(
-                name: "Checkpoint1TimeMultiplier",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint2PulseCount",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint2RequiredTime",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint2TimeMultiplier",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint3PulseCount",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint3RequiredTime",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint3TimeMultiplier",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint4PulseCount",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint4RequiredTime",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "Checkpoint4TimeMultiplier",
-                table: "Modifications");
-
-            migrationBuilder.DropColumn(
-                name: "FlowSetpointPercent",
-                table: "Modifications");
-
-            migrationBuilder.AddColumn<byte>(
-                name: "RelativeErrorWithStandartValue",
-                table: "Modifications",
-                type: "smallint",
-                nullable: false,
-                defaultValue: (byte)0);
+            migrationBuilder.DropTable(
+                name: "MeterTypes");
         }
     }
 }
